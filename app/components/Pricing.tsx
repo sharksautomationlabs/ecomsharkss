@@ -1,0 +1,128 @@
+'use client';
+
+import React from 'react';
+import Image from 'next/image';
+const imgChatCircleDots = "/images/chat-icon.svg";
+
+// Image assets used in this component.
+const imgBackground = "/images/shark-ocean-main.png";
+const imgBlueWaveShape = "/images/service-bg-vector.svg";
+const imgMaskShape = "/images/service-mask.svg";
+const imgArrowIcon = "/images/arrow-icon.svg";
+const imgChatIcon = "/images/chat-icon.svg";
+
+// Pricing plan data.
+const pricingPlans = [
+  {
+    title: "Basic",
+    description: "Optimize your store with expert assistance and marketing strategies for up to 50 products.",
+    features: ["Full account setup and optimization", "Product listing management for up to 50 items", "Basic marketing and advertising support", "Monthly performance reports", "Customer service management"],
+  },
+  {
+    title: "Standard",
+    description: "Elevate your online presence with advanced optimization and support for 100 products.",
+    features: ["Comprehensive account setup and advanced optimization", "Product listing management for up to 100 items", "Advanced marketing and advertising strategies", "Weekly performance analytics", "Dedicated account manager", "Customer service management", "Inventory management support", "Access to premium resources and tutorials"],
+  },
+  {
+    title: "Premium",
+    description: "Ultimate e-commerce solution with custom services & dedicated support for your business.",
+    features: ["Tailored account setup and full optimization", "Unlimited product listing management", "Custom marketing and advertising campaigns", "Real-time performance analytics", "Dedicated team of account managers", "Comprehensive customer service solutions", "Advanced inventory and supply chain management", "Customized training and support", "Access to exclusive tools and resources"],
+  },
+];
+
+// Reusable Button Component with Barlow font applied.
+const GetQuoteButton = ({ small = false }: { small?: boolean }) => (
+  <button className={`flex items-center justify-between bg-[#35c4dd] hover:bg-[#2cb4ca] transition-colors duration-300 rounded-full group ${small ? 'h-12 w-44 pl-6 pr-1' : 'h-16 w-52 pl-8 pr-1.5'}`}>
+    <span 
+      className={`font-semibold text-[#063f4a] ${small ? 'text-lg' : 'text-xl'}`}
+      style={{ fontFamily: "'Barlow', sans-serif" }}
+    >
+      Get A Quote
+    </span>
+    <span className={`bg-white rounded-full flex items-center justify-center ${small ? 'w-10 h-10' : 'w-12 h-12'}`}>
+      <Image src={imgArrowIcon} alt="arrow icon" width={small ? 20 : 24} height={small ? 20 : 24} />
+    </span>
+  </button>
+);
+
+export default function Pricing() {
+  return (
+    // This structure correctly creates the wavy top border without breaking page flow.
+    <div className="relative w-full bg-white pt-32 lg:pt-48">
+      
+      {/* Background elements are absolutely positioned and fill the parent container. */}
+      <div className="absolute top-0 left-0 right-0 bottom-0">
+        <div className="absolute inset-0 z-0">
+          <Image src={imgBlueWaveShape} alt="Wavy background shape" layout="fill" objectFit="cover" objectPosition="top" />
+        </div>
+        <div className="absolute inset-0 z-10" 
+             style={{
+                maskImage: `url('${imgMaskShape}')`,
+                maskSize: 'cover',
+                maskRepeat: 'no-repeat',
+                maskPosition: 'top center',
+             }}>
+          <div className="relative w-full h-full">
+            <Image src={imgBackground} alt="Underwater background" layout="fill" objectFit="cover" className="blur-md"/>
+            <div className="absolute inset-0 bg-[#052126]/40" />
+          </div>
+        </div>
+      </div>
+
+      {/* Content container flows naturally and dictates the component's height. */}
+      <div className="relative z-20 container mx-auto px-4 pb-24 text-white">
+        <div className="text-center">
+          {/* FONT APPLIED: Barlow Condensed for the main heading */}
+          <h1 
+            className="text-5xl lg:text-6xl font-bold tracking-wide" 
+            style={{ fontFamily: "'Barlow Condensed', sans-serif", textShadow: '0px 3px 6px rgba(0,0,0,0.5)' }}
+          >
+            Choose a variety of price options
+          </h1>
+          {/* FONT APPLIED: Barlow for the paragraph */}
+          <p 
+            className="mt-4 max-w-4xl mx-auto text-lg text-gray-200 leading-relaxed"
+            style={{ fontFamily: "'Barlow', sans-serif" }}
+          >
+            Explore our diverse range of pricing plans tailored to meet your needs...
+          </p>
+        </div>
+
+        {/* Pricing Cards Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-16 max-w-7xl mx-auto">
+          {pricingPlans.map((plan) => (
+            <div key={plan.title} className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 text-left flex flex-col service-card-flash">
+              {/* FONT APPLIED: Barlow Condensed for card titles */}
+              <h2 className="text-3xl font-bold" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>{plan.title}</h2>
+              {/* FONT APPLIED: Barlow for card description */}
+              <p className="mt-2 text-gray-200 min-h-[6rem]" style={{ fontFamily: "'Barlow', sans-serif" }}>{plan.description}</p>
+              <div className="my-6">
+                <GetQuoteButton small />
+              </div>
+              <ul className="space-y-3">
+                {plan.features.map((feature, i) => (
+                  <li key={i} className="flex items-start">
+                    <span className="text-[#35c4dd] mr-3 mt-1.5 text-xs">&#9679;</span>
+                    {/* FONT APPLIED: Barlow for feature list items */}
+                    <span style={{ fontFamily: "'Barlow', sans-serif" }}>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+        
+        {/* Bottom CTA Buttons */}
+        <div className="flex flex-wrap justify-center items-center gap-6 mt-20">
+          <GetQuoteButton />
+              <button className="flex items-center justify-between w-[191px] h-[64px] bg-white rounded-full border-2 border-[#35c4dd] p-2 shadow-lg">
+                  <span className="pl-5 text-[#063f4a] font-semibold text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>Live Chat</span>
+                  <div className="w-[50px] h-[50px] bg-[#063f4a] rounded-full flex items-center justify-center">
+                      <Image src={imgChatCircleDots} alt="chat icon" width={28} height={28} />
+                  </div>
+              </button>
+        </div>
+      </div>
+    </div>
+  );
+}

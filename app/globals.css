@@ -1,0 +1,160 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@400;500;600;700&display=swap');
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-barlow);
+  --font-mono: var(--font-barlow-condensed);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Floating animations for logos */
+@keyframes float-amazon {
+  0%, 100% {
+    transform: translateY(0px) rotate(12deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(12deg);
+  }
+}
+
+@keyframes float-shopify {
+  0%, 100% {
+    transform: translateY(0px) rotate(-12deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(-12deg);
+  }
+}
+
+@keyframes float-tiktok {
+  0%, 100% {
+    transform: translateY(0px) rotate(12deg);
+  }
+  50% {
+    transform: translateY(-18px) rotate(12deg);
+  }
+}
+
+@keyframes float-walmart {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(0deg);
+  }
+}
+
+.animate-float-amazon {
+  animation: float-amazon 4s ease-in-out infinite;
+}
+
+.animate-float-shopify {
+  animation: float-shopify 5s ease-in-out infinite;
+}
+
+.animate-float-tiktok {
+  animation: float-tiktok 4.5s ease-in-out infinite;
+}
+
+.animate-float-walmart {
+  animation: float-walmart 3.5s ease-in-out infinite;
+}
+
+/* Shark leaning and swimming animation */
+@keyframes shark-lean {
+  0%, 100% {
+    transform: rotate(-2deg) translateX(-10px);
+  }
+  50% {
+    transform: rotate(2deg) translateX(10px);
+  }
+}
+
+.animate-shark-lean {
+  animation: shark-lean 8s ease-in-out infinite;
+}
+
+/* Complete shark motion class with lean and slow scroll movement */
+.animate-shark-complete {
+  animation: shark-lean 8s ease-in-out infinite;
+  transition: all 700ms ease-out;
+}
+
+.animate-shark-complete:hover {
+  transform: translateX(10px);
+}
+
+/* Diagonal flash beam effect for service cards */
+@keyframes diagonal-flash-beam {
+  0% {
+    transform: translateX(-100%) translateY(100%) rotate(45deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%) translateY(-100%) rotate(45deg);
+    opacity: 0;
+  }
+}
+
+.service-card-flash {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.service-card-flash::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 20px;
+  background: linear-gradient(45deg, 
+    transparent 0%, 
+    transparent 20%, 
+    rgba(255, 255, 255, 0.8) 40%, 
+    rgba(255, 255, 255, 1) 50%, 
+    rgba(255, 255, 255, 0.8) 60%, 
+    transparent 80%, 
+    transparent 100%
+  );
+  transform: translateX(-100%) translateY(100%) rotate(45deg);
+  opacity: 0;
+  transition: all 0.3s ease;
+  pointer-events: none;
+  z-index: 10;
+  filter: blur(1px);
+}
+
+.service-card-flash:hover {
+  transform: scale(0.95);
+}
+
+.service-card-flash:hover::before {
+  animation: diagonal-flash-beam 0.8s ease-out;
+}
