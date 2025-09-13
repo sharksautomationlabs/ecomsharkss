@@ -61,6 +61,10 @@ export default function Owners() {
             <Image src={imgLeftHand} alt="OK hand gesture" layout="fill" objectFit="contain" />
           </div>
           {/* Hand is smaller, repositioned, and rotated diagonally. */}
+            {/* TikTok Logo position adjusted relative to the new hand position */}
+            <div className="absolute top-[28%] right-[29%] w-[200px] h-[200px]">
+               <Image src={imgTikTokLogo} alt="TikTok Logo" layout="fill" objectFit="contain" />
+            </div>
           <div 
             className="absolute -top-16 -right-20 w-[600px] h-[550px] transition-all duration-1000 ease-out"
             style={{ 
@@ -69,14 +73,10 @@ export default function Owners() {
           >
             <Image src={imgRightHand} alt="Hand writing" layout="fill" objectFit="contain" />
           </div>
-          {/* TikTok Logo position adjusted relative to the new hand position */}
-          <div className="absolute top-[38%] right-[33%] w-[150px] h-[150px]">
-             <Image src={imgTikTokLogo} alt="TikTok Logo" layout="fill" objectFit="contain" />
-          </div>
         </div>
 
         {/* Layer 3: Content */}
-        <div className="relative z-20 container mx-auto px-8 lg:px-16 xl:px-32">
+        <div className="relative z-20 container mx-auto px-20">
           {/* THE FIX: A 12-column grid allows for very fine control. */}
           <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[500px] lg:min-h-[600px] items-center">
             
@@ -95,7 +95,7 @@ export default function Owners() {
                 className="mt-6 text-xl lg:text-2xl leading-relaxed"
                 style={{ fontFamily: "'Barlow', sans-serif" }}
               >
-                At Ecom Sharkss, we understand the challenges you face in today's competitive digital marketplace...
+                At Ecom Sharkss, we understand the challenges you <br/> face  in today's competitive digital marketplace...
               </p>
               <div className="mt-12 flex flex-wrap items-center gap-x-12 gap-y-6">
                 {/* Phone Number */}
@@ -109,16 +109,17 @@ export default function Owners() {
                   </span>
                 </div>
                 {/* Get a Quote Button */}
-                <button className="flex items-center justify-between bg-[#35c4dd] hover:bg-[#2cb4ca] transition-colors duration-300 rounded-full h-16 w-52 pl-8 pr-1.5">
+                <button className="group flex items-center justify-center gap-3 bg-[#35c4dd] hover:bg-[#2cb4ca] transition-colors duration-300 rounded-full py-2.5 pl-6 pr-2 shadow-lg overflow-hidden relative">
                   <span 
-                    className="font-semibold text-xl text-[#063f4a]"
+                    className="font-semibold text-lg text-[#063f4a] relative z-10"
                     style={{ fontFamily: "'Barlow', sans-serif" }}
                   >
                     Get a Quote
                   </span>
-                  <span className="bg-white rounded-full flex items-center justify-center w-12 h-12">
+                  <span className="bg-white rounded-full p-2.5 flex items-center justify-center w-10 h-10 relative z-10">
                     <Image src={imgArrowIcon} alt="arrow icon" width={24} height={24} />
                   </span>
+                  <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
                 </button>
               </div>
             </div>

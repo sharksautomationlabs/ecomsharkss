@@ -81,7 +81,7 @@ export default function Services() {
           </h1>
           
           {/* Services Grid */}
-          <div className="grid grid-cols-4 gap-x-6 w-full max-w-[1200px] mt-16 mx-16">
+          <div className="grid grid-cols-4 gap-x-6 w-full max-w-[1200px] mt-16 mx-20">
             {servicesData.map((service, index) => (
               // CARD SIZE REDUCED
               <div key={index} className="bg-white/10 backdrop-blur-lg rounded-3xl px-6 py-5 border border-white/20 h-[320px] flex flex-col items-center text-center overflow-hidden service-card-flash">
@@ -109,16 +109,17 @@ export default function Services() {
           
           {/* CTA Buttons */}
           <div className="flex items-center gap-6 mt-16">
-            <button className="flex items-center justify-center gap-4 bg-[#35c4dd] text-[#063f4a] font-semibold py-3 pl-8 pr-3 rounded-full text-xl shadow-lg">
-                Get A Quote
+            <button className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative">
+                <span className="relative z-10">Get A Quote</span>
                 {/* CORRECT ICON ADDED */}
-                <span className="bg-white/50 rounded-full p-2 w-[48px] h-[48px] flex items-center justify-center">
+                <span className="bg-white rounded-full p-2.5 w-10 h-10 flex items-center justify-center relative z-10">
                     <Image src={imgArrowIcon} alt="arrow icon" width={28} height={28} />
                 </span>
+                <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
             </button>
-            <button className="flex items-center justify-between w-[191px] h-[64px] bg-white rounded-full border-2 border-[#35c4dd] p-2 shadow-lg">
+            <button className="flex items-center justify-between w-[170px] h-[56px] bg-white rounded-full border-2 border-[#35c4dd] p-2 shadow-lg">
                   <span className="pl-5 text-[#063f4a] font-semibold text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>Live Chat</span>
-                  <div className="w-[50px] h-[50px] bg-[#063f4a] rounded-full flex items-center justify-center">
+                  <div className="w-[44px] h-[44px] bg-[#063f4a] rounded-full flex items-center justify-center">
                       <Image src={imgChatCircleDots} alt="chat icon" width={28} height={28} />
                   </div>
               </button>

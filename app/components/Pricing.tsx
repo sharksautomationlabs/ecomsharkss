@@ -32,16 +32,17 @@ const pricingPlans = [
 
 // Reusable Button Component with Barlow font applied.
 const GetQuoteButton = ({ small = false }: { small?: boolean }) => (
-  <button className={`flex items-center justify-between bg-[#35c4dd] hover:bg-[#2cb4ca] transition-colors duration-300 rounded-full group ${small ? 'h-12 w-44 pl-6 pr-1' : 'h-16 w-52 pl-8 pr-1.5'}`}>
+  <button className={`group flex items-center justify-between bg-[#35c4dd] hover:bg-[#2cb4ca] transition-colors duration-300 rounded-full overflow-hidden relative ${small ? 'h-12 w-44 pl-6 pr-1' : 'h-14 w-48 pl-6 pr-1.5'}`}>
     <span 
-      className={`font-semibold text-[#063f4a] ${small ? 'text-lg' : 'text-xl'}`}
+      className={`font-semibold text-[#063f4a] relative z-10 ${small ? 'text-lg' : 'text-xl'}`}
       style={{ fontFamily: "'Barlow', sans-serif" }}
     >
       Get A Quote
     </span>
-    <span className={`bg-white rounded-full flex items-center justify-center ${small ? 'w-10 h-10' : 'w-12 h-12'}`}>
-      <Image src={imgArrowIcon} alt="arrow icon" width={small ? 20 : 24} height={small ? 20 : 24} />
+    <span className={`bg-white rounded-full flex items-center justify-center relative z-10 ${small ? 'w-10 h-10' : 'w-10 h-10'}`}>
+      <Image src={imgArrowIcon} alt="arrow icon" width={small ? 20 : 20} height={small ? 20 : 20} />
     </span>
+    <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
   </button>
 );
 
@@ -70,7 +71,7 @@ export default function Pricing() {
       </div>
 
       {/* Content container flows naturally and dictates the component's height. */}
-      <div className="relative z-20 container mx-auto px-4 pb-24 text-white">
+      <div className="relative z-20 container mx-auto px-20 pb-24 text-white">
         <div className="text-center">
           {/* FONT APPLIED: Barlow Condensed for the main heading */}
           <h1 
@@ -115,9 +116,9 @@ export default function Pricing() {
         {/* Bottom CTA Buttons */}
         <div className="flex flex-wrap justify-center items-center gap-6 mt-20">
           <GetQuoteButton />
-              <button className="flex items-center justify-between w-[191px] h-[64px] bg-white rounded-full border-2 border-[#35c4dd] p-2 shadow-lg">
+              <button className="flex items-center justify-between w-[170px] h-[56px] bg-white rounded-full border-2 border-[#35c4dd] p-2 shadow-lg">
                   <span className="pl-5 text-[#063f4a] font-semibold text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>Live Chat</span>
-                  <div className="w-[50px] h-[50px] bg-[#063f4a] rounded-full flex items-center justify-center">
+                  <div className="w-[44px] h-[44px] bg-[#063f4a] rounded-full flex items-center justify-center">
                       <Image src={imgChatCircleDots} alt="chat icon" width={28} height={28} />
                   </div>
               </button>

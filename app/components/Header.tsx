@@ -54,7 +54,7 @@ export default function Header() {
         <div className="relative z-20 w-full h-full">
 
           {/* Header Container - MODIFIED */}
-          <header className="absolute top-0 left-0 w-full z-50 px-[136px]">
+          <header className="absolute top-0 left-0 w-full z-50 px-20">
             {/* Top Bar */}
             <div
               className="h-[64px] w-full bg-cover bg-center rounded-b-2xl
@@ -77,13 +77,13 @@ export default function Header() {
             </div>
 
             {/* Navigation Section */}
-            <div className="mt-6 flex items-center justify-between">
-                <div className="w-[110px] h-[100px] relative">
+            <div className="mt-6 flex items-center justify-between slide-in-right">
+                <div className="w-[110px] h-[100px] relative fade-in">
                     <Image src={imgImage1} alt="Ecom Sharks Logo" layout="fill" objectFit="contain" />
                 </div>
-                <div className="w-[1050px] h-[90px] bg-black/20 backdrop-blur-sm 
-                            rounded-2xl flex items-center justify-between px-10">
-                    <div className="flex items-center gap-10 text-white text-[18px] font-medium" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                <div className="w-[950px] h-[90px] bg-white/20 backdrop-blur-sm 
+                            rounded-2xl flex items-center justify-end px-10 gap-8 border-2 border-white">
+                    <div className="flex items-center gap-6 text-white text-[18px] font-medium" style={{ fontFamily: "'Barlow', sans-serif" }}>
                         <a href="#" className="hover:text-[#35c4dd]" style={textShadow}>Home</a>
                         <a href="#" className="hover:text-[#35c4dd]" style={textShadow}>About Us</a>
                         <a href="#" className="hover:text-[#35c4dd]" style={textShadow}>Amazon</a>
@@ -93,16 +93,19 @@ export default function Header() {
                         <a href="#" className="hover:text-[#35c4dd]" style={textShadow}>Identity</a>
                         <a href="#" className="hover:text-[#35c4dd]" style={textShadow}>Contact</a>
                     </div>
-                    <button className="flex items-center justify-center gap-3 bg-white/90 text-[#063f4a] font-semibold py-2 pl-6 pr-2 rounded-full text-lg">
-                        Get Started
-                        <span className="bg-[#35c4dd] rounded-full p-1"><div className="w-5 h-5" /></span>
+                     <button className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-1.5 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative">
+                        <span className="relative z-10">Get Started</span>
+                        <span className="bg-white rounded-full p-2.5 w-10 h-10 flex items-center justify-center relative z-10">
+                            <ArrowIcon />
+                        </span>
+                        <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
                     </button>
                 </div>
             </div>
           </header>
 
           {/* Hero Text Content */}
-          <div className="absolute top-[300px] left-[136px] w-[781px] z-50">
+          <div className="absolute top-[300px] left-20 w-[781px] z-50 slide-in-left">
             <h1 className="text-white text-[94px] leading-[0.921]" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 600, ...textShadow }}>
               Drive Revenue <br />&Dominate the Digital <br />World with Us
             </h1>
@@ -110,16 +113,17 @@ export default function Header() {
               Boost your Digital Presence on Amazon, TikTok, Walmart & Shopify with ECOM SHARKS
             </p>
             <div className="flex items-center gap-6 mt-12">
-            <button className="flex items-center justify-center gap-4 bg-[#35c4dd] text-[#063f4a] font-semibold py-2.5 pl-8 pr-2 rounded-full text-xl transition-transform hover:scale-105">
-                Contact Us
-                <span className="bg-white/50 rounded-full p-3">
+            <button className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative">
+                <span className="relative z-10">Contact Us</span>
+                <span className="bg-white rounded-full p-2.5 w-10 h-10 flex items-center justify-center relative z-10">
                   <ArrowIcon />
                 </span>
+                <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
               </button>
 
-              <button className="flex items-center justify-between w-[191px] h-[64px] bg-white rounded-full border-2 border-[#35c4dd] p-2 shadow-lg">
+              <button className="flex items-center justify-between w-[170px] h-[56px] bg-white rounded-full border-2 border-[#35c4dd] p-2 shadow-lg">
                   <span className="pl-5 text-[#063f4a] font-semibold text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>Live Chat</span>
-                  <div className="w-[50px] h-[50px] bg-[#063f4a] rounded-full flex items-center justify-center">
+                  <div className="w-[44px] h-[44px] bg-[#063f4a] rounded-full flex items-center justify-center">
                       <Image src={imgChatCircleDots} alt="chat icon" width={28} height={28} />
                   </div>
               </button>
@@ -138,19 +142,19 @@ export default function Header() {
                 <Image src={imgDangerousSharkUnderwater2Copy1} alt="Shark" layout="fill" objectFit="contain" className="transform -scale-x-100" />
             </div>
             {/* Amazon Logo - Floating animation with gentle rotation */}
-            <div className="absolute top-[41%] right-[9%] w-[13.5%] h-auto transform rotate-12 animate-float-amazon">
+            <div className="absolute top-[41%] right-[9%] w-[13.5%] h-auto logo-fade-in-amazon">
                 <Image src={img61} alt="Amazon Logo" width={260} height={260} objectFit="contain" />
             </div>
             {/* Shopify Logo - Floating animation with counter-rotation */}
-            <div className="absolute top-[44%] right-[30%] w-[14.5%] h-auto transform -rotate-12 animate-float-shopify">
+            <div className="absolute top-[44%] right-[30%] w-[14.5%] h-auto logo-fade-in-shopify">
                 <Image src={img81} alt="Shopify Logo" width={280} height={280} objectFit="contain" />
             </div>
             {/* TikTok Logo - Floating animation with rotation */}
-            <div className="absolute top-[58%] right-[19%] w-[15%] h-auto z-40 transform rotate-12 animate-float-tiktok">
+            <div className="absolute top-[58%] right-[19%] w-[15%] h-auto z-40 logo-fade-in-tiktok">
                 <Image src={img91} alt="TikTok Logo" width={290} height={290} objectFit="contain" />
             </div>
             {/* Walmart Logo - Floating animation with gentle sway */}
-            <div className="absolute top-[25%] right-[20%] w-[16%] h-auto z-40 animate-float-walmart">
+            <div className="absolute top-[25%] right-[20%] w-[16%] h-auto z-40 logo-fade-in-walmart">
                 <Image src={img72} alt="Walmart Logo" width={310} height={310} objectFit="contain" />
             </div>
           </div>

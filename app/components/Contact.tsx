@@ -34,7 +34,7 @@ export default function Contact() {
       />
       
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-8">
+      <div className="relative z-10 container mx-auto px-20">
         <div className="flex flex-col lg:flex-row gap-16">
           {/* Left Content */}
           <div className="flex-1 max-w-2xl">

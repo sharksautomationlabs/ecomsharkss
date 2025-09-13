@@ -48,11 +48,11 @@ export default function QuoteSection() {
             <div className="absolute bg-[0%_-0.06%] bg-no-repeat bg-size-[100%_88.77%] h-[961px] left-[-43px] opacity-20 top-px w-[2382px]" style={{ backgroundImage: `url('${imgPattern011}')` }} />
             <div className="absolute h-[738px] left-0 overflow-clip top-0 w-[1920px]">
                 <div 
-                  className="absolute flex h-[961.316px] items-center justify-center w-[1324.938px] animate-shark-lean transition-all duration-1000 ease-out"
+                  className="absolute flex h-[961.316px] items-center justify-center -top-167 w-[1324.938px] animate-shark-complete transition-all duration-1000 ease-out"
                   style={{ 
-                    left: `${808.56 - (scrollPosition * 0.005)}px`,
+                    left: `${75 - (scrollPosition * 0.01)}%`,
                     top: `${-167 + (scrollPosition * 0.002)}px`,
-                    transform: `translateX(${-scrollPosition * 0.02}px)`
+                    transform: `translateX(${-scrollPosition * 0.1}px)`
                   }}
                 >
                     <div className="flex-none rotate-[198.874deg] scale-y-[-100%]">
@@ -64,7 +64,7 @@ export default function QuoteSection() {
         {/* --- END OF PRESERVED DIVS --- */}
 
         {/* Content Layer - MODIFIED: Left padding reduced for alignment */}
-        <div className="absolute top-[328px] left-[136px] z-20 text-white">
+        <div className="absolute top-[328px] left-20 z-20 text-white">
           <div className="w-[130px] h-[109px] relative -top-40">
             <Image src={imgImage1} alt="Ecom Sharks Logo" layout="fill" objectFit="contain" />
           </div>
@@ -74,12 +74,13 @@ export default function QuoteSection() {
           </h1>
 
           <div className="mt-12 flex items-center gap-8">
-             <button className="flex items-center justify-center gap-4 bg-[#35c4dd] text-[#063f4a] font-semibold py-3 pl-8 pr-3 rounded-full text-xl shadow-lg">
-                Get A Quote
+             <button className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2.5 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative">
+                <span className="relative z-10">Get A Quote</span>
                 {/* CORRECT ICON ADDED */}
-                <span className="bg-white/50 rounded-full p-2 w-[48px] h-[48px] flex items-center justify-center">
+                <span className="bg-white rounded-full p-2.5 w-10 h-10 flex items-center justify-center relative z-10">
                     <Image src={imgArrowIcon} alt="arrow icon" width={28} height={28} />
                 </span>
+                <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
             </button>
             <p className="text-[20px] max-w-lg leading-[32px]" style={{ fontFamily: "'Barlow', sans-serif" }}>
               Lorem Ipsum is simply dummy text of the printing and typesetting industry.

@@ -54,17 +54,17 @@ export default function Contact() {
         />
       </div>
       {/* THE FIX: Shark container is larger and rotated slightly. */}
-      <div className="absolute bottom-32 left-75 w-[1000px] h-[1400px] z-0 transform rotate-15">
+      <div className="absolute bottom-32 left-75 w-[1000px] h-[1400px] z-0 transform rotate-15 animate-shark-lean">
         <Image src={imgShark} alt="Shark" layout="fill" objectFit="contain" />
       </div>
 
       {/* Main Content Area */}
-      <div className="relative z-10 max-w-7xl mx-auto px-8">
+      <div className="relative z-10 container mx-auto px-20">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12">
           
           {/* Left Column: Text and Contact Info */}
           <div className="pt-12 text-gray-800">
-            <h1 className="text-7xl lg:text-8xl font-bold" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+            <h1 className="text-7xl lg:text-8xl font-semibold" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
               Contact
             </h1>
             <p className="mt-6 text-xl lg:text-2xl leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
@@ -113,13 +113,12 @@ export default function Contact() {
                 <textarea id="message" rows={5} className="w-full bg-white rounded-3xl p-6 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white"></textarea>
               </div>
               <div>
-                <button type="submit" className="flex items-center justify-between bg-white rounded-full h-16 w-52 pl-8 pr-1.5 group hover:shadow-lg transition-shadow">
-                  <span className="font-semibold text-xl text-[#063f4a]" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                    Get Started
-                  </span>
-                  <span className="bg-[#063f4a] rounded-full w-12 h-12 flex items-center justify-center">
+                <button type="submit" className="group flex items-center justify-center gap-3 bg-white text-[#35c4dd] font-semibold py-2.5 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative">
+                  <span className="relative z-10" style={{ fontFamily: "'Barlow', sans-serif" }}>Get Started</span>
+                  <span className="bg-[#063f4a] rounded-full p-2.5 relative z-10">
                     <Image src={imgArrowIcon} alt="arrow icon" width={24} height={24} />
                   </span>
+                  <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#063f4a] rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
                 </button>
               </div>
             </form>
@@ -130,7 +129,7 @@ export default function Contact() {
       {/* THE FIX: Bottom Footer Bar now has `mt-0` to remove the gap. */}
       <div className="relative z-10 mt-0">
         <div className="bg-[#063f4a] py-6">
-          <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row items-center justify-between gap-6 text-white text-sm">
+          <div className="container mx-auto px-20 flex flex-col md:flex-row items-center justify-between gap-6 text-white text-sm">
             <p>© 2025 Ecom Sharkss. All Rights Reserved.</p>
             <div className="flex items-center gap-4">
               <span>Follow us:</span>

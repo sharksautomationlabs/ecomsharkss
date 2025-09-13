@@ -2,6 +2,9 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { motion, useAnimation, Variants } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+
 const imgChatCircleDots = "/images/chat-icon.svg";
 
 // SVG Icons from the provided ExpertsSection code
@@ -22,6 +25,13 @@ const ChatIcon = () => (
 
 export default function ExpertsSection() {
   const [scrollPosition, setScrollPosition] = useState(0);
+  const controls = useAnimation();
+  
+  // MODIFICATION 1: Set triggerOnce to false to allow re-triggering
+  const [ref, inView] = useInView({
+    triggerOnce: false, // Set to false to re-trigger animation
+    threshold: 0.3,   // Trigger when 30% of the component is in view
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,24 +42,72 @@ export default function ExpertsSection() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // MODIFICATION 2: Animate in when inView is true, and animate out when false
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    } else {
+      controls.start('hidden'); // Reset to hidden state when out of view
+    }
+  }, [controls, inView]);
+  
+  const containerVariants: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.3,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  // MODIFICATION 3: Change transition to a smoother spring animation
+  const leftVariants: Variants = {
+    hidden: { x: -200, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 50,
+        damping: 20,
+        mass: 1.5,
+      },
+    },
+  };
+
+  const rightVariants: Variants = {
+    hidden: { x: 200, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 50,
+        damping: 20,
+        mass: 1.5,
+      },
+    },
+  };
+
   return (
-    // Main wrapper that centers and scales the content identically to the Header
-    <div className="w-full bg-white flex justify-center">
-      {/* Scalable container with a fixed aspect ratio */}
+    <div ref={ref} className="w-full bg-white flex justify-center">
       <div className="relative w-full max-w-[1920px] aspect-[1920/1080] overflow-hidden select-none
-                      flex items-center px-[136px]">
+                      flex items-center px-20">
         
-        {/* Main Content Grid */}
-        <div className="relative w-full grid grid-cols-1 lg:grid-cols-12 gap-x-12 items-center">
+        <motion.div 
+          className="relative w-full grid grid-cols-1 lg:grid-cols-12 gap-x-12 items-center"
+          variants={containerVariants}
+          initial="hidden"
+          animate={controls}
+        >
           
-          {/* Left Content Section */}
-          <div className="lg:col-span-6 z-10">
+          <motion.div className="lg:col-span-6 z-10" variants={leftVariants}>
             <div className="inline-flex items-center gap-3 bg-[#d0f7ff] text-[#2c2420] px-4 py-2.5 rounded-full mb-8">
               <span className="text-xl">💬</span>
               <span className="font-medium text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>Welcome Message</span>
             </div>
 
-            {/* FONT STYLES MATCHED TO HEADER */}
             <h1 className="text-[94px] font-semibold text-[#2c2020] leading-[0.921]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
               Meet the Experts Behind <br />
               ECOM SHARKSS Success
@@ -59,27 +117,26 @@ export default function ExpertsSection() {
               Our dedicated team stands at the forefront of Amazon's fulfillment programs and beyond. We don't just help businesses grow—we empower them to scale and thrive!
             </p>
 
-            {/* BUTTON STYLES MATCHED TO HEADER */}
             <div className="mt-12 flex items-center gap-8">
-              <button className="flex items-center justify-center gap-4 bg-[#35c4dd] text-[#063f4a] font-semibold py-3 pl-8 pr-2 rounded-full text-xl shadow-lg">
-                Get A Quote
-                <span className="bg-white/50 rounded-full p-3">
+              <button className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2.5 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative">
+                <span className="relative z-10">Get A Quote</span>
+                <span className="bg-white rounded-full p-2.5 relative z-10">
                   <ArrowIcon />
                 </span>
+                <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
               </button>
               <div className="flex items-center gap-4">
-              <button className="flex items-center justify-between w-[191px] h-[64px] bg-white rounded-full border-2 border-[#35c4dd] p-2 shadow-lg">
+              <button className="flex items-center justify-between w-[170px] h-[56px] bg-white rounded-full border-2 border-[#35c4dd] p-2 shadow-lg">
                   <span className="pl-5 text-[#063f4a] font-semibold text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>Live Chat</span>
-                  <div className="w-[50px] h-[50px] bg-[#063f4a] rounded-full flex items-center justify-center">
+                  <div className="w-[44px] h-[44px] bg-[#063f4a] rounded-full flex items-center justify-center">
                       <Image src={imgChatCircleDots} alt="chat icon" width={28} height={28} />
                   </div>
               </button>
               </div>
             </div>
-          </div>
+          </motion.div>
           
-          {/* Right Image Section */}
-          <div className="lg:col-span-6 h-[75%] absolute right-0 w-1/2">
+          <motion.div className="lg:col-span-6 h-[90%] absolute right-0 w-[45%]" variants={rightVariants}>
             <div className="relative w-full h-full">
                 <div className="absolute inset-0 rounded-[40px] overflow-hidden">
                     <div 
@@ -90,21 +147,19 @@ export default function ExpertsSection() {
                     </div>
                 </div>
 
-                {/* Floating Logos - Sized with percentages */}
                 <img src="/images/walmart-logo.png" alt="Walmart Logo" className="absolute w-[25%] top-[2%] right-[25%] transform rotate-[12.5deg]" />
                 <img src="/images/amazon-logo.png" alt="Amazon Logo" className="absolute w-[28%] top-[10%] left-[5%] transform -rotate-[8.3deg]" />
                 <img src="/images/shopify-logo.png" alt="Shopify Logo" className="absolute w-[30%] top-[5%] right-[2%] transform rotate-[12.2deg]" />
                 <img src="/images/tiktok-logo.png" alt="TikTok Logo" className="absolute w-[28%] bottom-[25%] left-1/2 -translate-x-1/2 transform -rotate-[13deg] z-[5]" />
             </div>
-          </div>
+          </motion.div>
 
-        </div>
+        </motion.div>
 
-        {/* Shark Image - Sized with percentages */}
         <div 
           className="absolute -bottom-[20%] w-[40%] z-20 animate-shark-complete"
           style={{ 
-            left: `${35 + (scrollPosition * 0.03)}%`,
+            left: `${30 + (scrollPosition * 0.03)}%`,
             transform: `translateX(${scrollPosition * 0.1}px)`
           }}
         >

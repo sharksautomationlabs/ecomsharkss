@@ -64,19 +64,19 @@ body {
 }
 
 .animate-float-amazon {
-  animation: float-amazon 4s ease-in-out infinite;
+  animation: float-amazon 4s ease-in-out infinite 1s;
 }
 
 .animate-float-shopify {
-  animation: float-shopify 5s ease-in-out infinite;
+  animation: float-shopify 5s ease-in-out infinite 1s;
 }
 
 .animate-float-tiktok {
-  animation: float-tiktok 4.5s ease-in-out infinite;
+  animation: float-tiktok 4.5s ease-in-out infinite 1s;
 }
 
 .animate-float-walmart {
-  animation: float-walmart 3.5s ease-in-out infinite;
+  animation: float-walmart 3.5s ease-in-out infinite 1s;
 }
 
 /* Shark leaning and swimming animation */
@@ -90,12 +90,12 @@ body {
 }
 
 .animate-shark-lean {
-  animation: shark-lean 8s ease-in-out infinite;
+  animation: shark-lean 4s ease-in-out infinite;
 }
 
 /* Complete shark motion class with lean and slow scroll movement */
 .animate-shark-complete {
-  animation: shark-lean 8s ease-in-out infinite;
+  animation: shark-lean 6s ease-in-out infinite;
   transition: all 700ms ease-out;
 }
 
@@ -157,4 +157,113 @@ body {
 
 .service-card-flash:hover::before {
   animation: diagonal-flash-beam 0.8s ease-out;
+}
+
+/* Header Animations */
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-in-left {
+  animation: slide-in-left 0.8s ease-out forwards;
+}
+
+.slide-in-right {
+  animation: slide-in-right 0.8s ease-out forwards;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes logo-fade-in-amazon {
+  0% {
+    opacity: 0;
+    transform: translateY(0px) rotate(12deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px) rotate(12deg);
+  }
+}
+
+@keyframes logo-fade-in-shopify {
+  0% {
+    opacity: 0;
+    transform: translateY(0px) rotate(-12deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px) rotate(-12deg);
+  }
+}
+
+@keyframes logo-fade-in-tiktok {
+  0% {
+    opacity: 0;
+    transform: translateY(0px) rotate(12deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px) rotate(12deg);
+  }
+}
+
+@keyframes logo-fade-in-walmart {
+  0% {
+    opacity: 0;
+    transform: translateY(0px) rotate(0deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px) rotate(0deg);
+  }
+}
+
+.fade-in {
+  opacity: 0;
+  animation: fade-in 1s ease-out forwards;
+}
+
+.logo-fade-in-amazon {
+  opacity: 0;
+  animation: logo-fade-in-amazon 2s ease-out forwards, float-amazon 4s ease-in-out infinite 1s;
+}
+
+.logo-fade-in-shopify {
+  opacity: 0;
+  animation: logo-fade-in-shopify 2s ease-out forwards, float-shopify 5s ease-in-out infinite 1s;
+}
+
+.logo-fade-in-tiktok {
+  opacity: 0;
+  animation: logo-fade-in-tiktok 2s ease-out forwards, float-tiktok 4.5s ease-in-out infinite 1s;
+}
+
+.logo-fade-in-walmart {
+  opacity: 0;
+  animation: logo-fade-in-walmart 2s ease-out forwards, float-walmart 3.5s ease-in-out infinite 1s;
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 const imgChatCircleDots = "/images/chat-icon.svg";
 
@@ -10,6 +10,7 @@ const imgHand = "/images/results-bg.png";
 const imgShark = "/images/hero-shark.png";
 const imgPenAndPaper = "/images/results-image.png";
 const imgWalmartLogo = "/images/amazon-logo.png";
+const imgHand1 = "/images/hand.png";
 
 // Reusable button icons.
 const ArrowIcon = () => (
@@ -24,6 +25,17 @@ const ChatIcon = () => (
 );
 
 export default function ResultsSection() {
+  const [scrollPosition, setScrollPosition] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollPosition(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     // This structure is correct: it centers the 1920px canvas.
     <div className="w-full bg-white flex justify-center">
@@ -45,24 +57,33 @@ export default function ResultsSection() {
         <div className="absolute top-0 right-0 bottom-0 w-[60%] lg:w-[55%] z-10">
           <div className="relative w-full h-full">
               {/* Internal z-index for layering images within the collage */}
-              <div className="absolute w-[120%] h-auto top-[10%] -right-[10%] z-10">
-                  <Image src={imgShark} alt="Shark" width={1180} height={445} objectFit="contain" className="transform -scale-x-100" />
+              <div 
+                className="absolute w-[120%] h-auto top-[50%] z-10 animate-shark-complete"
+                style={{ 
+                  left: `${125 - (scrollPosition * 0.03)}%`,
+                  transform: `translateX(${-scrollPosition * 0.3}px)`
+                }}
+              >
+                  <Image src={imgShark} alt="Shark" width={980} height={445} objectFit="contain" className="transform -scale-x-100" />
               </div>
-              <div className="absolute w-[28%] h-auto top-[40%] right-[25%] z-30">
-                  <Image src={imgHand} alt="Hand holding results" width={176} height={137}  objectFit="contain" className="filter grayscale" />
+              <div className="absolute w-[28%] h-auto top-[15%] right-[45%] z-30">
+                  <Image src={imgHand} alt="Hand holding results" width={250} height={250}  objectFit="contain" className="filter grayscale" />
               </div>
-              <div className="absolute w-[38%] h-auto top-[40%] right-[25%] z-30">
-                  <Image src={imgWalmartLogo} alt="Walmart Logo" width={126} height={126} objectFit="contain" />
+              <div className="absolute w-[38%] h-auto top-[20%] right-[40%] z-30 transform -rotate-12">
+                  <Image src={imgWalmartLogo} alt="Walmart Logo" width={190} height={190} objectFit="contain" />
               </div>
-              <div className="absolute w-[28%] h-auto top-[25%] right-[21%] z-30 transform -rotate-12">
-                   <Image src={imgPenAndPaper} alt="Pen and paper" width={176} height={137} objectFit="contain" />
+              <div className="absolute w-[28%] h-auto top-[22%] right-[32%] z-30 ">
+                   <Image src={imgPenAndPaper} alt="Pen and paper" width={166} height={127} objectFit="contain" />
+              </div>
+              <div className="absolute w-[28%] h-auto top-[22%] right-[32%] z-30 ">
+                   <Image src={imgHand1} alt="Pen and paper" width={166} height={127} objectFit="contain" />
               </div>
           </div>
         </div>
 
         {/* Left Side: Text Content */}
         {/* THE FIX: This container has `z-20`, placing it on the HIGHEST layer, ensuring it is always visible and interactive. */}
-        <div className="relative z-20 flex items-center min-h-[960px] px-8 lg:px-16 xl:px-36">
+        <div className="relative z-20 flex items-center min-h-[960px] px-20">
           <div className="w-full lg:w-1/2 xl:w-2/5 pt-24 pb-32 lg:py-0">
             {/* All fonts and styles remain exactly as you provided. */}
             <h1 className="text-[94px] font-semibold text-[#2c2420] leading-[0.921]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
@@ -77,13 +98,14 @@ export default function ResultsSection() {
                 <li>Expert Support Team</li>
             </ul>
             <div className="flex flex-wrap items-center gap-8 mt-12">
-              <button className="flex items-center justify-center gap-4 bg-[#35c4dd] text-[#063f4a] font-semibold py-3 pl-8 pr-2 rounded-full text-xl shadow-lg">
-                  Get A Quote
-                  <span className="bg-white/50 rounded-full p-3 flex items-center justify-center w-12 h-12"><ArrowIcon /></span>
+              <button className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2.5 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative">
+                  <span className="relative z-10">Get A Quote</span>
+                  <span className="bg-white rounded-full p-2.5 flex items-center justify-center w-10 h-10 relative z-10"><ArrowIcon /></span>
+                  <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
               </button>
-              <button className="flex items-center justify-between w-[191px] h-[64px] bg-white rounded-full border-2 border-[#35c4dd] p-2 shadow-lg">
+              <button className="flex items-center justify-between w-[170px] h-[56px] bg-white rounded-full border-2 border-[#35c4dd] p-2 shadow-lg">
                   <span className="pl-5 text-[#063f4a] font-semibold text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>Live Chat</span>
-                  <div className="w-[50px] h-[50px] bg-[#063f4a] rounded-full flex items-center justify-center">
+                  <div className="w-[44px] h-[44px] bg-[#063f4a] rounded-full flex items-center justify-center">
                       <Image src={imgChatCircleDots} alt="chat icon" width={28} height={28} />
                   </div>
               </button>

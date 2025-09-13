@@ -47,7 +47,7 @@ export default function Testimonials() {
   return (
     <section className="w-full bg-white py-24">
       {/* Container to enforce 1920px max-width alignment */}
-      <div className="max-w-[1920px] mx-auto px-8 lg:px-16 xl:px-32">
+      <div className="container mx-auto px-20">
         
         {/* Section Header - Fonts and colors are matched exactly. */}
         <div className="text-center mb-16">
