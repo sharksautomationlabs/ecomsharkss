@@ -29,7 +29,17 @@ const ChatIcon = () => (
     </svg>
 );
 
-export default function MissionSection() {
+interface MissionProps {
+  customTitle?: string;
+  customDescription?: string;
+  useCustomContent?: boolean;
+}
+
+export default function MissionSection({ 
+  customTitle,
+  customDescription,
+  useCustomContent = false
+}: MissionProps) {
   const [activeTab, setActiveTab] = useState('mission');
   const controls = useAnimation();
   const [ref, inView] = useInView({
@@ -92,65 +102,78 @@ export default function MissionSection() {
 
   return (
     <div ref={ref} className="w-full bg-white flex justify-center">
-      <div className="relative w-full max-w-[1920px] aspect-[1920/1080] overflow-hidden select-none">
+      <div className={`relative w-full max-w-[1920px] overflow-hidden select-none ${useCustomContent ? 'min-h-[800px] py-20' : 'aspect-[1920/1080]'}`}>
         
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#bef4fe] to-white" />
         <div className="absolute inset-0 z-10" style={{ maskImage: `url('${imgPatternMask}')`, maskSize: '100% 100%' }}>
             <div className="w-full h-full bg-repeat" style={{ backgroundImage: `url('${imgPattern011}')` }} />
         </div>
 
-        <div className="relative z-20 w-full h-full px-20">
-          <nav className="w-full flex justify-center pt-24 border-b-2 border-[#79bfcd]">
-            <div className="flex items-center gap-16">
-              {Object.keys(contentData).map((tab) => (
-                <button 
-                  key={tab}
-                  onClick={() => setActiveTab(tab)}
-                  // MODIFICATION: Increased padding for a larger click area
-                  className={`relative flex items-center gap-3 pb-6 px-8 py-4 transition-all duration-300 cursor-pointer hover:opacity-80 bg-transparent border-none outline-none ${
-                    activeTab === tab ? 'border-b-2 border-[#063f4a]' : 'border-b-2 border-transparent'
-                  }`}
-                >
-                  <span 
-                    className={`text-[32px] transition-colors duration-300 ${
-                      activeTab === tab ? 'text-[#063f4a]' : 'text-[#2c2420] opacity-60'
-                    }`} 
-                    style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 500 }}
+        <div className={`relative z-20 w-full px-20 ${useCustomContent ? 'h-full flex items-center' : 'h-full'}`}>
+          {!useCustomContent && (
+            <nav className="w-full flex justify-center pt-24 border-b-2 border-[#79bfcd]">
+              <div className="flex items-center gap-16">
+                {Object.keys(contentData).map((tab) => (
+                  <button 
+                    key={tab}
+                    onClick={() => setActiveTab(tab)}
+                    // MODIFICATION: Increased padding for a larger click area
+                    className={`relative flex items-center gap-3 pb-6 px-8 py-4 transition-all duration-300 cursor-pointer hover:opacity-80 bg-transparent border-none outline-none ${
+                      activeTab === tab ? 'border-b-2 border-[#063f4a]' : 'border-b-2 border-transparent'
+                    }`}
                   >
-                    {contentData[tab as keyof typeof contentData].title}
-                  </span>
-                </button>
-              ))}
-            </div>
-          </nav>
+                    <span 
+                      className={`text-[32px] transition-colors duration-300 ${
+                        activeTab === tab ? 'text-[#063f4a]' : 'text-[#2c2420] opacity-60'
+                      }`} 
+                      style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 500 }}
+                    >
+                      {contentData[tab as keyof typeof contentData].title}
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </nav>
+          )}
 
-          <div className="relative w-full h-[calc(100%-200px)]">
+          <div className={`relative w-full ${useCustomContent ? 'h-full' : 'h-[calc(100%-200px)]'}`}>
               {/* Left Text Content */}
               <motion.div 
-                className="absolute top-[10%] left-0 w-[585px] z-30"
+                className={`${useCustomContent ? 'relative w-[585px] z-30' : 'absolute top-[10%] left-0 w-[585px] z-30'}`}
                 initial="hidden"
                 animate={controls}
                 variants={scrollFadeInVariants}
               >
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={activeTab}
-                    variants={tabContentVariants}
-                    initial="initial"
-                    animate="animate"
-                    exit="exit"
-                  >
-                    <div className="inline-flex items-center gap-3 bg-[#95e5f3] text-[#2c2420] px-6 py-4 rounded-full mb-8">
-                        <span className="font-medium text-2xl" style={{ fontFamily: "'Barlow', sans-serif" }}>{currentContent.badge}</span>
-                    </div>
+                {useCustomContent ? (
+                  <div>
                     <h1 className="text-[94px] font-semibold text-[#2c2420] leading-[0.921]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                        {currentContent.title}
+                        {customTitle}
                     </h1>
-                    <p className="mt-8 text-[20px] text-[#333333] leading-[32px] text-justify" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                        {currentContent.description}
+                    <p className="mt-8 text-[20px] text-[#333333] leading-[32px] text-justify whitespace-pre-line" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                        {customDescription}
                     </p>
-                  </motion.div>
-                </AnimatePresence>
+                  </div>
+                ) : (
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={activeTab}
+                      variants={tabContentVariants}
+                      initial="initial"
+                      animate="animate"
+                      exit="exit"
+                    >
+                      <div className="inline-flex items-center gap-3 bg-[#95e5f3] text-[#2c2420] px-6 py-4 rounded-full mb-8">
+                          <span className="font-medium text-2xl" style={{ fontFamily: "'Barlow', sans-serif" }}>{currentContent.badge}</span>
+                      </div>
+                      <h1 className="text-[94px] font-semibold text-[#2c2420] leading-[0.921]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+                          {currentContent.title}
+                      </h1>
+                      <p className="mt-8 text-[20px] text-[#333333] leading-[32px] text-justify" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                          {currentContent.description}
+                      </p>
+                    </motion.div>
+                  </AnimatePresence>
+                )}
                 
                 <div className="flex items-center gap-8 mt-12">
                     <button className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2.5 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative">
@@ -168,7 +191,7 @@ export default function MissionSection() {
               </motion.div>
 
               {/* Right Image Collage */}
-              <div className="absolute right-[-10%] top-[-10%] w-[65%] h-[120%] z-20">
+              <div className={`${useCustomContent ? 'absolute right-[-5%] top-0 w-[60%] h-[100%] z-20' : 'absolute right-[-10%] top-[-10%] w-[65%] h-[120%] z-20'}`}>
                 <div className="relative w-full h-full" style={{ maskImage: `url('${imgWomanMask}')`, maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }}>
                     <div className="absolute w-[100%] h-[50%] top-[10%] left-0 z-0 animate-shark-lean">
                         <Image src={imgShark} alt="Shark" layout="fill" objectFit="contain" />

@@ -25,7 +25,15 @@ const img61 = "/images/amazon-logo.png";
 const img72 = "/images/walmart-logo.png";
 const img81 = "/images/shopify-logo.png";
 
-export default function Header() {
+interface HeaderProps {
+  heroTitle?: string;
+  heroSubtitle?: string;
+}
+
+export default function Header({ 
+  heroTitle = "Drive Revenue &Dominate the Digital World with Us",
+  heroSubtitle = "Boost your Digital Presence on Amazon, TikTok, Walmart & Shopify with ECOM SHARKS"
+}: HeaderProps) {
   const textShadow = { textShadow: '0px 2px 5px rgba(0, 0, 0, 0.5)' };
   const [scrollPosition, setScrollPosition] = useState(0);
 
@@ -92,8 +100,8 @@ export default function Header() {
                 <div className="w-[950px] h-[90px] bg-white/20 backdrop-blur-sm 
                             rounded-2xl flex items-center justify-end px-10 gap-8 border-2 border-white">
                     <div className="flex items-center gap-6 text-white text-[18px] font-medium" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                        <a href="#" className="hover:text-[#35c4dd]" style={textShadow}>Home</a>
-                        <a href="#" className="hover:text-[#35c4dd]" style={textShadow}>About Us</a>
+                        <a href="/" className="hover:text-[#35c4dd]" style={textShadow}>Home</a>
+                        <a href="/about" className="hover:text-[#35c4dd]" style={textShadow}>About Us</a>
                         <a href="#" className="hover:text-[#35c4dd]" style={textShadow}>Amazon</a>
                         <a href="#" className="hover:text-[#35c4dd]" style={textShadow}>Shopify</a>
                         <a href="#" className="hover:text-[#35c4dd]" style={textShadow}>Tiktok</a>
@@ -115,10 +123,10 @@ export default function Header() {
           {/* Hero Text Content */}
           <div className="absolute top-[300px] left-20 w-[781px] z-50 slide-in-left">
             <h1 className="text-white text-[94px] leading-[0.921]" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 600, ...textShadow }}>
-              Drive Revenue <br />&Dominate the Digital <br />World with Us
+              {heroTitle}
             </h1>
             <p className="mt-6 text-white text-[24px] leading-[38px] max-w-[685px]" style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 500, ...textShadow }}>
-              Boost your Digital Presence on Amazon, TikTok, Walmart & Shopify with ECOM SHARKS
+              {heroSubtitle}
             </p>
             <div className="flex items-center gap-6 mt-12">
             <button className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative">

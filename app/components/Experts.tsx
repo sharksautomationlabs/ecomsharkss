@@ -23,7 +23,15 @@ const ChatIcon = () => (
     </svg>
 );
 
-export default function ExpertsSection() {
+interface ExpertsProps {
+  title?: string;
+  subtitle?: string;
+}
+
+export default function ExpertsSection({ 
+  title = "Meet the Experts Behind ECOM SHARKSS Success",
+  subtitle = "Our dedicated team stands at the forefront of Amazon's fulfillment programs and beyond. We don't just help businesses grow—we empower them to scale and thrive!"
+}: ExpertsProps) {
   const [scrollPosition, setScrollPosition] = useState(0);
   const controls = useAnimation();
   
@@ -109,12 +117,11 @@ export default function ExpertsSection() {
             </div>
 
             <h1 className="text-[94px] font-semibold text-[#2c2020] leading-[0.921]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-              Meet the Experts Behind <br />
-              ECOM SHARKSS Success
+              {title}
             </h1>
 
             <p className="mt-8 text-[24px] text-[#333333] max-w-3xl leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-              Our dedicated team stands at the forefront of Amazon's fulfillment programs and beyond. We don't just help businesses grow—we empower them to scale and thrive!
+              {subtitle}
             </p>
 
             <div className="mt-12 flex items-center gap-8">
