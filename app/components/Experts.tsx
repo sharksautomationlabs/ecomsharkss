@@ -139,12 +139,16 @@ export default function ExpertsSection() {
           <motion.div className="lg:col-span-6 h-[90%] absolute right-0 w-[45%]" variants={rightVariants}>
             <div className="relative w-full h-full">
                 <div className="absolute inset-0 rounded-[40px] overflow-hidden">
-                    <div 
-                        className="absolute inset-0 bg-cover bg-center w-full h-full" 
-                        style={{ backgroundImage: "url('/images/experts-bg.png')" }}
+                    <video 
+                        autoPlay 
+                        loop 
+                        muted 
+                        playsInline
+                        className="absolute inset-0 w-full h-full object-cover"
                     >
-                        <div className="absolute inset-0 bg-[#052126] opacity-40"></div>
-                    </div>
+                        <source src="/images/bi-vid.mp4" type="video/mp4" />
+                    </video>
+                    <div className="absolute inset-0 bg-[#052126] opacity-40"></div>
                 </div>
 
                 <img src="/images/walmart-logo.png" alt="Walmart Logo" className="absolute w-[25%] top-[2%] right-[25%] transform rotate-[12.5deg]" />

@@ -44,9 +44,17 @@ export default function Header() {
       {/* Scalable container with a fixed aspect ratio */}
       <div className="relative w-full max-w-[1920px] aspect-[1920/1080] overflow-hidden select-none">
         
-        {/* Background Image and Overlay */}
+        {/* Background Video and Overlay */}
         <div className="absolute inset-0 z-0">
-          <Image src={imgImage37} alt="Underwater background" layout="fill" objectFit="cover" quality={100} />
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+            className="w-full h-full object-cover"
+          >
+            <source src="/images/bi-vid.mp4" type="video/mp4" />
+          </video>
         </div>
         <div className="absolute inset-0 bg-[#052126]/60 z-10" />
 

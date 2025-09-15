@@ -64,7 +64,15 @@ export default function Pricing() {
                 maskPosition: 'top center',
              }}>
           <div className="relative w-full h-full">
-            <Image src={imgBackground} alt="Underwater background" layout="fill" objectFit="cover" className="blur-md"/>
+            <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover blur-md"
+            >
+              <source src="/images/bi-vid.mp4" type="video/mp4" />
+            </video>
             <div className="absolute inset-0 bg-[#052126]/40" />
           </div>
         </div>

@@ -51,7 +51,7 @@ const InfoCard = ({ title, description, backgroundImage }: {
 }) => (
   <motion.div className="flex flex-col text-center text-white">
     <motion.div
-      className="relative w-[140%] h-[450px] -ml-[20%]"
+      className="relative w-[140%] h-[450px] -ml-[20%] overflow-hidden"
       style={{
         maskImage: `url('${imgCardMask}')`,
         maskSize: '100% 100%',
@@ -177,9 +177,9 @@ export default function Opportunities() {
         </div>
 
         {/* Right Column: Cards & Banner - ATTACHED REF FOR TRIGGERING */}
-        <div ref={ref} className="flex flex-col gap-y-16">
+        <div ref={ref} className="flex flex-col gap-y-16 overflow-hidden">
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 gap-30"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-30 overflow-hidden"
             variants={containerVariants}
             initial="hidden"
             animate={controls}

@@ -61,7 +61,7 @@ export default function Services() {
           <Image src={imgVector8} alt="Wavy background shape" layout="fill" objectFit="cover" />
         </div>
 
-        {/* Background Layer 2: The Masked, Blurred Image */}
+        {/* Background Layer 2: The Masked Video */}
         <div className="absolute inset-0 z-10" 
              style={{
                 maskImage: `url('${imgRealisticSharkOcean2}')`,
@@ -69,7 +69,15 @@ export default function Services() {
                 maskRepeat: 'no-repeat',
              }}>
           <div className="relative w-full h-full">
-            <Image src={imgRealisticSharkOcean1} alt="Underwater background" layout="fill" objectFit="cover" className="blur-md"/>
+            <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover blur-md"
+            >
+              <source src="/images/bi-vid.mp4" type="video/mp4" />
+            </video>
             <div className="absolute inset-0 bg-[#052126]/40" />
           </div>
         </div>
