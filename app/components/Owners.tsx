@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { motion, useAnimation, Variants } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 // Image assets for the Owners/CTA section.
 const imgPattern = "/images/pattern-bg.png";
@@ -14,6 +16,13 @@ const imgArrowIcon = "/images/arrow-icon-4.svg";
 
 export default function Owners() {
   const [scrollPosition, setScrollPosition] = useState(0);
+  const controls = useAnimation();
+  
+  // Set triggerOnce to false to allow re-triggering
+  const [ref, inView] = useInView({
+    triggerOnce: false, // Set to false to re-trigger animation
+    threshold: 0.3,   // Trigger when 30% of the component is in view
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,9 +33,57 @@ export default function Owners() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Animate in when inView is true, and animate out when false
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    } else {
+      controls.start('hidden'); // Reset to hidden state when out of view
+    }
+  }, [controls, inView]);
+  
+  const containerVariants: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.3,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  // Spring animation variants like Experts section
+  const leftVariants: Variants = {
+    hidden: { x: -200, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 50,
+        damping: 20,
+        mass: 1.5,
+      },
+    },
+  };
+
+  const rightVariants: Variants = {
+    hidden: { x: 200, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 50,
+        damping: 20,
+        mass: 1.5,
+      },
+    },
+  };
+
   return (
     // Main wrapper to center the 1920px canvas.
-    <div className="w-full bg-white flex justify-center">
+    <div ref={ref} className="w-full bg-white flex justify-center">
       
       {/* 1920px container with overflow hidden to prevent scrollbars. */}
       <div className="relative w-full max-w-[1920px] overflow-hidden">
@@ -50,7 +107,12 @@ export default function Owners() {
         </div>
 
         {/* Layer 2: Decorative Images (Hands, Logo) */}
-        <div className="absolute inset-0 z-10 pointer-events-none">
+        <motion.div 
+          className="absolute inset-0 z-10 pointer-events-none"
+          variants={rightVariants}
+          initial="hidden"
+          animate={controls}
+        >
           {/* Left Hand */}
           <div 
             className="absolute bottom-0 -left-22 w-[400px] h-[412px] transition-all duration-1000 ease-out transform rotate-12"
@@ -73,10 +135,15 @@ export default function Owners() {
           >
             <Image src={imgRightHand} alt="Hand writing" layout="fill" objectFit="contain" />
           </div>
-        </div>
+        </motion.div>
 
         {/* Layer 3: Content */}
-        <div className="relative z-20 container mx-auto px-20">
+        <motion.div 
+          className="relative z-20 container mx-auto px-20"
+          variants={leftVariants}
+          initial="hidden"
+          animate={controls}
+        >
           {/* THE FIX: A 12-column grid allows for very fine control. */}
           <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[500px] lg:min-h-[600px] items-center">
             
@@ -109,7 +176,16 @@ export default function Owners() {
                   </span>
                 </div>
                 {/* Get a Quote Button */}
-                <button className="group flex items-center justify-center gap-3 bg-[#35c4dd] hover:bg-[#2cb4ca] transition-colors duration-300 rounded-full py-2.5 pl-6 pr-2 shadow-lg overflow-hidden relative">
+                <button 
+                  className="group flex items-center justify-center gap-3 bg-[#35c4dd] hover:bg-[#2cb4ca] transition-colors duration-300 rounded-full py-2.5 pl-6 pr-2 shadow-lg overflow-hidden relative"
+                  onClick={() => {
+                    if (typeof window !== 'undefined' && (window as any).Calendly) {
+                      (window as any).Calendly.initPopupWidget({
+                        url: 'https://calendly.com/contact-sharksbookpublishers/30min?primary_color=35c4dd'
+                      });
+                    }
+                  }}
+                >
                   <span 
                     className="font-semibold text-lg text-[#063f4a] relative z-10"
                     style={{ fontFamily: "'Barlow', sans-serif" }}
@@ -124,7 +200,7 @@ export default function Owners() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

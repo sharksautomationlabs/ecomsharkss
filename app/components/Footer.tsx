@@ -1,7 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import Image from 'next/image';
+import { motion, useAnimation, Variants } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 // Image and icon assets for the section
 const imgPattern = "/images/pattern-bg.png"; // Light blue water pattern background
@@ -36,6 +38,61 @@ const SocialIcon = ({ path }: { path: string }) => (
 
 
 export default function Contact() {
+  const controls = useAnimation();
+  
+  // Set triggerOnce to false to allow re-triggering
+  const [ref, inView] = useInView({
+    triggerOnce: false, // Set to false to re-trigger animation
+    threshold: 0.3,   // Trigger when 30% of the component is in view
+  });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    } else {
+      controls.start('hidden'); // Reset to hidden state when out of view
+    }
+  }, [controls, inView]);
+  
+  const containerVariants: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.3,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  // Spring animation variants like Experts section
+  const leftVariants: Variants = {
+    hidden: { x: -200, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 50,
+        damping: 20,
+        mass: 1.5,
+      },
+    },
+  };
+
+  const rightVariants: Variants = {
+    hidden: { x: 200, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 50,
+        damping: 20,
+        mass: 1.5,
+      },
+    },
+  };
+
   const socialLinks = {
     facebook: "M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z",
     linkedin: "M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z",
@@ -44,7 +101,7 @@ export default function Contact() {
   };
 
   return (
-    <footer className="relative w-full pt-24">
+    <footer ref={ref} className="relative w-full pt-24 overflow-x-hidden">
       {/* Background and Decorative Shark */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-[#bef4fe] to-white" />
@@ -54,16 +111,26 @@ export default function Contact() {
         />
       </div>
       {/* THE FIX: Shark container is larger and rotated slightly. */}
-      <div className="absolute bottom-32 left-75 w-[1000px] h-[1400px] z-0 transform rotate-15 animate-shark-lean">
+      <div className="absolute bottom-32 left-1/2 -translate-x-1/2 w-[1000px] h-[1400px] z-0 transform rotate-15 animate-shark-lean">
         <Image src={imgShark} alt="Shark" layout="fill" objectFit="contain" />
       </div>
 
       {/* Main Content Area */}
-      <div className="relative z-10 container mx-auto px-20">
+      <motion.div 
+        className="relative z-10 container mx-auto px-20"
+        variants={containerVariants}
+        initial="hidden"
+        animate={controls}
+      >
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12">
           
           {/* Left Column: Text and Contact Info */}
-          <div className="pt-12 text-gray-800">
+          <motion.div 
+            className="pt-12 text-gray-800"
+            variants={leftVariants}
+            initial="hidden"
+            animate={controls}
+          >
             <h1 className="text-7xl lg:text-8xl font-semibold" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
               Contact
             </h1>
@@ -86,10 +153,15 @@ export default function Contact() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: Contact Form */}
-          <div className="bg-[#35c4dd] rounded-3xl p-8 lg:p-12 text-white">
+          <motion.div 
+            className="bg-[#35c4dd] rounded-3xl p-8 lg:p-12 text-white"
+            variants={rightVariants}
+            initial="hidden"
+            animate={controls}
+          >
             <h2 className="text-3xl font-bold" style={{ fontFamily: "'Barlow', sans-serif" }}>
               Let's Talk About Your Book
             </h2>
@@ -122,9 +194,9 @@ export default function Contact() {
                 </button>
               </div>
             </form>
-          </div>
+          </motion.div>
         </div>
-      </div>
+      </motion.div>
       
       {/* THE FIX: Bottom Footer Bar now has `mt-0` to remove the gap. */}
       <div className="relative z-10 mt-0">

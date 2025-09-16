@@ -26,6 +26,26 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+        <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+        <script 
+          type="text/javascript"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.onload = function() { 
+                Calendly.initBadgeWidget({ 
+                  url: 'https://calendly.com/contact-sharksbookpublishers/30min?primary_color=35c4dd', 
+                  text: 'Call for free', 
+                  color: '#35c4dd', 
+                  textColor: '#ffffff', 
+                  branding: true 
+                }); 
+              }
+            `
+          }}
+        />
+      </head>
       <body
         className={`${barlow.variable} ${barlowCondensed.variable} antialiased`}
       >

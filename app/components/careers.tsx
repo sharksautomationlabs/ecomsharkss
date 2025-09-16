@@ -8,6 +8,13 @@ import { useInView } from 'react-intersection-observer';
 // Image assets for the section.
 const imgArrowIcon = "/images/arrow-icon-2.svg";
 
+// Reusable button icons
+const ArrowIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M13.5 4.5L21 12M21 12L13.5 19.5M21 12H3" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
 // Data array holds all unique content for each card.
 const careerData = [
   {
@@ -92,16 +99,26 @@ const CareerCard = ({ title, description, personImage, variants }: {
       
       {/* MODIFICATION: Adjusted margin-top for better spacing */}
       <div className="mt-8 -ml-4">
-        <button className="flex items-center justify-between bg-white rounded-full h-14 w-48 pl-6 pr-1-5 group hover:shadow-lg transition-shadow">
+        <button 
+          className="group flex items-center justify-center gap-3 bg-white text-[#35c4dd] font-semibold py-2.5 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative"
+          onClick={() => {
+            if (typeof window !== 'undefined' && (window as any).Calendly) {
+              (window as any).Calendly.initPopupWidget({
+                url: 'https://calendly.com/contact-sharksbookpublishers/30min?primary_color=35c4dd'
+              });
+            }
+          }}
+        >
           <span 
-            className="font-semibold text-xl text-[#063f4a]"
+            className="relative z-10"
             style={{ fontFamily: "'Barlow', sans-serif" }}
           >
             Get Started
           </span>
-          <span className="bg-[#063f4a] rounded-full w-10 h-10 flex items-center justify-center">
-            <Image src={imgArrowIcon} alt="arrow icon" width={24} height={24} />
+          <span className="bg-[#063f4a] rounded-full p-2.5 relative z-10">
+            <ArrowIcon />
           </span>
+          <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#063f4a] rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
         </button>
       </div>
     </motion.div>
@@ -111,14 +128,18 @@ const CareerCard = ({ title, description, personImage, variants }: {
 
 export default function Careers() {
   const controls = useAnimation();
+  
+  // Set triggerOnce to false to allow re-triggering
   const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
+    triggerOnce: false, // Set to false to re-trigger animation
+    threshold: 0.3,   // Trigger when 30% of the component is in view
   });
 
   useEffect(() => {
     if (inView) {
       controls.start('visible');
+    } else {
+      controls.start('hidden'); // Reset to hidden state when out of view
     }
   }, [controls, inView]);
 
@@ -126,19 +147,23 @@ export default function Careers() {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.3,
+        delayChildren: 0.2,
       },
     },
   };
 
+  // Spring animation variants like Experts section
   const cardVariants: Variants = {
-    hidden: { opacity: 0, y: 50 },
+    hidden: { x: -200, opacity: 0 },
     visible: {
+      x: 0,
       opacity: 1,
-      y: 0,
       transition: {
-        duration: 0.6,
-        ease: 'easeOut',
+        type: 'spring',
+        stiffness: 50,
+        damping: 20,
+        mass: 1.5,
       },
     },
   };
@@ -147,14 +172,19 @@ export default function Careers() {
     <section ref={ref} className="w-full bg-white py-24">
       <div className="container mx-auto px-20">
         
-        <div className="text-center mb-16">
+        <motion.div 
+          className="text-center mb-16"
+          variants={cardVariants}
+          initial="hidden"
+          animate={controls}
+        >
           <h1 
             className="text-7xl lg:text-8xl font-medium text-gray-800"
             style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
           >
             Career
           </h1>
-        </div>
+        </motion.div>
         
         <motion.div 
           className="grid grid-cols-1 lg:grid-cols-2 gap-8"

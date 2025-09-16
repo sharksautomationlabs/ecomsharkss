@@ -125,7 +125,16 @@ export default function ExpertsSection({
             </p>
 
             <div className="mt-12 flex items-center gap-8">
-              <button className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2.5 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative">
+              <button 
+                className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2.5 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative"
+                onClick={() => {
+                  if (typeof window !== 'undefined' && (window as any).Calendly) {
+                    (window as any).Calendly.initPopupWidget({
+                      url: 'https://calendly.com/contact-sharksbookpublishers/30min?primary_color=35c4dd'
+                    });
+                  }
+                }}
+              >
                 <span className="relative z-10">Get A Quote</span>
                 <span className="bg-white rounded-full p-2.5 relative z-10">
                   <ArrowIcon />

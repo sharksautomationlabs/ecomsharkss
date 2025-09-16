@@ -1,6 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import { motion, useAnimation, Variants } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 // Star rating component - No changes needed here, it's already accurate.
 const StarRating = ({ rating }: { rating: number }) => (
@@ -17,6 +19,61 @@ const StarRating = ({ rating }: { rating: number }) => (
 
 
 export default function Testimonials() {
+  const controls = useAnimation();
+  
+  // Set triggerOnce to false to allow re-triggering
+  const [ref, inView] = useInView({
+    triggerOnce: false, // Set to false to re-trigger animation
+    threshold: 0.3,   // Trigger when 30% of the component is in view
+  });
+
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    } else {
+      controls.start('hidden'); // Reset to hidden state when out of view
+    }
+  }, [controls, inView]);
+  
+  const containerVariants: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.3,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  // Spring animation variants - header from right, cards from left
+  const headerVariants: Variants = {
+    hidden: { x: 200, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 50,
+        damping: 20,
+        mass: 1.5,
+      },
+    },
+  };
+
+  const cardVariants: Variants = {
+    hidden: { x: -200, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 50,
+        damping: 20,
+        mass: 1.5,
+      },
+    },
+  };
+
   const testimonials = [
     {
       name: "Anasher",
@@ -45,12 +102,17 @@ export default function Testimonials() {
   ];
 
   return (
-    <section className="w-full bg-white py-24">
+    <section ref={ref} className="w-full bg-white py-24 overflow-x-hidden">
       {/* Container to enforce 1920px max-width alignment */}
       <div className="container mx-auto px-20">
         
         {/* Section Header - Fonts and colors are matched exactly. */}
-        <div className="text-center mb-16">
+        <motion.div 
+          className="text-center mb-16"
+          variants={headerVariants}
+          initial="hidden"
+          animate={controls}
+        >
           <h1 
             className="text-6xl font-bold text-gray-800"
             style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
@@ -64,16 +126,24 @@ export default function Testimonials() {
             From debut storytellers to celebrated literary icons, our authors are the heart of our work. 
             Explore biographies, latest releases, interviews, and upcoming events.
           </p>
-        </div>
+        </motion.div>
         
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          variants={containerVariants}
+          initial="hidden"
+          animate={controls}
+        >
           {testimonials.map((testimonial, index) => (
             // THE FIX: `aspect-square` forces a 1:1 ratio. `flex flex-col` allows content management.
-            <div 
+            <motion.div 
               key={index}
               className="bg-[#E8F8FA] rounded-xl p-6 shadow-sm border border-gray-200 flex flex-col aspect-square"
               style={{ fontFamily: "'Barlow', sans-serif" }}
+              variants={cardVariants}
+              initial="hidden"
+              animate={controls}
             >
               {/* Card Header */}
               <div className="flex items-start justify-between mb-4">
@@ -106,9 +176,9 @@ export default function Testimonials() {
               <div className="border-t border-gray-300 pt-4 mt-4">
                 <p className="text-xs text-gray-500">{testimonial.replyDate}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

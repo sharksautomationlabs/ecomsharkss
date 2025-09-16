@@ -25,15 +25,7 @@ const img61 = "/images/amazon-logo.png";
 const img72 = "/images/walmart-logo.png";
 const img81 = "/images/shopify-logo.png";
 
-interface HeaderProps {
-  heroTitle?: string;
-  heroSubtitle?: string;
-}
-
-export default function Header({ 
-  heroTitle = "Drive Revenue &Dominate the Digital World with Us",
-  heroSubtitle = "Boost your Digital Presence on Amazon, TikTok, Walmart & Shopify with ECOM SHARKS"
-}: HeaderProps) {
+export default function ShopifyHeader() {
   const textShadow = { textShadow: '0px 2px 5px rgba(0, 0, 0, 0.5)' };
   const [scrollPosition, setScrollPosition] = useState(0);
 
@@ -50,7 +42,7 @@ export default function Header({
     // Main wrapper that centers and scales the content
     <div className="w-full bg-[#052126] flex justify-center">
       {/* Scalable container with a fixed aspect ratio */}
-      <div className="relative w-full max-w-[1920px] aspect-[1920/1080] overflow-hidden select-none">
+      <div className="relative w-full max-w-[1920px] aspect-[1920/1000] overflow-hidden select-none">
         
         {/* Background Video and Overlay */}
         <div className="absolute inset-0 z-0">
@@ -129,13 +121,13 @@ export default function Header({
             </div>
           </header>
 
-          {/* Hero Text Content */}
+          {/* Hero Text Content - CUSTOMIZED FOR SHOPIFY */}
           <div className="absolute top-[300px] left-20 w-[781px] z-50 slide-in-left">
             <h1 className="text-white text-[94px] leading-[0.921]" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 600, ...textShadow }}>
-              {heroTitle}
+              We Always Give The Best Shopify Store Service To You
             </h1>
             <p className="mt-6 text-white text-[24px] leading-[38px] max-w-[685px]" style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 500, ...textShadow }}>
-              {heroSubtitle}
+              Boost your Digital Presence on Shopify with ECOM SHARKS
             </p>
             <div className="flex items-center gap-6 mt-12">
             <a 
@@ -158,32 +150,20 @@ export default function Header({
             </div>
           </div>
           
-          {/* Visual Elements Layer */}
+          {/* Visual Elements Layer - ONLY SHOPIFY LOGO */}
           <div className="absolute inset-0 z-30">
             <div 
-              className="absolute top-[56%] w-[52%] h-[60%] animate-shark-complete"
+              className="absolute top-[55%] w-[52%] h-[60%] animate-shark-complete"
               style={{ 
-                left: `${75 - (scrollPosition * 0.05)}%`,
+                left: `${60 - (scrollPosition * 0.05)}%`,
                 transform: `translateX(${-scrollPosition * 0.2}px)`
               }}
             >
                 <Image src={imgDangerousSharkUnderwater2Copy1} alt="Shark" layout="fill" objectFit="contain" className="transform -scale-x-100" />
             </div>
-            {/* Amazon Logo - Floating animation with gentle rotation */}
-            <div className="absolute top-[41%] right-[9%] w-[13.5%] h-auto logo-fade-in-amazon">
-                <Image src={img61} alt="Amazon Logo" width={260} height={260} objectFit="contain" />
-            </div>
-            {/* Shopify Logo - Floating animation with counter-rotation */}
-            <div className="absolute top-[44%] right-[30%] w-[14.5%] h-auto logo-fade-in-shopify">
-                <Image src={img81} alt="Shopify Logo" width={280} height={280} objectFit="contain" />
-            </div>
-            {/* TikTok Logo - Floating animation with rotation */}
-            <div className="absolute top-[58%] right-[19%] w-[15%] h-auto z-40 logo-fade-in-tiktok">
-                <Image src={img91} alt="TikTok Logo" width={290} height={290} objectFit="contain" />
-            </div>
-            {/* Walmart Logo - Floating animation with gentle sway */}
-            <div className="absolute top-[25%] right-[20%] w-[16%] h-auto z-40 logo-fade-in-walmart">
-                <Image src={img72} alt="Walmart Logo" width={310} height={310} objectFit="contain" />
+            {/* Shopify Logo - Only logo shown as requested */}
+            <div className="absolute top-[44%] right-[20%] w-[16%] h-auto z-40 logo-fade-in-shopify">
+                <Image src={img81} alt="Shopify Logo" width={310} height={310} objectFit="contain" />
             </div>
           </div>
         </div>

@@ -2,6 +2,8 @@
 
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { motion, useAnimation, Variants } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 
 /*
   Image assets are mapped from the original code for this specific component.
@@ -16,6 +18,13 @@ const imgArrowIcon = "/images/arrow-icon.svg";
 export default function QuoteSection() {
   const textShadow = { textShadow: '0px 2px 8px rgba(0, 0, 0, 0.6)' };
   const [scrollPosition, setScrollPosition] = useState(0);
+  const controls = useAnimation();
+  
+  // Set triggerOnce to false to allow re-triggering
+  const [ref, inView] = useInView({
+    triggerOnce: false, // Set to false to re-trigger animation
+    threshold: 0.3,   // Trigger when 30% of the component is in view
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -26,9 +35,57 @@ export default function QuoteSection() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Animate in when inView is true, and animate out when false
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    } else {
+      controls.start('hidden'); // Reset to hidden state when out of view
+    }
+  }, [controls, inView]);
+  
+  const containerVariants: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.3,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  // Spring animation variants like Experts section
+  const leftVariants: Variants = {
+    hidden: { x: -200, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 50,
+        damping: 20,
+        mass: 1.5,
+      },
+    },
+  };
+
+  const rightVariants: Variants = {
+    hidden: { x: 200, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 50,
+        damping: 20,
+        mass: 1.5,
+      },
+    },
+  };
+
   return (
     // Main wrapper that centers and scales the content
-    <div className="w-full bg-white flex justify-center">
+    <div ref={ref} className="w-full bg-white flex justify-center">
       
       {/* 
         REMOVED BOTTOM PADDING: Reduced aspect ratio height to center content
@@ -37,7 +94,12 @@ export default function QuoteSection() {
       <div className="relative w-full max-w-[1920px] aspect-[1920/800] overflow-hidden select-none">
         
         {/* --- PRESERVED DIVS (UNCHANGED AS REQUESTED) --- */}
-        <div className="absolute h-full w-full">
+        <motion.div 
+          className="absolute h-full w-full"
+          variants={rightVariants}
+          initial="hidden"
+          animate={controls}
+        >
             <div className="absolute flex h-[678px] items-center justify-center top-[60px] translate-x-[-50%] w-[1920px]" style={{ left: "calc(50% - 36.5px)" }}>
                 <div className="flex-none scale-y-[-100%]">
                     <div className="h-[678px] relative w-[1920px]">
@@ -60,11 +122,16 @@ export default function QuoteSection() {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
         {/* --- END OF PRESERVED DIVS --- */}
 
         {/* Content Layer - MODIFIED: Left padding reduced for alignment */}
-        <div className="absolute top-[328px] left-20 z-20 text-white">
+        <motion.div 
+          className="absolute top-[328px] left-20 z-20 text-white"
+          variants={leftVariants}
+          initial="hidden"
+          animate={controls}
+        >
           <div className="w-[130px] h-[109px] relative -top-40">
             <Image src={imgImage1} alt="Ecom Sharks Logo" layout="fill" objectFit="contain" />
           </div>
@@ -74,7 +141,16 @@ export default function QuoteSection() {
           </h1>
 
           <div className="mt-12 flex items-center gap-8">
-             <button className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2.5 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative">
+             <button 
+               className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2.5 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative"
+               onClick={() => {
+                 if (typeof window !== 'undefined' && (window as any).Calendly) {
+                   (window as any).Calendly.initPopupWidget({
+                     url: 'https://calendly.com/contact-sharksbookpublishers/30min?primary_color=35c4dd'
+                   });
+                 }
+               }}
+             >
                 <span className="relative z-10">Get A Quote</span>
                 {/* CORRECT ICON ADDED */}
                 <span className="bg-white rounded-full p-2.5 w-10 h-10 flex items-center justify-center relative z-10">
@@ -95,7 +171,7 @@ export default function QuoteSection() {
               (469) 480-7938
             </p>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

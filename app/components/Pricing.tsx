@@ -32,7 +32,16 @@ const pricingPlans = [
 
 // Reusable Button Component with Barlow font applied.
 const GetQuoteButton = ({ small = false }: { small?: boolean }) => (
-  <button className={`group flex items-center justify-between bg-[#35c4dd] hover:bg-[#2cb4ca] transition-colors duration-300 rounded-full overflow-hidden relative ${small ? 'h-12 w-44 pl-6 pr-1' : 'h-14 w-48 pl-6 pr-1.5'}`}>
+  <button 
+    className={`group flex items-center justify-between bg-[#35c4dd] hover:bg-[#2cb4ca] transition-colors duration-300 rounded-full overflow-hidden relative ${small ? 'h-12 w-44 pl-6 pr-1' : 'h-14 w-48 pl-6 pr-1.5'}`}
+    onClick={() => {
+      if (typeof window !== 'undefined' && (window as any).Calendly) {
+        (window as any).Calendly.initPopupWidget({
+          url: 'https://calendly.com/contact-sharksbookpublishers/30min?primary_color=35c4dd'
+        });
+      }
+    }}
+  >
     <span 
       className={`font-semibold text-[#063f4a] relative z-10 ${small ? 'text-lg' : 'text-xl'}`}
       style={{ fontFamily: "'Barlow', sans-serif" }}

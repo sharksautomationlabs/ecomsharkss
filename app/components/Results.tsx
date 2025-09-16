@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
+import { motion, useAnimation, Variants } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
 const imgChatCircleDots = "/images/chat-icon.svg";
 
 // Image assets for the Results Section.
@@ -26,6 +28,13 @@ const ChatIcon = () => (
 
 export default function ResultsSection() {
   const [scrollPosition, setScrollPosition] = useState(0);
+  const controls = useAnimation();
+  
+  // Set triggerOnce to false to allow re-triggering
+  const [ref, inView] = useInView({
+    triggerOnce: false, // Set to false to re-trigger animation
+    threshold: 0.3,   // Trigger when 30% of the component is in view
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,9 +45,57 @@ export default function ResultsSection() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Animate in when inView is true, and animate out when false
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible');
+    } else {
+      controls.start('hidden'); // Reset to hidden state when out of view
+    }
+  }, [controls, inView]);
+  
+  const containerVariants: Variants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.3,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  // Spring animation variants like Experts section
+  const leftVariants: Variants = {
+    hidden: { x: -200, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 50,
+        damping: 20,
+        mass: 1.5,
+      },
+    },
+  };
+
+  const rightVariants: Variants = {
+    hidden: { x: 200, opacity: 0 },
+    visible: {
+      x: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 50,
+        damping: 20,
+        mass: 1.5,
+      },
+    },
+  };
+
   return (
     // This structure is correct: it centers the 1920px canvas.
-    <div className="w-full bg-white flex justify-center">
+    <div ref={ref} className="w-full bg-white flex justify-center">
       
       {/* This container sets the 1920px boundary and clips overflow, preventing scrollbars. */}
       <div className="relative w-full max-w-[1920px] overflow-hidden">
@@ -54,7 +111,12 @@ export default function ResultsSection() {
 
         {/* Right Side: Image Collage */}
         {/* THE FIX: This container now has `z-10` to ensure it sits ABOVE the background. */}
-        <div className="absolute top-0 right-0 bottom-0 w-[60%] lg:w-[55%] z-10">
+        <motion.div 
+          className="absolute top-0 right-0 bottom-0 w-[60%] lg:w-[55%] z-10"
+          variants={rightVariants}
+          initial="hidden"
+          animate={controls}
+        >
           <div className="relative w-full h-full">
               {/* Internal z-index for layering images within the collage */}
               <div 
@@ -64,26 +126,74 @@ export default function ResultsSection() {
                   transform: `translateX(${-scrollPosition * 0.3}px)`
                 }}
               >
-                  <Image src={imgShark} alt="Shark" width={980} height={445} objectFit="contain" className="transform -scale-x-100" />
+                  <Image
+                    src={imgShark}
+                    alt="Shark"
+                    width={980}
+                    height={445}
+                    objectFit="contain"
+                    className="transform -scale-x-100 animate-hand-pivot"
+                  />
               </div>
-              <div className="absolute w-[28%] h-auto top-[15%] right-[45%] z-30">
-                  <Image src={imgHand} alt="Hand holding results" width={250} height={250}  objectFit="contain" className="filter grayscale" />
+              <div className="absolute w-[28%] h-auto top-[15%] right-[45%] z-30 animate-hand-pivot">
+                  <Image
+                    src={imgHand}
+                    alt="Hand holding results"
+                    width={250}
+                    height={250}
+                    objectFit="contain"
+                    className="filter grayscale"
+                  />
               </div>
-              <div className="absolute w-[38%] h-auto top-[20%] right-[40%] z-30 transform -rotate-12">
-                  <Image src={imgWalmartLogo} alt="Walmart Logo" width={190} height={190} objectFit="contain" />
+              <div className="absolute w-[38%] h-auto top-[20%] right-[40%] z-30 transform -rotate-12 animate-hand-pivot">
+                  <Image
+                    src={imgWalmartLogo}
+                    alt="Walmart Logo"
+                    width={190}
+                    height={190}
+                    objectFit="contain"
+                  />
               </div>
-              <div className="absolute w-[28%] h-auto top-[22%] right-[32%] z-30 ">
-                   <Image src={imgPenAndPaper} alt="Pen and paper" width={166} height={127} objectFit="contain" />
+              <div className="absolute w-[28%] h-auto top-[22%] right-[32%] z-30 animate-hand-pivot">
+                   <Image
+                     src={imgPenAndPaper}
+                     alt="Pen and paper"
+                     width={166}
+                     height={127}
+                     objectFit="contain"
+                   />
               </div>
-              <div className="absolute w-[28%] h-auto top-[22%] right-[32%] z-30 ">
-                   <Image src={imgHand1} alt="Pen and paper" width={166} height={127} objectFit="contain" />
+              <div
+                className="absolute w-[76%] h-auto top-[25%] right-[12%] z-10 animate-hand-pivot"
+                style={{
+                  transformOrigin: '100% 50%', // right edge as pivot
+                }}
+              >
+                <Image src={imgHand1} alt="Pen and paper" width={200000} height={200000} objectFit="contain" />
               </div>
+              <style jsx global>{`
+                @keyframes handPivotBounce {
+                  0% { transform: rotate(0deg); }
+                  25% { transform: rotate(-3deg); }
+                  50% { transform: rotate(0deg); }
+                  75% { transform: rotate(3deg); }
+                  100% { transform: rotate(0deg); }
+                }
+                .animate-hand-pivot {
+                  animation: handPivotBounce 4s linear infinite;
+                }
+              `}</style>
           </div>
-        </div>
+        </motion.div>
 
         {/* Left Side: Text Content */}
         {/* THE FIX: This container has `z-20`, placing it on the HIGHEST layer, ensuring it is always visible and interactive. */}
-        <div className="relative z-20 flex items-center min-h-[960px] px-20">
+        <motion.div 
+          className="relative z-20 flex items-center min-h-[960px] px-20"
+          variants={leftVariants}
+          initial="hidden"
+          animate={controls}
+        >
           <div className="w-full lg:w-1/2 xl:w-2/5 pt-24 pb-32 lg:py-0">
             {/* All fonts and styles remain exactly as you provided. */}
             <h1 className="text-[94px] font-semibold text-[#2c2420] leading-[0.921]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
@@ -98,7 +208,16 @@ export default function ResultsSection() {
                 <li>Expert Support Team</li>
             </ul>
             <div className="flex flex-wrap items-center gap-8 mt-12">
-              <button className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2.5 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative">
+              <button 
+                className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2.5 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative"
+                onClick={() => {
+                  if (typeof window !== 'undefined' && (window as any).Calendly) {
+                    (window as any).Calendly.initPopupWidget({
+                      url: 'https://calendly.com/contact-sharksbookpublishers/30min?primary_color=35c4dd'
+                    });
+                  }
+                }}
+              >
                   <span className="relative z-10">Get A Quote</span>
                   <span className="bg-white rounded-full p-2.5 flex items-center justify-center w-10 h-10 relative z-10"><ArrowIcon /></span>
                   <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
@@ -111,7 +230,7 @@ export default function ResultsSection() {
               </button>
             </div>
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </div>

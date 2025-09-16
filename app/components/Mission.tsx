@@ -14,6 +14,8 @@ const imgPattern011 = "/images/pattern-bg.png";
 const imgWoman = "/images/mission-bg-main.png"; 
 const imgShark = "/images/mission-shark-main.png"; 
 const imgShopifyLogo = "/images/shopify-logo.png";
+const imgWalmartLogo = "/images/walmart-logo.png";
+const imgAmazonLogo = "/images/amazon-logo.png";
 const imgPatternMask = "/images/results-mask.svg";
 const imgWomanMask = "/images/mission-bg-mask.svg";
 
@@ -33,12 +35,14 @@ interface MissionProps {
   customTitle?: string;
   customDescription?: string;
   useCustomContent?: boolean;
+  logoType?: 'shopify' | 'walmart' | 'amazon';
 }
 
 export default function MissionSection({ 
   customTitle,
   customDescription,
-  useCustomContent = false
+  useCustomContent = false,
+  logoType = 'shopify'
 }: MissionProps) {
   const [activeTab, setActiveTab] = useState('mission');
   const controls = useAnimation();
@@ -176,7 +180,16 @@ export default function MissionSection({
                 )}
                 
                 <div className="flex items-center gap-8 mt-12">
-                    <button className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2.5 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative">
+                    <button 
+                      className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2.5 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative"
+                      onClick={() => {
+                        if (typeof window !== 'undefined' && (window as any).Calendly) {
+                          (window as any).Calendly.initPopupWidget({
+                            url: 'https://calendly.com/contact-sharksbookpublishers/30min?primary_color=35c4dd'
+                          });
+                        }
+                      }}
+                    >
                         <span className="relative z-10">Get A Quote</span>
                         <span className="bg-white rounded-full p-2.5 relative z-10"><ArrowIcon /></span>
                         <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
@@ -205,7 +218,13 @@ export default function MissionSection({
                         <Image src={imgWoman} alt="Business woman" layout="fill" objectFit="contain" className="filter grayscale transform -scale-x-100" />
                     </motion.div>
                     <div className="absolute w-[35%] h-auto bottom-[15%] right-[5%] z-20" style={{ animation: 'float 3s ease-in-out infinite' }}>
-                        <Image src={imgShopifyLogo} alt="Shopify Logo" width={300} height={300} objectFit="contain" />
+                        <Image 
+                          src={logoType === 'walmart' ? imgWalmartLogo : logoType === 'amazon' ? imgAmazonLogo : imgShopifyLogo} 
+                          alt={logoType === 'walmart' ? "Walmart Logo" : logoType === 'amazon' ? "Amazon Logo" : "Shopify Logo"} 
+                          width={300} 
+                          height={300} 
+                          objectFit="contain" 
+                        />
                     </div>
                     <style jsx>{`
                         @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-15px); } }

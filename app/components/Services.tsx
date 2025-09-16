@@ -117,7 +117,16 @@ export default function Services() {
           
           {/* CTA Buttons */}
           <div className="flex items-center gap-6 mt-16">
-            <button className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative">
+            <button 
+              className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative"
+              onClick={() => {
+                if (typeof window !== 'undefined' && (window as any).Calendly) {
+                  (window as any).Calendly.initPopupWidget({
+                    url: 'https://calendly.com/contact-sharksbookpublishers/30min?primary_color=35c4dd'
+                  });
+                }
+              }}
+            >
                 <span className="relative z-10">Get A Quote</span>
                 {/* CORRECT ICON ADDED */}
                 <span className="bg-white rounded-full p-2.5 w-10 h-10 flex items-center justify-center relative z-10">

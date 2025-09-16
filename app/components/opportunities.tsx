@@ -8,7 +8,6 @@ import { useInView } from 'react-intersection-observer';
 const imgChatCircleDots = "/images/chat-icon.svg";
 
 // Image assets for the section.
-const imgSharkOceanBg = "/images/shark-ocean-bg.png";
 const imgSharkUnderwater = "/images/shark-underwater-2.png";
 const imgBgVector = "/images/bg-vector-1.svg";
 const imgBgMask = "/images/shark-ocean-mask.svg";
@@ -128,7 +127,15 @@ export default function Opportunities() {
             maskSize: '100% 100%',
           }}
         >
-          <Image src={imgSharkOceanBg} alt="Underwater background" layout="fill" objectFit="cover" className="blur-md"/>
+          <video 
+            autoPlay 
+            loop 
+            muted 
+            playsInline
+            className="w-full h-full object-cover blur-md"
+          >
+            <source src="/images/bi-vid.mp4" type="video/mp4" />
+          </video>
         </div>
       </div>
       
