@@ -39,7 +39,7 @@ const imageGallery = [
 export default function ImageGallery() {
   return (
     // This structure correctly creates the wavy top border without breaking page flow.
-    <div className="relative w-full bg-white pt-32 lg:pt-48">
+    <div className="relative w-full bg-white pt-16 lg:pt-32 xl:pt-48">
       
       {/* Background elements are absolutely positioned and fill the parent container. */}
       <div className="absolute top-0 left-0 right-0 bottom-0">
@@ -69,19 +69,19 @@ export default function ImageGallery() {
       </div>
 
       {/* Content container flows naturally and dictates the component's height. */}
-      <div className="relative z-20 container mx-auto px-20 pb-24 text-white">
+      <div className="relative z-20 container mx-auto px-5 lg:px-20 pb-16 lg:pb-24 text-white">
 
         {/* Image Gallery Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mt-16 max-w-7xl mx-auto justify-items-center">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 mt-8 lg:mt-16 max-w-7xl mx-auto justify-items-center">
           {imageGallery.map((item) => (
-            <div key={item.id} className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 flex items-center justify-center service-card-flash w-3/5 h-96">
+            <div key={item.id} className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl lg:rounded-3xl p-4 lg:p-8 flex items-center justify-center service-card-flash w-full lg:w-3/5 h-48 lg:h-96">
               {/* Image Only */}
               <Image 
                 src={item.imageUrl} 
                 alt="Platform logo"
-                width={150}
-                height={150}
-                className="object-contain"
+                width={120}
+                height={120}
+                className="lg:w-[150px] lg:h-[150px] object-contain"
               />
             </div>
           ))}

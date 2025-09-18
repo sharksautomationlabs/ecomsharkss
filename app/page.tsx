@@ -9,6 +9,7 @@ import Testimonials from './components/Testimonials';
 import Owners from './components/Owners';
 import Careers from './components/careers';
 import Opportunities from './components/opportunities';
+import CurrentOffer from './components/CurrentOffer';
 // import Contact from './components/Contact';
 import Footer from './components/Footer';
 
@@ -18,6 +19,7 @@ export default function Home() {
       {/* Header includes both header navigation and hero sections as per Figma design */}
       <Header />
       <Experts />
+      <CurrentOffer />
       <Services />
       <Mission />
       <Quote />
@@ -27,7 +29,6 @@ export default function Home() {
       <Owners />
       <Careers />
       <Opportunities />
-      {/* <Contact /> */}
       <Footer />
     </div>
   );

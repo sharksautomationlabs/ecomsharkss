@@ -101,7 +101,7 @@ export default function Contact() {
   };
 
   return (
-    <footer ref={ref} className="relative w-full pt-24 overflow-x-hidden">
+    <footer ref={ref} className="relative w-full -pt-8 lg:pt-24 overflow-x-hidden">
       {/* Background and Decorative Shark */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-[#bef4fe] to-white" />
@@ -117,7 +117,7 @@ export default function Contact() {
 
       {/* Main Content Area */}
       <motion.div 
-        className="relative z-10 container mx-auto px-20"
+        className="relative z-10 container mx-auto px-5 lg:px-20 py-16 lg:py-0"
         variants={containerVariants}
         initial="hidden"
         animate={controls}
@@ -126,30 +126,30 @@ export default function Contact() {
           
           {/* Left Column: Text and Contact Info */}
           <motion.div 
-            className="pt-12 text-gray-800"
+            className="pt-8 lg:pt-12 text-gray-800"
             variants={leftVariants}
             initial="hidden"
             animate={controls}
           >
-            <h1 className="text-7xl lg:text-8xl font-semibold" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+            <h1 className="text-4xl lg:text-7xl xl:text-8xl font-semibold" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
               Contact
             </h1>
-            <p className="mt-6 text-xl lg:text-2xl leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
+            <p className="mt-4 lg:mt-6 text-base lg:text-xl xl:text-2xl leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
               Ready to elevate your e-Commerce success?. ECOM SHARKS is here to support you at every step. Whether you have questions, need expert guidance, or want customized solution for your brand, our team is just a message away. Let's build something amazing together!
             </p>
-            <div className="mt-12 space-y-6">
-              <div className="flex items-center gap-4">
+            <div className="mt-8 lg:mt-12 space-y-4 lg:space-y-6">
+              <div className="flex items-center gap-3 lg:gap-4">
                 <GeneralInquiriesIcon />
                 <div>
-                  <h3 className="font-bold text-lg">General Inquiries:</h3>
-                  <p className="text-lg">info@ecomsharkss.com</p>
+                  <h3 className="font-bold text-base lg:text-lg">General Inquiries:</h3>
+                  <p className="text-base lg:text-lg">info@ecomsharkss.com</p>
                 </div>
               </div>
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-3 lg:gap-4">
                 <PhoneIcon />
                 <div>
-                  <h3 className="font-bold text-lg">Phone:</h3>
-                  <p className="text-lg">(469) 480-7938</p>
+                  <h3 className="font-bold text-base lg:text-lg">Phone:</h3>
+                  <p className="text-base lg:text-lg">(469) 480-7938</p>
                 </div>
               </div>
             </div>
@@ -157,38 +157,38 @@ export default function Contact() {
 
           {/* Right Column: Contact Form */}
           <motion.div 
-            className="bg-[#35c4dd] rounded-3xl p-8 lg:p-12 text-white"
+            className="bg-[#35c4dd] rounded-2xl lg:rounded-3xl p-6 lg:p-8 xl:p-12 text-white"
             variants={rightVariants}
             initial="hidden"
             animate={controls}
           >
-            <h2 className="text-3xl font-bold" style={{ fontFamily: "'Barlow', sans-serif" }}>
+            <h2 className="text-2xl lg:text-3xl font-bold" style={{ fontFamily: "'Barlow', sans-serif" }}>
               Let's Talk About Your Book
             </h2>
-            <form className="mt-8 space-y-6">
+            <form className="mt-6 lg:mt-8 space-y-4 lg:space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium ml-4 mb-1">Name:</label>
-                <input type="text" id="name" className="w-full h-14 bg-white rounded-full px-6 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white" />
+                <input type="text" id="name" className="w-full h-12 lg:h-14 bg-white rounded-full px-4 lg:px-6 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white" />
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium ml-4 mb-1">Email:</label>
-                  <input type="email" id="email" className="w-full h-14 bg-white rounded-full px-6 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white" />
+                  <input type="email" id="email" className="w-full h-12 lg:h-14 bg-white rounded-full px-4 lg:px-6 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white" />
                 </div>
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium ml-4 mb-1">Phone:</label>
-                  <input type="tel" id="phone" className="w-full h-14 bg-white rounded-full px-6 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white" />
+                  <input type="tel" id="phone" className="w-full h-12 lg:h-14 bg-white rounded-full px-4 lg:px-6 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white" />
                 </div>
               </div>
               <div>
                 <label htmlFor="message" className="block text-sm font-medium ml-4 mb-1">Message:</label>
-                <textarea id="message" rows={5} className="w-full bg-white rounded-3xl p-6 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white"></textarea>
+                <textarea id="message" rows={4} className="w-full bg-white rounded-2xl lg:rounded-3xl p-4 lg:p-6 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white"></textarea>
               </div>
               <div>
-                <button type="submit" className="group flex items-center justify-center gap-3 bg-white text-[#35c4dd] font-semibold py-2.5 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative">
+                <button type="submit" className="group flex items-center justify-center gap-3 bg-white text-[#35c4dd] font-semibold py-2.5 pl-6 pr-2 rounded-full text-base lg:text-lg shadow-lg overflow-hidden relative w-full lg:w-auto">
                   <span className="relative z-10" style={{ fontFamily: "'Barlow', sans-serif" }}>Get Started</span>
                   <span className="bg-[#063f4a] rounded-full p-2.5 relative z-10">
-                    <Image src={imgArrowIcon} alt="arrow icon" width={24} height={24} />
+                    <Image src={imgArrowIcon} alt="arrow icon" width={20} height={20} className="lg:w-6 lg:h-6" />
                   </span>
                   <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#063f4a] rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
                 </button>
@@ -200,12 +200,12 @@ export default function Contact() {
       
       {/* THE FIX: Bottom Footer Bar now has `mt-0` to remove the gap. */}
       <div className="relative z-10 mt-0">
-        <div className="bg-[#063f4a] py-6">
-          <div className="container mx-auto px-20 flex flex-col md:flex-row items-center justify-between gap-6 text-white text-sm">
+        <div className="bg-[#063f4a] py-4 lg:py-6">
+          <div className="container mx-auto px-5 lg:px-20 flex flex-col md:flex-row items-center justify-between gap-4 lg:gap-6 text-white text-xs lg:text-sm">
             <p>© 2025 Ecom Sharkss. All Rights Reserved.</p>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3 lg:gap-4">
               <span>Follow us:</span>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 lg:gap-3">
                 <SocialIcon path={socialLinks.facebook} />
                 <SocialIcon path={socialLinks.linkedin} />
                 <SocialIcon path={socialLinks.instagram} />

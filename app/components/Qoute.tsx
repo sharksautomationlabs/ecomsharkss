@@ -87,11 +87,8 @@ export default function QuoteSection() {
     // Main wrapper that centers and scales the content
     <div ref={ref} className="w-full bg-white flex justify-center">
       
-      {/* 
-        REMOVED BOTTOM PADDING: Reduced aspect ratio height to center content
-        and removed extra bottom space
-      */}
-      <div className="relative w-full max-w-[1920px] aspect-[1920/800] overflow-hidden select-none">
+       {/* Responsive container */}
+       <div className="relative w-full max-w-[1920px] h-auto py-2 lg:aspect-[1920/800] lg:py-0 overflow-hidden select-none">
         
         {/* --- PRESERVED DIVS (UNCHANGED AS REQUESTED) --- */}
         <motion.div 
@@ -125,24 +122,24 @@ export default function QuoteSection() {
         </motion.div>
         {/* --- END OF PRESERVED DIVS --- */}
 
-        {/* Content Layer - MODIFIED: Left padding reduced for alignment */}
+        {/* Content Layer - Responsive positioning */}
         <motion.div 
-          className="absolute top-[328px] left-20 z-20 text-white"
+          className="relative lg:absolute top-0 lg:top-[50%] lg:-translate-y-1/2 left-0 lg:left-20 z-20 text-white px-5 lg:px-0"
           variants={leftVariants}
           initial="hidden"
           animate={controls}
         >
-          <div className="w-[130px] h-[109px] relative -top-40">
-            <Image src={imgImage1} alt="Ecom Sharks Logo" layout="fill" objectFit="contain" />
-          </div>
+           <div className="w-[100px] h-[84px] lg:w-[130px] lg:h-[109px] relative mt-8 lg:mt-0">
+             <Image src={imgImage1} alt="Ecom Sharks Logo" layout="fill" objectFit="contain" />
+           </div>
 
-          <h1 className="-mt-32 text-[94px] font-semibold leading-[0.921] max-w-4xl" style={{ fontFamily: "'Barlow Condensed', sans-serif", ...textShadow }}>
-            Ecom Sharks Helps You Scale Smarter, Sell Faster
-          </h1>
+           <h1 className="mt-6 lg:mt-8 text-4xl lg:text-[94px] font-semibold leading-tight lg:leading-[0.921] max-w-4xl" style={{ fontFamily: "'Barlow Condensed', sans-serif", ...textShadow }}>
+             Ecom Sharks Helps You Scale Smarter, Sell Faster
+           </h1>
 
-          <div className="mt-12 flex items-center gap-8">
+          <div className="mt-8 lg:mt-12 flex flex-col lg:flex-row items-start lg:items-center gap-4 lg:gap-8">
              <button 
-               className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2.5 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative"
+               className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2.5 pl-6 pr-2 rounded-full text-base lg:text-lg shadow-lg overflow-hidden relative w-full lg:w-auto"
                onClick={() => {
                  if (typeof window !== 'undefined' && (window as any).Calendly) {
                    (window as any).Calendly.initPopupWidget({
@@ -152,22 +149,21 @@ export default function QuoteSection() {
                }}
              >
                 <span className="relative z-10">Get A Quote</span>
-                {/* CORRECT ICON ADDED */}
-                <span className="bg-white rounded-full p-2.5 w-10 h-10 flex items-center justify-center relative z-10">
-                    <Image src={imgArrowIcon} alt="arrow icon" width={28} height={28} />
+                <span className="bg-white rounded-full p-2.5 relative z-10">
+                    <Image src={imgArrowIcon} alt="arrow icon" width={18} height={18} />
                 </span>
                 <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
             </button>
-            <p className="text-[20px] max-w-lg leading-[32px]" style={{ fontFamily: "'Barlow', sans-serif" }}>
+            <p className="text-base lg:text-[20px] max-w-lg leading-6 lg:leading-[32px]" style={{ fontFamily: "'Barlow', sans-serif" }}>
               Lorem Ipsum is simply dummy text of the printing and typesetting industry.
             </p>
           </div>
 
-          <div className="mt-12 flex items-center gap-6">
-            <div className="w-[83px] h-[83px] relative">
+          <div className="mt-8 lg:mt-12 flex items-center gap-4 lg:gap-6">
+            <div className="w-[60px] h-[60px] lg:w-[83px] lg:h-[83px] relative">
               <Image src={imgGroup1321315061} alt="Phone Icon" layout="fill" objectFit="contain" />
             </div>
-            <p className="text-[60px] font-semibold tracking-[4.2px]" style={{ fontFamily: "'Barlow Condensed', sans-serif", ...textShadow }}>
+            <p className="text-2xl lg:text-[60px] font-semibold tracking-[2px] lg:tracking-[4.2px]" style={{ fontFamily: "'Barlow Condensed', sans-serif", ...textShadow }}>
               (469) 480-7938
             </p>
           </div>

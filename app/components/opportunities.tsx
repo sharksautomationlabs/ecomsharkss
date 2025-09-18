@@ -50,7 +50,7 @@ const InfoCard = ({ title, description, backgroundImage }: {
 }) => (
   <motion.div className="flex flex-col text-center text-white">
     <motion.div
-      className="relative w-[140%] h-[450px] -ml-[20%] overflow-hidden"
+      className="relative w-[140%] h-[300px] lg:h-[450px] -ml-[20%] overflow-hidden"
       style={{
         maskImage: `url('${imgCardMask}')`,
         maskSize: '100% 100%',
@@ -61,15 +61,15 @@ const InfoCard = ({ title, description, backgroundImage }: {
       <Image src={backgroundImage} alt={title} layout="fill" objectFit="cover" className="rounded-2xl"/>
     </motion.div>
     
-    <div className="mt-8 w-full">
+    <div className="mt-6 lg:mt-8 w-full">
       <h3
-        className="text-5xl"
+        className="text-3xl lg:text-5xl"
         style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
       >
         {title}
       </h3>
       <p
-        className="mt-4 text-xl"
+        className="mt-3 lg:mt-4 text-base lg:text-xl"
         style={{ fontFamily: "'Barlow', sans-serif" }}
       >
         {description}
@@ -119,52 +119,65 @@ export default function Opportunities() {
     <section className="relative w-full bg-white">
       {/* Background Layers */}
       <div className="absolute inset-0 z-0">
-        <Image src={imgBgVector} alt="Wavy background shape" layout="fill" objectFit="cover" objectPosition="bottom"/>
-        <div
-          className="absolute inset-0"
-          style={{
-            maskImage: `url('${imgBgMask}')`,
-            maskSize: '100% 100%',
-          }}
-        >
-          <video 
-            autoPlay 
-            loop 
-            muted 
-            playsInline
-            className="w-full h-full object-cover blur-md"
+        {/* Wave background - only on desktop */}
+        <div className="hidden lg:block absolute inset-0">
+          <Image src={imgBgVector} alt="Wavy background shape" layout="fill" objectFit="cover" objectPosition="bottom"/>
+        </div>
+        {/* Video background - on all screens */}
+        <div className="absolute inset-0">
+          <div
+            className="w-full h-full"
+            style={{
+              maskImage: `url('${imgBgMask}')`,
+              maskSize: '100% 100%',
+            }}
           >
-            <source src="/images/bi-vid.mp4" type="video/mp4" />
-          </video>
+            <video 
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+              className="w-full h-full object-cover object-center blur-md"
+            >
+              <source src="/images/bi-vid.mp4" type="video/mp4" />
+            </video>
+          </div>
         </div>
       </div>
       
-      <div className="relative z-10 container mx-auto px-20 py-24 lg:py-32 grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-24 items-start">
+      <div className="relative z-10 container mx-auto px-5 lg:px-20 py-16 lg:py-24 xl:py-32 grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-16 lg:gap-y-24 items-start">
         
         {/* Left Column: Main Text & Shark */}
         <div className="relative flex flex-col text-white">
-          <div className="relative z-20 pt-12 pl-8">
+          <div className="relative z-20 pt-16 lg:pt-12 pl-4 lg:pl-8">
             <h1
-              className="text-8xl lg:text-9xl font-semibold leading-none"
+              className="text-5xl lg:text-8xl xl:text-9xl font-semibold leading-tight lg:leading-none"
               style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
             >
               Careers
             </h1>
             <h2
-              className="mt-6 text-4xl lg:text-5xl font-semibold max-w-md"
+              className="mt-4 lg:mt-6 text-2xl lg:text-4xl xl:text-5xl font-semibold max-w-md"
               style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
             >
               We're always looking for passionate people to join our mission.
             </h2>
-            <div className="mt-12 flex flex-wrap items-center gap-6">
-              <button className="flex items-center justify-center gap-3 bg-[#35c4dd] hover:bg-[#2cb4ca] transition-colors duration-300 rounded-full py-2.5 pl-6 pr-2">
-                <span className="font-semibold text-lg text-[#063f4a]" style={{ fontFamily: "'Barlow', sans-serif" }}>Order You Book</span>
+            <div className="mt-8 lg:mt-12 flex flex-col lg:flex-row items-start lg:items-center gap-4 lg:gap-6">
+              <button 
+                onClick={() => {
+                  if (typeof window !== 'undefined' && (window as any).Calendly) {
+                    (window as any).Calendly.initPopupWidget({url: 'https://calendly.com/your-calendly-link'});
+                  }
+                }}
+                className="flex items-center justify-center gap-3 bg-[#35c4dd] hover:bg-[#2cb4ca] transition-colors duration-300 rounded-full py-2.5 pl-6 pr-2 w-full lg:w-auto"
+              >
+                <span className="font-semibold text-base lg:text-lg text-[#063f4a]" style={{ fontFamily: "'Barlow', sans-serif" }}>Order You Book</span>
                 <span className="bg-white rounded-full p-2.5 flex items-center justify-center w-10 h-10">
-                  <Image src={imgArrowIcon} alt="arrow icon" width={24} height={24} />
+                  <Image src={imgArrowIcon} alt="arrow icon" width={20} height={20} className="lg:w-6 lg:h-6" />
                 </span>
               </button>
-              <button className="flex items-center justify-between w-[170px] h-[56px] bg-white rounded-full border-2 border-[#35c4dd] p-2 shadow-lg">
-                  <span className="pl-5 text-[#063f4a] font-semibold text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>Live Chat</span>
+              <button className="flex items-center justify-center lg:justify-between gap-3 w-full lg:w-[170px] h-[56px] bg-white rounded-full border-2 border-[#35c4dd] p-2 shadow-lg">
+                  <span className="pl-0 lg:pl-5 text-[#063f4a] font-semibold text-base lg:text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>Live Chat</span>
                   <div className="w-[44px] h-[44px] bg-[#063f4a] rounded-full flex items-center justify-center">
                       <Image src={imgChatCircleDots} alt="chat icon" width={28} height={28} />
                   </div>
@@ -173,10 +186,10 @@ export default function Opportunities() {
           </div>
 
            <div
-             className="absolute top-85 w-[120%] h-[600px] z-10 animate-shark-complete"
+             className="absolute top-85 w-[120%] h-[600px] z-10 animate-shark-complete hidden lg:block"
               style={{
-                left: `${-282 + (scrollPosition * 0.03)}%`,
-                transform: `translateX(${scrollPosition * 0.1}px)`
+                left: `${-400 + (scrollPosition * 0.04)}%`,
+                transform: `translateX(${scrollPosition * 0.2}px)`
               }}
            >
              <img src="/images/shark-underwater-2.png" alt="Shark underwater" className="w-full h-full" />
@@ -184,9 +197,9 @@ export default function Opportunities() {
         </div>
 
         {/* Right Column: Cards & Banner - ATTACHED REF FOR TRIGGERING */}
-        <div ref={ref} className="flex flex-col gap-y-16 overflow-hidden">
+        <div ref={ref} className="flex flex-col gap-y-12 lg:gap-y-16 overflow-hidden">
           <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 gap-30 overflow-hidden"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-6 lg:gap-30 overflow-hidden"
             variants={containerVariants}
             initial="hidden"
             animate={controls}
@@ -195,9 +208,9 @@ export default function Opportunities() {
               <InfoCard key={index} {...card} />
             ))}
           </motion.div>
-          <div className="bg-[#35c4dd] rounded-2xl p-6 flex items-center gap-4 text-[#063f4a]">
-            <Image src={imgClappingHandsIcon} alt="Clapping hands icon" width={48} height={48} />
-            <p className="text-2xl font-medium" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+          <div className="bg-[#35c4dd] rounded-2xl p-4 lg:p-6 flex items-center gap-3 lg:gap-4 text-[#063f4a]">
+            <Image src={imgClappingHandsIcon} alt="Clapping hands icon" width={40} height={40} className="lg:w-12 lg:h-12" />
+            <p className="text-lg lg:text-2xl font-medium" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
               Work in a creative, collaborative environment where every story matters.
             </p>
           </div>

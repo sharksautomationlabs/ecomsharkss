@@ -47,7 +47,7 @@ const CareerCard = ({ title, description, personImage, variants }: {
   variants: Variants;
 }) => (
   <motion.div 
-    className="relative w-full rounded-2xl overflow-hidden min-h-[350px] lg:min-h-[400px]"
+    className="relative w-full rounded-2xl overflow-hidden min-h-[300px] lg:min-h-[400px]"
     variants={variants}
     whileHover="hover" // Use the "hover" key from our variants
     initial="initial"
@@ -74,7 +74,7 @@ const CareerCard = ({ title, description, personImage, variants }: {
     {/* Animated Text and Button Content */}
     {/* MODIFICATION: The container itself is now animated on hover */}
     <motion.div 
-      className="absolute inset-0 z-30 p-8 flex flex-col justify-end" // Changed to justify-end
+      className="absolute inset-0 z-30 p-6 lg:p-8 flex flex-col justify-end" // Changed to justify-end
       variants={{
         initial: { y: 0 },
         hover: { y: -20 }, // Move up on hover
@@ -84,13 +84,13 @@ const CareerCard = ({ title, description, personImage, variants }: {
       {/* MODIFICATION: Removed pt-32, using justify-end on parent */}
       <div> 
         <h2 
-          className="text-4xl lg:text-5xl font-medium text-white drop-shadow-lg"
+          className="text-3xl lg:text-4xl xl:text-5xl font-medium text-white drop-shadow-lg"
           style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
         >
           {title}
         </h2>
         <p 
-          className="mt-2 text-lg text-white drop-shadow-md max-w-sm"
+          className="mt-2 text-base lg:text-lg text-white drop-shadow-md max-w-sm"
           style={{ fontFamily: "'Barlow', sans-serif" }}
         >
           {description}
@@ -98,9 +98,9 @@ const CareerCard = ({ title, description, personImage, variants }: {
       </div>
       
       {/* MODIFICATION: Adjusted margin-top for better spacing */}
-      <div className="mt-8 -ml-4">
+      <div className="mt-6 lg:mt-8 -ml-2 lg:-ml-4">
         <button 
-          className="group flex items-center justify-center gap-3 bg-white text-[#35c4dd] font-semibold py-2.5 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative"
+          className="group flex items-center justify-center gap-3 bg-white text-[#35c4dd] font-semibold py-2.5 pl-6 pr-2 rounded-full text-base lg:text-lg shadow-lg overflow-hidden relative w-full lg:w-auto"
           onClick={() => {
             if (typeof window !== 'undefined' && (window as any).Calendly) {
               (window as any).Calendly.initPopupWidget({
@@ -169,17 +169,17 @@ export default function Careers() {
   };
 
   return (
-    <section ref={ref} className="w-full bg-white py-24">
-      <div className="container mx-auto px-20">
+    <section ref={ref} className="w-full bg-white py-16 lg:py-24">
+      <div className="container mx-auto px-5 lg:px-20">
         
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-12 lg:mb-16"
           variants={cardVariants}
           initial="hidden"
           animate={controls}
         >
           <h1 
-            className="text-7xl lg:text-8xl font-medium text-gray-800"
+            className="text-4xl lg:text-7xl xl:text-8xl font-medium text-gray-800"
             style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
           >
             Career
@@ -187,7 +187,7 @@ export default function Careers() {
         </motion.div>
         
         <motion.div 
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8"
           variants={containerVariants}
           initial="hidden"
           animate={controls}

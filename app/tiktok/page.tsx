@@ -15,7 +15,7 @@ export default function TikTokPage() {
         customDescription="Our TikTok Automation Services are designed to elevate your brand's presence and drive engagement on this rapidly growing platform. We offer a range of services, from account setup and management to content creation and audience targeting, all tailored to meet your specific business goals.
 
 Our team of experts is well-versed with the latest TikTok trends and algorithms, ensuring that your brand stays relevant and visible to your target audience. Whether you're looking to launch a new product, increase brand awareness, or drive sales, we can help you achieve your goals."
-        logoType="shopify"
+        logoType="tiktok"
       />
       <ImageGallery />
       <Testimonials />

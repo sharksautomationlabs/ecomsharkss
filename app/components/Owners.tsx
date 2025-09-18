@@ -16,6 +16,7 @@ const imgArrowIcon = "/images/arrow-icon-4.svg";
 
 export default function Owners() {
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const controls = useAnimation();
   
   // Set triggerOnce to false to allow re-triggering
@@ -29,8 +30,19 @@ export default function Owners() {
       setScrollPosition(window.scrollY);
     };
 
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+
+    // Set initial mobile state
+    handleResize();
+
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   // Animate in when inView is true, and animate out when false
@@ -115,22 +127,22 @@ export default function Owners() {
         >
           {/* Left Hand */}
           <div 
-            className="absolute bottom-0 -left-22 w-[400px] h-[412px] transition-all duration-1000 ease-out transform rotate-12"
+            className="absolute bottom-0 -left-22 w-[200px] h-[206px] lg:w-[400px] lg:h-[412px] transition-all duration-1000 ease-out transform rotate-12"
             style={{ 
-              transform: `rotate(${-scrollPosition * 0.1}deg)`
+              transform: `rotate(${isMobile ? Math.min(scrollPosition * 0.05, 5) : -scrollPosition * 0.1}deg)`
             }}
           >
             <Image src={imgLeftHand} alt="OK hand gesture" layout="fill" objectFit="contain" />
           </div>
           {/* Hand is smaller, repositioned, and rotated diagonally. */}
             {/* TikTok Logo position adjusted relative to the new hand position */}
-            <div className="absolute top-[28%] right-[29%] w-[200px] h-[200px]">
+            <div className="absolute top-[28%] right-[29%] w-[100px] h-[100px] lg:w-[200px] lg:h-[200px]">
                <Image src={imgTikTokLogo} alt="TikTok Logo" layout="fill" objectFit="contain" />
             </div>
           <div 
-            className="absolute -top-16 -right-20 w-[600px] h-[550px] transition-all duration-1000 ease-out"
+            className="absolute -top-16 -right-20 w-[300px] h-[275px] lg:w-[600px] lg:h-[550px] transition-all duration-1000 ease-out"
             style={{ 
-              transform: `rotate(${12 + (scrollPosition * 0.1)}deg)`
+              transform: `rotate(${isMobile ? Math.min(12 + (scrollPosition * 0.03), 15) : 12 + (scrollPosition * 0.5)}deg)`
             }}
           >
             <Image src={imgRightHand} alt="Hand writing" layout="fill" objectFit="contain" />
@@ -139,13 +151,13 @@ export default function Owners() {
 
         {/* Layer 3: Content */}
         <motion.div 
-          className="relative z-20 container mx-auto px-20"
+          className="relative z-20 container mx-auto px-5 lg:px-20 py-16 lg:py-0"
           variants={leftVariants}
           initial="hidden"
           animate={controls}
         >
           {/* THE FIX: A 12-column grid allows for very fine control. */}
-          <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[500px] lg:min-h-[600px] items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 min-h-[400px] lg:min-h-[600px] items-center">
             
             {/* This invisible spacer now only takes up 2 of 12 columns, pushing the content slightly left. */}
             <div className="hidden lg:block lg:col-span-2"></div> 
@@ -153,23 +165,23 @@ export default function Owners() {
             {/* The content now occupies a larger span, starting further to the left. */}
             <div className="lg:col-span-7 text-white">
               <h1 
-                className="text-7xl lg:text-8xl font-semibold leading-none"
+                className="text-4xl lg:text-7xl xl:text-8xl font-semibold leading-tight lg:leading-none"
                 style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
               >
                 For Ecommerce Owners
               </h1>
               <p 
-                className="mt-6 text-xl lg:text-2xl leading-relaxed"
+                className="mt-4 lg:mt-6 text-base lg:text-xl xl:text-2xl leading-relaxed"
                 style={{ fontFamily: "'Barlow', sans-serif" }}
               >
-                At Ecom Sharkss, we understand the challenges you <br/> face  in today's competitive digital marketplace...
+                At Ecom Sharkss, we understand the challenges you <br className="hidden lg:block"/> face  in today's competitive digital marketplace...
               </p>
-              <div className="mt-12 flex flex-wrap items-center gap-x-12 gap-y-6">
+              <div className="mt-8 lg:mt-12 flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-x-12 lg:gap-y-6">
                 {/* Phone Number */}
-                <div className="flex items-center gap-4">
-                  <Image src={imgPhoneIcon} alt="Phone" width={64} height={64} />
+                <div className="flex items-center gap-3 lg:gap-4">
+                  <Image src={imgPhoneIcon} alt="Phone" width={48} height={48} className="lg:w-16 lg:h-16" />
                   <span 
-                    className="text-4xl lg:text-5xl font-semibold tracking-wider"
+                    className="text-2xl lg:text-4xl xl:text-5xl font-semibold tracking-wider"
                     style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
                   >
                     (469) 480-7938
@@ -177,7 +189,7 @@ export default function Owners() {
                 </div>
                 {/* Get a Quote Button */}
                 <button 
-                  className="group flex items-center justify-center gap-3 bg-[#35c4dd] hover:bg-[#2cb4ca] transition-colors duration-300 rounded-full py-2.5 pl-6 pr-2 shadow-lg overflow-hidden relative"
+                  className="group flex items-center justify-center gap-3 bg-[#35c4dd] hover:bg-[#2cb4ca] transition-colors duration-300 rounded-full py-2.5 pl-6 pr-2 shadow-lg overflow-hidden relative w-full lg:w-auto"
                   onClick={() => {
                     if (typeof window !== 'undefined' && (window as any).Calendly) {
                       (window as any).Calendly.initPopupWidget({
@@ -187,13 +199,13 @@ export default function Owners() {
                   }}
                 >
                   <span 
-                    className="font-semibold text-lg text-[#063f4a] relative z-10"
+                    className="font-semibold text-base lg:text-lg text-[#063f4a] relative z-10"
                     style={{ fontFamily: "'Barlow', sans-serif" }}
                   >
                     Get a Quote
                   </span>
                   <span className="bg-white rounded-full p-2.5 flex items-center justify-center w-10 h-10 relative z-10">
-                    <Image src={imgArrowIcon} alt="arrow icon" width={24} height={24} />
+                    <Image src={imgArrowIcon} alt="arrow icon" width={20} height={20} className="lg:w-6 lg:h-6" />
                   </span>
                   <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
                 </button>

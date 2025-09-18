@@ -1,7 +1,19 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
+
+// Hamburger Menu Icon for Mobile
+const HamburgerIcon = ({ isOpen }: { isOpen: boolean }) => (
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300">
+        {isOpen ? (
+            <path d="M18 6L6 18M6 6L18 18" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        ) : (
+            <path d="M4 6H20M4 12H20M4 18H20" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        )}
+    </svg>
+);
 
 const ArrowIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -28,21 +40,46 @@ const img81 = "/images/shopify-logo.png";
 export default function WalmartHeader() {
   const textShadow = { textShadow: '0px 2px 5px rgba(0, 0, 0, 0.5)' };
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [isDesktop, setIsDesktop] = useState(true);
+  const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrollPosition(window.scrollY);
     };
 
+    const handleResize = () => {
+        setIsDesktop(window.innerWidth >= 1024);
+    };
+
+    handleResize(); // Set initial value
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    }
   }, []);
+
+  // Prevent body scroll when mobile nav is open
+  useEffect(() => {
+    if (isMobileNavOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isMobileNavOpen]);
 
   return (
     // Main wrapper that centers and scales the content
     <div className="w-full bg-[#052126] flex justify-center">
-      {/* Scalable container with a fixed aspect ratio */}
-      <div className="relative w-full max-w-[1920px] aspect-[1920/1000] overflow-hidden select-none">
+      {/* Scalable container with responsive height */}
+      <div className="relative w-full max-w-[1920px] h-[50vh] lg:h-auto lg:aspect-[1920/1080] overflow-hidden select-none">
         
         {/* Background Video and Overlay */}
         <div className="absolute inset-0 z-0">
@@ -61,12 +98,12 @@ export default function WalmartHeader() {
         {/* Content Layer - All positions are relative to this container */}
         <div className="relative z-20 w-full h-full">
 
-          {/* Header Container - MODIFIED */}
-          <header className="absolute top-0 left-0 w-full z-50 px-20">
-            {/* Top Bar */}
+          {/* Header Container - RESPONSIVE */}
+          <header className="absolute top-0 left-0 w-full z-[99999] px-5 lg:px-20">
+            {/* Top Bar - Hidden on mobile */}
             <div
               className="h-[64px] w-full bg-cover bg-center rounded-b-2xl
-                         flex items-center justify-between px-8"
+                         hidden lg:flex items-center justify-between px-8"
               style={{ backgroundImage: `url('${imgRectangle72}')` }}
             >
               <p className="text-white text-[20px] font-medium" style={{ fontFamily: "'Barlow', sans-serif", ...textShadow }}>
@@ -84,22 +121,22 @@ export default function WalmartHeader() {
               </div>
             </div>
 
-            {/* Navigation Section */}
-            <div className="mt-6 flex items-center justify-between slide-in-right">
-                <div className="w-[110px] h-[100px] relative fade-in">
+            {/* Navigation Section - RESPONSIVE */}
+            <div className="mt-2 lg:mt-6 flex items-center justify-between">
+                <div className="w-[90px] h-[70px] lg:w-[110px] lg:h-[100px] relative fade-in -ml-3 lg:ml-0">
                     <Image src={imgImage1} alt="Ecom Sharks Logo" layout="fill" objectFit="contain" />
                 </div>
-                <div className="w-[950px] h-[90px] bg-white/20 backdrop-blur-sm 
-                            rounded-2xl flex items-center justify-end px-10 gap-8 border-2 border-white">
+                <div className="hidden lg:flex w-[950px] h-[90px] bg-white/20 backdrop-blur-sm 
+                            rounded-2xl items-center justify-end px-10 gap-8 border-2 border-white">
                     <div className="flex items-center gap-6 text-white text-[18px] font-medium" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                        <a href="/" className="hover:text-[#35c4dd]" style={textShadow}>Home</a>
-                        <a href="/about" className="hover:text-[#35c4dd]" style={textShadow}>About Us</a>
-                        <a href="/amazon" className="hover:text-[#35c4dd]" style={textShadow}>Amazon</a>
-                        <a href="/shopify" className="hover:text-[#35c4dd]" style={textShadow}>Shopify</a>
-                        <a href="/tiktok" className="hover:text-[#35c4dd]" style={textShadow}>Tiktok</a>
-                        <a href="/walmart" className="hover:text-[#35c4dd]" style={textShadow}>Walmart</a>
-                        <a href="/identity" className="hover:text-[#35c4dd]" style={textShadow}>Identity</a>
-                        <a href="/contact" className="hover:text-[#35c4dd]" style={textShadow}>Contact</a>
+                        <Link href="/" className="hover:text-[#35c4dd]" style={textShadow}>Home</Link>
+                        <Link href="/about" className="hover:text-[#35c4dd]" style={textShadow}>About Us</Link>
+                        <Link href="/amazon" className="hover:text-[#35c4dd]" style={textShadow}>Amazon</Link>
+                        <Link href="/shopify" className="hover:text-[#35c4dd]" style={textShadow}>Shopify</Link>
+                        <Link href="/tiktok" className="hover:text-[#35c4dd]" style={textShadow}>Tiktok</Link>
+                        <Link href="/walmart" className="hover:text-[#35c4dd]" style={textShadow}>Walmart</Link>
+                        <Link href="/identity" className="hover:text-[#35c4dd]" style={textShadow}>Identity</Link>
+                        <Link href="/contact" className="hover:text-[#35c4dd]" style={textShadow}>Contact</Link>
                     </div>
                      <button 
                         className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-1.5 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative"
@@ -118,18 +155,185 @@ export default function WalmartHeader() {
                         <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
                     </button>
                 </div>
+                <div className="lg:hidden">
+                    <button 
+                      onClick={() => setIsMobileNavOpen(!isMobileNavOpen)}
+                      className="p-2"
+                    >
+                      <HamburgerIcon isOpen={isMobileNavOpen} />
+                    </button>
+                </div>
             </div>
           </header>
 
-          {/* Hero Text Content - CUSTOMIZED FOR WALMART */}
-          <div className="absolute top-[300px] left-20 w-[781px] z-50 slide-in-left">
-            <h1 className="text-white text-[94px] leading-[0.921]" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 600, ...textShadow }}>
+          {/* Mobile Navigation Panel */}
+          <div className={`lg:hidden fixed inset-0 z-[999999] transition-all duration-300 ease-in-out ${
+            isMobileNavOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+          }`}>
+            {/* Backdrop */}
+            <div 
+              className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+              onClick={() => setIsMobileNavOpen(false)}
+            />
+            
+            {/* Navigation Panel */}
+            <div className={`absolute top-0 right-0 h-full w-[85%] max-w-sm bg-[#052126] shadow-2xl transform transition-transform duration-300 ease-in-out ${
+              isMobileNavOpen ? 'translate-x-0' : 'translate-x-full'
+            }`}>
+              <div className="flex flex-col h-full">
+                {/* Header */}
+                <div className="flex items-center justify-between p-6 border-b border-white/20">
+                  <div className="w-[80px] h-[60px] relative">
+                    <Image src={imgImage1} alt="Ecom Sharks Logo" layout="fill" objectFit="contain" />
+                  </div>
+                  <button 
+                    onClick={() => setIsMobileNavOpen(false)}
+                    className="p-2 text-white hover:text-[#35c4dd] transition-colors"
+                  >
+                    <HamburgerIcon isOpen={true} />
+                  </button>
+                </div>
+
+                {/* Top Bar Items */}
+                <div className="px-6 py-4 border-b border-white/20">
+                  <p className="text-white text-sm font-medium mb-4" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                    🌟 One-Stop All Ecommerce Accounts Solutions
+                  </p>
+                  <div className="space-y-3">
+                    <a 
+                      href="tel:4694807938" 
+                      className="flex items-center gap-3 text-white text-sm font-medium hover:text-[#35c4dd] transition-colors"
+                      style={{ fontFamily: "'Barlow', sans-serif" }}
+                    >
+                      <Image src={imgGroup1000004908} alt="phone" width={20} height={20} />
+                      <span>(469) 480-7938</span>
+                    </a>
+                    <a 
+                      href="mailto:info@ecomsharkss.com" 
+                      className="flex items-center gap-3 text-white text-sm font-medium hover:text-[#35c4dd] transition-colors"
+                      style={{ fontFamily: "'Barlow', sans-serif" }}
+                    >
+                      <Image src={imgGroup1000004909} alt="email" width={20} height={20} />
+                      <span>info@ecomsharkss.com</span>
+                    </a>
+                  </div>
+                </div>
+
+                {/* Navigation Links */}
+                <div className="flex-1 px-6 py-6">
+                  <nav className="space-y-4">
+                    <Link 
+                      href="/" 
+                      className="block text-white text-lg font-medium hover:text-[#35c4dd] transition-colors py-2"
+                      style={{ fontFamily: "'Barlow', sans-serif" }}
+                      onClick={() => setIsMobileNavOpen(false)}
+                    >
+                      Home
+                    </Link>
+                    <Link 
+                      href="/about" 
+                      className="block text-white text-lg font-medium hover:text-[#35c4dd] transition-colors py-2"
+                      style={{ fontFamily: "'Barlow', sans-serif" }}
+                      onClick={() => setIsMobileNavOpen(false)}
+                    >
+                      About Us
+                    </Link>
+                    <Link 
+                      href="/amazon" 
+                      className="block text-white text-lg font-medium hover:text-[#35c4dd] transition-colors py-2"
+                      style={{ fontFamily: "'Barlow', sans-serif" }}
+                      onClick={() => setIsMobileNavOpen(false)}
+                    >
+                      Amazon
+                    </Link>
+                    <Link 
+                      href="/shopify" 
+                      className="block text-white text-lg font-medium hover:text-[#35c4dd] transition-colors py-2"
+                      style={{ fontFamily: "'Barlow', sans-serif" }}
+                      onClick={() => setIsMobileNavOpen(false)}
+                    >
+                      Shopify
+                    </Link>
+                    <Link 
+                      href="/tiktok" 
+                      className="block text-white text-lg font-medium hover:text-[#35c4dd] transition-colors py-2"
+                      style={{ fontFamily: "'Barlow', sans-serif" }}
+                      onClick={() => setIsMobileNavOpen(false)}
+                    >
+                      TikTok
+                    </Link>
+                    <Link 
+                      href="/walmart" 
+                      className="block text-white text-lg font-medium hover:text-[#35c4dd] transition-colors py-2"
+                      style={{ fontFamily: "'Barlow', sans-serif" }}
+                      onClick={() => setIsMobileNavOpen(false)}
+                    >
+                      Walmart
+                    </Link>
+                    <Link 
+                      href="/identity" 
+                      className="block text-white text-lg font-medium hover:text-[#35c4dd] transition-colors py-2"
+                      style={{ fontFamily: "'Barlow', sans-serif" }}
+                      onClick={() => setIsMobileNavOpen(false)}
+                    >
+                      Identity
+                    </Link>
+                    <Link 
+                      href="/contact" 
+                      className="block text-white text-lg font-medium hover:text-[#35c4dd] transition-colors py-2"
+                      style={{ fontFamily: "'Barlow', sans-serif" }}
+                      onClick={() => setIsMobileNavOpen(false)}
+                    >
+                      Contact
+                    </Link>
+                  </nav>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="px-6 py-6 border-t border-white/20 space-y-4">
+                  <button 
+                    className="group w-full flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-3 px-6 rounded-full text-lg shadow-lg overflow-hidden relative"
+                    onClick={() => {
+                      setIsMobileNavOpen(false);
+                      if (typeof window !== 'undefined' && (window as any).Calendly) {
+                        (window as any).Calendly.initPopupWidget({
+                          url: 'https://calendly.com/contact-sharksbookpublishers/30min?primary_color=35c4dd'
+                        });
+                      }
+                    }}
+                  >
+                    <span className="relative z-10">Get Started</span>
+                    <span className="bg-white rounded-full p-2 w-8 h-8 flex items-center justify-center relative z-10">
+                      <ArrowIcon />
+                    </span>
+                    <div className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 bg-white rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
+                  </button>
+                  
+                  <button 
+                    className="w-full flex items-center justify-between bg-white rounded-full border-2 border-[#35c4dd] p-3 shadow-lg"
+                    onClick={() => setIsMobileNavOpen(false)}
+                  >
+                    <span className="pl-3 text-[#063f4a] font-semibold text-base" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                      Live Chat
+                    </span>
+                    <div className="w-[40px] h-[40px] bg-[#063f4a] rounded-full flex items-center justify-center">
+                      <Image src={imgChatCircleDots} alt="chat icon" width={24} height={24} />
+                    </div>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Hero Text Content - RESPONSIVE FOR WALMART */}
+          <div className="absolute top-1/2 -translate-y-1/2 left-5 w-1/2 lg:top-[300px] lg:left-20 lg:w-[781px] lg:translate-y-0 z-50 slide-in-left">
+            <h1 className="text-white text-3xl leading-tight pt-10 lg:text-[94px] lg:leading-[0.921] lg:pt-0" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 600, ...textShadow }}>
               We Always Give The Best Walmart Marketplace Service To You
             </h1>
-            <p className="mt-6 text-white text-[24px] leading-[38px] max-w-[685px]" style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 500, ...textShadow }}>
+            <p className="hidden lg:block mt-6 text-white text-[24px] leading-[38px] max-w-[685px]" style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 500, ...textShadow }}>
               Boost your Digital Presence on Walmart with ECOM SHARKS
             </p>
-            <div className="flex items-center gap-6 mt-12">
+            <div className="hidden lg:flex items-center gap-6 mt-12">
             <a 
               href="tel:4694807938"
               className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative"
@@ -148,22 +352,44 @@ export default function WalmartHeader() {
                   </div>
               </button>
             </div>
+             <div className="mt-8 lg:hidden">
+                <a 
+                  href="tel:4694807938"
+                  className="bg-[#35c4dd] text-[#063f4a] font-semibold py-2.5 px-2 rounded-full text-base w-[160px] flex items-center justify-between shadow-lg"
+                >
+                    <span className="pl-3">Contact Us</span>
+                    <span className="bg-white rounded-full w-8 h-8 flex items-center justify-center">
+                       <ArrowIcon />
+                    </span>
+                </a>
+            </div>
           </div>
           
-          {/* Visual Elements Layer - ONLY WALMART LOGO */}
-          <div className="absolute inset-0 z-30">
+          {/* Visual Elements Layer - RESPONSIVE */}
+          <div className="absolute inset-0 z-30 pointer-events-none">
+            {/* Shark Animation - Responsive */}
             <div 
-              className="absolute top-[55%] w-[52%] h-[60%] animate-shark-complete"
+              className="absolute top-[60%] w-[65%] h-auto lg:top-[55%] lg:w-[52%] lg:h-[60%] animate-shark-complete"
               style={{ 
-                left: `${60 - (scrollPosition * 0.05)}%`,
-                transform: `translateX(${-scrollPosition * 0.2}px)`
+                left: `${75 - (scrollPosition * (isDesktop ? 0.05 : 0.15))}%`,
+                transform: `translateX(${-scrollPosition * (isDesktop ? 0.2 : 0.5)}px)`
               }}
             >
-                <Image src={imgDangerousSharkUnderwater2Copy1} alt="Shark" layout="fill" objectFit="contain" className="transform -scale-x-100" />
+                <Image src={imgDangerousSharkUnderwater2Copy1} alt="Shark" width={1000} height={600} objectFit="contain" className="transform -scale-x-100" />
             </div>
-            {/* Amazon Logo - Only logo shown as requested */}
-            <div className="absolute top-[44%] right-[20%] w-[16%] h-auto z-40 logo-fade-in-walmart">
-                <Image src={img61} alt="Amazon Logo" width={310} height={310} objectFit="contain" />
+
+            {/* Mobile Logo Layout */}
+            <div className="lg:hidden absolute top-1/2 right-2 -translate-y-1/2 w-[45%] h-[70%]">
+                <div className="absolute top-[24%] right-[20%] w-[65%] h-auto z-40 logo-fade-in-walmart">
+                    <Image src={img61} alt="Walmart Logo" width={350} height={350} objectFit="contain" />
+                </div>
+            </div>
+
+            {/* Desktop Logo Layout */}
+            <div className="hidden lg:block">
+            <div className="absolute top-[40%] right-[15%] w-[18%] h-auto z-40 logo-fade-in-walmart">
+                    <Image src={img61} alt="Walmart Logo" width={350} height={350} objectFit="contain" />
+            </div>
             </div>
           </div>
         </div>

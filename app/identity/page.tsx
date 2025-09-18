@@ -20,30 +20,30 @@ const imgFounder = "/images/founder.png";
 // Reusable Button Component matching website theme
 const GetQuoteButton = ({ small = false }: { small?: boolean }) => (
   <button 
-    className={`group flex items-center justify-between bg-[#35c4dd] hover:bg-[#2cb4ca] transition-colors duration-300 rounded-full overflow-hidden relative ${small ? 'h-12 w-44 pl-6 pr-1' : 'h-14 w-48 pl-6 pr-1.5'}`}
+    className={`group flex items-center justify-center lg:justify-between gap-3 bg-[#35c4dd] hover:bg-[#2cb4ca] transition-colors duration-300 rounded-full overflow-hidden relative ${small ? 'h-12 w-full lg:w-44 pl-6 pr-1' : 'h-14 w-full lg:w-48 pl-6 pr-1.5'}`}
     onClick={() => {
-      if (typeof window !== 'undefined' && (window as any).Calendly) {
-        (window as any).Calendly.initPopupWidget({
+      if (typeof window !== 'undefined' && (window as unknown as { Calendly?: { initPopupWidget: (options: { url: string }) => void } }).Calendly) {
+        (window as unknown as { Calendly: { initPopupWidget: (options: { url: string }) => void } }).Calendly.initPopupWidget({
           url: 'https://calendly.com/contact-sharksbookpublishers/30min?primary_color=35c4dd'
         });
       }
     }}
   >
     <span 
-      className={`font-semibold text-[#063f4a] relative z-10 ${small ? 'text-lg' : 'text-xl'}`}
+      className={`font-semibold text-[#063f4a] relative z-10 ${small ? 'text-base lg:text-lg' : 'text-lg lg:text-base lg:text-xl'}`}
       style={{ fontFamily: "'Barlow', sans-serif" }}
     >
       Get A Quote
     </span>
     <span className={`bg-white rounded-full flex items-center justify-center relative z-10 ${small ? 'w-10 h-10' : 'w-10 h-10'}`}>
-      <Image src={imgArrowIcon} alt="arrow icon" width={small ? 20 : 20} height={small ? 20 : 20} />
+      <Image src={imgArrowIcon} alt="arrow icon" width={small ? 18 : 20} height={small ? 18 : 20} />
     </span>
     <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
   </button>
 );
 
 const ChatButton = () => (
-  <button className="group flex items-center justify-center gap-3 bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#063f4a] transition-colors duration-300 rounded-full px-8 py-3 text-lg font-semibold" style={{ fontFamily: "'Barlow', sans-serif" }}>
+  <button className="group flex items-center justify-center gap-3 bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#063f4a] transition-colors duration-300 rounded-full px-6 lg:px-8 py-3 text-base lg:text-lg font-semibold w-full lg:w-auto" style={{ fontFamily: "'Barlow', sans-serif" }}>
     <Image src={imgChatIcon} alt="chat icon" width={20} height={20} />
     <span>Live Chat</span>
   </button>
@@ -60,6 +60,7 @@ const SocialIcon = ({ path, label }: { path: string; label: string }) => (
 
 export default function IdentityPage() {
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [selectedFounder, setSelectedFounder] = useState<'ain' | 'zyaan' | null>(null);
   const controls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: false,
@@ -144,12 +145,12 @@ export default function IdentityPage() {
   return (
     <div className="w-full bg-white overflow-x-hidden">
       <Header 
-        heroTitle="Meet Ain - Founder of ECOM SHARKS"
+        heroTitle="Meet Our Founders - ECOM SHARKS Leadership"
         heroSubtitle="5+ Years of E-commerce Excellence | 300+ Team Members | 1000+ Years Combined Experience"
       />
       
       {/* Profile Section with Website Theme */}
-      <section ref={ref} className="relative w-full bg-white pt-32 lg:pt-48">
+      <section ref={ref} className="relative w-full bg-white pt-16 lg:pt-32 xl:pt-48">
         {/* Background elements matching website theme */}
         <div className="absolute top-0 left-0 right-0 bottom-0">
           <div className="absolute inset-0 z-0">
@@ -177,21 +178,21 @@ export default function IdentityPage() {
           </div>
         </div>
 
-        <div className="relative z-20 container mx-auto px-20 pb-24 text-white">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+        <div className="relative z-10 container mx-auto px-5 lg:px-5 lg:px-20 pb-16 lg:pb-24 text-white">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-6 lg:p-8 lg:gap-16 items-center">
             
-            {/* Left Column - Ain's Profile */}
+            {/* Left Column - Dynamic Founder Profile */}
             <motion.div 
               className="text-center lg:text-left"
-              variants={leftVariants}
-              initial="hidden"
-              animate={controls}
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.1 }}
             >
-              <div className="relative mb-8">
-                <div className="w-80 h-80 mx-auto lg:mx-0 rounded-full shadow-2xl border-4 border-white/20 overflow-hidden">
+              <div className="relative mb-6 lg:mb-8">
+                <div className="w-64 h-64 lg:w-80 lg:h-80 mx-auto lg:mx-0 rounded-full shadow-2xl border-4 border-white/20 overflow-hidden">
                   <Image 
-                    src={imgFounder} 
-                    alt="Ain - Founder of ECOM SHARKS" 
+                    src={selectedFounder === 'zyaan' ? "/images/founder-1.jpg" : imgFounder} 
+                    alt={selectedFounder === 'zyaan' ? "ZYAAN - Co-Founder of ECOM SHARKS" : "Ain - Founder of ECOM SHARKS"} 
                     width={320} 
                     height={320}
                     className="w-full h-full object-cover"
@@ -199,120 +200,193 @@ export default function IdentityPage() {
                 </div>
               </div>
               
-              <motion.h2 
-                className="text-6xl font-semibold text-white mb-4" 
+              <h2 
+                className="text-4xl lg:text-6xl font-semibold text-white mb-4" 
                 style={{ fontFamily: "'Barlow Condensed', sans-serif", textShadow: '0px 3px 6px rgba(0,0,0,0.5)' }}
-                variants={headerVariants}
-                initial="hidden"
-                animate={controls}
               >
-                Ain!
-              </motion.h2>
-              <motion.p 
-                className="text-2xl text-[#35c4dd] mb-8" 
+                {selectedFounder === 'zyaan' ? 'ZYAAN!' : 'Ain!'}
+              </h2>
+              <p 
+                className="text-lg lg:text-2xl text-[#35c4dd] mb-6 lg:mb-8" 
                 style={{ fontFamily: "'Barlow', sans-serif", textShadow: '0px 2px 4px rgba(0,0,0,0.5)' }}
-                variants={headerVariants}
-                initial="hidden"
-                animate={controls}
               >
-                Sr. Ecommerce Consultant
-              </motion.p>
+                {selectedFounder === 'zyaan' ? 'E-commerce Product Specialist' : 'Sr. Ecommerce Consultant'}
+              </p>
               
-              <motion.div 
-                className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start mb-8"
-                variants={containerVariants}
-                initial="hidden"
-                animate={controls}
-              >
+              <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 justify-center lg:justify-start mb-6 lg:mb-8">
                 <GetQuoteButton />
                 <ChatButton />
-              </motion.div>
+              </div>
 
               {/* Social Links */}
-              <motion.div 
-                className="flex gap-4 justify-center lg:justify-start"
-                variants={containerVariants}
-                initial="hidden"
-                animate={controls}
-              >
+              <div className="flex gap-4 justify-center lg:justify-start">
                 <SocialIcon path={socialLinks.facebook} label="Facebook" />
                 <SocialIcon path={socialLinks.instagram} label="Instagram" />
                 <SocialIcon path={socialLinks.linkedin} label="LinkedIn" />
-              </motion.div>
+              </div>
             </motion.div>
 
-            {/* Right Column - Who I'm Section */}
+            {/* Right Column - Interactive Founder Selection */}
             <motion.div 
               variants={rightVariants}
               initial="hidden"
               animate={controls}
             >
               <motion.h3 
-                className="text-5xl font-semibold text-white mb-8" 
+                className="text-3xl lg:text-5xl font-semibold text-white mb-4 lg:mb-6" 
                 style={{ fontFamily: "'Barlow Condensed', sans-serif", textShadow: '0px 3px 6px rgba(0,0,0,0.5)' }}
                 variants={headerVariants}
                 initial="hidden"
                 animate={controls}
               >
-                Who I'm
+                Meet Our Founders
               </motion.h3>
+              <motion.p 
+                className="text-base lg:text-lg text-gray-300 mb-6 lg:mb-8" 
+                style={{ fontFamily: "'Barlow', sans-serif" }}
+                variants={headerVariants}
+                initial="hidden"
+                animate={controls}
+              >
+                Click on a founder to learn more about them
+              </motion.p>
+              
+              {/* Founder Selection Buttons */}
               <motion.div 
-                className="space-y-6"
+                className="flex gap-4 mb-8"
                 variants={containerVariants}
                 initial="hidden"
                 animate={controls}
               >
-                <p className="text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                  Before I describe my experience and who I'm, let's talk about what truly matters to you—what you'll get. If you start your e-commerce store with me or my team, you'll likely earn at least $5,000 more in profit compared to working with someone new.
+                <button
+                  onClick={() => setSelectedFounder('ain')}
+                  className={`flex items-center gap-3 px-6 py-4 rounded-2xl transition-all duration-300 ${
+                    selectedFounder === 'ain' 
+                      ? 'bg-[#35c4dd] text-[#063f4a] shadow-lg' 
+                      : 'bg-white/10 text-white hover:bg-white/20'
+                  }`}
+                >
+                  <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/30">
+                    <Image 
+                      src={imgFounder} 
+                      alt="Ain" 
+                      width={48} 
+                      height={48}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="text-left">
+                    <div className="font-semibold text-lg" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+                      Ain
+                    </div>
+                    <div className="text-sm opacity-80" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                      Sr. Ecommerce Consultant
+                    </div>
+                  </div>
+                </button>
+                
+                <button
+                  onClick={() => setSelectedFounder('zyaan')}
+                  className={`flex items-center gap-3 px-6 py-4 rounded-2xl transition-all duration-300 ${
+                    selectedFounder === 'zyaan' 
+                      ? 'bg-[#35c4dd] text-[#063f4a] shadow-lg' 
+                      : 'bg-white/10 text-white hover:bg-white/20'
+                  }`}
+                >
+                  <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/30">
+                    <Image 
+                      src="/images/founder-1.jpg" 
+                      alt="ZYAAN" 
+                      width={48} 
+                      height={48}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="text-left">
+                    <div className="font-semibold text-lg" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+                      ZYAAN
+                    </div>
+                    <div className="text-sm opacity-80" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                      E-commerce Product Specialist
+                    </div>
+                  </div>
+                </button>
+              </motion.div>
+
+              {/* Dynamic Content Based on Selected Founder - Only shows when a founder is selected */}
+              {selectedFounder && (
+                <div 
+                  className="space-y-4 lg:space-y-6"
+                >
+                  {selectedFounder === 'ain' ? (
+                    <>
+                      <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                  Before I describe my experience and who I&apos;m, let&apos;s talk about what truly matters to you—what you&apos;ll get. If you start your e-commerce store with me or my team, you&apos;ll likely earn at least $5,000 more in profit compared to working with someone new.
                 </p>
-                <p className="text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                      <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
                   Why? Because I have 5+ years of additional experience in this field, and that directly translates into better product choices, smarter strategies, and faster growth. We're not just here to talk—we specialize in product hunting.
                 </p>
-                <p className="text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                      <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
                   And in e-commerce, if you have the right winning products, you can crack the market and earn as much as you want.
                 </p>
-              </motion.div>
+                    </>
+                  ) : (
+                    <>
+                      <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                        It&apos;s not about me — it&apos;s about the results you get. When you build your e-commerce store with me and my team, you&apos;re setting yourself up to earn at least 15% more in profit compared to working with someone less experienced.
+                      </p>
+                      <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                        Why? Because I&apos;m Zain — and with over 5 years of proven expertise in e-commerce, I know how to make smarter product choices, design stronger strategies, and accelerate growth.
+                      </p>
+                      <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                        I don&apos;t rely on guesswork. I specialize in product hunting, the foundation of every successful e-commerce store — helping you discover winning products that drive consistent sales and long-term success.
+                      </p>
+                    </>
+                  )}
+                </div>
+              )}
             </motion.div>
           </div>
         </div>
       </section>
 
+
        {/* Stats Section with Enhanced Design */}
-       <section className="relative w-full bg-white py-32">
+       <section className="relative w-full bg-white py-16 lg:py-16 lg:py-32">
          {/* Background Pattern */}
          <div className="absolute inset-0 opacity-5">
            <Image src={imgPatternBg} alt="Pattern background" layout="fill" objectFit="cover" />
          </div>
         
-        <div className="relative z-10 container mx-auto px-20">
+        <div className="relative z-10 container mx-auto px-5 lg:px-5 lg:px-20">
           <motion.div 
-            className="text-center mb-16"
+            className="text-center mb-8 lg:mb-8 lg:mb-16"
             variants={headerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: false, amount: 0.3 }}
           >
-            <h2 className="text-5xl font-bold text-[#063f4a] mb-4" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+            <h2 className="text-3xl lg:text-3xl lg:text-5xl font-bold text-[#063f4a] mb-4" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
               Our Achievements
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto" style={{ fontFamily: "'Barlow', sans-serif" }}>
+            <p className="text-base lg:text-base lg:text-xl text-gray-600 max-w-3xl mx-auto" style={{ fontFamily: "'Barlow', sans-serif" }}>
               Numbers that speak for our expertise and commitment to excellence
             </p>
           </motion.div>
           
           <motion.div 
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto"
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-6 lg:gap-6 lg:p-8 max-w-7xl mx-auto"
             variants={containerVariants}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: false, amount: 0.3 }}
           >
              <motion.div 
-               className="bg-[#35c4dd]/15 backdrop-blur-2xl border border-[#35c4dd]/25 rounded-3xl p-8 text-left flex flex-col service-card-flash shadow-2xl hover:shadow-3xl transition-all duration-500 relative overflow-hidden"
+               className="bg-[#35c4dd]/15 backdrop-blur-2xl border border-[#35c4dd]/25 rounded-2xl lg:rounded-2xl lg:rounded-3xl p-6 lg:p-6 lg:p-8 text-left flex flex-col service-card-flash shadow-2xl hover:shadow-3xl transition-all duration-500 relative overflow-hidden"
                variants={leftVariants}
              >
                {/* Glassmorphic overlay */}
-               <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-3xl"></div>
+               <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl lg:rounded-3xl"></div>
                
                <div className="relative z-10">
                  <h2 className="text-3xl font-bold text-[#063f4a]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
@@ -343,11 +417,11 @@ export default function IdentityPage() {
              </motion.div>
             
              <motion.div 
-               className="bg-[#35c4dd]/15 backdrop-blur-2xl border border-[#35c4dd]/25 rounded-3xl p-8 text-left flex flex-col service-card-flash shadow-2xl hover:shadow-3xl transition-all duration-500 relative overflow-hidden"
+               className="bg-[#35c4dd]/15 backdrop-blur-2xl border border-[#35c4dd]/25 rounded-2xl lg:rounded-3xl p-6 lg:p-8 text-left flex flex-col service-card-flash shadow-2xl hover:shadow-3xl transition-all duration-500 relative overflow-hidden"
                variants={headerVariants}
              >
                {/* Glassmorphic overlay */}
-               <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-3xl"></div>
+               <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl lg:rounded-3xl"></div>
                
                <div className="relative z-10">
                  <h2 className="text-3xl font-bold text-[#063f4a]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
@@ -378,11 +452,11 @@ export default function IdentityPage() {
              </motion.div>
             
              <motion.div 
-               className="bg-[#35c4dd]/15 backdrop-blur-2xl border border-[#35c4dd]/25 rounded-3xl p-8 text-left flex flex-col service-card-flash shadow-2xl hover:shadow-3xl transition-all duration-500 relative overflow-hidden"
+               className="bg-[#35c4dd]/15 backdrop-blur-2xl border border-[#35c4dd]/25 rounded-2xl lg:rounded-3xl p-6 lg:p-8 text-left flex flex-col service-card-flash shadow-2xl hover:shadow-3xl transition-all duration-500 relative overflow-hidden"
                variants={rightVariants}
              >
                {/* Glassmorphic overlay */}
-               <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-3xl"></div>
+               <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-2xl lg:rounded-3xl"></div>
                
                <div className="relative z-10">
                  <h2 className="text-3xl font-bold text-[#063f4a]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
@@ -416,14 +490,14 @@ export default function IdentityPage() {
       </section>
 
       {/* Results Section with Enhanced Design */}
-      <section className="relative w-full bg-gradient-to-b from-white to-[#f8fafc] py-32">
+      <section className="relative w-full bg-gradient-to-b from-white to-[#f8fafc] py-16 lg:py-16 lg:py-32">
         {/* Background Elements */}
         <div className="absolute inset-0">
           <div className="absolute top-20 left-10 w-32 h-32 bg-[#35c4dd]/10 rounded-full blur-3xl"></div>
           <div className="absolute bottom-20 right-10 w-40 h-40 bg-[#063f4a]/10 rounded-full blur-3xl"></div>
         </div>
         
-        <div className="relative z-10 container mx-auto px-20">
+        <div className="relative z-10 container mx-auto px-5 lg:px-20">
           <motion.div 
             className="max-w-6xl mx-auto"
             variants={containerVariants}
@@ -433,11 +507,11 @@ export default function IdentityPage() {
           >
             {/* Header */}
             <motion.div 
-              className="text-center mb-16"
+              className="text-center mb-8 lg:mb-16"
               variants={headerVariants}
             >
               <h3 
-                className="text-6xl font-bold text-[#063f4a] mb-6" 
+                className="text-4xl lg:text-6xl font-bold text-[#063f4a] mb-6" 
                 style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
               >
                 My Results Talks
@@ -446,19 +520,19 @@ export default function IdentityPage() {
             </motion.div>
             
             {/* Content Cards */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:p-12 items-center">
               {/* Left Content */}
               <motion.div 
                 className="space-y-8"
                 variants={leftVariants}
               >
-                <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-500">
+                <div className="bg-white/80 backdrop-blur-xl rounded-2xl lg:rounded-3xl p-6 lg:p-8 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-500">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-gradient-to-br from-[#35c4dd] to-[#063f4a] rounded-2xl flex items-center justify-center flex-shrink-0">
-                      <span className="text-white text-xl font-bold" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>1</span>
+                      <span className="text-white text-base lg:text-xl font-bold" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>1</span>
                     </div>
                     <div>
-                      <h4 className="text-xl font-semibold text-[#063f4a] mb-3" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+                      <h4 className="text-base lg:text-xl font-semibold text-[#063f4a] mb-3" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
                         Strategic Excellence
                       </h4>
                       <p className="text-gray-700 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
@@ -468,13 +542,13 @@ export default function IdentityPage() {
                   </div>
                 </div>
                 
-                <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-500">
+                <div className="bg-white/80 backdrop-blur-xl rounded-2xl lg:rounded-3xl p-6 lg:p-8 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-500">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-gradient-to-br from-[#35c4dd] to-[#063f4a] rounded-2xl flex items-center justify-center flex-shrink-0">
-                      <span className="text-white text-xl font-bold" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>2</span>
+                      <span className="text-white text-base lg:text-xl font-bold" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>2</span>
                     </div>
                     <div>
-                      <h4 className="text-xl font-semibold text-[#063f4a] mb-3" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+                      <h4 className="text-base lg:text-xl font-semibold text-[#063f4a] mb-3" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
                         Expert Team Support
                       </h4>
                       <p className="text-gray-700 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
@@ -490,7 +564,7 @@ export default function IdentityPage() {
                 className="relative"
                 variants={rightVariants}
               >
-                <div className="bg-gradient-to-br from-[#35c4dd] to-[#063f4a] rounded-3xl p-12 text-white shadow-2xl relative overflow-hidden">
+                <div className="bg-gradient-to-br from-[#35c4dd] to-[#063f4a] rounded-2xl lg:rounded-3xl p-8 lg:p-12 text-white shadow-2xl relative overflow-hidden">
                   {/* Background Pattern */}
                   <div className="absolute inset-0 opacity-10">
                     <Image src={imgPatternBg} alt="Pattern background" layout="fill" objectFit="cover" />
@@ -504,7 +578,7 @@ export default function IdentityPage() {
                   </div>
                   
                   <blockquote className="relative z-10 text-2xl leading-relaxed mb-8" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                    "Success in e-commerce isn't just about having great products—it's about having the right strategy, the right team, and the right mindset to scale your business to new heights."
+                    &ldquo;Success in e-commerce isn&apos;t just about having great products—it&apos;s about having the right strategy, the right team, and the right mindset to scale your business to new heights.&rdquo;
                   </blockquote>
                   
                   <div className="relative z-10 flex items-center gap-4">
@@ -518,7 +592,7 @@ export default function IdentityPage() {
                       />
                     </div>
                     <div>
-                      <div className="text-xl font-semibold" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+                      <div className="text-base lg:text-xl font-semibold" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
                         Ain
                       </div>
                       <div className="text-white/80" style={{ fontFamily: "'Barlow', sans-serif" }}>
@@ -528,7 +602,7 @@ export default function IdentityPage() {
                   </div>
                   
                   {/* Floating Elements */}
-                  <div className="absolute top-8 right-8 w-8 h-8 bg-white/10 rounded-full animate-pulse"></div>
+                  <div className="absolute top-6 lg:p-8 right-8 w-8 h-8 bg-white/10 rounded-full animate-pulse"></div>
                   <div className="absolute bottom-8 left-8 w-6 h-6 bg-white/10 rounded-full animate-pulse delay-1000"></div>
                 </div>
               </motion.div>
@@ -538,7 +612,7 @@ export default function IdentityPage() {
       </section>
 
        {/* Get in Touch Section with Enhanced Design */}
-       <section className="relative w-full py-32 text-white overflow-hidden">
+       <section className="relative w-full py-16 lg:py-32 text-white overflow-hidden">
          {/* Background Video */}
          <div className="absolute inset-0">
            <video 
@@ -571,7 +645,7 @@ export default function IdentityPage() {
           <Image src={imgSharkUnderwater} alt="Shark" layout="fill" objectFit="contain" className="transform -scale-x-100" />
         </div>
         
-        <div className="relative z-10 container mx-auto px-20">
+        <div className="relative z-10 container mx-auto px-5 lg:px-20">
           <motion.div 
             className="max-w-6xl mx-auto"
             variants={containerVariants}
@@ -581,11 +655,11 @@ export default function IdentityPage() {
           >
             {/* Header */}
             <motion.div 
-              className="text-center mb-16"
+              className="text-center mb-8 lg:mb-16"
               variants={headerVariants}
             >
               <h3 
-                className="text-7xl font-bold mb-6" 
+                className="text-4xl lg:text-7xl font-bold mb-6" 
                 style={{ fontFamily: "'Barlow Condensed', sans-serif", textShadow: '0px 4px 8px rgba(0,0,0,0.3)' }}
               >
                 Get in Touch
@@ -600,51 +674,51 @@ export default function IdentityPage() {
             </motion.div>
             
             {/* Content Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:p-12 items-center">
               {/* Left Content */}
               <motion.div 
                 className="space-y-8"
                 variants={leftVariants}
               >
-                <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/20 hover:bg-white/15 transition-all duration-500">
+                <div className="bg-white/10 backdrop-blur-xl rounded-2xl lg:rounded-3xl p-6 lg:p-8 border border-white/20 hover:bg-white/15 transition-all duration-500">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center flex-shrink-0">
-                      <span className="text-white text-xl font-bold" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>💡</span>
+                      <span className="text-white text-base lg:text-xl font-bold" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>💡</span>
                     </div>
                     <div>
-                      <h4 className="text-xl font-semibold mb-3" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+                      <h4 className="text-base lg:text-xl font-semibold mb-3" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
                         Free Consultation
                       </h4>
                       <p className="text-white/90 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                        Let's talk about the 5 biggest mistakes you should avoid before starting an e-commerce store. These mistakes can cost you time, money, and serious growth if you're not aware of them.
+                        Let&apos;s talk about the 5 biggest mistakes you should avoid before starting an e-commerce store. These mistakes can cost you time, money, and serious growth if you&apos;re not aware of them.
                       </p>
                     </div>
                   </div>
                 </div>
                 
-                <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/20 hover:bg-white/15 transition-all duration-500">
+                <div className="bg-white/10 backdrop-blur-xl rounded-2xl lg:rounded-3xl p-6 lg:p-8 border border-white/20 hover:bg-white/15 transition-all duration-500">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center flex-shrink-0">
-                      <span className="text-white text-xl font-bold" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>💰</span>
+                      <span className="text-white text-base lg:text-xl font-bold" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>💰</span>
                     </div>
                     <div>
-                      <h4 className="text-xl font-semibold mb-3" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+                      <h4 className="text-base lg:text-xl font-semibold mb-3" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
                         Save $10,000+
                       </h4>
                       <p className="text-white/90 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                        I can help you save at least $10,000 in avoidable losses. Let's hop on a quick call—absolutely free. Normally, my time is valued at $50 per minute, but I'm offering you 5 minutes at no cost—that's $250 in value, completely free.
+                        I can help you save at least $10,000 in avoidable losses. Let&apos;s hop on a quick call—absolutely free. Normally, my time is valued at $50 per minute, but I&apos;m offering you 5 minutes at no cost—that&apos;s $250 in value, completely free.
                       </p>
                     </div>
                   </div>
                 </div>
                 
-                <div className="bg-white/10 backdrop-blur-xl rounded-3xl p-8 border border-white/20 hover:bg-white/15 transition-all duration-500">
+                <div className="bg-white/10 backdrop-blur-xl rounded-2xl lg:rounded-3xl p-6 lg:p-8 border border-white/20 hover:bg-white/15 transition-all duration-500">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center flex-shrink-0">
-                      <span className="text-white text-xl font-bold" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>🚀</span>
+                      <span className="text-white text-base lg:text-xl font-bold" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>🚀</span>
                     </div>
                     <div>
-                      <h4 className="text-xl font-semibold mb-3" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+                      <h4 className="text-base lg:text-xl font-semibold mb-3" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
                         Start Strong
                       </h4>
                       <p className="text-white/90 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
@@ -660,7 +734,7 @@ export default function IdentityPage() {
                 className="relative"
                 variants={rightVariants}
               >
-                <div className="bg-white/15 backdrop-blur-xl rounded-3xl p-12 border border-white/30 shadow-2xl relative overflow-hidden">
+                <div className="bg-white/15 backdrop-blur-xl rounded-2xl lg:rounded-3xl p-8 lg:p-12 border border-white/30 shadow-2xl relative overflow-hidden">
                   {/* Background Pattern */}
                   <div className="absolute inset-0 opacity-10">
                     <Image src={imgPatternBg} alt="Pattern background" layout="fill" objectFit="cover" />
@@ -669,8 +743,8 @@ export default function IdentityPage() {
                   <div className="relative z-10 text-center">
                     <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-white/30 mx-auto mb-8">
                       <Image 
-                        src={imgFounder} 
-                        alt="Ain - Founder" 
+                        src="/images/founder-1.jpg" 
+                        alt="ZYAAN - Co-Founder" 
                         width={80} 
                         height={80}
                         className="w-full h-full object-cover"
@@ -681,16 +755,16 @@ export default function IdentityPage() {
                       Ready to Start?
                     </h4>
                     <p className="text-white/90 mb-8 text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                      Book your free consultation call with Ain today and take the first step towards e-commerce success.
+                      Book your free consultation call with ZYAAN today and take the first step towards e-commerce success.
                     </p>
                     
                     <div className="space-y-4">
                       <button 
-                        className="w-full bg-white text-[#063f4a] font-semibold py-4 px-8 rounded-full text-xl shadow-lg hover:bg-gray-100 transition-all duration-300 hover:scale-105" 
+                        className="w-full bg-white text-[#063f4a] font-semibold py-4 px-8 rounded-full text-base lg:text-xl shadow-lg hover:bg-gray-100 transition-all duration-300 hover:scale-105" 
                         style={{ fontFamily: "'Barlow', sans-serif" }}
                         onClick={() => {
-                          if (typeof window !== 'undefined' && (window as any).Calendly) {
-                            (window as any).Calendly.initPopupWidget({
+                          if (typeof window !== 'undefined' && (window as unknown as { Calendly?: { initPopupWidget: (options: { url: string }) => void } }).Calendly) {
+                            (window as unknown as { Calendly: { initPopupWidget: (options: { url: string }) => void } }).Calendly.initPopupWidget({
                               url: 'https://calendly.com/contact-sharksbookpublishers/30min?primary_color=35c4dd'
                             });
                           }
@@ -699,7 +773,7 @@ export default function IdentityPage() {
                         Book Free Call
                       </button>
                       <button 
-                        className="w-full bg-transparent border-2 border-white text-white font-semibold py-4 px-8 rounded-full text-xl hover:bg-white hover:text-[#063f4a] transition-all duration-300" 
+                        className="w-full bg-transparent border-2 border-white text-white font-semibold py-4 px-8 rounded-full text-base lg:text-xl hover:bg-white hover:text-[#063f4a] transition-all duration-300" 
                         style={{ fontFamily: "'Barlow', sans-serif" }}
                         onClick={() => {
                           window.location.href = '/contact';

@@ -100,8 +100,8 @@ export default function ExpertsSection({
 
   return (
     <div ref={ref} className="w-full bg-white flex justify-center">
-      <div className="relative w-full max-w-[1920px] aspect-[1920/1080] overflow-hidden select-none
-                      flex items-center px-20">
+      <div className="relative w-full max-w-[1920px] h-auto py-16 lg:aspect-[1920/1080] lg:py-0 overflow-hidden select-none
+                      flex items-center px-5 lg:px-20">
         
         <motion.div 
           className="relative w-full grid grid-cols-1 lg:grid-cols-12 gap-x-12 items-center"
@@ -111,22 +111,22 @@ export default function ExpertsSection({
         >
           
           <motion.div className="lg:col-span-6 z-10" variants={leftVariants}>
-            <div className="inline-flex items-center gap-3 bg-[#d0f7ff] text-[#2c2420] px-4 py-2.5 rounded-full mb-8">
-              <span className="text-xl">💬</span>
-              <span className="font-medium text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>Welcome Message</span>
+            <div className="inline-flex items-center gap-2 lg:gap-3 bg-[#d0f7ff] text-[#2c2420] px-3 lg:px-4 py-2 lg:py-2.5 rounded-full mb-6 lg:mb-8">
+              <span className="text-lg lg:text-xl">💬</span>
+              <span className="font-medium text-sm lg:text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>Welcome Message</span>
             </div>
 
-            <h1 className="text-[94px] font-semibold text-[#2c2020] leading-[0.921]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+            <h1 className="text-4xl lg:text-[94px] font-semibold text-[#2c2020] leading-tight lg:leading-[0.921]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
               {title}
             </h1>
 
-            <p className="mt-8 text-[24px] text-[#333333] max-w-3xl leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
+            <p className="mt-6 lg:mt-8 text-base lg:text-[24px] text-[#333333] max-w-3xl leading-6 lg:leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
               {subtitle}
             </p>
 
-            <div className="mt-12 flex items-center gap-8">
+            <div className="mt-8 lg:mt-12 flex flex-col lg:flex-row items-center gap-4 lg:gap-8">
               <button 
-                className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2.5 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative"
+                className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2.5 pl-6 pr-2 rounded-full text-base lg:text-lg shadow-lg overflow-hidden relative w-full lg:w-auto"
                 onClick={() => {
                   if (typeof window !== 'undefined' && (window as any).Calendly) {
                     (window as any).Calendly.initPopupWidget({
@@ -141,20 +141,18 @@ export default function ExpertsSection({
                 </span>
                 <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
               </button>
-              <div className="flex items-center gap-4">
-              <button className="flex items-center justify-between w-[170px] h-[56px] bg-white rounded-full border-2 border-[#35c4dd] p-2 shadow-lg">
-                  <span className="pl-5 text-[#063f4a] font-semibold text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>Live Chat</span>
+              <button className="flex items-center justify-center lg:justify-between gap-3 w-full lg:w-[170px] h-[56px] bg-white rounded-full border-2 border-[#35c4dd] p-2 shadow-lg">
+                  <span className="pl-0 lg:pl-5 text-[#063f4a] font-semibold text-base lg:text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>Live Chat</span>
                   <div className="w-[44px] h-[44px] bg-[#063f4a] rounded-full flex items-center justify-center">
                       <Image src={imgChatCircleDots} alt="chat icon" width={28} height={28} />
                   </div>
               </button>
-              </div>
             </div>
           </motion.div>
           
-          <motion.div className="lg:col-span-6 h-[90%] absolute right-0 w-[45%]" variants={rightVariants}>
+          <motion.div className="relative lg:absolute right-0 lg:right-0 top-0 lg:top-0 w-full lg:w-[45%] h-[400px] lg:h-[90%] lg:col-span-6 mt-8 lg:mt-0" variants={rightVariants}>
             <div className="relative w-full h-full">
-                <div className="absolute inset-0 rounded-[40px] overflow-hidden">
+                <div className="absolute inset-0 rounded-[20px] lg:rounded-[40px] overflow-hidden">
                     <video 
                         autoPlay 
                         loop 
@@ -167,20 +165,20 @@ export default function ExpertsSection({
                     <div className="absolute inset-0 bg-[#052126] opacity-40"></div>
                 </div>
 
-                <img src="/images/walmart-logo.png" alt="Walmart Logo" className="absolute w-[25%] top-[2%] right-[25%] transform rotate-[12.5deg]" />
-                <img src="/images/amazon-logo.png" alt="Amazon Logo" className="absolute w-[28%] top-[10%] left-[5%] transform -rotate-[8.3deg]" />
-                <img src="/images/shopify-logo.png" alt="Shopify Logo" className="absolute w-[30%] top-[5%] right-[2%] transform rotate-[12.2deg]" />
-                <img src="/images/tiktok-logo.png" alt="TikTok Logo" className="absolute w-[28%] bottom-[25%] left-1/2 -translate-x-1/2 transform -rotate-[13deg] z-[5]" />
+                <img src="/images/walmart-logo.png" alt="Walmart Logo" className="absolute w-[20%] lg:w-[25%] top-[2%] right-[25%] transform rotate-[12.5deg]" />
+                <img src="/images/amazon-logo.png" alt="Amazon Logo" className="absolute w-[22%] lg:w-[28%] top-[10%] left-[5%] transform -rotate-[8.3deg]" />
+                <img src="/images/shopify-logo.png" alt="Shopify Logo" className="absolute w-[24%] lg:w-[30%] top-[5%] right-[2%] transform rotate-[12.2deg]" />
+                <img src="/images/tiktok-logo.png" alt="TikTok Logo" className="absolute w-[22%] lg:w-[28%] bottom-[25%] left-1/2 -translate-x-1/2 transform -rotate-[13deg] z-[5]" />
             </div>
           </motion.div>
 
         </motion.div>
 
         <div 
-          className="absolute -bottom-[20%] w-[40%] z-20 animate-shark-complete"
+          className="absolute -bottom-[5%] lg:-bottom-[20%] w-[70%] lg:w-[40%] z-20 animate-shark-complete"
           style={{ 
-            left: `${30 + (scrollPosition * 0.03)}%`,
-            transform: `translateX(${scrollPosition * 0.1}px)`
+            left: `${-2 + (scrollPosition * 0.07)}%`,
+            transform: `translateX(${scrollPosition * 0.2}px)`
           }}
         >
             <img src="/images/shark-underwater.png" alt="Shark underwater" className="w-full h-full transform -scale-x-100" />

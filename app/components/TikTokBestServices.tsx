@@ -33,7 +33,7 @@ const servicesData = [
 // Reusable Button Component
 const GetQuoteButton = ({ small = false }: { small?: boolean }) => (
   <button 
-    className={`group flex items-center justify-between bg-[#35c4dd] hover:bg-[#2cb4ca] transition-colors duration-300 rounded-full overflow-hidden relative ${small ? 'h-12 w-44 pl-6 pr-1' : 'h-14 w-48 pl-6 pr-1.5'}`}
+    className={`group flex items-center justify-center lg:justify-between gap-3 bg-[#35c4dd] hover:bg-[#2cb4ca] transition-colors duration-300 rounded-full overflow-hidden relative ${small ? 'h-12 w-full lg:w-44 pl-6 pr-1' : 'h-14 w-full lg:w-48 pl-6 pr-1.5'}`}
     onClick={() => {
       if (typeof window !== 'undefined' && (window as any).Calendly) {
         (window as any).Calendly.initPopupWidget({
@@ -43,13 +43,13 @@ const GetQuoteButton = ({ small = false }: { small?: boolean }) => (
     }}
   >
     <span 
-      className={`font-semibold text-[#063f4a] relative z-10 ${small ? 'text-lg' : 'text-xl'}`}
+      className={`font-semibold text-[#063f4a] relative z-10 ${small ? 'text-base lg:text-lg' : 'text-lg lg:text-xl'}`}
       style={{ fontFamily: "'Barlow', sans-serif" }}
     >
       Get A Quote
     </span>
     <span className={`bg-white rounded-full flex items-center justify-center relative z-10 ${small ? 'w-10 h-10' : 'w-10 h-10'}`}>
-      <Image src={imgArrowIcon} alt="arrow icon" width={small ? 20 : 20} height={small ? 20 : 20} />
+      <Image src={imgArrowIcon} alt="arrow icon" width={small ? 18 : 20} height={small ? 18 : 20} />
     </span>
     <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
   </button>
@@ -124,7 +124,7 @@ export default function TikTokBestServices() {
 
   return (
     // This structure correctly creates the wavy top border without breaking page flow.
-    <div ref={ref} className="relative w-full bg-white pt-32 lg:pt-48">
+    <div ref={ref} className="relative w-full bg-white pt-16 lg:pt-32 xl:pt-48">
       
       {/* Background elements are absolutely positioned and fill the parent container. */}
       <div className="absolute top-0 left-0 right-0 bottom-0">
@@ -154,32 +154,32 @@ export default function TikTokBestServices() {
       </div>
 
       {/* Content container flows naturally and dictates the component's height. */}
-      <div className="relative z-20 container mx-auto px-20 pb-24 text-white">
+      <div className="relative z-20 container mx-auto px-5 lg:px-20 pb-16 lg:pb-24 text-white">
         
         {/* Section Header */}
         <motion.div 
-          className="text-center mb-16"
+          className="text-center mb-8 lg:mb-16"
           variants={headerVariants}
           initial="hidden"
           animate={controls}
         >
           <h1 
-            className="text-5xl lg:text-6xl font-bold tracking-wide" 
+            className="text-3xl lg:text-5xl xl:text-6xl font-bold tracking-wide" 
             style={{ fontFamily: "'Barlow Condensed', sans-serif", textShadow: '0px 3px 6px rgba(0,0,0,0.5)' }}
           >
             We Provide the Best Services for Your Product
           </h1>
           <p 
-            className="mt-4 max-w-4xl mx-auto text-lg text-gray-200 leading-relaxed"
+            className="mt-4 max-w-4xl mx-auto text-base lg:text-lg text-gray-200 leading-relaxed"
             style={{ fontFamily: "'Barlow', sans-serif" }}
           >
-            At ECOM SHARKS, we offer top-tier solutions designed to streamline your Amazon business. Our expert team ensures every aspect operates flawlessly & seamlessly.
+            At ECOM SHARKS, we offer top-tier solutions designed to streamline your TikTok business. Our expert team ensures every aspect operates flawlessly & seamlessly.
           </p>
         </motion.div>
 
         {/* Services Grid */}
         <motion.div 
-          className="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-16 max-w-6xl mx-auto"
+          className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 mt-8 lg:mt-16 max-w-6xl mx-auto"
           variants={containerVariants}
           initial="hidden"
           animate={controls}
@@ -187,7 +187,7 @@ export default function TikTokBestServices() {
           {servicesData.map((service, index) => (
             <motion.div 
               key={service.id} 
-              className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-3xl p-8 text-left flex flex-col service-card-flash hover:scale-95 transition-transform duration-300"
+              className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl lg:rounded-3xl p-6 lg:p-8 text-left flex flex-col service-card-flash hover:scale-95 transition-transform duration-300"
               variants={index === 0 ? leftCardVariants : rightCardVariants}
               initial="hidden"
               animate={controls}

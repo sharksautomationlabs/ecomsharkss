@@ -95,10 +95,10 @@ export default function ResultsSection() {
 
   return (
     // This structure is correct: it centers the 1920px canvas.
-    <div ref={ref} className="w-full bg-white flex justify-center">
+    <div ref={ref} className="w-full bg-white flex justify-center pb-20 lg:pb-32">
       
-      {/* This container sets the 1920px boundary and clips overflow, preventing scrollbars. */}
-      <div className="relative w-full max-w-[1920px] overflow-hidden">
+      {/* Responsive container */}
+      <div className="relative w-full max-w-[1920px] h-auto py-4 lg:aspect-[1920/1200] lg:py-0 overflow-hidden">
         
         {/* Background Layers (Lowest Layer) */}
         <div className="absolute inset-0 z-0">
@@ -109,10 +109,56 @@ export default function ResultsSection() {
           />
         </div>
 
-        {/* Right Side: Image Collage */}
-        {/* THE FIX: This container now has `z-10` to ensure it sits ABOVE the background. */}
+        {/* Text Content - First on mobile, left side on desktop */}
         <motion.div 
-          className="absolute top-0 right-0 bottom-0 w-[60%] lg:w-[55%] z-10"
+          className="relative z-20 flex items-center min-h-[400px] lg:min-h-[1200px] px-5 lg:px-20"
+          variants={leftVariants}
+          initial="hidden"
+          animate={controls}
+        >
+          <div className="w-full lg:w-1/2 xl:w-2/5 pt-8 pb-8 lg:pt-8 lg:pb-24 lg:py-0">
+            {/* All fonts and styles remain exactly as you provided. */}
+            <h1 className="text-4xl lg:text-[94px] font-semibold text-[#2c2420] leading-tight lg:leading-[0.921]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+                More Than<br />Management,<br />We Deliver Results
+            </h1>
+            <p className="mt-6 lg:mt-8 text-base lg:text-[20px] text-[#333333] leading-6 lg:leading-[32px]" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                With ECOM SHARKS, you&apos;re not simply partnering with an agency—you&apos;re creating a future-proof Amazon business built for long-term success.
+            </p>
+            <ul className="mt-4 lg:mt-6 space-y-2 list-disc list-inside text-base lg:text-[20px] text-[#333333]" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                <li>Scalable Growth</li>
+                <li>Market Leadership</li>
+                <li>Expert Support Team</li>
+            </ul>
+            <div className="flex flex-col lg:flex-row items-center gap-4 lg:gap-8 mt-8 lg:mt-12">
+              <button 
+                className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2.5 pl-6 pr-2 rounded-full text-base lg:text-lg shadow-lg overflow-hidden relative w-full lg:w-auto"
+                onClick={() => {
+                  if (typeof window !== 'undefined' && (window as any).Calendly) {
+                    (window as any).Calendly.initPopupWidget({
+                      url: 'https://calendly.com/contact-sharksbookpublishers/30min?primary_color=35c4dd'
+                    });
+                  }
+                }}
+              >
+                  <span className="relative z-10">Get A Quote</span>
+                  <span className="bg-white rounded-full p-2.5 relative z-10">
+                      <ArrowIcon />
+                  </span>
+                  <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
+              </button>
+              <button className="flex items-center justify-center lg:justify-between gap-3 w-full lg:w-[170px] h-[56px] bg-white rounded-full border-2 border-[#35c4dd] p-2 shadow-lg">
+                  <span className="pl-0 lg:pl-5 text-[#063f4a] font-semibold text-base lg:text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>Live Chat</span>
+                  <div className="w-[44px] h-[44px] bg-[#063f4a] rounded-full flex items-center justify-center">
+                      <Image src={imgChatCircleDots} alt="chat icon" width={28} height={28} />
+                  </div>
+              </button>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Image Collage - Second on mobile, right side on desktop */}
+        <motion.div 
+          className="relative lg:absolute top-0 lg:right-0 lg:bottom-0 w-full lg:w-[55%] h-[400px] lg:h-full z-10 mt-8 lg:mt-0"
           variants={rightVariants}
           initial="hidden"
           animate={controls}
@@ -122,8 +168,8 @@ export default function ResultsSection() {
               <div 
                 className="absolute w-[120%] h-auto top-[50%] z-10 animate-shark-complete"
                 style={{ 
-                  left: `${125 - (scrollPosition * 0.03)}%`,
-                  transform: `translateX(${-scrollPosition * 0.3}px)`
+                  left: `${240 - (scrollPosition * 0.05)}%`,
+                  transform: `translateX(${-scrollPosition * 0.4}px)`
                 }}
               >
                   <Image
@@ -145,7 +191,7 @@ export default function ResultsSection() {
                     className="filter grayscale"
                   />
               </div>
-              <div className="absolute w-[38%] h-auto top-[20%] right-[40%] z-30 transform -rotate-12 animate-hand-pivot">
+              <div className="absolute w-[38%] h-auto top-[10%] lg:top-[20%] right-[40%] z-30 transform -rotate-12 animate-hand-pivot">
                   <Image
                     src={imgWalmartLogo}
                     alt="Walmart Logo"
@@ -154,7 +200,7 @@ export default function ResultsSection() {
                     objectFit="contain"
                   />
               </div>
-              <div className="absolute w-[28%] h-auto top-[22%] right-[32%] z-30 animate-hand-pivot">
+              <div className="absolute w-[28%] h-auto top-[12%] lg:top-[22%] right-[32%] z-30 animate-hand-pivot">
                    <Image
                      src={imgPenAndPaper}
                      alt="Pen and paper"
@@ -183,52 +229,6 @@ export default function ResultsSection() {
                   animation: handPivotBounce 4s linear infinite;
                 }
               `}</style>
-          </div>
-        </motion.div>
-
-        {/* Left Side: Text Content */}
-        {/* THE FIX: This container has `z-20`, placing it on the HIGHEST layer, ensuring it is always visible and interactive. */}
-        <motion.div 
-          className="relative z-20 flex items-center min-h-[960px] px-20"
-          variants={leftVariants}
-          initial="hidden"
-          animate={controls}
-        >
-          <div className="w-full lg:w-1/2 xl:w-2/5 pt-24 pb-32 lg:py-0">
-            {/* All fonts and styles remain exactly as you provided. */}
-            <h1 className="text-[94px] font-semibold text-[#2c2420] leading-[0.921]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                More Than<br />Management,<br />We Deliver Results
-            </h1>
-            <p className="mt-8 text-[20px] text-[#333333] leading-[32px]" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                With ECOM SHARKS, you&apos;re not simply partnering with an agency—you&apos;re creating a future-proof Amazon business built for long-term success.
-            </p>
-            <ul className="mt-6 space-y-2 list-disc list-inside text-[20px] text-[#333333]" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                <li>Scalable Growth</li>
-                <li>Market Leadership</li>
-                <li>Expert Support Team</li>
-            </ul>
-            <div className="flex flex-wrap items-center gap-8 mt-12">
-              <button 
-                className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2.5 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative"
-                onClick={() => {
-                  if (typeof window !== 'undefined' && (window as any).Calendly) {
-                    (window as any).Calendly.initPopupWidget({
-                      url: 'https://calendly.com/contact-sharksbookpublishers/30min?primary_color=35c4dd'
-                    });
-                  }
-                }}
-              >
-                  <span className="relative z-10">Get A Quote</span>
-                  <span className="bg-white rounded-full p-2.5 flex items-center justify-center w-10 h-10 relative z-10"><ArrowIcon /></span>
-                  <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
-              </button>
-              <button className="flex items-center justify-between w-[170px] h-[56px] bg-white rounded-full border-2 border-[#35c4dd] p-2 shadow-lg">
-                  <span className="pl-5 text-[#063f4a] font-semibold text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>Live Chat</span>
-                  <div className="w-[44px] h-[44px] bg-[#063f4a] rounded-full flex items-center justify-center">
-                      <Image src={imgChatCircleDots} alt="chat icon" width={28} height={28} />
-                  </div>
-              </button>
-            </div>
           </div>
         </motion.div>
 

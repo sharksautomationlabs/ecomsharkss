@@ -16,6 +16,7 @@ const imgShark = "/images/mission-shark-main.png";
 const imgShopifyLogo = "/images/shopify-logo.png";
 const imgWalmartLogo = "/images/walmart-logo.png";
 const imgAmazonLogo = "/images/amazon-logo.png";
+const imgTikTokLogo = "/images/tiktok-logo.png";
 const imgPatternMask = "/images/results-mask.svg";
 const imgWomanMask = "/images/mission-bg-mask.svg";
 
@@ -35,7 +36,7 @@ interface MissionProps {
   customTitle?: string;
   customDescription?: string;
   useCustomContent?: boolean;
-  logoType?: 'shopify' | 'walmart' | 'amazon';
+  logoType?: 'shopify' | 'walmart' | 'amazon' | 'tiktok';
 }
 
 export default function MissionSection({ 
@@ -106,28 +107,28 @@ export default function MissionSection({
 
   return (
     <div ref={ref} className="w-full bg-white flex justify-center">
-      <div className={`relative w-full max-w-[1920px] overflow-hidden select-none ${useCustomContent ? 'min-h-[800px] py-20' : 'aspect-[1920/1080]'}`}>
+      <div className={`relative w-full max-w-[1920px] overflow-hidden select-none ${useCustomContent ? 'min-h-[800px] py-20' : 'h-auto lg:aspect-[1920/1080] py-16 lg:py-0'}`}>
         
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#bef4fe] to-white" />
         <div className="absolute inset-0 z-10" style={{ maskImage: `url('${imgPatternMask}')`, maskSize: '100% 100%' }}>
             <div className="w-full h-full bg-repeat" style={{ backgroundImage: `url('${imgPattern011}')` }} />
         </div>
 
-        <div className={`relative z-20 w-full px-20 ${useCustomContent ? 'h-full flex items-center' : 'h-full'}`}>
+        <div className={`relative z-10 w-full px-5 lg:px-20 ${useCustomContent ? 'h-full flex items-center' : 'h-full'}`}>
           {!useCustomContent && (
-            <nav className="w-full flex justify-center pt-24 border-b-2 border-[#79bfcd]">
-              <div className="flex items-center gap-16">
+            <nav className="w-full flex justify-center pt-3 lg:pt-6 border-b-2 border-[#79bfcd]">
+              <div className="flex items-center gap-2 lg:gap-16 overflow-x-auto">
                 {Object.keys(contentData).map((tab) => (
                   <button 
                     key={tab}
                     onClick={() => setActiveTab(tab)}
                     // MODIFICATION: Increased padding for a larger click area
-                    className={`relative flex items-center gap-3 pb-6 px-8 py-4 transition-all duration-300 cursor-pointer hover:opacity-80 bg-transparent border-none outline-none ${
+                    className={`relative flex items-center gap-3 pb-4 lg:pb-6 px-2 lg:px-8 py-2 lg:py-4 transition-all duration-300 cursor-pointer hover:opacity-80 bg-transparent border-none outline-none whitespace-nowrap ${
                       activeTab === tab ? 'border-b-2 border-[#063f4a]' : 'border-b-2 border-transparent'
                     }`}
                   >
                     <span 
-                      className={`text-[32px] transition-colors duration-300 ${
+                      className={`text-lg lg:text-[32px] transition-colors duration-300 ${
                         activeTab === tab ? 'text-[#063f4a]' : 'text-[#2c2420] opacity-60'
                       }`} 
                       style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 500 }}
@@ -140,20 +141,20 @@ export default function MissionSection({
             </nav>
           )}
 
-          <div className={`relative w-full ${useCustomContent ? 'h-full' : 'h-[calc(100%-200px)]'}`}>
+          <div className={`relative w-full ${useCustomContent ? 'h-full' : 'h-auto lg:h-[calc(100%-200px)]'}`}>
               {/* Left Text Content */}
               <motion.div 
-                className={`${useCustomContent ? 'relative w-[585px] z-30' : 'absolute top-[10%] left-0 w-[585px] z-30'}`}
+                className={`${useCustomContent ? 'relative w-full lg:w-[585px] z-20' : 'relative lg:absolute top-0 lg:top-[10%] left-0 w-full lg:w-[585px] z-20'}`}
                 initial="hidden"
                 animate={controls}
                 variants={scrollFadeInVariants}
               >
                 {useCustomContent ? (
                   <div>
-                    <h1 className="text-[94px] font-semibold text-[#2c2420] leading-[0.921]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+                    <h1 className="text-4xl lg:text-[94px] font-semibold text-[#2c2420] leading-tight lg:leading-[0.921]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
                         {customTitle}
                     </h1>
-                    <p className="mt-8 text-[20px] text-[#333333] leading-[32px] text-justify whitespace-pre-line" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                    <p className="mt-6 lg:mt-8 text-base lg:text-[20px] text-[#333333] leading-6 lg:leading-[32px] text-justify whitespace-pre-line" style={{ fontFamily: "'Barlow', sans-serif" }}>
                         {customDescription}
                     </p>
                   </div>
@@ -166,22 +167,22 @@ export default function MissionSection({
                       animate="animate"
                       exit="exit"
                     >
-                      <div className="inline-flex items-center gap-3 bg-[#95e5f3] text-[#2c2420] px-6 py-4 rounded-full mb-8">
-                          <span className="font-medium text-2xl" style={{ fontFamily: "'Barlow', sans-serif" }}>{currentContent.badge}</span>
+                      <div className="inline-flex items-center gap-2 lg:gap-3 bg-[#95e5f3] text-[#2c2420] px-3 lg:px-6 py-2 lg:py-4 rounded-full mb-6 lg:mb-8 mt-4 lg:mt-0">
+                          <span className="font-medium text-sm lg:text-2xl" style={{ fontFamily: "'Barlow', sans-serif" }}>{currentContent.badge}</span>
                       </div>
-                      <h1 className="text-[94px] font-semibold text-[#2c2420] leading-[0.921]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+                      <h1 className="text-4xl lg:text-[94px] font-semibold text-[#2c2420] leading-tight lg:leading-[0.921]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
                           {currentContent.title}
                       </h1>
-                      <p className="mt-8 text-[20px] text-[#333333] leading-[32px] text-justify" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                      <p className="mt-6 lg:mt-8 text-base lg:text-[20px] text-[#333333] leading-6 lg:leading-[32px] text-justify" style={{ fontFamily: "'Barlow', sans-serif" }}>
                           {currentContent.description}
                       </p>
                     </motion.div>
                   </AnimatePresence>
                 )}
                 
-                <div className="flex items-center gap-8 mt-12">
+                 <div className="flex flex-col lg:flex-row items-center gap-4 lg:gap-8 mt-8 lg:mt-12">
                     <button 
-                      className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2.5 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative"
+                       className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2.5 pl-6 pr-2 rounded-full text-base lg:text-lg shadow-lg overflow-hidden relative w-full lg:w-auto"
                       onClick={() => {
                         if (typeof window !== 'undefined' && (window as any).Calendly) {
                           (window as any).Calendly.initPopupWidget({
@@ -194,8 +195,8 @@ export default function MissionSection({
                         <span className="bg-white rounded-full p-2.5 relative z-10"><ArrowIcon /></span>
                         <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
                     </button>
-                    <button className="flex items-center justify-between w-[170px] h-[56px] bg-white rounded-full border-2 border-[#35c4dd] p-2 shadow-lg">
-                      <span className="pl-5 text-[#063f4a] font-semibold text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>Live Chat</span>
+                     <button className="flex items-center justify-center lg:justify-between gap-3 w-full lg:w-[170px] h-[56px] bg-white rounded-full border-2 border-[#35c4dd] p-2 shadow-lg">
+                       <span className="pl-0 lg:pl-5 text-[#063f4a] font-semibold text-base lg:text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>Live Chat</span>
                       <div className="w-[44px] h-[44px] bg-[#063f4a] rounded-full flex items-center justify-center">
                           <Image src={imgChatCircleDots} alt="chat icon" width={28} height={28} />
                       </div>
@@ -204,7 +205,7 @@ export default function MissionSection({
               </motion.div>
 
               {/* Right Image Collage */}
-              <div className={`${useCustomContent ? 'absolute right-[-5%] top-0 w-[60%] h-[100%] z-20' : 'absolute right-[-10%] top-[-10%] w-[65%] h-[120%] z-20'}`}>
+              <div className={`${useCustomContent ? 'relative lg:absolute right-0 lg:right-[-5%] top-0 w-full lg:w-[60%] h-[400px] lg:h-[100%] z-10 mt-8 lg:mt-0' : 'relative lg:absolute right-0 lg:right-[-10%] top-0 lg:top-[-10%] w-full lg:w-[65%] h-[400px] lg:h-[120%] z-10 mt-8 lg:mt-0'}`}>
                 <div className="relative w-full h-full" style={{ maskImage: `url('${imgWomanMask}')`, maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }}>
                     <div className="absolute w-[100%] h-[50%] top-[10%] left-0 z-0 animate-shark-lean">
                         <Image src={imgShark} alt="Shark" layout="fill" objectFit="contain" />
@@ -219,8 +220,8 @@ export default function MissionSection({
                     </motion.div>
                     <div className="absolute w-[35%] h-auto bottom-[15%] right-[5%] z-20" style={{ animation: 'float 3s ease-in-out infinite' }}>
                         <Image 
-                          src={logoType === 'walmart' ? imgWalmartLogo : logoType === 'amazon' ? imgAmazonLogo : imgShopifyLogo} 
-                          alt={logoType === 'walmart' ? "Walmart Logo" : logoType === 'amazon' ? "Amazon Logo" : "Shopify Logo"} 
+                          src={logoType === 'walmart' ? imgWalmartLogo : logoType === 'amazon' ? imgAmazonLogo : logoType === 'tiktok' ? imgTikTokLogo : imgShopifyLogo} 
+                          alt={logoType === 'walmart' ? "Walmart Logo" : logoType === 'amazon' ? "Amazon Logo" : logoType === 'tiktok' ? "TikTok Logo" : "Shopify Logo"} 
                           width={300} 
                           height={300} 
                           objectFit="contain" 
