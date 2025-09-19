@@ -7,36 +7,40 @@ import Image from 'next/image';
 const imgBlueWaveShape = "/images/service-bg-vector.svg";
 const imgMaskShape = "/images/service-mask.svg";
 
-// Image gallery data - just images
-const imageGallery = [
+// Default Shopify images
+const defaultImageGallery = [
   {
     id: 1,
-    imageUrl: "/images/hero-amazon-logo.png",
+    imageUrl: "/images/sopify-sale1.png",
   },
   {
     id: 2,
-    imageUrl: "/images/hero-walmart-logo.png",
+    imageUrl: "/images/shopify-sale2.png",
   },
   {
     id: 3,
-    imageUrl: "/images/hero-shopify-logo.png",
+    imageUrl: "/images/shopify-sale3.png",
   },
   {
     id: 4,
-    imageUrl: "/images/hero-tiktok-logo.png",
+    imageUrl: "/images/shopify-sale4.png",
   },
   {
     id: 5,
-    imageUrl: "/images/hero-amazon-logo.png",
+    imageUrl: "/images/shopify-sale5.png",
   },
   {
     id: 6,
-    imageUrl: "/images/hero-walmart-logo.png",
+    imageUrl: "/images/shopify-sale6.png",
   },
 ];
 
+interface ImageGalleryProps {
+  images?: Array<{id: number; imageUrl: string}>;
+}
 
-export default function ImageGallery() {
+export default function ImageGallery({ images }: ImageGalleryProps = {}) {
+  const imageGallery = images || defaultImageGallery;
   return (
     // This structure correctly creates the wavy top border without breaking page flow.
     <div className="relative w-full bg-white pt-16 lg:pt-32 xl:pt-48">
@@ -74,15 +78,17 @@ export default function ImageGallery() {
         {/* Image Gallery Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8 mt-8 lg:mt-16 max-w-7xl mx-auto justify-items-center">
           {imageGallery.map((item) => (
-            <div key={item.id} className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl lg:rounded-3xl p-4 lg:p-8 flex items-center justify-center service-card-flash w-full lg:w-3/5 h-48 lg:h-96">
-              {/* Image Only */}
-              <Image 
-                src={item.imageUrl} 
-                alt="Platform logo"
-                width={120}
-                height={120}
-                className="lg:w-[150px] lg:h-[150px] object-contain"
-              />
+            <div key={item.id} className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl lg:rounded-3xl p-0.5 lg:p-1 flex items-center justify-center service-card-flash w-full lg:w-3/5 h-64 lg:h-[28rem]">
+              {/* Image Only - Centered and larger */}
+              <div className="w-[99%] h-[99%] flex items-center justify-center">
+                <Image 
+                  src={item.imageUrl} 
+                  alt="Platform logo"
+                  width={1300}
+                  height={1300}
+                  className="w-full h-full object-contain"
+                />
+              </div>
             </div>
           ))}
         </div>

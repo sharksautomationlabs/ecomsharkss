@@ -69,7 +69,7 @@ export default function CurrentOffer() {
                   <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/30">
                     <Image 
                       src="/images/founder-1.jpg" 
-                      alt="ZYAAN - Co-Founder" 
+                      alt="Zayn - Senior E-commerce Consultant" 
                       width={48} 
                       height={48}
                       className="w-full h-full object-cover"
@@ -96,7 +96,7 @@ export default function CurrentOffer() {
                 <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white/30">
                   <Image 
                     src={imgFounder} 
-                    alt="Ain - Founder" 
+                    alt="Aain - Senior E-commerce Consultant" 
                     width={64} 
                     height={64}
                     className="w-full h-full object-cover"
@@ -107,7 +107,7 @@ export default function CurrentOffer() {
                     Get Started Today
                   </h3>
                   <p className="text-white/80 text-sm lg:text-base" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                    Speak directly with our founder
+                    Speak directly with our senior consultant
                   </p>
                 </div>
               </div>

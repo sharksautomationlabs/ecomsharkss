@@ -155,7 +155,7 @@ export default function QuoteSection() {
                 <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
             </button>
             <p className="text-base lg:text-[20px] max-w-lg leading-6 lg:leading-[32px]" style={{ fontFamily: "'Barlow', sans-serif" }}>
-              Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+              Scale your e-commerce business with proven automation strategies.
             </p>
           </div>
 

@@ -160,15 +160,15 @@ export default function ExpertsSection({
                         playsInline
                         className="absolute inset-0 w-full h-full object-cover"
                     >
-                        <source src="/images/bi-vid.mp4" type="video/mp4" />
+                        <source src="/images/under-water-logos.mp4" type="video/mp4" />
                     </video>
                     <div className="absolute inset-0 bg-[#052126] opacity-40"></div>
                 </div>
-
+{/* 
                 <img src="/images/walmart-logo.png" alt="Walmart Logo" className="absolute w-[20%] lg:w-[25%] top-[2%] right-[25%] transform rotate-[12.5deg]" />
                 <img src="/images/amazon-logo.png" alt="Amazon Logo" className="absolute w-[22%] lg:w-[28%] top-[10%] left-[5%] transform -rotate-[8.3deg]" />
                 <img src="/images/shopify-logo.png" alt="Shopify Logo" className="absolute w-[24%] lg:w-[30%] top-[5%] right-[2%] transform rotate-[12.2deg]" />
-                <img src="/images/tiktok-logo.png" alt="TikTok Logo" className="absolute w-[22%] lg:w-[28%] bottom-[25%] left-1/2 -translate-x-1/2 transform -rotate-[13deg] z-[5]" />
+                <img src="/images/tiktok-logo.png" alt="TikTok Logo" className="absolute w-[22%] lg:w-[28%] bottom-[25%] left-1/2 -translate-x-1/2 transform -rotate-[13deg] z-[5]" /> */}
             </div>
           </motion.div>
 

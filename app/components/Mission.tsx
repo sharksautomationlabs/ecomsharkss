@@ -11,7 +11,8 @@ const imgChatCircleDots = "/images/chat-icon.svg";
   Image assets are mapped from the original code for this specific component.
 */
 const imgPattern011 = "/images/pattern-bg.png"; 
-const imgWoman = "/images/mission-bg-main.png"; 
+const imgWoman = "/images/mission-bg-main.png";
+const imgMan = "/images/man.png"; 
 const imgShark = "/images/mission-shark-main.png"; 
 const imgShopifyLogo = "/images/shopify-logo.png";
 const imgWalmartLogo = "/images/walmart-logo.png";
@@ -66,22 +67,17 @@ export default function MissionSection({
       description: 'At Ecom Sharkss, our mission is to empower entrepreneurs and businesses to scale new heights in the digital marketplace. Through tailored solutions for Amazon, Walmart, Shopify, and TikTok, we help brands stand out, grow sustainably, and achieve long-term success with innovation, expertise, and dedication.',
       badge: 'About Us'
     },
-    vision: {
-      title: 'Our Vision',
-      description: 'We envision a future where every business has the tools and knowledge to thrive in the digital economy. Our vision is to be the leading force in e-commerce transformation, creating a world where innovation meets opportunity, and every entrepreneur can build their dream business with confidence and success.',
-      badge: 'Future Goals'
-    },
-    values: {
-      title: 'Our Values',
-      description: 'Our core values drive everything we do: Integrity in every interaction, Excellence in our solutions, Innovation in our approach, and Partnership in our relationships. We believe in transparency, continuous learning, and empowering our clients to achieve their fullest potential in the competitive digital landscape.',
-      badge: 'Core Principles'
+    howWeWork: {
+      title: 'How We Work',
+      description: 'Meet Sharjeel Zahoor – Your Senior Consultant\n\nWondering what you\'ll actually gain by working with us?\nWe\'ve created a free 5-minute masterclass where you\'ll discover:\n\n• How eCommerce really works\n• What automation is, and why it\'s the backbone of online success\n• How automation can help you achieve financial freedom, independence, and a reliable passive income stream\n\nThis video is packed with insights worth millions of dollars—yet it\'s free for you to explore.\n\n👉 Watch the complete video here:\n(link)\n\nOur senior consultant, Sharjeel Zahoor, will walk you through the process step by step.\n\nConnect with Sharjeel on Social Media\n\nFacebook | Instagram | LinkedIn',
+      badge: 'Free Masterclass'
     }
   };
 
   const currentContent = contentData[activeTab as keyof typeof contentData];
 
   // Animation Variants
-  const womanWipeUpVariants: Variants = {
+  const personWipeUpVariants: Variants = {
     hidden: { clipPath: 'inset(100% 0 0 0)', opacity: 0 },
     visible: {
       clipPath: 'inset(0% 0 0 0)',
@@ -107,7 +103,7 @@ export default function MissionSection({
 
   return (
     <div ref={ref} className="w-full bg-white flex justify-center">
-      <div className={`relative w-full max-w-[1920px] overflow-hidden select-none ${useCustomContent ? 'min-h-[800px] py-20' : 'h-auto lg:aspect-[1920/1080] py-16 lg:py-0'}`}>
+        <div className={`relative w-full max-w-[1920px] overflow-hidden select-none ${useCustomContent ? 'min-h-[800px] py-20' : 'min-h-[800px] lg:min-h-[1000px] py-16 pb-8 lg:py-20'}`}>
         
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#bef4fe] to-white" />
         <div className="absolute inset-0 z-10" style={{ maskImage: `url('${imgPatternMask}')`, maskSize: '100% 100%' }}>
@@ -116,35 +112,35 @@ export default function MissionSection({
 
         <div className={`relative z-10 w-full px-5 lg:px-20 ${useCustomContent ? 'h-full flex items-center' : 'h-full'}`}>
           {!useCustomContent && (
-            <nav className="w-full flex justify-center pt-3 lg:pt-6 border-b-2 border-[#79bfcd]">
-              <div className="flex items-center gap-2 lg:gap-16 overflow-x-auto">
+            <nav className="relative z-30 w-full flex justify-center pt-3 lg:pt-6 border-b-2 border-[#79bfcd]">
+              {/* === MODIFICATION HERE === */}
+              <div className="flex items-center gap-8 lg:gap-16 overflow-x-auto">
                 {Object.keys(contentData).map((tab) => (
-                  <button 
+                  <div 
                     key={tab}
-                    onClick={() => setActiveTab(tab)}
-                    // MODIFICATION: Increased padding for a larger click area
-                    className={`relative flex items-center gap-3 pb-4 lg:pb-6 px-2 lg:px-8 py-2 lg:py-4 transition-all duration-300 cursor-pointer hover:opacity-80 bg-transparent border-none outline-none whitespace-nowrap ${
-                      activeTab === tab ? 'border-b-2 border-[#063f4a]' : 'border-b-2 border-transparent'
+                    className={`relative ${
+                      activeTab === tab ? 'border-b-2 border-[#063f4a] pb-4 lg:pb-6' : 'border-b-2 border-transparent pb-4 lg:pb-6'
                     }`}
                   >
                     <span 
-                      className={`text-lg lg:text-[32px] transition-colors duration-300 ${
+                      onClick={() => setActiveTab(tab)}
+                      className={`text-lg lg:text-[32px] transition-colors duration-300 cursor-pointer hover:opacity-80 inline-block ${
                         activeTab === tab ? 'text-[#063f4a]' : 'text-[#2c2420] opacity-60'
                       }`} 
                       style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 500 }}
                     >
                       {contentData[tab as keyof typeof contentData].title}
                     </span>
-                  </button>
+                  </div>
                 ))}
               </div>
             </nav>
           )}
 
-          <div className={`relative w-full ${useCustomContent ? 'h-full' : 'h-auto lg:h-[calc(100%-200px)]'}`}>
+          <div className={`relative w-full ${useCustomContent ? 'h-full' : 'h-auto lg:h-auto lg:min-h-[600px]'}`}>
               {/* Left Text Content */}
               <motion.div 
-                className={`${useCustomContent ? 'relative w-full lg:w-[585px] z-20' : 'relative lg:absolute top-0 lg:top-[10%] left-0 w-full lg:w-[585px] z-20'}`}
+                className={`${useCustomContent ? 'relative w-full lg:w-[585px] z-20' : 'relative lg:absolute top-0 lg:top-[5%] left-0 w-full lg:w-[585px] z-20'}`}
                 initial="hidden"
                 animate={controls}
                 variants={scrollFadeInVariants}
@@ -173,7 +169,7 @@ export default function MissionSection({
                       <h1 className="text-4xl lg:text-[94px] font-semibold text-[#2c2420] leading-tight lg:leading-[0.921]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
                           {currentContent.title}
                       </h1>
-                      <p className="mt-6 lg:mt-8 text-base lg:text-[20px] text-[#333333] leading-6 lg:leading-[32px] text-justify" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                      <p className="mt-6 lg:mt-8 text-base lg:text-[20px] text-[#333333] leading-6 lg:leading-[32px] text-justify whitespace-pre-line" style={{ fontFamily: "'Barlow', sans-serif" }}>
                           {currentContent.description}
                       </p>
                     </motion.div>
@@ -205,18 +201,31 @@ export default function MissionSection({
               </motion.div>
 
               {/* Right Image Collage */}
-              <div className={`${useCustomContent ? 'relative lg:absolute right-0 lg:right-[-5%] top-0 w-full lg:w-[60%] h-[400px] lg:h-[100%] z-10 mt-8 lg:mt-0' : 'relative lg:absolute right-0 lg:right-[-10%] top-0 lg:top-[-10%] w-full lg:w-[65%] h-[400px] lg:h-[120%] z-10 mt-8 lg:mt-0'}`}>
+              <div className={`${useCustomContent ? 'relative lg:absolute right-0 lg:right-[-5%] top-0 w-full lg:w-[60%] h-[600px] lg:h-[100%] z-10 mt-8 lg:mt-0' : 'relative lg:absolute right-0 lg:right-[-10%] top-0 lg:top-[-10%] w-full lg:w-[65%] h-[600px] lg:h-[120%] z-10 mt-8 lg:mt-0'}`}>
                 <div className="relative w-full h-full" style={{ maskImage: `url('${imgWomanMask}')`, maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }}>
                     <div className="absolute w-[100%] h-[50%] top-[10%] left-0 z-0 animate-shark-lean">
                         <Image src={imgShark} alt="Shark" layout="fill" objectFit="contain" />
                     </div>
                     <motion.div 
+                      key={activeTab}
                       className="absolute inset-0 z-10"
-                      variants={womanWipeUpVariants}
+                      variants={personWipeUpVariants}
                       initial="hidden"
                       animate={controls}
                     >
-                        <Image src={imgWoman} alt="Business woman" layout="fill" objectFit="contain" className="filter grayscale transform -scale-x-100" />
+                        <Image 
+                          src={activeTab === 'howWeWork' ? imgMan : imgWoman} 
+                          alt={activeTab === 'howWeWork' ? "Business man" : "Business woman"} 
+                          layout="fill" 
+                          objectFit="contain" 
+                          className="filter grayscale transform -scale-x-100 w-full h-full" 
+                          style={{ 
+                            minHeight: '500px',
+                            objectPosition: 'center',
+                            width: '100%',
+                            height: '100%'
+                          }}
+                        />
                     </motion.div>
                     <div className="absolute w-[35%] h-auto bottom-[15%] right-[5%] z-20" style={{ animation: 'float 3s ease-in-out infinite' }}>
                         <Image 

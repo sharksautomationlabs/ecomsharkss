@@ -50,8 +50,8 @@ const ChatButton = () => (
 );
 
 // Social Media Icons
-const SocialIcon = ({ path, label }: { path: string; label: string }) => (
-  <a href="#" className="w-12 h-12 bg-white/20 backdrop-blur-xl border border-white/30 rounded-full flex items-center justify-center hover:bg-[#35c4dd] hover:border-[#35c4dd] transition-all duration-300 group">
+const SocialIcon = ({ path, label, href }: { path: string; label: string; href?: string }) => (
+  <a href={href || "#"} className="w-12 h-12 bg-white/20 backdrop-blur-xl border border-white/30 rounded-full flex items-center justify-center hover:bg-[#35c4dd] hover:border-[#35c4dd] transition-all duration-300 group">
     <svg className="w-6 h-6 text-white group-hover:text-[#063f4a] transition-colors" fill="currentColor" viewBox="0 0 24 24">
       <path d={path}/>
     </svg>
@@ -60,7 +60,7 @@ const SocialIcon = ({ path, label }: { path: string; label: string }) => (
 
 export default function IdentityPage() {
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [selectedFounder, setSelectedFounder] = useState<'ain' | 'zyaan' | null>(null);
+  const [selectedTeamMember, setSelectedTeamMember] = useState<'Aain' | 'zayn' | 'sharjeel' | null>(null);
   const controls = useAnimation();
   const [ref, inView] = useInView({
     triggerOnce: false,
@@ -88,8 +88,8 @@ export default function IdentityPage() {
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
+        staggerChildren: 0,
+        delayChildren: 0,
       },
     },
   };
@@ -114,10 +114,9 @@ export default function IdentityPage() {
       x: 0,
       opacity: 1,
       transition: {
-        type: 'spring',
-        stiffness: 50,
-        damping: 20,
-        mass: 1.5,
+        type: 'tween',
+        duration: 0.5,
+        ease: 'easeOut',
       },
     },
   };
@@ -128,10 +127,9 @@ export default function IdentityPage() {
       x: 0,
       opacity: 1,
       transition: {
-        type: 'spring',
-        stiffness: 50,
-        damping: 20,
-        mass: 1.5,
+        type: 'tween',
+        duration: 0.5,
+        ease: 'easeOut',
       },
     },
   };
@@ -145,8 +143,8 @@ export default function IdentityPage() {
   return (
     <div className="w-full bg-white overflow-x-hidden">
       <Header 
-        heroTitle="Meet Our Founders - ECOM SHARKS Leadership"
-        heroSubtitle="5+ Years of E-commerce Excellence | 300+ Team Members | 1000+ Years Combined Experience"
+        heroTitle="Meet Our Leadership Team - ECOM SHARKS"
+        heroSubtitle="10+ Years of E-commerce Excellence | 40+ Team Members | 30+ Years Combined Experience"
       />
       
       {/* Profile Section with Website Theme */}
@@ -191,8 +189,8 @@ export default function IdentityPage() {
               <div className="relative mb-6 lg:mb-8">
                 <div className="w-64 h-64 lg:w-80 lg:h-80 mx-auto lg:mx-0 rounded-full shadow-2xl border-4 border-white/20 overflow-hidden">
                   <Image 
-                    src={selectedFounder === 'zyaan' ? "/images/founder-1.jpg" : imgFounder} 
-                    alt={selectedFounder === 'zyaan' ? "ZYAAN - Co-Founder of ECOM SHARKS" : "Ain - Founder of ECOM SHARKS"} 
+                    src={selectedTeamMember === 'zayn' ? "/images/founder-1.jpg" : selectedTeamMember === 'sharjeel' ? "/images/founder-2.png" : imgFounder} 
+                    alt={selectedTeamMember === 'zayn' ? "Zayn - Senior E-commerce Consultant" : selectedTeamMember === 'sharjeel' ? "Sharjeel - Sr. Automation Consultation" : "Aain - Senior E-commerce Consultant"} 
                     width={320} 
                     height={320}
                     className="w-full h-full object-cover"
@@ -204,13 +202,13 @@ export default function IdentityPage() {
                 className="text-4xl lg:text-6xl font-semibold text-white mb-4" 
                 style={{ fontFamily: "'Barlow Condensed', sans-serif", textShadow: '0px 3px 6px rgba(0,0,0,0.5)' }}
               >
-                {selectedFounder === 'zyaan' ? 'ZYAAN!' : 'Ain!'}
+                {selectedTeamMember === 'zayn' ? 'Zayn!' : selectedTeamMember === 'sharjeel' ? 'Sharjeel!' : 'Aain!'}
               </h2>
               <p 
                 className="text-lg lg:text-2xl text-[#35c4dd] mb-6 lg:mb-8" 
                 style={{ fontFamily: "'Barlow', sans-serif", textShadow: '0px 2px 4px rgba(0,0,0,0.5)' }}
               >
-                {selectedFounder === 'zyaan' ? 'E-commerce Product Specialist' : 'Sr. Ecommerce Consultant'}
+                 {selectedTeamMember === 'zayn' ? 'Senior E-commerce Consultant' : selectedTeamMember === 'sharjeel' ? 'Sr. Automation Consultation' : 'Sr. Ecommerce Consultant'}
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 justify-center lg:justify-start mb-6 lg:mb-8">
@@ -220,9 +218,23 @@ export default function IdentityPage() {
 
               {/* Social Links */}
               <div className="flex gap-4 justify-center lg:justify-start">
-                <SocialIcon path={socialLinks.facebook} label="Facebook" />
-                <SocialIcon path={socialLinks.instagram} label="Instagram" />
-                <SocialIcon path={socialLinks.linkedin} label="LinkedIn" />
+                {selectedTeamMember === 'zayn' ? (
+                  <>
+                    <SocialIcon path={socialLinks.instagram} label="Instagram" href="https://www.instagram.com/zayn___109?igsh=NTU5d3UwNzF6cWF0&utm_source=qr" />
+                    <SocialIcon path={socialLinks.facebook} label="Facebook" href="https://www.facebook.com/profile.php?id=61580837862800" />
+                    <SocialIcon path={socialLinks.linkedin} label="LinkedIn" href="https://www.linkedin.com/in/muhammad-zayaan-b7b220259?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" />
+                  </>
+                ) : selectedTeamMember === 'sharjeel' ? (
+                  <>
+                    <SocialIcon path={socialLinks.instagram} label="Instagram" href="#" />
+                    <SocialIcon path={socialLinks.linkedin} label="LinkedIn" href="#" />
+                  </>
+                ) : (
+                  <>
+                    <SocialIcon path={socialLinks.instagram} label="Instagram" href="https://www.instagram.com/iamaainali?utm_source=qr&igsh=MTNjOGU4OXUwM3BwdQ==" />
+                    <SocialIcon path={socialLinks.linkedin} label="LinkedIn" href="https://www.linkedin.com/in/aainali?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" />
+                  </>
+                )}
               </div>
             </motion.div>
 
@@ -233,35 +245,35 @@ export default function IdentityPage() {
               animate={controls}
             >
               <motion.h3 
-                className="text-3xl lg:text-5xl font-semibold text-white mb-4 lg:mb-6" 
+                className="text-3xl lg:text-5xl font-semibold text-white mb-4 lg:mb-6 text-center lg:text-left" 
                 style={{ fontFamily: "'Barlow Condensed', sans-serif", textShadow: '0px 3px 6px rgba(0,0,0,0.5)' }}
                 variants={headerVariants}
                 initial="hidden"
                 animate={controls}
               >
-                Meet Our Founders
+                Meet Our Leadership Team
               </motion.h3>
               <motion.p 
-                className="text-base lg:text-lg text-gray-300 mb-6 lg:mb-8" 
+                className="text-base lg:text-lg text-gray-300 mb-6 lg:mb-8 text-center lg:text-left" 
                 style={{ fontFamily: "'Barlow', sans-serif" }}
                 variants={headerVariants}
                 initial="hidden"
                 animate={controls}
               >
-                Click on a founder to learn more about them
+                Click on a team member to learn more about them
               </motion.p>
               
-              {/* Founder Selection Buttons */}
+              {/* Team Member Selection Buttons */}
               <motion.div 
-                className="flex gap-4 mb-8"
+                className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8"
                 variants={containerVariants}
                 initial="hidden"
                 animate={controls}
               >
                 <button
-                  onClick={() => setSelectedFounder('ain')}
-                  className={`flex items-center gap-3 px-6 py-4 rounded-2xl transition-all duration-300 ${
-                    selectedFounder === 'ain' 
+                  onClick={() => setSelectedTeamMember('Aain')}
+                  className={`flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 rounded-2xl transition-all duration-300 w-full sm:w-auto ${
+                    selectedTeamMember === 'Aain' 
                       ? 'bg-[#35c4dd] text-[#063f4a] shadow-lg' 
                       : 'bg-white/10 text-white hover:bg-white/20'
                   }`}
@@ -269,26 +281,26 @@ export default function IdentityPage() {
                   <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/30">
                     <Image 
                       src={imgFounder} 
-                      alt="Ain" 
+                        alt="Aain" 
                       width={48} 
                       height={48}
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <div className="text-left">
-                    <div className="font-semibold text-lg" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                      Ain
+                    <div className="font-semibold text-base sm:text-lg" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+                      Aain
                     </div>
-                    <div className="text-sm opacity-80" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                    <div className="text-xs sm:text-sm opacity-80" style={{ fontFamily: "'Barlow', sans-serif" }}>
                       Sr. Ecommerce Consultant
                     </div>
                   </div>
                 </button>
                 
                 <button
-                  onClick={() => setSelectedFounder('zyaan')}
-                  className={`flex items-center gap-3 px-6 py-4 rounded-2xl transition-all duration-300 ${
-                    selectedFounder === 'zyaan' 
+                  onClick={() => setSelectedTeamMember('zayn')}
+                  className={`flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 rounded-2xl transition-all duration-300 w-full sm:w-auto ${
+                    selectedTeamMember === 'zayn' 
                       ? 'bg-[#35c4dd] text-[#063f4a] shadow-lg' 
                       : 'bg-white/10 text-white hover:bg-white/20'
                   }`}
@@ -296,50 +308,89 @@ export default function IdentityPage() {
                   <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/30">
                     <Image 
                       src="/images/founder-1.jpg" 
-                      alt="ZYAAN" 
+                        alt="Zayn" 
                       width={48} 
                       height={48}
                       className="w-full h-full object-cover"
                     />
                   </div>
                   <div className="text-left">
-                    <div className="font-semibold text-lg" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                      ZYAAN
+                    <div className="font-semibold text-base sm:text-lg" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+                      Zayn
                     </div>
-                    <div className="text-sm opacity-80" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                      E-commerce Product Specialist
+                    <div className="text-xs sm:text-sm opacity-80" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                       Sr.Ecommerce Consultant
+                    </div>
+                  </div>
+                </button>
+                
+                <button
+                  onClick={() => setSelectedTeamMember('sharjeel')}
+                  className={`flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 rounded-2xl transition-all duration-300 w-full sm:w-auto ${
+                    selectedTeamMember === 'sharjeel' 
+                      ? 'bg-[#35c4dd] text-[#063f4a] shadow-lg' 
+                      : 'bg-white/10 text-white hover:bg-white/20'
+                  }`}
+                >
+                  <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/30">
+                    <Image 
+                      src="/images/founder-2.png" 
+                      alt="Sharjeel" 
+                      width={48} 
+                      height={48}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="text-left">
+                    <div className="font-semibold text-base sm:text-lg" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+                      Sharjeel
+                    </div>
+                    <div className="text-xs sm:text-sm opacity-80" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                      Sr. Automation Consultation
                     </div>
                   </div>
                 </button>
               </motion.div>
 
-              {/* Dynamic Content Based on Selected Founder - Only shows when a founder is selected */}
-              {selectedFounder && (
+              {/* Dynamic Content Based on Selected Team Member - Only shows when a team member is selected */}
+              {selectedTeamMember && (
                 <div 
                   className="space-y-4 lg:space-y-6"
                 >
-                  {selectedFounder === 'ain' ? (
+                  {selectedTeamMember === 'Aain' ? (
                     <>
                       <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                  Before I describe my experience and who I&apos;m, let&apos;s talk about what truly matters to you—what you&apos;ll get. If you start your e-commerce store with me or my team, you&apos;ll likely earn at least $5,000 more in profit compared to working with someone new.
+                  With over 5 years of experience in e-commerce consulting, I specialize in helping businesses optimize their online presence across multiple platforms. My expertise covers Amazon FBA, Shopify store management, and digital marketing strategies.
                 </p>
                       <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                  Why? Because I have 5+ years of additional experience in this field, and that directly translates into better product choices, smarter strategies, and faster growth. We're not just here to talk—we specialize in product hunting.
+                  I focus on data-driven approaches to product research, inventory management, and customer acquisition. My goal is to help businesses scale efficiently while maintaining healthy profit margins.
                 </p>
                       <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                  And in e-commerce, if you have the right winning products, you can crack the market and earn as much as you want.
+                  Success in e-commerce requires the right combination of market research, strategic planning, and consistent execution. I work with clients to develop sustainable growth strategies.
+                </p>
+                    </>
+                  ) : selectedTeamMember === 'zayn' ? (
+                    <>
+                      <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                        As a Senior E-commerce Consultant, I focus on identifying profitable opportunities and optimizing product performance across various platforms. My approach combines market analysis with practical implementation strategies.
+                      </p>
+                      <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                        I work with businesses to develop comprehensive product strategies, from initial research to launch optimization. My expertise includes trend analysis, competitive research, and performance tracking.
+                      </p>
+                      <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                        Success in e-commerce comes from understanding market dynamics, consumer behavior, and platform-specific requirements. I help clients navigate these complexities to achieve sustainable growth.
                 </p>
                     </>
                   ) : (
                     <>
                       <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                        It&apos;s not about me — it&apos;s about the results you get. When you build your e-commerce store with me and my team, you&apos;re setting yourself up to earn at least 15% more in profit compared to working with someone less experienced.
+                        As a Senior Automation Specialist, I specialize in creating automated solutions that streamline e-commerce operations. My expertise covers workflow automation, process optimization, and system integration across multiple platforms.
                       </p>
                       <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                        Why? Because I&apos;m Zain — and with over 5 years of proven expertise in e-commerce, I know how to make smarter product choices, design stronger strategies, and accelerate growth.
+                        I focus on developing custom automation tools that reduce manual work, increase efficiency, and improve accuracy. My goal is to help businesses scale their operations through intelligent automation systems.
                       </p>
                       <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                        I don&apos;t rely on guesswork. I specialize in product hunting, the foundation of every successful e-commerce store — helping you discover winning products that drive consistent sales and long-term success.
+                        Success in automation comes from understanding business processes, identifying optimization opportunities, and implementing scalable solutions. I work with clients to transform their operations through strategic automation.
                       </p>
                     </>
                   )}
@@ -390,7 +441,7 @@ export default function IdentityPage() {
                
                <div className="relative z-10">
                  <h2 className="text-3xl font-bold text-[#063f4a]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                   +5 Years
+                   10+ Years
                  </h2>
                  <p className="mt-2 text-[#063f4a]/80 min-h-[6rem]" style={{ fontFamily: "'Barlow', sans-serif" }}>
                    Experience in E-commerce Excellence. Proven track record of delivering exceptional results and driving business growth.
@@ -425,7 +476,7 @@ export default function IdentityPage() {
                
                <div className="relative z-10">
                  <h2 className="text-3xl font-bold text-[#063f4a]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                   +300 Team
+                   40+ Team
                  </h2>
                  <p className="mt-2 text-[#063f4a]/80 min-h-[6rem]" style={{ fontFamily: "'Barlow', sans-serif" }}>
                    Dedicated Professionals working together to deliver exceptional results and comprehensive support for your business.
@@ -460,7 +511,7 @@ export default function IdentityPage() {
                
                <div className="relative z-10">
                  <h2 className="text-3xl font-bold text-[#063f4a]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                   +1000 Years
+                   30+ Combined
                  </h2>
                  <p className="mt-2 text-[#063f4a]/80 min-h-[6rem]" style={{ fontFamily: "'Barlow', sans-serif" }}>
                    Combined Team Experience across all platforms and services, ensuring comprehensive expertise and knowledge.
@@ -517,6 +568,104 @@ export default function IdentityPage() {
                 My Results Talks
               </h3>
               <div className="w-24 h-1 bg-gradient-to-r from-[#35c4dd] to-[#063f4a] mx-auto rounded-full"></div>
+            </motion.div>
+             
+             {/* Screenshots Gallery */}
+             <motion.div 
+               className="mb-12 lg:mb-16"
+               variants={containerVariants}
+               initial="hidden"
+               whileInView="visible"
+               viewport={{ once: false, amount: 0.3 }}
+             >
+               <h4 className="text-2xl lg:text-3xl font-bold text-[#063f4a] mb-6 text-center" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+                 Real Results Screenshots
+               </h4>
+               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 max-w-6xl mx-auto">
+                 {/* Left side screenshots - animate from left */}
+                 <motion.div 
+                   className="bg-white/80 backdrop-blur-xl rounded-2xl p-2 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-500"
+                   variants={leftVariants}
+                 >
+                   <div className="w-full h-48 lg:h-56 rounded-xl overflow-hidden">
+                     <Image 
+                       src="/images/amazon-sale1.jpg" 
+                       alt="Amazon Sales Screenshot 1" 
+                       width={300} 
+                       height={300}
+                       className="w-full h-full object-cover"
+                     />
+                   </div>
+                   <div className="mt-3 text-center">
+                     <p className="text-sm font-semibold text-[#063f4a]" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                       Amazon FBA Results
+                     </p>
+                   </div>
+                 </motion.div>
+                 
+                 {/* Left side screenshots - animate from left */}
+                 <motion.div 
+                   className="bg-white/80 backdrop-blur-xl rounded-2xl p-2 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-500"
+                   variants={leftVariants}
+                 >
+                   <div className="w-full h-48 lg:h-56 rounded-xl overflow-hidden">
+                     <Image 
+                       src="/images/tiktok-sale1.jpg" 
+                       alt="TikTok Sales Screenshot 1" 
+                       width={300} 
+                       height={300}
+                       className="w-full h-full object-cover"
+                     />
+                   </div>
+                   <div className="mt-3 text-center">
+                     <p className="text-sm font-semibold text-[#063f4a]" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                       TikTok Shop Results
+                     </p>
+                   </div>
+                 </motion.div>
+                 
+                 {/* Right side screenshots - animate from right */}
+                 <motion.div 
+                   className="bg-white/80 backdrop-blur-xl rounded-2xl p-2 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-500"
+                   variants={rightVariants}
+                 >
+                   <div className="w-full h-48 lg:h-56 rounded-xl overflow-hidden">
+                     <Image 
+                       src="/images/walmart-sale1.jpg" 
+                       alt="Walmart Sales Screenshot 1" 
+                       width={300} 
+                       height={300}
+                       className="w-full h-full object-cover"
+                     />
+                   </div>
+                   <div className="mt-3 text-center">
+                     <p className="text-sm font-semibold text-[#063f4a]" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                       Walmart Marketplace Results
+                     </p>
+                   </div>
+                 </motion.div>
+                 
+                 {/* Right side screenshots - animate from right */}
+                 <motion.div 
+                   className="bg-white/80 backdrop-blur-xl rounded-2xl p-2 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-500"
+                   variants={rightVariants}
+                 >
+                   <div className="w-full h-48 lg:h-56 rounded-xl overflow-hidden">
+                     <Image 
+                       src="/images/amazon-sale2.png" 
+                       alt="Amazon Sales Screenshot 2" 
+                       width={300} 
+                       height={300}
+                       className="w-full h-full object-cover"
+                     />
+                   </div>
+                   <div className="mt-3 text-center">
+                     <p className="text-sm font-semibold text-[#063f4a]" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                       Amazon Performance
+                     </p>
+                   </div>
+                 </motion.div>
+               </div>
             </motion.div>
             
             {/* Content Cards */}
@@ -585,7 +734,7 @@ export default function IdentityPage() {
                     <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/30">
                       <Image 
                         src={imgFounder} 
-                        alt="Ain - Founder" 
+                        alt="Aain - Senior E-commerce Consultant" 
                         width={48} 
                         height={48}
                         className="w-full h-full object-cover"
@@ -593,10 +742,10 @@ export default function IdentityPage() {
                     </div>
                     <div>
                       <div className="text-base lg:text-xl font-semibold" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                        Ain
+                        Aain
                       </div>
                       <div className="text-white/80" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                        Founder of ECOMSHARKS
+                        Senior E-commerce Consultant
                       </div>
                     </div>
                   </div>
@@ -744,7 +893,7 @@ export default function IdentityPage() {
                     <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-white/30 mx-auto mb-8">
                       <Image 
                         src="/images/founder-1.jpg" 
-                        alt="ZYAAN - Co-Founder" 
+                        alt="Zayn - Sr.Ecommerce Consultant" 
                         width={80} 
                         height={80}
                         className="w-full h-full object-cover"
@@ -755,7 +904,7 @@ export default function IdentityPage() {
                       Ready to Start?
                     </h4>
                     <p className="text-white/90 mb-8 text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                      Book your free consultation call with ZYAAN today and take the first step towards e-commerce success.
+                      Book your free consultation call with our team today and take the first step towards e-commerce success.
                     </p>
                     
                     <div className="space-y-4">

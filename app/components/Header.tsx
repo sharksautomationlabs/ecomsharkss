@@ -42,8 +42,8 @@ interface HeaderProps {
 }
 
 export default function Header({ 
-  heroTitle = "Drive Revenue &Dominate the Digital World with Us",
-  heroSubtitle = "Boost your Digital Presence on Amazon, TikTok, Walmart & Shopify with ECOM SHARKS"
+  heroTitle = "Earn $4,000 in 30 Days Or We'll Work for Free",
+  heroSubtitle = "Keep scrolling—your path to financial freedom is just ahead. By the time you've explored 25% of this page, you'll discover the hidden gem that could change your life."
 }: HeaderProps) {
   const textShadow = { textShadow: '0px 2px 5px rgba(0, 0, 0, 0.5)' };
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -338,11 +338,30 @@ export default function Header({
           <div className="absolute top-1/2 -translate-y-1/2 left-5 w-1/2 lg:top-[300px] lg:left-20 lg:w-[781px] lg:translate-y-0 z-50 slide-in-left">
             
             <h1 className="text-white text-3xl leading-tight pt-10 lg:text-[94px] lg:leading-[0.921] lg:pt-0" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 600, ...textShadow }}>
-              {heroTitle}
+              {heroTitle.includes('$4,000') ? (
+                <>
+                  {heroTitle.split('$4,000')[0]}
+                  <span className="text-[#35c4dd] font-bold">$4,000</span>
+                  {heroTitle.split('$4,000')[1].includes('30') ? (
+                    <>
+                      {heroTitle.split('$4,000')[1].split('30')[0]}
+                      <span className="text-[#35c4dd] font-bold">30</span>
+                      {heroTitle.split('$4,000')[1].split('30')[1]}
+                    </>
+                  ) : (
+                    heroTitle.split('$4,000')[1]
+                  )}
+                </>
+              ) : (
+                heroTitle
+              )}
             </h1>
-            <p className="hidden lg:block mt-6 text-white text-[24px] leading-[38px] max-w-[685px]" style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 500, ...textShadow }}>
-              {heroSubtitle}
-            </p>
+             <p className="hidden lg:block mt-8 text-white text-[24px] leading-[38px] max-w-[685px]" style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 500, ...textShadow }}>
+               {heroSubtitle}
+             </p>
+             <p className="hidden lg:block mt-6 text-white text-[18px] leading-[28px] max-w-[685px] font-medium" style={{ fontFamily: "'Barlow', sans-serif", ...textShadow }}>
+               Curious how?  Book a meeting with one of our senior consultants today.
+             </p>
             <div className="hidden lg:flex items-center gap-6 mt-12">
             <a 
               href="tel:4694807938"

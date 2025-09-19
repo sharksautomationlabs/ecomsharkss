@@ -7,7 +7,7 @@ import Results from './components/Results';
 import Pricing from './components/Pricing';
 import Testimonials from './components/Testimonials';
 import Owners from './components/Owners';
-import Careers from './components/careers';
+// import Careers from './components/careers';
 import Opportunities from './components/opportunities';
 import CurrentOffer from './components/CurrentOffer';
 // import Contact from './components/Contact';
@@ -27,7 +27,7 @@ export default function Home() {
       <Pricing />
       <Testimonials />
       <Owners />
-      <Careers />
+      {/* <Careers /> */}
       <Opportunities />
       <Footer />
     </div>

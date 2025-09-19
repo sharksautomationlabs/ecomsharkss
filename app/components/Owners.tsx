@@ -126,27 +126,63 @@ export default function Owners() {
           animate={controls}
         >
           {/* Left Hand */}
-          <div 
-            className="absolute bottom-0 -left-22 w-[200px] h-[206px] lg:w-[400px] lg:h-[412px] transition-all duration-1000 ease-out transform rotate-12"
-            style={{ 
-              transform: `rotate(${isMobile ? Math.min(scrollPosition * 0.05, 5) : -scrollPosition * 0.1}deg)`
+          <motion.div 
+            className="absolute bottom-0 -left-22 w-[200px] h-[206px] lg:w-[400px] lg:h-[412px]"
+            initial={{ x: -300, rotate: -30, opacity: 0 }}
+            animate={{ 
+              x: 0,
+              rotate: 12, 
+              opacity: 1,
+              transition: { 
+                duration: 1.5, 
+                ease: "easeOut",
+                delay: 0.5
+              }
+            }}
+            whileInView={{ 
+              x: 0,
+              rotate: 12, 
+              opacity: 1,
+              transition: { 
+                duration: 1.5, 
+                ease: "easeOut",
+                delay: 0.5
+              }
             }}
           >
             <Image src={imgLeftHand} alt="OK hand gesture" layout="fill" objectFit="contain" />
-          </div>
+          </motion.div>
           {/* Hand is smaller, repositioned, and rotated diagonally. */}
             {/* TikTok Logo position adjusted relative to the new hand position */}
             <div className="absolute top-[28%] right-[29%] w-[100px] h-[100px] lg:w-[200px] lg:h-[200px]">
                <Image src={imgTikTokLogo} alt="TikTok Logo" layout="fill" objectFit="contain" />
             </div>
-          <div 
-            className="absolute -top-16 -right-20 w-[300px] h-[275px] lg:w-[600px] lg:h-[550px] transition-all duration-1000 ease-out"
-            style={{ 
-              transform: `rotate(${isMobile ? Math.min(12 + (scrollPosition * 0.03), 15) : 12 + (scrollPosition * 0.5)}deg)`
+          <motion.div 
+            className="absolute -top-16 -right-20 w-[300px] h-[275px] lg:w-[600px] lg:h-[550px]"
+            initial={{ x: 300, rotate: 0, opacity: 0 }}
+            animate={{ 
+              x: 0,
+              rotate: 12, 
+              opacity: 1,
+              transition: { 
+                duration: 1.5, 
+                ease: "easeOut",
+                delay: 0.8
+              }
+            }}
+            whileInView={{ 
+              x: 0,
+              rotate: 12, 
+              opacity: 1,
+              transition: { 
+                duration: 1.5, 
+                ease: "easeOut",
+                delay: 0.8
+              }
             }}
           >
             <Image src={imgRightHand} alt="Hand writing" layout="fill" objectFit="contain" />
-          </div>
+          </motion.div>
         </motion.div>
 
         {/* Layer 3: Content */}

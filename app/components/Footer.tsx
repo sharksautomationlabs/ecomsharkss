@@ -28,8 +28,8 @@ const PhoneIcon = () => (
     </div>
 );
 
-const SocialIcon = ({ path }: { path: string }) => (
-  <a href="#" className="w-8 h-8 bg-gray-400 hover:bg-[#35c4dd] transition-colors rounded-full flex items-center justify-center">
+const SocialIcon = ({ path, href }: { path: string; href?: string }) => (
+  <a href={href || "#"} className="w-8 h-8 bg-gray-400 hover:bg-[#35c4dd] transition-colors rounded-full flex items-center justify-center">
     <svg className="w-4 h-4 text-[#063f4a]" fill="currentColor" viewBox="0 0 24 24">
       <path d={path}/>
     </svg>
@@ -206,9 +206,9 @@ export default function Contact() {
             <div className="flex items-center gap-3 lg:gap-4">
               <span>Follow us:</span>
               <div className="flex items-center gap-2 lg:gap-3">
-                <SocialIcon path={socialLinks.facebook} />
+                <SocialIcon path={socialLinks.facebook} href="https://facebook.com/SharksBookPublishers" />
                 <SocialIcon path={socialLinks.linkedin} />
-                <SocialIcon path={socialLinks.instagram} />
+                <SocialIcon path={socialLinks.instagram} href="https://instagram.com/SharksBookPublishers" />
                 <SocialIcon path={socialLinks.x} />
               </div>
             </div>
