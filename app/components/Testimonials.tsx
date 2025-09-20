@@ -11,16 +11,16 @@ const StarRating = ({ rating }: { rating: number }) => {
     const hasHalfStar = rating % 1 !== 0;
     
     return (
-        <div className="flex items-center">
+    <div className="flex items-center">
             {[...Array(5)].map((_, i) => {
                 if (i < fullStars) {
                     // Full star
                     return (
-                        <div key={i} className="bg-[#00B67A] p-0.5 lg:p-1 w-[20px] h-[20px] lg:w-[26px] lg:h-[26px] flex items-center justify-center first:rounded-l-md last:rounded-r-md">
-                            <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="lg:w-4 lg:h-4">
-                                <path d="M7.99992 0.470581L10.0199 5.09058L15.0599 5.61058L11.2399 8.93058L12.3199 13.9106L7.99992 11.3506L3.67992 13.9106L4.75992 8.93058L0.939922 5.61058L5.97992 5.09058L7.99992 0.470581Z" fill="white"/>
-                            </svg>
-                        </div>
+            <div key={i} className="bg-[#00B67A] p-0.5 lg:p-1 w-[20px] h-[20px] lg:w-[26px] lg:h-[26px] flex items-center justify-center first:rounded-l-md last:rounded-r-md">
+                <svg width="12" height="12" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" className="lg:w-4 lg:h-4">
+                    <path d="M7.99992 0.470581L10.0199 5.09058L15.0599 5.61058L11.2399 8.93058L12.3199 13.9106L7.99992 11.3506L3.67992 13.9106L4.75992 8.93058L0.939922 5.61058L5.97992 5.09058L7.99992 0.470581Z" fill="white"/>
+                </svg>
+            </div>
                     );
                 } else if (i === fullStars && hasHalfStar) {
                     // Half star
@@ -48,8 +48,8 @@ const StarRating = ({ rating }: { rating: number }) => {
                     );
                 }
             })}
-        </div>
-    );
+    </div>
+);
 };
 
 
@@ -215,9 +215,9 @@ export default function Testimonials({ testimonials: customTestimonials }: Testi
                       />
                     ) : (
                       <div className="w-full h-full bg-gray-200 rounded-lg flex items-center justify-center">
-                        <span className="font-bold text-lg lg:text-xl text-gray-600" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                          {testimonial.name.charAt(0)}
-                        </span>
+                    <span className="font-bold text-lg lg:text-xl text-gray-600" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+                        {testimonial.name.charAt(0)}
+                    </span>
                       </div>
                     )}
                   </div>

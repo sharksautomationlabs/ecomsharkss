@@ -123,7 +123,7 @@ export default function AmazonHeader() {
 
             {/* Navigation Section - RESPONSIVE */}
             <div className="mt-2 lg:mt-6 flex items-center justify-between">
-                <div className="w-[90px] h-[70px] lg:w-[110px] lg:h-[100px] relative fade-in -ml-3 lg:ml-0">
+                <div className="w-[140px] h-[100px] lg:w-[180px] lg:h-[140px] relative fade-in -ml-10 lg:-ml-12">
                     <Image src={imgImage1} alt="Ecom Sharks Logo" layout="fill" objectFit="contain" />
                 </div>
                 <div className="hidden lg:flex w-[950px] h-[90px] bg-white/20 backdrop-blur-sm 

@@ -10,7 +10,7 @@ import { useInView } from 'react-intersection-observer';
 */
 const imgPattern011 = "/images/testimonials-pattern-bg.png"; 
 const imgShark21 = "/images/quote-shark.png"; 
-const imgImage1 = "/images/hero-logo.png"; 
+const imgImage1 = "/images/quote-logo.png"; 
 const imgRectangle34624302 = "/images/quote-bg-rectangle.svg"; 
 const imgGroup1321315061 = "/images/expert-phone.svg";
 const imgArrowIcon = "/images/arrow-icon.svg";
@@ -129,7 +129,7 @@ export default function QuoteSection() {
           initial="hidden"
           animate={controls}
         >
-           <div className="w-[100px] h-[84px] lg:w-[130px] lg:h-[109px] relative mt-8 lg:mt-0">
+            <div className="w-[140px] h-[100px] lg:w-[180px] lg:h-[140px] relative mt-16 lg:mt-12 -ml-10 lg:-ml-12">
              <Image src={imgImage1} alt="Ecom Sharks Logo" layout="fill" objectFit="contain" />
            </div>
 
