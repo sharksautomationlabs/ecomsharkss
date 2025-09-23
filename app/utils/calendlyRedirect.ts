@@ -33,16 +33,16 @@ const handleCalendlyMessage = (event: MessageEvent) => {
 // Alternative approach using Calendly's built-in callbacks
 export const getCalendlyConfig = () => {
   return {
-    onEventScheduled: function(e: any) {
+    onEventScheduled: function(_e: any) {
       console.log('Calendly onEventScheduled callback triggered');
       setTimeout(() => {
         window.location.href = '/thank-you';
       }, 1000);
     },
-    onEventTypeViewed: function(e: any) {
+    onEventTypeViewed: function(_e: any) {
       console.log('Calendly onEventTypeViewed callback triggered');
     },
-    onDateAndTimeSelected: function(e: any) {
+    onDateAndTimeSelected: function(_e: any) {
       console.log('Calendly onDateAndTimeSelected callback triggered');
     }
   };
