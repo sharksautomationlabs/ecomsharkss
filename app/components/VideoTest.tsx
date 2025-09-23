@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useRef, useState } from 'react';
+import DeploymentVideo from './DeploymentVideo';
 
 export default function VideoTest() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -22,7 +23,7 @@ export default function VideoTest() {
       <h1 className="text-2xl font-bold mb-4">Video Test Component</h1>
       
       <div className="mb-4">
-        <h2 className="text-lg font-semibold mb-2">bi-vid.mp4 Test:</h2>
+        <h2 className="text-lg font-semibold mb-2">bi-vid.mp4 Test (Standard):</h2>
         <video
           ref={videoRef}
           width="400"
@@ -37,6 +38,16 @@ export default function VideoTest() {
         </video>
         {videoError && <p className="text-red-500 mt-2">Error: {videoError}</p>}
         {videoLoaded && <p className="text-green-500 mt-2">Video loaded successfully!</p>}
+      </div>
+
+      <div className="mb-4">
+        <h2 className="text-lg font-semibold mb-2">bi-vid.mp4 Test (DeploymentVideo):</h2>
+        <DeploymentVideo
+          src="/images/bi-vid.mp4"
+          className="w-[400px] h-[300px] border border-gray-300"
+          controls
+          fallbackImage="/images/hero-shark-bg.png"
+        />
       </div>
 
       <div className="mb-4">
