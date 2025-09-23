@@ -103,6 +103,16 @@ export default function Header({
             muted 
             playsInline
             className="w-full h-full object-cover"
+            onError={(e) => {
+              console.error('Header video loading error:', e);
+              console.error('Video src:', '/images/bi-vid.mp4');
+            }}
+            onLoadStart={() => {
+              console.log('Header video loading started: bi-vid.mp4');
+            }}
+            onCanPlay={() => {
+              console.log('Header video can play: bi-vid.mp4');
+            }}
           >
             <source src="/images/bi-vid.mp4" type="video/mp4" />
           </video>

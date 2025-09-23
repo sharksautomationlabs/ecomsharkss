@@ -297,6 +297,16 @@ export default function MissionSection({
                         playsInline
                         controls
                         preload="auto"
+                        onError={(e) => {
+                          console.error('Video loading error:', e);
+                          console.error('Video src:', '/images/sharjeel.mp4');
+                        }}
+                        onLoadStart={() => {
+                          console.log('Video loading started: sharjeel.mp4');
+                        }}
+                        onCanPlay={() => {
+                          console.log('Video can play: sharjeel.mp4');
+                        }}
                         onVolumeChange={() => {
                           // Allow manual volume control
                           if (videoRef.current) {
