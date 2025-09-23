@@ -41,6 +41,29 @@ export default function RootLayout({
                   textColor: '#ffffff', 
                   branding: true 
                 }); 
+                
+                // Global Calendly event handler for redirects
+                window.addEventListener('message', function(event) {
+                  console.log('Calendly message received:', event.data);
+                  if (event.data.event && event.data.event === 'calendly.event_scheduled') {
+                    console.log('Calendly event scheduled, redirecting to thank you page...');
+                    setTimeout(function() {
+                      window.location.href = '/thank-you';
+                    }, 1000);
+                  }
+                });
+                
+                // Alternative approach: Check for Calendly success page
+                var originalPushState = history.pushState;
+                history.pushState = function() {
+                  originalPushState.apply(history, arguments);
+                  if (window.location.href.includes('calendly.com') && window.location.href.includes('scheduled')) {
+                    console.log('Calendly success page detected, redirecting...');
+                    setTimeout(function() {
+                      window.location.href = '/thank-you';
+                    }, 2000);
+                  }
+                };
               }
             `
           }}
