@@ -166,7 +166,13 @@ export default function Opportunities() {
               <button 
                 onClick={() => {
                   if (typeof window !== 'undefined' && (window as any).Calendly) {
-                    (window as any).Calendly.initPopupWidget({url: 'https://calendly.com/your-calendly-link'});
+                    (window as any).Calendly.initPopupWidget({
+                      url: 'https://calendly.com/contact-sharksbookpublishers/30min?primary_color=35c4dd',
+                      onEventScheduled: function(e: any) {
+                        // Redirect to thank you page when appointment is scheduled
+                        window.location.href = '/thank-you';
+                      }
+                    });
                   }
                 }}
                 className="flex items-center justify-center gap-3 bg-[#35c4dd] hover:bg-[#2cb4ca] transition-colors duration-300 rounded-full py-2.5 pl-6 pr-2 w-full lg:w-auto"

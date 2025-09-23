@@ -23,8 +23,12 @@ const GetQuoteButton = ({ small = false }: { small?: boolean }) => (
     className={`group flex items-center justify-center lg:justify-between gap-3 bg-[#35c4dd] hover:bg-[#2cb4ca] transition-colors duration-300 rounded-full overflow-hidden relative ${small ? 'h-12 w-full lg:w-44 pl-6 pr-1' : 'h-14 w-full lg:w-48 pl-6 pr-1.5'}`}
     onClick={() => {
       if (typeof window !== 'undefined' && (window as unknown as { Calendly?: { initPopupWidget: (options: { url: string }) => void } }).Calendly) {
-        (window as unknown as { Calendly: { initPopupWidget: (options: { url: string }) => void } }).Calendly.initPopupWidget({
-          url: 'https://calendly.com/contact-sharksbookpublishers/30min?primary_color=35c4dd'
+        (window as unknown as { Calendly: { initPopupWidget: (options: { url: string, onEventScheduled?: (e: any) => void }) => void } }).Calendly.initPopupWidget({
+          url: 'https://calendly.com/contact-sharksbookpublishers/30min?primary_color=35c4dd',
+          onEventScheduled: function(e: any) {
+            // Redirect to thank you page when appointment is scheduled
+            window.location.href = '/thank-you';
+          }
         });
       }
     }}
@@ -226,8 +230,8 @@ export default function IdentityPage() {
                   </>
                 ) : selectedTeamMember === 'sharjeel' ? (
                   <>
-                    <SocialIcon path={socialLinks.instagram} label="Instagram" href="#" />
-                    <SocialIcon path={socialLinks.linkedin} label="LinkedIn" href="#" />
+                    <SocialIcon path={socialLinks.instagram} label="Instagram" href="https://www.instagram.com/sharjeelzahoorofficial/" />
+                    <SocialIcon path={socialLinks.linkedin} label="LinkedIn" href="https://www.linkedin.com/in/sharjeel-zahoor-6a743927a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" />
                   </>
                 ) : (
                   <>
@@ -913,8 +917,12 @@ export default function IdentityPage() {
                         style={{ fontFamily: "'Barlow', sans-serif" }}
                         onClick={() => {
                           if (typeof window !== 'undefined' && (window as unknown as { Calendly?: { initPopupWidget: (options: { url: string }) => void } }).Calendly) {
-                            (window as unknown as { Calendly: { initPopupWidget: (options: { url: string }) => void } }).Calendly.initPopupWidget({
-                              url: 'https://calendly.com/contact-sharksbookpublishers/30min?primary_color=35c4dd'
+                            (window as unknown as { Calendly: { initPopupWidget: (options: { url: string, onEventScheduled?: (e: any) => void }) => void } }).Calendly.initPopupWidget({
+                              url: 'https://calendly.com/contact-sharksbookpublishers/30min?primary_color=35c4dd',
+                              onEventScheduled: function(e: any) {
+                                // Redirect to thank you page when appointment is scheduled
+                                window.location.href = '/thank-you';
+                              }
                             });
                           }
                         }}
