@@ -153,7 +153,11 @@ export default function Header({
                         onClick={() => {
                           if (typeof window !== 'undefined' && (window as any).Calendly) {
                             (window as any).Calendly.initPopupWidget({
-                              url: 'https://calendly.com/contact-sharksbookpublishers/30min?primary_color=35c4dd'
+                              url: 'https://calendly.com/contact-sharksbookpublishers/30min?primary_color=35c4dd',
+                              onEventScheduled: function(e: any) {
+                                // Redirect to thank you page when appointment is scheduled
+                                window.location.href = '/thank-you';
+                              }
                             });
                           }
                         }}
@@ -307,7 +311,11 @@ export default function Header({
                       setIsMobileNavOpen(false);
                       if (typeof window !== 'undefined' && (window as any).Calendly) {
                         (window as any).Calendly.initPopupWidget({
-                          url: 'https://calendly.com/contact-sharksbookpublishers/30min?primary_color=35c4dd'
+                          url: 'https://calendly.com/contact-sharksbookpublishers/30min?primary_color=35c4dd',
+                          onEventScheduled: function(e: any) {
+                            // Redirect to thank you page when appointment is scheduled
+                            window.location.href = '/thank-you';
+                          }
                         });
                       }
                     }}
