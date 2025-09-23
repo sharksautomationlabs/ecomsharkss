@@ -28,7 +28,7 @@ const servicesData = [
   {
     title: 'Amazon',
     description: 'Fresh voices and anticipated titles, available now.',
-    logo: imgAmazonLogo,
+    logo: imgWalmartLogo,
   },
   {
     title: 'Tiktok',
@@ -43,7 +43,7 @@ const servicesData = [
   {
     title: 'Walmart',
     description: 'Take your library wherever you go.',
-    logo: imgWalmartLogo,
+    logo: imgAmazonLogo,
   },
 ];
 
