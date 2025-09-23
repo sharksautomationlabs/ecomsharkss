@@ -17,12 +17,8 @@ const nextConfig: NextConfig = {
   },
   // Ensure static files are properly served
   trailingSlash: false,
-  // Disable image optimization for videos
-  images: {
-    unoptimized: true,
-  },
-  // Ensure static files are included in build
-  assetPrefix: process.env.NODE_ENV === 'production' ? '' : '',
+  // Optimize for static export if needed
+  output: 'standalone',
 };
 
 export default nextConfig;

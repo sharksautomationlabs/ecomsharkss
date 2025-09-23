@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion, useAnimation, Variants, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import DeploymentVideo from './DeploymentVideo';
 
 const imgChatCircleDots = "/images/chat-icon.svg";
 
@@ -290,16 +289,24 @@ export default function MissionSection({
                         }
                       }}
                     >
-                      <DeploymentVideo
-                        src="/images/sharjeel.mp4"
+                      <video
+                        ref={videoRef}
                         className="w-full h-full object-contain sm:object-cover"
                         muted={false}
                         loop
                         playsInline
                         controls
                         preload="auto"
-                        fallbackImage="/images/mission-shark.png"
-                      />
+                        onVolumeChange={() => {
+                          // Allow manual volume control
+                          if (videoRef.current) {
+                            // User can manually control volume through video controls
+                          }
+                        }}
+                      >
+                        <source src="/images/sharjeel.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
                       {/* Audio status indicator */}
                       <div className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-black bg-opacity-70 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                         Audio enabled

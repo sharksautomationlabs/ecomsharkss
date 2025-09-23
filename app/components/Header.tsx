@@ -3,7 +3,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import DeploymentVideo from './DeploymentVideo';
 
 // Hamburger Menu Icon for Mobile
 const HamburgerIcon = ({ isOpen }: { isOpen: boolean }) => (
@@ -98,15 +97,15 @@ export default function Header({
       <div className="relative w-full max-w-[1920px] h-[50vh] lg:h-auto lg:aspect-[1920/1080] overflow-hidden select-none">
         
         <div className="absolute inset-0 z-0">
-          <DeploymentVideo
-            src="/images/bi-vid.mp4"
-            className="w-full h-full object-cover"
-            autoPlay
-            loop
-            muted
+          <video 
+            autoPlay 
+            loop 
+            muted 
             playsInline
-            fallbackImage="/images/hero-shark-bg.png"
-          />
+            className="w-full h-full object-cover"
+          >
+            <source src="/images/bi-vid.mp4" type="video/mp4" />
+          </video>
         </div>
         <div className="absolute inset-0 bg-[#052126]/60 z-10" />
 
