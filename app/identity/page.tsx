@@ -24,7 +24,7 @@ const GetQuoteButton = ({ small = false }: { small?: boolean }) => (
     onClick={() => {
       if (typeof window !== 'undefined' && (window as unknown as { Calendly?: { initPopupWidget: (options: { url: string }) => void } }).Calendly) {
         (window as unknown as { Calendly: { initPopupWidget: (options: { url: string, onEventScheduled?: (e: any) => void }) => void } }).Calendly.initPopupWidget({
-          url: 'https://calendly.com/contact-sharksbookpublishers/30min?primary_color=35c4dd',
+          url: 'https://calendly.com/zynofficiall09/30min',
           onEventScheduled: function(e: any) {
             // Redirect to thank you page when appointment is scheduled
             window.location.href = '/thank-you';
@@ -918,7 +918,7 @@ export default function IdentityPage() {
                         onClick={() => {
                           if (typeof window !== 'undefined' && (window as unknown as { Calendly?: { initPopupWidget: (options: { url: string }) => void } }).Calendly) {
                             (window as unknown as { Calendly: { initPopupWidget: (options: { url: string, onEventScheduled?: (e: any) => void }) => void } }).Calendly.initPopupWidget({
-                              url: 'https://calendly.com/contact-sharksbookpublishers/30min?primary_color=35c4dd',
+                              url: 'https://calendly.com/zynofficiall09/30min',
                               onEventScheduled: function(e: any) {
                                 // Redirect to thank you page when appointment is scheduled
                                 window.location.href = '/thank-you';

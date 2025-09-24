@@ -28,7 +28,7 @@ export default function CTASection() {
           const widgetElement = document.querySelector('.calendly-inline-widget');
           if (widgetElement && !widgetElement.hasChildNodes()) {
             (window as any).Calendly.initInlineWidget({
-              url: 'https://calendly.com/contact-sharksbookpublishers/30min?primary_color=35c4dd',
+              url: 'https://calendly.com/zynofficiall09/30min',
               parentElement: widgetElement,
               prefill: {},
               utm: {},
@@ -110,7 +110,7 @@ export default function CTASection() {
             {isClient ? (
               <div 
                 className="calendly-inline-widget" 
-                data-url="https://calendly.com/contact-sharksbookpublishers/30min?primary_color=35c4dd"
+                data-url="https://calendly.com/zynofficiall09/30min"
                 style={{ minWidth: '320px', height: '700px' }}
               ></div>
             ) : (

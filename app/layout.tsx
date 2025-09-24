@@ -35,7 +35,7 @@ export default function RootLayout({
             __html: `
               window.onload = function() { 
                 Calendly.initBadgeWidget({ 
-                  url: 'https://calendly.com/contact-sharksbookpublishers/30min?primary_color=35c4dd', 
+                  url: 'https://calendly.com/zynofficiall09/30min', 
                   text: 'Call for free', 
                   color: '#35c4dd', 
                   textColor: '#ffffff', 
