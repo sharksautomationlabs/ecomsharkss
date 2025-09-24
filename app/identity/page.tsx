@@ -224,7 +224,7 @@ export default function IdentityPage() {
               <div className="flex gap-4 justify-center lg:justify-start">
                 {selectedTeamMember === 'zayn' ? (
                   <>
-                    <SocialIcon path={socialLinks.instagram} label="Instagram" href="https://www.instagram.com/zayn___109?igsh=NTU5d3UwNzF6cWF0&utm_source=qr" />
+                    <SocialIcon path={socialLinks.instagram} label="Instagram" href="https://www.instagram.com/muhammadzayaanofficial/" />
                     <SocialIcon path={socialLinks.facebook} label="Facebook" href="https://www.facebook.com/profile.php?id=61580837862800" />
                     <SocialIcon path={socialLinks.linkedin} label="LinkedIn" href="https://www.linkedin.com/in/muhammad-zayaan-b7b220259?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" />
                   </>
