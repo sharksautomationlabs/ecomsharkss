@@ -13,7 +13,7 @@ const imgMaskShape = "/images/service-mask.svg";
 const imgArrowIcon = "/images/arrow-icon.svg";
 const imgChatIcon = "/images/chat-icon.svg";
 const imgSharkUnderwater = "/images/shark-underwater-2.png";
-const imgMissionShark = "/images/mission-shark-main.png";
+// const imgMissionShark = "/images/mission-shark-main.png";
 const imgPatternBg = "/images/pattern-bg.png";
 const imgFounder = "/images/founder.png";
 

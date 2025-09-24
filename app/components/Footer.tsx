@@ -1,9 +1,10 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion, useAnimation, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { sendContactEmail, ContactFormData } from '../utils/emailjs';
 
 // Image and icon assets for the section
 const imgPattern = "/images/pattern-bg.png"; // Light blue water pattern background
@@ -40,6 +41,20 @@ const SocialIcon = ({ path, href }: { path: string; href?: string }) => (
 export default function Contact() {
   const controls = useAnimation();
   
+  // Form state management
+  const [formData, setFormData] = useState<ContactFormData>({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
+  
   // Set triggerOnce to false to allow re-triggering
   const [ref, inView] = useInView({
     triggerOnce: false, // Set to false to re-trigger animation
@@ -53,6 +68,76 @@ export default function Contact() {
       controls.start('hidden'); // Reset to hidden state when out of view
     }
   }, [controls, inView]);
+
+  // Handle form input changes
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+    // Clear status message when user starts typing
+    if (submitStatus.type) {
+      setSubmitStatus({ type: null, message: '' });
+    }
+  };
+
+  // Form validation
+  const validateForm = (): boolean => {
+    if (!formData.name.trim()) {
+      setSubmitStatus({ type: 'error', message: 'Name is required' });
+      return false;
+    }
+    if (!formData.email.trim()) {
+      setSubmitStatus({ type: 'error', message: 'Email is required' });
+      return false;
+    }
+    if (!formData.email.includes('@')) {
+      setSubmitStatus({ type: 'error', message: 'Please enter a valid email address' });
+      return false;
+    }
+    if (!formData.message.trim()) {
+      setSubmitStatus({ type: 'error', message: 'Message is required' });
+      return false;
+    }
+    return true;
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '' });
+
+    try {
+      const result = await sendContactEmail(formData);
+      
+      if (result.success) {
+        setSubmitStatus({ type: 'success', message: result.message });
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          message: ''
+        });
+      } else {
+        setSubmitStatus({ type: 'error', message: result.message });
+      }
+    } catch (error) {
+      setSubmitStatus({ 
+        type: 'error', 
+        message: 'An unexpected error occurred. Please try again.' 
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   
   const containerVariants: Variants = {
     hidden: {},
@@ -165,32 +250,88 @@ export default function Contact() {
             <h2 className="text-2xl lg:text-3xl font-bold" style={{ fontFamily: "'Barlow', sans-serif" }}>
               Let's Talk About Your Book
             </h2>
-            <form className="mt-6 lg:mt-8 space-y-4 lg:space-y-6">
+            <form onSubmit={handleSubmit} className="mt-6 lg:mt-8 space-y-4 lg:space-y-6">
+              {/* Status Message */}
+              {submitStatus.type && (
+                <div className={`p-4 rounded-lg text-sm font-medium ${
+                  submitStatus.type === 'success' 
+                    ? 'bg-green-100 text-green-800 border border-green-200' 
+                    : 'bg-red-100 text-red-800 border border-red-200'
+                }`}>
+                  {submitStatus.message}
+                </div>
+              )}
+              
               <div>
                 <label htmlFor="name" className="block text-sm font-medium ml-4 mb-1">Name:</label>
-                <input type="text" id="name" className="w-full h-12 lg:h-14 bg-white rounded-full px-4 lg:px-6 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white" />
+                <input 
+                  type="text" 
+                  id="name" 
+                  name="name"
+                  value={formData.name}
+                  onChange={handleInputChange}
+                  required
+                  className="w-full h-12 lg:h-14 bg-white rounded-full px-4 lg:px-6 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white" 
+                />
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-6">
                 <div>
                   <label htmlFor="email" className="block text-sm font-medium ml-4 mb-1">Email:</label>
-                  <input type="email" id="email" className="w-full h-12 lg:h-14 bg-white rounded-full px-4 lg:px-6 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white" />
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full h-12 lg:h-14 bg-white rounded-full px-4 lg:px-6 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white" 
+                  />
                 </div>
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium ml-4 mb-1">Phone:</label>
-                  <input type="tel" id="phone" className="w-full h-12 lg:h-14 bg-white rounded-full px-4 lg:px-6 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white" />
+                  <input 
+                    type="tel" 
+                    id="phone" 
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    className="w-full h-12 lg:h-14 bg-white rounded-full px-4 lg:px-6 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white" 
+                  />
                 </div>
               </div>
               <div>
                 <label htmlFor="message" className="block text-sm font-medium ml-4 mb-1">Message:</label>
-                <textarea id="message" rows={4} className="w-full bg-white rounded-2xl lg:rounded-3xl p-4 lg:p-6 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white"></textarea>
+                <textarea 
+                  id="message" 
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                  rows={4} 
+                  className="w-full bg-white rounded-2xl lg:rounded-3xl p-4 lg:p-6 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white"
+                ></textarea>
               </div>
               <div>
-                <button type="submit" className="group flex items-center justify-center gap-3 bg-white text-[#35c4dd] font-semibold py-2.5 pl-6 pr-2 rounded-full text-base lg:text-lg shadow-lg overflow-hidden relative w-full lg:w-auto">
-                  <span className="relative z-10" style={{ fontFamily: "'Barlow', sans-serif" }}>Get Started</span>
-                  <span className="bg-[#063f4a] rounded-full p-2.5 relative z-10">
-                    <Image src={imgArrowIcon} alt="arrow icon" width={20} height={20} className="lg:w-6 lg:h-6" />
+                <button 
+                  type="submit" 
+                  disabled={isSubmitting}
+                  className={`group flex items-center justify-center gap-3 font-semibold py-2.5 pl-6 pr-2 rounded-full text-base lg:text-lg shadow-lg overflow-hidden relative w-full lg:w-auto transition-all duration-300 ${
+                    isSubmitting 
+                      ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
+                      : 'bg-white text-[#35c4dd] hover:shadow-xl'
+                  }`}
+                >
+                  <span className="relative z-10" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                    {isSubmitting ? 'Sending...' : 'Get Started'}
                   </span>
-                  <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#063f4a] rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
+                  {!isSubmitting && (
+                    <>
+                      <span className="bg-[#063f4a] rounded-full p-2.5 relative z-10">
+                        <Image src={imgArrowIcon} alt="arrow icon" width={20} height={20} className="lg:w-6 lg:h-6" />
+                      </span>
+                      <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-[#063f4a] rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
+                    </>
+                  )}
                 </button>
               </div>
             </form>

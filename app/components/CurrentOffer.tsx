@@ -1,7 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import Image from 'next/image';
+import { sendContactEmail, ContactFormData } from '../utils/emailjs';
 
 // Image assets
 const imgFounder = "/images/founder.png";
@@ -39,6 +40,90 @@ const GetQuoteButton = ({ small = false }: { small?: boolean }) => (
 
 
 export default function CurrentOffer() {
+  // Form state management
+  const [formData, setFormData] = useState<ContactFormData>({
+    name: '',
+    email: '',
+    phone: '',
+    message: ''
+  });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<{
+    type: 'success' | 'error' | null;
+    message: string;
+  }>({ type: null, message: '' });
+
+  // Handle form input changes
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+    // Clear status message when user starts typing
+    if (submitStatus.type) {
+      setSubmitStatus({ type: null, message: '' });
+    }
+  };
+
+  // Form validation
+  const validateForm = (): boolean => {
+    if (!formData.name.trim()) {
+      setSubmitStatus({ type: 'error', message: 'Name is required' });
+      return false;
+    }
+    if (!formData.email.trim()) {
+      setSubmitStatus({ type: 'error', message: 'Email is required' });
+      return false;
+    }
+    if (!formData.email.includes('@')) {
+      setSubmitStatus({ type: 'error', message: 'Please enter a valid email address' });
+      return false;
+    }
+    if (!formData.message.trim()) {
+      setSubmitStatus({ type: 'error', message: 'Message is required' });
+      return false;
+    }
+    return true;
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus({ type: null, message: '' });
+
+    try {
+      const result = await sendContactEmail(formData);
+      
+      if (result.success) {
+        setSubmitStatus({ type: 'success', message: result.message });
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          message: ''
+        });
+      } else {
+        setSubmitStatus({ type: 'error', message: result.message });
+      }
+    } catch (error) {
+      setSubmitStatus({ 
+        type: 'error', 
+        message: 'An unexpected error occurred. Please try again.' 
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <section className="relative w-full py-16 lg:py-24">
       {/* Background Video */}
@@ -116,7 +201,18 @@ export default function CurrentOffer() {
                 </div>
               </div>
               
-              <form className="space-y-4 lg:space-y-6">
+              <form onSubmit={handleSubmit} className="space-y-4 lg:space-y-6">
+                {/* Status Message */}
+                {submitStatus.type && (
+                  <div className={`p-4 rounded-xl text-sm font-medium ${
+                    submitStatus.type === 'success' 
+                      ? 'bg-green-500/20 text-green-200 border border-green-400/30' 
+                      : 'bg-red-500/20 text-red-200 border border-red-400/30'
+                  }`}>
+                    {submitStatus.message}
+                  </div>
+                )}
+                
                 <div>
                   <label htmlFor="name" className="block text-white/90 text-sm lg:text-base font-medium mb-2" style={{ fontFamily: "'Barlow', sans-serif" }}>
                     Name
@@ -125,6 +221,8 @@ export default function CurrentOffer() {
                     type="text"
                     id="name"
                     name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
                     required
                     className="w-full px-4 py-3 bg-white/10 border border-white/30 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-[#35c4dd] focus:border-transparent transition-all duration-300"
                     placeholder="Enter your full name"
@@ -140,6 +238,8 @@ export default function CurrentOffer() {
                     type="email"
                     id="email"
                     name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
                     required
                     className="w-full px-4 py-3 bg-white/10 border border-white/30 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-[#35c4dd] focus:border-transparent transition-all duration-300"
                     placeholder="Enter your email address"
@@ -154,6 +254,9 @@ export default function CurrentOffer() {
                   <textarea
                     id="message"
                     name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    required
                     rows={4}
                     className="w-full px-4 py-3 bg-white/10 border border-white/30 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-[#35c4dd] focus:border-transparent transition-all duration-300 resize-none"
                     placeholder="Tell us about your business goals..."
@@ -164,10 +267,15 @@ export default function CurrentOffer() {
                 <div className="pt-4">
                   <button
                     type="submit"
-                    className="w-full bg-[#35c4dd] hover:bg-[#2cb4ca] text-[#063f4a] font-bold py-4 px-6 rounded-xl transition-all duration-300 hover:scale-105 shadow-lg text-lg"
+                    disabled={isSubmitting}
+                    className={`w-full font-bold py-4 px-6 rounded-xl transition-all duration-300 shadow-lg text-lg ${
+                      isSubmitting 
+                        ? 'bg-gray-500 text-gray-300 cursor-not-allowed' 
+                        : 'bg-[#35c4dd] hover:bg-[#2cb4ca] text-[#063f4a] hover:scale-105'
+                    }`}
                     style={{ fontFamily: "'Barlow', sans-serif" }}
                   >
-                    Claim Your Free Consultation
+                    {isSubmitting ? 'Sending...' : 'Claim Your Free Consultation'}
                   </button>
                 </div>
               </form>
