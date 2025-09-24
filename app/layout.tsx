@@ -17,6 +17,22 @@ const barlowCondensed = Barlow_Condensed({
 export const metadata: Metadata = {
   title: "ECOM SHARKS - Ecommerce Solutions for Amazon, Shopify, TikTok & Walmart",
   description: "Empower your ecommerce business with ECOM SHARKS. Expert solutions for Amazon, Shopify, TikTok, and Walmart. Scale smarter, sell faster with our dedicated team.",
+  icons: {
+    icon: [
+      { url: '/favicon.ico?v=2', sizes: 'any' },
+      { url: '/favicon-16x16.png?v=2', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon-32x32.png?v=2', sizes: '32x32', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png?v=2', sizes: '180x180', type: 'image/png' },
+    ],
+    other: [
+      { rel: 'mask-icon', url: '/safari-pinned-tab.svg?v=2', color: '#35c4dd' },
+    ],
+  },
+  manifest: '/site.webmanifest',
+  themeColor: '#35c4dd',
+  viewport: 'width=device-width, initial-scale=1',
 };
 
 export default function RootLayout({
