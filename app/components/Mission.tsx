@@ -103,7 +103,7 @@ export default function MissionSection({
   const contentData = {
     howWeWork: {
       title: 'How We Work',
-      description: 'Meet Sharjeel Zahoor – Your Senior Consultant\n\nWondering what you\'ll actually gain by working with us?\nWe\'ve created a free 3-minute masterclass where you\'ll discover:\n\n• How eCommerce really works\n• What automation is, and why it\'s the backbone of online success\n• How automation can help you achieve financial freedom, independence, and a reliable passive income stream\n\nThis video is packed with insights worth millions of dollars—yet it\'s free for you to explore.\n\nOur senior consultant, Sharjeel Zahoor, will walk you through the process step by step.\n\nConnect with Sharjeel on Social Media',
+      description: 'Meet Sharjeel Zahoor – Your Senior Consultant\n\nWondering what you\'ll actually gain by working with us?\nWe\'ve created a free 3-minute masterclass where you\'ll discover:\n\n• How Ecommerce really works\n• What automation is, and why it\'s the backbone of online success\n• How automation can help you achieve financial freedom, independence, and a reliable passive income stream\n\nThis video is packed with insights worth millions of dollars—yet it\'s free for you to explore.\n\nOur senior consultant, Sharjeel Zahoor, will walk you through the process step by step.\n\nConnect with Sharjeel ',
       badge: 'Free Masterclass'
     },
     mission: {
@@ -142,7 +142,7 @@ export default function MissionSection({
 
   return (
     <div ref={ref} className="w-full bg-white flex justify-center">
-        <div className={`relative w-full max-w-[1920px] overflow-hidden select-none ${useCustomContent ? 'min-h-[800px] py-20' : 'min-h-[800px] lg:min-h-[1000px] py-16 pb-8 lg:py-20'}`}>
+        <div className={`relative w-full max-w-[1920px] overflow-hidden select-none ${useCustomContent ? 'min-h-[800px] py-20' : 'min-h-[900px] lg:min-h-[1200px] py-16 pb-2 lg:py-20'}`}>
         
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#bef4fe] to-white" />
         <div className="absolute inset-0 z-10" style={{ maskImage: `url('${imgPatternMask}')`, maskSize: '100% 100%' }}>
@@ -176,10 +176,10 @@ export default function MissionSection({
             </nav>
           )}
 
-          <div className={`relative w-full ${useCustomContent ? 'h-full' : 'h-auto lg:h-auto lg:min-h-[600px]'}`}>
+          <div className={`relative w-full ${useCustomContent ? 'h-full' : 'h-auto lg:h-auto lg:min-h-[800px]'}`}>
               {/* Left Text Content */}
               <motion.div 
-                className={`${useCustomContent ? 'relative w-full lg:w-[585px] z-20' : 'relative lg:absolute top-0 lg:top-[5%] left-0 w-full lg:w-[585px] z-20'}`}
+                className={`${useCustomContent ? 'relative w-full lg:w-[585px] z-20' : 'relative lg:absolute top-0 lg:top-[5%] left-0 w-full lg:w-[585px] z-20 md:mb-8 lg:mb-0'}`}
                 initial="hidden"
                 animate={controls}
                 variants={scrollFadeInVariants}
@@ -276,7 +276,7 @@ export default function MissionSection({
                     variants={personWipeUpVariants}
                   >
                     <div 
-                      className="relative w-full max-w-[600px] aspect-video sm:h-[300px] md:h-[400px] bg-black rounded-2xl overflow-hidden shadow-2xl group cursor-pointer"
+                      className="relative w-full max-w-[600px] aspect-video sm:h-[300px] md:h-[400px] md:max-w-[450px] lg:max-w-[600px] bg-black rounded-2xl overflow-hidden shadow-2xl group cursor-pointer"
                       onClick={() => {
                         if (videoRef.current) {
                           videoRef.current.muted = false;

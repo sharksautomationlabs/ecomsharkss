@@ -88,7 +88,7 @@ export default function QuoteSection() {
     <div ref={ref} className="w-full bg-white flex justify-center">
       
        {/* Responsive container */}
-       <div className="relative w-full max-w-[1920px] h-auto py-2 lg:aspect-[1920/800] lg:py-0 overflow-hidden select-none">
+       <div className="relative w-full max-w-[1920px] h-auto py-2 lg:min-h-[800px] lg:py-0 overflow-hidden select-none">
         
         {/* --- PRESERVED DIVS (UNCHANGED AS REQUESTED) --- */}
         <motion.div 
@@ -97,15 +97,15 @@ export default function QuoteSection() {
           initial="hidden"
           animate={controls}
         >
-            <div className="absolute flex h-[678px] items-center justify-center top-[60px] translate-x-[-50%] w-[1920px]" style={{ left: "calc(50% - 36.5px)" }}>
+            <div className="absolute flex h-[800px] items-center justify-center top-[60px] translate-x-[-50%] w-[1920px]" style={{ left: "calc(50% - 36.5px)" }}>
                 <div className="flex-none scale-y-[-100%]">
-                    <div className="h-[678px] relative w-[1920px]">
+                    <div className="h-[800px] relative w-[1920px]">
                     <img alt="background shape" className="block max-w-none size-full" src={imgRectangle34624302} />
                     </div>
                 </div>
             </div>
-            <div className="absolute bg-[0%_-0.06%] bg-no-repeat bg-size-[100%_88.77%] h-[961px] left-[-43px] opacity-20 top-px w-[2382px]" style={{ backgroundImage: `url('${imgPattern011}')` }} />
-            <div className="absolute h-[738px] left-0 overflow-clip top-0 w-[1920px]">
+            <div className="absolute bg-[0%_-0.06%] bg-no-repeat bg-size-[100%_88.77%] h-[1000px] left-[-43px] opacity-20 top-px w-[2382px]" style={{ backgroundImage: `url('${imgPattern011}')` }} />
+            <div className="absolute h-[800px] left-0 overflow-clip top-0 w-[1920px]">
                 <div 
                   className="absolute flex h-[961.316px] items-center justify-center -top-167 w-[1324.938px] animate-shark-complete transition-all duration-1000 ease-out"
                   style={{ 

@@ -100,7 +100,7 @@ export default function ExpertsSection({
 
   return (
     <div ref={ref} className="w-full bg-white flex justify-center">
-      <div className="relative w-full max-w-[1920px] h-auto py-16 lg:aspect-[1920/1080] lg:py-0 overflow-hidden select-none
+      <div className="relative w-full max-w-[1920px] h-auto py-16 md:py-48 md:min-h-[800px] lg:py-8 xl:aspect-[1920/1080] xl:py-0 overflow-hidden select-none
                       flex items-center px-5 lg:px-20">
         
         <motion.div 

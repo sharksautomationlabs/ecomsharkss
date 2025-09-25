@@ -95,10 +95,10 @@ export default function ResultsSection() {
 
   return (
     // This structure is correct: it centers the 1920px canvas.
-    <div ref={ref} className="w-full bg-white flex justify-center pb-20 lg:pb-32">
+    <div ref={ref} className="w-full bg-white flex justify-center pb-20 lg:pb-40 xl:pb-32">
       
       {/* Responsive container */}
-      <div className="relative w-full max-w-[1920px] h-auto py-4 lg:aspect-[1920/1200] lg:py-0 overflow-hidden">
+      <div className="relative w-full max-w-[1920px] h-auto py-4 md:min-h-[800px] lg:min-h-[1000px] xl:aspect-[1920/1200] xl:py-0 overflow-hidden">
         
         {/* Background Layers (Lowest Layer) */}
         <div className="absolute inset-0 z-0">
@@ -111,12 +111,12 @@ export default function ResultsSection() {
 
         {/* Text Content - First on mobile, left side on desktop */}
         <motion.div 
-          className="relative z-20 flex items-center min-h-[400px] lg:min-h-[1200px] px-5 lg:px-20"
+          className="relative z-20 flex items-center min-h-[400px] md:min-h-[600px] lg:min-h-[1000px] xl:min-h-[1200px] px-5 lg:px-20"
           variants={leftVariants}
           initial="hidden"
           animate={controls}
         >
-          <div className="w-full lg:w-1/2 xl:w-2/5 pt-8 pb-8 lg:pt-8 lg:pb-24 lg:py-0">
+          <div className="w-full lg:w-1/2 xl:w-2/5 pt-8 pb-8 lg:pt-8 lg:pb-24 lg:py-0 text-center lg:text-left">
             {/* All fonts and styles remain exactly as you provided. */}
             <h1 className="text-4xl lg:text-[94px] font-semibold text-[#2c2420] leading-tight lg:leading-[0.921]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
                 More Than<br />Management,<br />We Deliver Results

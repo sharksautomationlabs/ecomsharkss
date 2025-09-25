@@ -133,7 +133,7 @@ export default function Header({
             </div>
 
             <div className="mt-2 lg:mt-6 flex items-center justify-between">
-                <div className="w-[140px] h-[100px] lg:w-[180px] lg:h-[140px] relative fade-in -ml-10 lg:-ml-12">
+                <div className="w-[140px] h-[100px] md:w-[160px] md:h-[120px] lg:w-[180px] lg:h-[140px] relative fade-in -ml-10 md:-ml-8 lg:-ml-12">
                     <Image src={imgImage1} alt="Ecom Sharks Logo" layout="fill" objectFit="contain" />
                 </div>
                 <div className="hidden lg:flex w-[950px] h-[90px] bg-white/20 backdrop-blur-sm 
