@@ -172,6 +172,7 @@ export default function IdentityPage() {
                 muted 
                 playsInline
                 className="absolute inset-0 w-full h-full object-cover blur-md"
+                poster="/images/bi-vid.jpeg"
               >
                 <source src="/images/bi-vid.mp4" type="video/mp4" />
               </video>
@@ -774,6 +775,7 @@ export default function IdentityPage() {
              muted 
              playsInline
              className="absolute inset-0 w-full h-full object-cover"
+             poster="/images/bi-vid.jpeg"
            >
              <source src="/images/bi-vid.mp4" type="video/mp4" />
            </video>

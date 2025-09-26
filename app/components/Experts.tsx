@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion, useAnimation, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { handleVideoEvents } from '../utils/videoUtils';
 
 const imgChatCircleDots = "/images/chat-icon.svg";
 
@@ -158,11 +159,13 @@ export default function ExpertsSection({
             <div className="relative w-full h-full">
                 <div className="absolute inset-0 rounded-[20px] lg:rounded-[40px] overflow-hidden">
                     <video 
-                        autoPlay 
-                        loop 
-                        muted 
-                        playsInline
-                        className="absolute inset-0 w-full h-full object-cover"
+                      autoPlay 
+                      loop 
+                      muted 
+                      playsInline
+                      className="absolute inset-0 w-full h-full object-cover"
+                      poster="/images/logos-underwater.png"
+                      {...handleVideoEvents}
                     >
                         <source src="/images/under-water-logos.mp4" type="video/mp4" />
                     </video>

@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
+import { handleVideoEvents } from '../utils/videoUtils';
 import Image from 'next/image';
 import { motion, useAnimation, Variants, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -297,12 +298,14 @@ export default function MissionSection({
                         playsInline
                         controls
                         preload="auto"
+                        poster="/images/sharjeel.jpg"
                         onVolumeChange={() => {
                           // Allow manual volume control
                           if (videoRef.current) {
                             // User can manually control volume through video controls
                           }
                         }}
+                        {...handleVideoEvents}
                       >
                         <source src="/images/sharjeel.mp4" type="video/mp4" />
                         Your browser does not support the video tag.

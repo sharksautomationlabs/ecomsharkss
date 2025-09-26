@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import { handleVideoEvents } from '../utils/videoUtils';
 
 // Hamburger Menu Icon for Mobile
 const HamburgerIcon = ({ isOpen }: { isOpen: boolean }) => (
@@ -103,6 +104,8 @@ export default function Header({
             muted 
             playsInline
             className="w-full h-full object-cover"
+            poster="/images/bi-vid.jpeg"
+            {...handleVideoEvents}
           >
             <source src="/images/bi-vid.mp4" type="video/mp4" />
           </video>
@@ -197,7 +200,7 @@ export default function Header({
               <div className="flex flex-col h-full">
                 {/* Header */}
                 <div className="flex items-center justify-between p-6 border-b border-white/20">
-                  <div className="w-[80px] h-[60px] relative">
+                  <div className="w-[100px] h-[75px] relative -ml-8">
                     <Image src={imgImage1} alt="Ecom Sharks Logo" layout="fill" objectFit="contain" />
                   </div>
                   <button 
@@ -209,36 +212,36 @@ export default function Header({
                 </div>
 
                 {/* Top Bar Items */}
-                <div className="px-6 py-4 border-b border-white/20">
-                  <p className="text-white text-sm font-medium mb-4" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                <div className="px-6 py-3 border-b border-white/20">
+                  <p className="text-white text-xs font-medium mb-3" style={{ fontFamily: "'Barlow', sans-serif" }}>
                     🌟 One-Stop All Ecommerce Accounts Solutions
                   </p>
-                  <div className="space-y-3">
+                  <div className="space-y-2">
                     <a 
                       href="tel:4694807938" 
-                      className="flex items-center gap-3 text-white text-sm font-medium hover:text-[#35c4dd] transition-colors"
+                      className="flex items-center gap-2 text-white text-xs font-medium hover:text-[#35c4dd] transition-colors"
                       style={{ fontFamily: "'Barlow', sans-serif" }}
                     >
-                      <Image src={imgGroup1000004908} alt="phone" width={20} height={20} />
+                      <Image src={imgGroup1000004908} alt="phone" width={16} height={16} />
                       <span>(469) 480-7938</span>
                     </a>
                     <a 
                       href="mailto:info@ecomsharkss.com" 
-                      className="flex items-center gap-3 text-white text-sm font-medium hover:text-[#35c4dd] transition-colors"
+                      className="flex items-center gap-2 text-white text-xs font-medium hover:text-[#35c4dd] transition-colors"
                       style={{ fontFamily: "'Barlow', sans-serif" }}
                     >
-                      <Image src={imgGroup1000004909} alt="email" width={20} height={20} />
+                      <Image src={imgGroup1000004909} alt="email" width={16} height={16} />
                       <span>info@ecomsharkss.com</span>
                     </a>
                   </div>
                 </div>
 
                 {/* Navigation Links */}
-                <div className="flex-1 px-6 py-6">
-                  <nav className="space-y-4">
+                <div className="flex-1 px-6 py-4">
+                  <nav className="space-y-3">
                     <Link 
                       href="/" 
-                      className="block text-white text-lg font-medium hover:text-[#35c4dd] transition-colors py-2"
+                      className="block text-white text-base font-medium hover:text-[#35c4dd] transition-colors py-1"
                       style={{ fontFamily: "'Barlow', sans-serif" }}
                       onClick={() => setIsMobileNavOpen(false)}
                     >
@@ -246,7 +249,7 @@ export default function Header({
                     </Link>
                     <Link 
                       href="/about" 
-                      className="block text-white text-lg font-medium hover:text-[#35c4dd] transition-colors py-2"
+                      className="block text-white text-base font-medium hover:text-[#35c4dd] transition-colors py-1"
                       style={{ fontFamily: "'Barlow', sans-serif" }}
                       onClick={() => setIsMobileNavOpen(false)}
                     >
@@ -254,7 +257,7 @@ export default function Header({
                     </Link>
                     <Link 
                       href="/amazon" 
-                      className="block text-white text-lg font-medium hover:text-[#35c4dd] transition-colors py-2"
+                      className="block text-white text-base font-medium hover:text-[#35c4dd] transition-colors py-1"
                       style={{ fontFamily: "'Barlow', sans-serif" }}
                       onClick={() => setIsMobileNavOpen(false)}
                     >
@@ -262,7 +265,7 @@ export default function Header({
                     </Link>
                     <Link 
                       href="/shopify" 
-                      className="block text-white text-lg font-medium hover:text-[#35c4dd] transition-colors py-2"
+                      className="block text-white text-base font-medium hover:text-[#35c4dd] transition-colors py-1"
                       style={{ fontFamily: "'Barlow', sans-serif" }}
                       onClick={() => setIsMobileNavOpen(false)}
                     >
@@ -270,7 +273,7 @@ export default function Header({
                     </Link>
                     <Link 
                       href="/tiktok" 
-                      className="block text-white text-lg font-medium hover:text-[#35c4dd] transition-colors py-2"
+                      className="block text-white text-base font-medium hover:text-[#35c4dd] transition-colors py-1"
                       style={{ fontFamily: "'Barlow', sans-serif" }}
                       onClick={() => setIsMobileNavOpen(false)}
                     >
@@ -278,7 +281,7 @@ export default function Header({
                     </Link>
                     <Link 
                       href="/walmart" 
-                      className="block text-white text-lg font-medium hover:text-[#35c4dd] transition-colors py-2"
+                      className="block text-white text-base font-medium hover:text-[#35c4dd] transition-colors py-1"
                       style={{ fontFamily: "'Barlow', sans-serif" }}
                       onClick={() => setIsMobileNavOpen(false)}
                     >
@@ -286,7 +289,7 @@ export default function Header({
                     </Link>
                     <Link 
                       href="/identity" 
-                      className="block text-white text-lg font-medium hover:text-[#35c4dd] transition-colors py-2"
+                      className="block text-white text-base font-medium hover:text-[#35c4dd] transition-colors py-1"
                       style={{ fontFamily: "'Barlow', sans-serif" }}
                       onClick={() => setIsMobileNavOpen(false)}
                     >
@@ -294,7 +297,7 @@ export default function Header({
                     </Link>
                     <Link 
                       href="/contact" 
-                      className="block text-white text-lg font-medium hover:text-[#35c4dd] transition-colors py-2"
+                      className="block text-white text-base font-medium hover:text-[#35c4dd] transition-colors py-1"
                       style={{ fontFamily: "'Barlow', sans-serif" }}
                       onClick={() => setIsMobileNavOpen(false)}
                     >
@@ -304,9 +307,9 @@ export default function Header({
                 </div>
 
                 {/* Action Buttons */}
-                <div className="px-6 py-6 border-t border-white/20 space-y-4">
+                <div className="px-6 py-4 border-t border-white/20 space-y-3">
                   <button 
-                    className="group w-full flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-3 px-6 rounded-full text-lg shadow-lg overflow-hidden relative"
+                    className="group w-full flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2 px-4 rounded-full text-base shadow-lg overflow-hidden relative"
                     onClick={() => {
                       setIsMobileNavOpen(false);
                       if (typeof window !== 'undefined' && (window as any).Calendly) {
@@ -328,7 +331,7 @@ export default function Header({
                   </button>
                   
                   <button 
-                    className="w-full flex items-center justify-between bg-white rounded-full border-2 border-[#35c4dd] p-3 shadow-lg"
+                    className="w-full flex items-center justify-between bg-white rounded-full border-2 border-[#35c4dd] p-2 shadow-lg"
                     onClick={() => setIsMobileNavOpen(false)}
                   >
                     <span className="pl-3 text-[#063f4a] font-semibold text-base" style={{ fontFamily: "'Barlow', sans-serif" }}>

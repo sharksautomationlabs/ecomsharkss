@@ -105,6 +105,7 @@ export default function ThanksPage() {
                     muted 
                     playsInline
                     className="absolute inset-0 w-full h-full object-cover object-center"
+                    poster="/images/bi-vid.jpeg"
                   >
                     <source src="/images/bi-vid.mp4" type="video/mp4" />
                   </video>
@@ -156,6 +157,7 @@ export default function ThanksPage() {
                     muted 
                     playsInline
                     className="absolute inset-0 w-full h-full object-cover object-center"
+                    poster="/images/bi-vid.jpeg"
                   >
                     <source src="/images/bi-vid.mp4" type="video/mp4" />
                   </video>

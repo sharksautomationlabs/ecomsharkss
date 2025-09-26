@@ -75,6 +75,7 @@ export default function Services() {
               muted 
               playsInline
               className="absolute inset-0 w-full h-full object-cover blur-md"
+              poster="/images/bi-vid.jpeg"
             >
               <source src="/images/bi-vid.mp4" type="video/mp4" />
             </video>
