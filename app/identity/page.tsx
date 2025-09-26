@@ -199,6 +199,8 @@ export default function IdentityPage() {
                     width={320} 
                     height={320}
                     className="w-full h-full object-cover"
+                    priority
+                    quality={90}
                   />
                 </div>
               </div>
@@ -599,6 +601,8 @@ export default function IdentityPage() {
                        width={300} 
                        height={300}
                        className="w-full h-full object-cover"
+                       loading="lazy"
+                       quality={85}
                      />
                    </div>
                    <div className="mt-3 text-center">
@@ -620,6 +624,8 @@ export default function IdentityPage() {
                        width={300} 
                        height={300}
                        className="w-full h-full object-cover"
+                       loading="lazy"
+                       quality={85}
                      />
                    </div>
                    <div className="mt-3 text-center">
@@ -641,6 +647,8 @@ export default function IdentityPage() {
                        width={300} 
                        height={300}
                        className="w-full h-full object-cover"
+                       loading="lazy"
+                       quality={85}
                      />
                    </div>
                    <div className="mt-3 text-center">
@@ -662,6 +670,8 @@ export default function IdentityPage() {
                        width={300} 
                        height={300}
                        className="w-full h-full object-cover"
+                       loading="lazy"
+                       quality={85}
                      />
                    </div>
                    <div className="mt-3 text-center">

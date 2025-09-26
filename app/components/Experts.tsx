@@ -188,7 +188,14 @@ export default function ExpertsSection({
             transform: `translateX(${scrollPosition * 0.2}px)`
           }}
         >
-            <img src="/images/shark-underwater.png" alt="Shark underwater" className="w-full h-full transform -scale-x-100" />
+            <Image 
+              src="/images/shark-underwater.png" 
+              alt="Shark underwater" 
+              width={400}
+              height={300}
+              className="w-full h-full transform -scale-x-100" 
+              priority
+            />
         </div>
       </div>
     </div>

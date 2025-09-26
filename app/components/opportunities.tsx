@@ -199,7 +199,14 @@ export default function Opportunities() {
                 transform: `translateX(${scrollPosition * 0.2}px)`
               }}
            >
-             <img src="/images/shark-underwater-2.png" alt="Shark underwater" className="w-full h-full" />
+             <Image 
+               src="/images/shark-underwater-2.png" 
+               alt="Shark underwater" 
+               width={400}
+               height={300}
+               className="w-full h-full" 
+               priority
+             />
            </div>
         </div>
 

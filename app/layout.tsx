@@ -1,22 +1,61 @@
 import type { Metadata } from "next";
 import { Barlow, Barlow_Condensed } from "next/font/google";
 import "./globals.css";
+import CalendlyScript from "./components/CalendlyScript";
 
 const barlow = Barlow({
   variable: "--font-barlow",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
+  display: 'swap',
+  preload: true,
 });
 
 const barlowCondensed = Barlow_Condensed({
   variable: "--font-barlow-condensed",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
+  display: 'swap',
+  preload: true,
 });
+
+export const viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  themeColor: '#35c4dd',
+};
 
 export const metadata: Metadata = {
   title: "ECOM SHARKS - Ecommerce Solutions for Amazon, Shopify, TikTok & Walmart",
   description: "Empower your ecommerce business with ECOM SHARKS. Expert solutions for Amazon, Shopify, TikTok, and Walmart. Scale smarter, sell faster with our dedicated team.",
+  keywords: ["ecommerce", "amazon fba", "shopify", "tiktok shop", "walmart marketplace", "online selling", "digital marketing"],
+  authors: [{ name: "ECOM SHARKS" }],
+  creator: "ECOM SHARKS",
+  publisher: "ECOM SHARKS",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://ecomsharks.com',
+    title: 'ECOM SHARKS - Ecommerce Solutions',
+    description: 'Empower your ecommerce business with ECOM SHARKS. Expert solutions for Amazon, Shopify, TikTok, and Walmart.',
+    siteName: 'ECOM SHARKS',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'ECOM SHARKS - Ecommerce Solutions',
+    description: 'Empower your ecommerce business with ECOM SHARKS. Expert solutions for Amazon, Shopify, TikTok, and Walmart.',
+  },
   icons: {
     icon: [
       { url: '/favicon-16x16.png?v=6', sizes: '16x16', type: 'image/png' },
@@ -30,8 +69,6 @@ export const metadata: Metadata = {
     ],
   },
   manifest: '/site.webmanifest',
-  themeColor: '#35c4dd',
-  viewport: 'width=device-width, initial-scale=1',
 };
 
 export default function RootLayout({
@@ -42,52 +79,26 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Preload critical resources */}
+        <link rel="preload" href="/images/bi-vid.jpeg" as="image" />
+        <link rel="preload" href="/images/quote-logo.png" as="image" />
+        <link rel="preload" href="/fonts/barlow.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
+        
+        {/* DNS prefetch for external domains */}
+        <link rel="dns-prefetch" href="https://assets.calendly.com" />
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+        
+        {/* Calendly CSS */}
         <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
-        <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
-        <script 
-          type="text/javascript"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.onload = function() { 
-                Calendly.initBadgeWidget({ 
-                  url: 'https://calendly.com/zynofficiall09/30min', 
-                  text: 'Call for free', 
-                  color: '#35c4dd', 
-                  textColor: '#ffffff', 
-                  branding: true 
-                }); 
-                
-                // Global Calendly event handler for redirects
-                window.addEventListener('message', function(event) {
-                  console.log('Calendly message received:', event.data);
-                  if (event.data.event && event.data.event === 'calendly.event_scheduled') {
-                    console.log('Calendly event scheduled, redirecting to thank you page...');
-                    setTimeout(function() {
-                      window.location.href = '/thank-you';
-                    }, 1000);
-                  }
-                });
-                
-                // Alternative approach: Check for Calendly success page
-                var originalPushState = history.pushState;
-                history.pushState = function() {
-                  originalPushState.apply(history, arguments);
-                  if (window.location.href.includes('calendly.com') && window.location.href.includes('scheduled')) {
-                    console.log('Calendly success page detected, redirecting...');
-                    setTimeout(function() {
-                      window.location.href = '/thank-you';
-                    }, 2000);
-                  }
-                };
-              }
-            `
-          }}
-        />
       </head>
       <body
         className={`${barlow.variable} ${barlowCondensed.variable} antialiased`}
       >
         {children}
+        
+        {/* Calendly Script with optimization */}
+        <CalendlyScript />
       </body>
     </html>
   );

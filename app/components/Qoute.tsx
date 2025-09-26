@@ -100,7 +100,14 @@ export default function QuoteSection() {
             <div className="absolute flex h-[800px] items-center justify-center top-[60px] translate-x-[-50%] w-[1920px]" style={{ left: "calc(50% - 36.5px)" }}>
                 <div className="flex-none scale-y-[-100%]">
                     <div className="h-[800px] relative w-[1920px]">
-                    <img alt="background shape" className="block max-w-none size-full" src={imgRectangle34624302} />
+                    <Image 
+                      alt="background shape" 
+                      width={1920}
+                      height={800}
+                      className="block max-w-none size-full" 
+                      src={imgRectangle34624302}
+                      priority
+                    />
                     </div>
                 </div>
             </div>
