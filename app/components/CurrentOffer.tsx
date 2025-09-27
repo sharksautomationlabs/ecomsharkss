@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import { sendContactEmail, ContactFormData } from '../utils/emailjs';
+import { useVideoLazyLoading } from '../utils/videoLazyLoading';
 
 // Image assets
 const imgFounder = "/images/founder.png";
@@ -40,6 +41,7 @@ const GetQuoteButton = ({ small = false }: { small?: boolean }) => (
 
 
 export default function CurrentOffer() {
+  const { videoRef, isInView } = useVideoLazyLoading();
   // Form state management
   const [formData, setFormData] = useState<ContactFormData>({
     name: '',
@@ -129,10 +131,12 @@ export default function CurrentOffer() {
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
         <video 
-          autoPlay 
+          ref={videoRef}
+          autoPlay={isInView}
           loop 
           muted 
           playsInline
+          preload="metadata"
           className="absolute inset-0 w-full h-full object-cover"
           poster="/images/bi-vid.jpeg"
         >

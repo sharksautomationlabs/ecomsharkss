@@ -35,7 +35,7 @@ export default function EcommerceAutomationPage() {
       rating: 5,
       postDate: "Jan 8, 2025",
       replyDate: "Jan 9, 2025",
-      profileImage: "/images/Dummy-profile/Michael-Rodriguez.png"
+      profileImage: "/images/Dummy-profile/Michael-Chen.png"
     }
   ];
 

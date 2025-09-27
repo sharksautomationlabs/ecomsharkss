@@ -2,8 +2,10 @@
 
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import { motion, useAnimation, Variants } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
+import { fadeInLeft, fadeInUp, staggerContainer } from '../utils/animations';
 import { useInView } from 'react-intersection-observer';
+import { useVideoLazyLoading } from '../utils/videoLazyLoading';
 
 const imgChatCircleDots = "/images/chat-icon.svg";
 
@@ -13,7 +15,7 @@ const imgBgVector = "/images/bg-vector-1.svg";
 const imgBgMask = "/images/shark-ocean-mask.svg";
 const imgClappingHandsIcon = "/images/hands-clapping.svg";
 const imgArrowIcon = "/images/arrow-icon-3.svg";
-const imgCardMask = "/images/pattern-mask.svg";
+const imgCardMask = "/images/service-mask.svg";
 
 // Data for the two cards to keep the code clean and scalable.
 const cardData = [
@@ -29,18 +31,8 @@ const cardData = [
   }
 ];
 
-// Animation Variants for the slide-in effect
-const imageSlideInVariants: Variants = {
-  hidden: { x: 100, opacity: 0 },
-  visible: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.8,
-      ease: "circOut",
-    },
-  },
-};
+// Use optimized animation variants
+const imageSlideInVariants = fadeInLeft;
 
 // Reusable Card component, now with motion capabilities.
 const InfoCard = ({ title, description, backgroundImage }: {
@@ -58,7 +50,7 @@ const InfoCard = ({ title, description, backgroundImage }: {
       }}
       variants={imageSlideInVariants}
     >
-      <Image src={backgroundImage} alt={title} layout="fill" objectFit="cover" className="rounded-2xl"/>
+      <Image src={backgroundImage} alt={title} fill className="object-cover rounded-2xl"/>
     </motion.div>
     
     <div className="mt-6 lg:mt-8 w-full">
@@ -82,6 +74,7 @@ const InfoCard = ({ title, description, backgroundImage }: {
 export default function Opportunities() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const controls = useAnimation();
+  const { videoRef, isInView } = useVideoLazyLoading();
   
   // MODIFICATION 1: Set triggerOnce to false
   const [ref, inView] = useInView({
@@ -105,15 +98,8 @@ export default function Opportunities() {
     }
   }, [inView, controls]);
 
-  // Variant to orchestrate the animations of the children (the cards)
-  const containerVariants: Variants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.3,
-      },
-    },
-  };
+  // Use optimized container variants
+  const containerVariants = staggerContainer;
 
   return (
     <section className="relative w-full bg-white">
@@ -121,7 +107,7 @@ export default function Opportunities() {
       <div className="absolute inset-0 z-0">
         {/* Wave background - only on desktop */}
         <div className="hidden lg:block absolute inset-0">
-          <Image src={imgBgVector} alt="Wavy background shape" layout="fill" objectFit="cover" objectPosition="bottom"/>
+          <Image src={imgBgVector} alt="Wavy background shape" fill className="object-cover object-bottom"/>
         </div>
         {/* Video background - on all screens */}
         <div className="absolute inset-0">
@@ -133,10 +119,12 @@ export default function Opportunities() {
             }}
           >
             <video 
-              autoPlay 
+              ref={videoRef}
+              autoPlay={isInView}
               loop 
               muted 
               playsInline
+              preload="metadata"
               className="w-full h-full object-cover object-center blur-md"
               poster="/images/bi-vid.jpeg"
             >

@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import Image from 'next/image';
 import { motion, useAnimation, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useVideoLazyLoading } from '../utils/videoLazyLoading';
 
 // Image assets
 const imgBackground = "/images/shark-ocean-main.png";
@@ -18,14 +19,14 @@ const servicesData = [
     id: 1,
     title: "Expertise in Inventory Management",
     description: "Our inventory management services ensure your products are always in stock and ready to meet customer demand.",
-    icon: "/images/hero-walmart-logo.png",
+    icon: "/images/walmart-logo.png",
     concept: "Amazon"
   },
   {
     id: 2,
     title: "Superior Order Fulfillment Solutions",
     description: "We guarantee fast, reliable delivery, ensuring your customers receive their orders promptly and in perfect condition.",
-    icon: "/images/hero-walmart-logo.png",
+    icon: "/images/walmart-logo.png",
     concept: "Amazon"
   }
 ];
@@ -61,6 +62,7 @@ const GetQuoteButton = ({ small = false }: { small?: boolean }) => (
 
 export default function BestServices() {
   const controls = useAnimation();
+  const { videoRef, isInView } = useVideoLazyLoading();
   
   // Set triggerOnce to false to allow re-triggering
   const [ref, inView] = useInView({
@@ -136,7 +138,7 @@ export default function BestServices() {
       {/* Background elements are absolutely positioned and fill the parent container. */}
       <div className="absolute top-0 left-0 right-0 bottom-0">
         <div className="absolute inset-0 z-0">
-          <Image src={imgBlueWaveShape} alt="Wavy background shape" layout="fill" objectFit="cover" objectPosition="top" />
+          <Image src={imgBlueWaveShape} alt="Wavy background shape" fill className="object-cover object-top" />
         </div>
         <div className="absolute inset-0 z-10" 
              style={{
@@ -147,10 +149,12 @@ export default function BestServices() {
              }}>
           <div className="relative w-full h-full">
             <video 
-              autoPlay 
+              ref={videoRef}
+              autoPlay={isInView}
               loop 
               muted 
               playsInline
+              preload="metadata"
               className="absolute inset-0 w-full h-full object-cover blur-md"
               poster="/images/bi-vid.jpeg"
             >

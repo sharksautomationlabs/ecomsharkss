@@ -3,10 +3,12 @@
 import React from 'react';
 import { motion, useAnimation, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useVideoLazyLoading } from '../utils/videoLazyLoading';
 import Header from '../components/Header';
 
 export default function ThanksPage() {
   const controls = useAnimation();
+  const { videoRef, isInView } = useVideoLazyLoading();
   const [ref, inView] = useInView({
     triggerOnce: true,
     threshold: 0.25,
@@ -100,10 +102,12 @@ export default function ThanksPage() {
                 {/* Background Video */}
                 <div className="absolute inset-0 z-0">
                   <video 
-                    autoPlay 
+                    ref={videoRef}
+                    autoPlay={isInView}
                     loop 
                     muted 
                     playsInline
+                    preload="metadata"
                     className="absolute inset-0 w-full h-full object-cover object-center"
                     poster="/images/bi-vid.jpeg"
                   >
@@ -152,10 +156,12 @@ export default function ThanksPage() {
                 {/* Background Video */}
                 <div className="absolute inset-0 z-0">
                   <video 
-                    autoPlay 
+                    ref={videoRef}
+                    autoPlay={isInView}
                     loop 
                     muted 
                     playsInline
+                    preload="metadata"
                     className="absolute inset-0 w-full h-full object-cover object-center"
                     poster="/images/bi-vid.jpeg"
                   >

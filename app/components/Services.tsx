@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { useVideoLazyLoading } from '../utils/videoLazyLoading';
 const imgChatCircleDots = "/images/chat-icon.svg";
 /*
   Image assets are mapped from the original code for this specific component.
@@ -49,6 +50,7 @@ const servicesData = [
 
 export default function Services() {
   const textShadow = { textShadow: '0px 2px 8px rgba(0, 0, 0, 0.6)' };
+  const { videoRef, isInView } = useVideoLazyLoading();
 
   return (
     // Main wrapper that centers and scales the content
@@ -58,7 +60,7 @@ export default function Services() {
         
         {/* Background Layer 1: The Wavy Blue Shape */}
         <div className="absolute inset-0 z-0">
-          <Image src={imgVector8} alt="Wavy background shape" layout="fill" objectFit="cover" />
+          <Image src={imgVector8} alt="Wavy background shape" fill className="object-cover" />
         </div>
 
         {/* Background Layer 2: The Masked Video */}
@@ -70,10 +72,12 @@ export default function Services() {
              }}>
           <div className="relative w-full h-full">
             <video 
-              autoPlay 
+              ref={videoRef}
+              autoPlay={isInView}
               loop 
               muted 
               playsInline
+              preload="metadata"
               className="absolute inset-0 w-full h-full object-cover blur-md"
               poster="/images/bi-vid.jpeg"
             >
@@ -103,13 +107,13 @@ export default function Services() {
                 {/* LOGO CONTAINER RESIZED */}
                 <div className="relative mt-auto w-full h-[160px] lg:h-[180px] flex items-center justify-center">
                   <div className="absolute w-[100px] h-[100px] lg:w-[140px] lg:h-[140px] z-0">
-                    <Image src={imgIconBg} alt="Icon background glow" layout="fill" objectFit="contain" />
+                    <Image src={imgIconBg} alt="Icon background glow" fill className="object-contain" />
                   </div>
                   <div className="absolute w-[150px] h-[85px] lg:w-[200px] lg:h-[115px] bottom-0 z-0">
-                     <Image src={imgCardVector} alt="Card vector line" layout="fill" objectFit="contain" />
+                     <Image src={imgCardVector} alt="Card vector line" fill className="object-contain" />
                   </div>
                   <div className="relative z-10 w-[120px] h-[120px] lg:w-[170px] lg:h-[170px]">
-                    <Image src={service.logo} alt={`${service.title} Logo`} layout="fill" objectFit="contain" />
+                    <Image src={service.logo} alt={`${service.title} Logo`} fill className="object-contain" />
                   </div>
                 </div>
               </div>

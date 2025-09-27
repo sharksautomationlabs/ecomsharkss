@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { motion, useAnimation, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { setupCalendlyRedirect, getCalendlyConfig } from '../utils/calendlyRedirect';
+import { useVideoLazyLoading } from '../utils/videoLazyLoading';
 
 // Image and icon assets for the section
 const imgPattern = "/images/pattern-bg.png"; // Light blue water pattern background
@@ -13,6 +14,7 @@ const imgArrowIcon = "/images/arrow-icon-2.svg"; // Arrow for the button
 
 export default function CTAFooter() {
   const controls = useAnimation();
+  const { videoRef, isInView } = useVideoLazyLoading();
   
   // Set triggerOnce to false to allow re-triggering
   const [ref, inView] = useInView({
@@ -74,10 +76,12 @@ export default function CTAFooter() {
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
         <video 
-          autoPlay 
+          ref={videoRef}
+          autoPlay={isInView}
           loop 
           muted 
           playsInline
+          preload="metadata"
           className="absolute inset-0 w-full h-full object-cover object-center"
           poster="/images/bi-vid.jpeg"
         >

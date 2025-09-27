@@ -4,6 +4,7 @@ const nextConfig: NextConfig = {
   // Performance optimizations
   experimental: {
     optimizePackageImports: ['framer-motion', 'lucide-react'],
+    optimizeCss: false,
   },
   
   // Image optimization
@@ -72,6 +73,17 @@ const nextConfig: NextConfig = {
             value: 'public, max-age=31536000, immutable',
           },
         ],
+      },
+    ];
+  },
+
+  // Redirects to handle WebM requests
+  async redirects() {
+    return [
+      {
+        source: '/images/bi-vid.webm',
+        destination: '/images/bi-vid.mp4',
+        permanent: false,
       },
     ];
   },

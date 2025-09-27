@@ -4,6 +4,7 @@ import React from 'react';
 import Image from 'next/image';
 import { motion, useAnimation, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useVideoLazyLoading } from '../utils/videoLazyLoading';
 
 const imgChatCircleDots = "/images/chat-icon.svg";
 const imgArrowIcon = "/images/arrow-icon.svg";
@@ -59,6 +60,7 @@ const GetQuoteButton = ({ small = false }: { small?: boolean }) => (
 
 export default function CallProcess() {
   const controls = useAnimation();
+  const { videoRef, isInView } = useVideoLazyLoading();
   const [ref, inView] = useInView({
     triggerOnce: false,
     threshold: 0.25,
@@ -101,10 +103,12 @@ export default function CallProcess() {
       {/* Background Video */}
       <div className="absolute inset-0 z-0">
         <video 
-          autoPlay 
+          ref={videoRef}
+          autoPlay={isInView}
           loop 
           muted 
           playsInline
+          preload="metadata"
           className="absolute inset-0 w-full h-full object-cover object-center blur-md"
           poster="/images/bi-vid.jpeg"
         >

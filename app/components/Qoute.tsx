@@ -137,7 +137,7 @@ export default function QuoteSection() {
           animate={controls}
         >
             <div className="w-[140px] h-[100px] lg:w-[180px] lg:h-[140px] relative mt-16 lg:mt-12 -ml-10 lg:-ml-12">
-             <Image src={imgImage1} alt="Ecom Sharks Logo" layout="fill" objectFit="contain" />
+             <Image src={imgImage1} alt="Ecom Sharks Logo" fill className="object-contain" />
            </div>
 
            <h1 className="mt-6 lg:mt-8 text-4xl lg:text-[94px] font-semibold leading-tight lg:leading-[0.921] max-w-4xl" style={{ fontFamily: "'Barlow Condensed', sans-serif", ...textShadow }}>
@@ -172,7 +172,7 @@ export default function QuoteSection() {
 
           <div className="mt-8 lg:mt-12 flex items-center gap-4 lg:gap-6">
             <div className="w-[60px] h-[60px] lg:w-[83px] lg:h-[83px] relative">
-              <Image src={imgGroup1321315061} alt="Phone Icon" layout="fill" objectFit="contain" />
+              <Image src={imgGroup1321315061} alt="Phone Icon" fill className="object-contain" />
             </div>
             <p className="text-2xl lg:text-[60px] font-semibold tracking-[2px] lg:tracking-[4.2px]" style={{ fontFamily: "'Barlow Condensed', sans-serif", ...textShadow }}>
               (469) 480-7938

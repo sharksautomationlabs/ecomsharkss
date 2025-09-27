@@ -197,7 +197,7 @@ export default function Contact() {
       </div>
       {/* THE FIX: Shark container is larger and rotated slightly. */}
       <div className="absolute bottom-32 left-1/2 -translate-x-1/2 w-[1000px] h-[1400px] z-0 transform rotate-15 animate-shark-lean">
-        <Image src={imgShark} alt="Shark" layout="fill" objectFit="contain" />
+        <Image src={imgShark} alt="Shark" fill className="object-contain" />
       </div>
 
       {/* Main Content Area */}

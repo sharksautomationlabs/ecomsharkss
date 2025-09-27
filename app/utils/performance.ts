@@ -18,14 +18,7 @@ export const preloadCriticalResources = () => {
       document.head.appendChild(link);
     });
 
-    // Preload critical fonts
-    const fontLink = document.createElement('link');
-    fontLink.rel = 'preload';
-    fontLink.as = 'font';
-    fontLink.type = 'font/woff2';
-    fontLink.href = '/fonts/barlow.woff2';
-    fontLink.crossOrigin = 'anonymous';
-    document.head.appendChild(fontLink);
+    // Fonts are loaded from Google Fonts, no local preload needed
   }
 };
 

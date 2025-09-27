@@ -82,7 +82,6 @@ export default function RootLayout({
         {/* Preload critical resources */}
         <link rel="preload" href="/images/bi-vid.jpeg" as="image" />
         <link rel="preload" href="/images/quote-logo.png" as="image" />
-        <link rel="preload" href="/fonts/barlow.woff2" as="font" type="font/woff2" crossOrigin="anonymous" />
         
         {/* DNS prefetch for external domains */}
         <link rel="dns-prefetch" href="https://assets.calendly.com" />

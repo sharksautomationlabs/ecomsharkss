@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { handleVideoEvents } from '../utils/videoUtils';
+import { useVideoLazyLoading } from '../utils/videoLazyLoading';
 
 // Hamburger Menu Icon for Mobile
 const HamburgerIcon = ({ isOpen }: { isOpen: boolean }) => (
@@ -46,6 +47,7 @@ export default function Header({
   heroTitle = "Earn $4,000 in 30 Days Or We'll Work for Free",
   heroSubtitle = "Keep scrolling—your path to financial freedom is just ahead. By the time you've explored 25% of this page, you'll discover the hidden gem that could change your life."
 }: HeaderProps) {
+  const { videoRef, isInView } = useVideoLazyLoading();
   const textShadow = { textShadow: '0px 2px 5px rgba(0, 0, 0, 0.5)' };
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isDesktop, setIsDesktop] = useState(true);
@@ -99,10 +101,13 @@ export default function Header({
         
         <div className="absolute inset-0 z-0">
           <video 
-            autoPlay 
+            ref={videoRef}
+            autoPlay={isInView}
             loop 
             muted 
             playsInline
+            preload="metadata"
+            crossOrigin="anonymous"
             className="w-full h-full object-cover"
             poster="/images/bi-vid.jpeg"
             {...handleVideoEvents}
@@ -137,7 +142,7 @@ export default function Header({
 
             <div className="mt-2 lg:mt-6 flex items-center justify-between">
                 <div className="w-[140px] h-[100px] md:w-[160px] md:h-[120px] lg:w-[180px] lg:h-[140px] relative fade-in -ml-10 md:-ml-8 lg:-ml-12">
-                    <Image src={imgImage1} alt="Ecom Sharks Logo" layout="fill" objectFit="contain" />
+                    <Image src={imgImage1} alt="Ecom Sharks Logo" fill className="object-contain" priority />
                 </div>
                 <div className="hidden lg:flex w-[950px] h-[90px] bg-white/20 backdrop-blur-sm 
                             rounded-2xl items-center justify-end px-10 gap-8 border-2 border-white">
@@ -201,7 +206,7 @@ export default function Header({
                 {/* Header */}
                 <div className="flex items-center justify-between p-6 border-b border-white/20">
                   <div className="w-[100px] h-[75px] relative -ml-8">
-                    <Image src={imgImage1} alt="Ecom Sharks Logo" layout="fill" objectFit="contain" />
+                    <Image src={imgImage1} alt="Ecom Sharks Logo" fill className="object-contain" priority />
                   </div>
                   <button 
                     onClick={() => setIsMobileNavOpen(false)}

@@ -66,7 +66,7 @@ const CareerCard = ({ title, description, personImage, variants }: {
       <Image 
         src={personImage} 
         alt={`${title} background`} 
-        layout="fill" 
+        fill 
         objectFit="cover" 
       />
     </motion.div>

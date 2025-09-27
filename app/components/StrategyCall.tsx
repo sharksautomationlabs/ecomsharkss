@@ -236,7 +236,7 @@ export default function StrategyCall() {
                  >
                    {/* Background Pattern - Exact match from founder quote */}
                    <div className="absolute inset-0 opacity-10">
-                     <Image src={imgPatternBg} alt="Pattern background" layout="fill" objectFit="cover" />
+                     <Image src={imgPatternBg} alt="Pattern background" fill className="object-cover" />
                    </div>
                    
                    {/* Content */}

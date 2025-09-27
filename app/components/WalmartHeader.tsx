@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { handleVideoEvents } from '../utils/videoUtils';
+import { useVideoLazyLoading } from '../utils/videoLazyLoading';
 
 // Hamburger Menu Icon for Mobile
 const HamburgerIcon = ({ isOpen }: { isOpen: boolean }) => (
@@ -43,6 +44,7 @@ export default function WalmartHeader() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isDesktop, setIsDesktop] = useState(true);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+  const { videoRef, isInView } = useVideoLazyLoading();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -85,10 +87,12 @@ export default function WalmartHeader() {
         {/* Background Video and Overlay */}
         <div className="absolute inset-0 z-0">
           <video 
-            autoPlay 
+            ref={videoRef}
+            autoPlay={isInView}
             loop 
             muted 
             playsInline
+            preload="metadata"
             className="w-full h-full object-cover"
             poster="/images/bi-vid.jpeg"
             {...handleVideoEvents}
@@ -127,7 +131,7 @@ export default function WalmartHeader() {
             {/* Navigation Section - RESPONSIVE */}
             <div className="mt-2 lg:mt-6 flex items-center justify-between">
                 <div className="w-[140px] h-[100px] lg:w-[180px] lg:h-[140px] relative fade-in -ml-10 lg:-ml-12">
-                    <Image src={imgImage1} alt="Ecom Sharks Logo" layout="fill" objectFit="contain" />
+                    <Image src={imgImage1} alt="Ecom Sharks Logo" fill className="object-contain" />
                 </div>
                 <div className="hidden lg:flex w-[950px] h-[90px] bg-white/20 backdrop-blur-sm 
                             rounded-2xl items-center justify-end px-10 gap-8 border-2 border-white">
@@ -191,7 +195,7 @@ export default function WalmartHeader() {
                 {/* Header */}
                 <div className="flex items-center justify-between p-6 border-b border-white/20">
                   <div className="w-[100px] h-[75px] relative -ml-8">
-                    <Image src={imgImage1} alt="Ecom Sharks Logo" layout="fill" objectFit="contain" />
+                    <Image src={imgImage1} alt="Ecom Sharks Logo" fill className="object-contain" />
                   </div>
                   <button 
                     onClick={() => setIsMobileNavOpen(false)}

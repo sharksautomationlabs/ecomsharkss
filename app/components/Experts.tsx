@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { motion, useAnimation, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { handleVideoEvents } from '../utils/videoUtils';
+import { useVideoLazyLoading } from '../utils/videoLazyLoading';
 
 const imgChatCircleDots = "/images/chat-icon.svg";
 
@@ -35,6 +36,7 @@ export default function ExpertsSection({
 }: ExpertsProps) {
   const [scrollPosition, setScrollPosition] = useState(0);
   const controls = useAnimation();
+  const { videoRef, isInView } = useVideoLazyLoading();
   
   // MODIFICATION 1: Set triggerOnce to false to allow re-triggering
   const [ref, inView] = useInView({
@@ -159,15 +161,17 @@ export default function ExpertsSection({
             <div className="relative w-full h-full">
                 <div className="absolute inset-0 rounded-[20px] lg:rounded-[40px] overflow-hidden">
                     <video 
-                      autoPlay 
+                      ref={videoRef}
+                      autoPlay={isInView}
                       loop 
                       muted 
                       playsInline
+                      preload="metadata"
                       className="absolute inset-0 w-full h-full object-cover"
                       poster="/images/logos-underwater.png"
                       {...handleVideoEvents}
                     >
-                        <source src="/images/under-water-logos.mp4" type="video/mp4" />
+                      <source src="/images/under-water-logos.mp4" type="video/mp4" />
                     </video>
                     <div className="absolute inset-0 bg-[#052126] opacity-40"></div>
                 </div>

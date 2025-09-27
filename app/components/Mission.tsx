@@ -326,7 +326,7 @@ export default function MissionSection({
                     variants={personWipeUpVariants}
                   >
                       <div className="absolute w-[100%] h-[50%] top-[10%] left-0 z-0 animate-shark-lean">
-                          <Image src={imgShark} alt="Shark" layout="fill" objectFit="contain" />
+                          <Image src={imgShark} alt="Shark" fill className="object-contain" />
                       </div>
                       <div className="absolute inset-0 z-10">
                           <Image 

@@ -107,7 +107,7 @@ export default function Owners() {
             <Image 
               src={imgBgShape} 
               alt="Teal background shape" 
-              layout="fill" 
+              fill 
               objectFit="cover" 
               objectPosition="center"
             />
@@ -150,12 +150,12 @@ export default function Owners() {
               }
             }}
           >
-            <Image src={imgLeftHand} alt="OK hand gesture" layout="fill" objectFit="contain" />
+            <Image src={imgLeftHand} alt="OK hand gesture" fill objectFit="contain" />
           </motion.div>
           {/* Hand is smaller, repositioned, and rotated diagonally. */}
             {/* TikTok Logo position adjusted relative to the new hand position */}
             <div className="absolute top-[28%] right-[29%] w-[100px] h-[100px] lg:w-[200px] lg:h-[200px]">
-               <Image src={imgTikTokLogo} alt="TikTok Logo" layout="fill" objectFit="contain" />
+               <Image src={imgTikTokLogo} alt="TikTok Logo" fill objectFit="contain" />
             </div>
           <motion.div 
             className="absolute -top-16 -right-20 w-[300px] h-[275px] lg:w-[600px] lg:h-[550px]"
@@ -181,7 +181,7 @@ export default function Owners() {
               }
             }}
           >
-            <Image src={imgRightHand} alt="Hand writing" layout="fill" objectFit="contain" />
+            <Image src={imgRightHand} alt="Hand writing" fill objectFit="contain" />
           </motion.div>
         </motion.div>
 

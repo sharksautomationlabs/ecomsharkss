@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import Image from 'next/image';
 import { motion, useAnimation, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useVideoLazyLoading } from '../utils/videoLazyLoading';
 
 // Image assets matching the website theme
 const imgBlueWaveShape = "/images/service-bg-vector.svg";
@@ -66,6 +67,7 @@ export default function IdentityPage() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [selectedTeamMember, setSelectedTeamMember] = useState<'Aain' | 'zayn' | 'sharjeel' | null>(null);
   const controls = useAnimation();
+  const { videoRef, isInView } = useVideoLazyLoading();
   const [ref, inView] = useInView({
     triggerOnce: false,
     threshold: 0.3,
@@ -156,7 +158,7 @@ export default function IdentityPage() {
         {/* Background elements matching website theme */}
         <div className="absolute top-0 left-0 right-0 bottom-0">
           <div className="absolute inset-0 z-0">
-            <Image src={imgBlueWaveShape} alt="Wavy background shape" layout="fill" objectFit="cover" objectPosition="top" />
+            <Image src={imgBlueWaveShape} alt="Wavy background shape" fill className="object-cover object-top" />
           </div>
           <div className="absolute inset-0 z-10" 
                style={{
@@ -167,10 +169,12 @@ export default function IdentityPage() {
                }}>
             <div className="relative w-full h-full">
               <video 
-                autoPlay 
+                ref={videoRef}
+                autoPlay={isInView}
                 loop 
                 muted 
                 playsInline
+                preload="metadata"
                 className="absolute inset-0 w-full h-full object-cover blur-md"
                 poster="/images/bi-vid.jpeg"
               >
@@ -413,7 +417,7 @@ export default function IdentityPage() {
        <section className="relative w-full bg-white py-16 lg:py-16 lg:py-32">
          {/* Background Pattern */}
          <div className="absolute inset-0 opacity-5">
-           <Image src={imgPatternBg} alt="Pattern background" layout="fill" objectFit="cover" />
+           <Image src={imgPatternBg} alt="Pattern background" fill className="object-cover" />
          </div>
         
         <div className="relative z-10 container mx-auto px-5 lg:px-5 lg:px-20">
@@ -731,7 +735,7 @@ export default function IdentityPage() {
                 <div className="bg-gradient-to-br from-[#35c4dd] to-[#063f4a] rounded-2xl lg:rounded-3xl p-8 lg:p-12 text-white shadow-2xl relative overflow-hidden">
                   {/* Background Pattern */}
                   <div className="absolute inset-0 opacity-10">
-                    <Image src={imgPatternBg} alt="Pattern background" layout="fill" objectFit="cover" />
+                    <Image src={imgPatternBg} alt="Pattern background" fill className="object-cover" />
                   </div>
                   
                   {/* Quote Icon */}
@@ -780,10 +784,12 @@ export default function IdentityPage() {
          {/* Background Video */}
          <div className="absolute inset-0">
            <video 
-             autoPlay 
+             ref={videoRef}
+             autoPlay={isInView}
              loop 
              muted 
              playsInline
+             preload="metadata"
              className="absolute inset-0 w-full h-full object-cover"
              poster="/images/bi-vid.jpeg"
            >
@@ -807,7 +813,7 @@ export default function IdentityPage() {
             transform: `translateX(${scrollPosition * 0.05}px)`
           }}
         >
-          <Image src={imgSharkUnderwater} alt="Shark" layout="fill" objectFit="contain" className="transform -scale-x-100" />
+          <Image src={imgSharkUnderwater} alt="Shark" fill className="object-contain transform -scale-x-100" />
         </div>
         
         <div className="relative z-10 container mx-auto px-5 lg:px-20">
@@ -902,7 +908,7 @@ export default function IdentityPage() {
                 <div className="bg-white/15 backdrop-blur-xl rounded-2xl lg:rounded-3xl p-8 lg:p-12 border border-white/30 shadow-2xl relative overflow-hidden">
                   {/* Background Pattern */}
                   <div className="absolute inset-0 opacity-10">
-                    <Image src={imgPatternBg} alt="Pattern background" layout="fill" objectFit="cover" />
+                    <Image src={imgPatternBg} alt="Pattern background" fill className="object-cover" />
                   </div>
                   
                   <div className="relative z-10 text-center">

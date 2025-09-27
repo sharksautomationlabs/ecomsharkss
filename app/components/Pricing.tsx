@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import { useVideoLazyLoading } from '../utils/videoLazyLoading';
 const imgChatCircleDots = "/images/chat-icon.svg";
 
 // Image assets used in this component.
@@ -60,6 +61,7 @@ const GetQuoteButton = ({ small = false }: { small?: boolean }) => (
 );
 
 export default function Pricing() {
+  const { videoRef, isInView } = useVideoLazyLoading();
   return (
     // This structure correctly creates the wavy top border without breaking page flow.
     <div className="relative w-full bg-white pt-16 lg:pt-32 xl:pt-48 min-h-[800px] lg:min-h-[1000px]">
@@ -67,7 +69,7 @@ export default function Pricing() {
       {/* Background elements are absolutely positioned and fill the parent container. */}
       <div className="absolute top-0 left-0 right-0 bottom-0">
         <div className="absolute inset-0 z-0">
-          <Image src={imgBlueWaveShape} alt="Wavy background shape" layout="fill" objectFit="cover" objectPosition="top" />
+          <Image src={imgBlueWaveShape} alt="Wavy background shape" fill className="object-cover object-top" />
         </div>
         <div className="absolute inset-0 z-10" 
              style={{
@@ -78,10 +80,12 @@ export default function Pricing() {
              }}>
           <div className="relative w-full h-full">
             <video 
-              autoPlay 
+              ref={videoRef}
+              autoPlay={isInView}
               loop 
               muted 
               playsInline
+              preload="metadata"
               className="absolute inset-0 w-full h-full object-cover object-center blur-md"
               poster="/images/bi-vid.jpeg"
             >

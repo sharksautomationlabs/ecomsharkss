@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import Image from 'next/image';
 import { motion, useAnimation, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useVideoLazyLoading } from '../utils/videoLazyLoading';
 
 // Image assets
 const imgBackground = "/images/shark-ocean-main.png";
@@ -18,14 +19,14 @@ const servicesData = [
     id: 1,
     title: "Expertise in Inventory Management",
     description: "Our inventory management services ensure your products are always in stock and ready to meet customer demand.",
-    icon: "/images/hero-tiktok-logo.png",
+    icon: "/images/tiktok-logo.png",
     concept: "TikTok"
   },
   {
     id: 2,
     title: "Order Processing Automation",
     description: "Improve efficiency & attain massive profitability by automating order fulfillment processes & make leaps in competitive world.",
-    icon: "/images/hero-tiktok-logo.png",
+    icon: "/images/tiktok-logo.png",
     concept: "TikTok"
   }
 ];
@@ -61,6 +62,7 @@ const GetQuoteButton = ({ small = false }: { small?: boolean }) => (
 
 export default function TikTokBestServices() {
   const controls = useAnimation();
+  const { videoRef, isInView } = useVideoLazyLoading();
   const [ref, inView] = useInView({
     triggerOnce: false,
     threshold: 0.3,
@@ -133,7 +135,7 @@ export default function TikTokBestServices() {
       {/* Background elements are absolutely positioned and fill the parent container. */}
       <div className="absolute top-0 left-0 right-0 bottom-0">
         <div className="absolute inset-0 z-0">
-          <Image src={imgBlueWaveShape} alt="Wavy background shape" layout="fill" objectFit="cover" objectPosition="top" />
+          <Image src={imgBlueWaveShape} alt="Wavy background shape" fill className="object-cover object-top" />
         </div>
         <div className="absolute inset-0 z-10" 
              style={{
@@ -144,10 +146,12 @@ export default function TikTokBestServices() {
              }}>
           <div className="relative w-full h-full">
             <video 
-              autoPlay 
+              ref={videoRef}
+              autoPlay={isInView}
               loop 
               muted 
               playsInline
+              preload="metadata"
               className="absolute inset-0 w-full h-full object-cover blur-md"
               poster="/images/bi-vid.jpeg"
             >
