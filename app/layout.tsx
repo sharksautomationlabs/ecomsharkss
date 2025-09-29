@@ -99,7 +99,7 @@ export default function RootLayout({
         
         {/* Meta Pixel for tracking */}
         <MetaPixel />
-        
+    
         {/* Calendly Script with optimization */}
         <CalendlyScript />
       </body>
