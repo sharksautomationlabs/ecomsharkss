@@ -11,7 +11,7 @@ const imgLeftHand = "/images/owner-hand-gesture.png";
 const imgRightHand = "/images/owner-hand-writing.png";
 const imgTikTokLogo = "/images/tiktok-logo.png";
 const imgBgShape = "/images/bg-rectangle-2.svg"; 
-const imgPhoneIcon = "/images/phone-icon.svg"; 
+const imgPhoneIcon = "/images/header-phone-icon.svg"; 
 const imgArrowIcon = "/images/arrow-icon-4.svg";
 
 export default function Owners() {
@@ -229,7 +229,7 @@ export default function Owners() {
                   onClick={() => {
                     if (typeof window !== 'undefined' && (window as any).Calendly) {
                       (window as any).Calendly.initPopupWidget({
-                        url: 'https://calendly.com/zynofficiall09/30min',
+                        url: 'https://calendly.com/ecomsharkss-info/30min',
                         onEventScheduled: function(e: any) {
                           // Redirect to thank you page when appointment is scheduled
                           window.location.href = '/thank-you';

@@ -12,7 +12,7 @@ const imgPattern011 = "/images/testimonials-pattern-bg.png";
 const imgShark21 = "/images/quote-shark.png"; 
 const imgImage1 = "/images/quote-logo.png"; 
 const imgRectangle34624302 = "/images/quote-bg-rectangle.svg"; 
-const imgGroup1321315061 = "/images/expert-phone.svg";
+const imgGroup1321315061 = "/images/header-phone-icon.svg";
 const imgArrowIcon = "/images/arrow-icon.svg";
 
 export default function QuoteSection() {
@@ -150,7 +150,7 @@ export default function QuoteSection() {
                onClick={() => {
                  if (typeof window !== 'undefined' && (window as any).Calendly) {
                    (window as any).Calendly.initPopupWidget({
-                     url: 'https://calendly.com/zynofficiall09/30min',
+                     url: 'https://calendly.com/ecomsharkss-info/30min',
                      onEventScheduled: function(e: any) {
                        // Redirect to thank you page when appointment is scheduled
                        window.location.href = '/thank-you';
