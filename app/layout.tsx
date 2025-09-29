@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Barlow, Barlow_Condensed } from "next/font/google";
 import "./globals.css";
 import CalendlyScript from "./components/CalendlyScript";
+import MetaPixel from "./components/MetaPixel";
 
 const barlow = Barlow({
   variable: "--font-barlow",
@@ -95,6 +96,9 @@ export default function RootLayout({
         className={`${barlow.variable} ${barlowCondensed.variable} antialiased`}
       >
         {children}
+        
+        {/* Meta Pixel for tracking */}
+        <MetaPixel />
         
         {/* Calendly Script with optimization */}
         <CalendlyScript />
