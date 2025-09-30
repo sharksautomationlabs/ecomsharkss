@@ -1,11 +1,12 @@
-import Header from '../components/Header';
-import ExpertsSection from '../components/Experts';
+import Header from '../components/ThankYouHeader';
+import EcommerceAutomationExperts from '../components/EcommerceAutomationExperts';
 import CallProcess from '../components/CallProcess';
 import StrategyCall from '../components/StrategyCall';
 import Testimonials from '../components/Testimonials';
 import CTASection from '../components/CTASection';
 import CTAFooter from '../components/CTAFooter';
 import Footer from '../components/Footer';
+import ThankYouHeader from '../components/ThankYouHeader';
 
 export default function EcommerceAutomationPage() {
   // Custom testimonials for this page
@@ -41,11 +42,11 @@ export default function EcommerceAutomationPage() {
 
   return (
     <div className="w-full bg-white">
-      <Header 
+      <ThankYouHeader
         heroTitle="The Only E-commerce Investment with a Guaranteed Return"
         heroSubtitle="The Done-For-You System That Gets You to $4,000 in 90 Days—or We Work for Free."
       />
-      <ExpertsSection 
+      <EcommerceAutomationExperts 
         title="About Us"
         subtitle="We've helped investors and entrepreneurs just like you launch profitable, hands-off e-commerce stores. Our proven system handles everything from product sourcing to fulfillment, so you can earn truly passive income without the guesswork."
       />

@@ -49,7 +49,7 @@ const GetQuoteButton = ({ small = false }: { small?: boolean }) => (
       className={`font-semibold text-[#063f4a] relative z-10 ${small ? 'text-lg' : 'text-xl'}`}
       style={{ fontFamily: "'Barlow', sans-serif" }}
     >
-      Get A Quote
+      Book Now
     </span>
     <span className={`bg-white rounded-full flex items-center justify-center relative z-10 ${small ? 'w-10 h-10' : 'w-10 h-10'}`}>
       <Image src={imgArrowIcon} alt="arrow icon" width={small ? 20 : 20} height={small ? 20 : 20} />
@@ -187,12 +187,6 @@ export default function CallProcess() {
             className="flex flex-col lg:flex-row justify-center items-center gap-4 lg:gap-6 mt-16 lg:mt-20"
           >
             <GetQuoteButton />
-            <button className="flex items-center justify-center lg:justify-between gap-3 w-full lg:w-[170px] h-[56px] bg-white rounded-full border-2 border-[#35c4dd] p-2 shadow-lg hover:shadow-xl transition-all duration-300">
-              <span className="pl-0 lg:pl-5 text-[#063f4a] font-semibold text-base lg:text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>Live Chat</span>
-              <div className="w-[44px] h-[44px] bg-[#063f4a] rounded-full flex items-center justify-center">
-                <Image src={imgChatCircleDots} alt="chat icon" width={28} height={28} />
-              </div>
-            </button>
           </motion.div>
         </motion.div>
       </div>
