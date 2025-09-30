@@ -49,6 +49,9 @@ export default function Contact() {
     message: ''
   });
   
+  const [privacyPolicyAccepted, setPrivacyPolicyAccepted] = useState(false);
+  const [consentGiven, setConsentGiven] = useState(false);
+  
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     type: 'success' | 'error' | null;
@@ -100,6 +103,14 @@ export default function Contact() {
       setSubmitStatus({ type: 'error', message: 'Message is required' });
       return false;
     }
+    if (!privacyPolicyAccepted) {
+      setSubmitStatus({ type: 'error', message: 'You must accept the privacy policy to continue' });
+      return false;
+    }
+    if (!consentGiven) {
+      setSubmitStatus({ type: 'error', message: 'You must give consent to continue' });
+      return false;
+    }
     return true;
   };
 
@@ -126,6 +137,9 @@ export default function Contact() {
           phone: '',
           message: ''
         });
+        // Reset checkboxes
+        setPrivacyPolicyAccepted(false);
+        setConsentGiven(false);
       } else {
         setSubmitStatus({ type: 'error', message: result.message });
       }
@@ -311,6 +325,36 @@ export default function Contact() {
                   className="w-full bg-white rounded-2xl lg:rounded-3xl p-4 lg:p-6 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white"
                 ></textarea>
               </div>
+              
+              {/* Privacy Policy and Consent Checkboxes */}
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <input
+                    type="checkbox"
+                    id="privacy-policy"
+                    checked={privacyPolicyAccepted}
+                    onChange={(e) => setPrivacyPolicyAccepted(e.target.checked)}
+                    className="mt-1 w-5 h-5 text-[#35c4dd] bg-white border-2 border-white rounded focus:ring-[#35c4dd] focus:ring-2 flex-shrink-0"
+                  />
+                  <label htmlFor="privacy-policy" className="text-sm text-white/90 leading-relaxed">
+                    I have read and agree to the <a href="/privacy-policy" className="text-white underline hover:text-[#d0f7ff] transition-colors">Privacy Policy</a>
+                  </label>
+                </div>
+                
+                <div className="flex items-start gap-3">
+                  <input
+                    type="checkbox"
+                    id="consent"
+                    checked={consentGiven}
+                    onChange={(e) => setConsentGiven(e.target.checked)}
+                    className="mt-1 w-5 h-5 text-[#35c4dd] bg-white border-2 border-white rounded focus:ring-[#35c4dd] focus:ring-2 flex-shrink-0"
+                  />
+                  <label htmlFor="consent" className="text-sm text-white/90 leading-relaxed">
+                    I consent to being contacted by ECOM SHARKS regarding my inquiry and understand that my information will be used in accordance with the privacy policy.
+                  </label>
+                </div>
+              </div>
+              
               <div>
                 <button 
                   type="submit" 
