@@ -27,6 +27,7 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://ecomsharks.com'),
   title: "ECOM SHARKS - Ecommerce Solutions for Amazon, Shopify, TikTok & Walmart",
   description: "Empower your ecommerce business with ECOM SHARKS. Expert solutions for Amazon, Shopify, TikTok, and Walmart. Scale smarter, sell faster with our dedicated team.",
   keywords: ["ecommerce", "amazon fba", "shopify", "tiktok shop", "walmart marketplace", "online selling", "digital marketing"],
@@ -51,14 +52,24 @@ export const metadata: Metadata = {
     title: 'ECOM SHARKS - Ecommerce Solutions',
     description: 'Empower your ecommerce business with ECOM SHARKS. Expert solutions for Amazon, Shopify, TikTok, and Walmart.',
     siteName: 'ECOM SHARKS',
+    images: [
+      {
+        url: '/favicon.ico',
+        width: 32,
+        height: 32,
+        alt: 'ECOM SHARKS - Ecommerce Solutions',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'ECOM SHARKS - Ecommerce Solutions',
     description: 'Empower your ecommerce business with ECOM SHARKS. Expert solutions for Amazon, Shopify, TikTok, and Walmart.',
+    images: ['/favicon.ico'],
   },
   icons: {
     icon: [
+      { url: '/favicon.ico?v=6', sizes: 'any' },
       { url: '/favicon-16x16.png?v=6', sizes: '16x16', type: 'image/png' },
       { url: '/favicon-32x32.png?v=6', sizes: '32x32', type: 'image/png' },
     ],
@@ -80,6 +91,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Favicon for search engines */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
+        <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        
         {/* Preload critical resources */}
         <link rel="preload" href="/images/bi-vid.jpeg" as="image" />
         <link rel="preload" href="/images/quote-logo.png" as="image" />
