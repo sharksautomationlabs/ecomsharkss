@@ -29,6 +29,15 @@ const PhoneIcon = () => (
     </div>
 );
 
+const LocationIcon = () => (
+    <div className="w-12 h-12 bg-[#063f4a] rounded-full flex items-center justify-center flex-shrink-0">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M21 10C21 17 12 23 12 23S3 17 3 10C3 7.61305 3.94821 5.32387 5.63604 3.63604C7.32387 1.94821 9.61305 1 12 1C14.3869 1 16.6761 1.94821 18.3639 3.63604C20.0518 5.32387 21 7.61305 21 10Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M12 13C13.6569 13 15 11.6569 15 10C15 8.34315 13.6569 7 12 7C10.3431 7 9 8.34315 9 10C9 11.6569 10.3431 13 12 13Z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+    </div>
+);
+
 const SocialIcon = ({ path, href }: { path: string; href?: string }) => (
   <a href={href || "#"} className="w-8 h-8 bg-gray-400 hover:bg-[#35c4dd] transition-colors rounded-full flex items-center justify-center">
     <svg className="w-4 h-4 text-[#063f4a]" fill="currentColor" viewBox="0 0 24 24">
@@ -249,6 +258,13 @@ export default function Contact() {
                 <div>
                   <h3 className="font-bold text-base lg:text-lg">Phone:</h3>
                   <p className="text-base lg:text-lg">(469) 480-7938</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 lg:gap-4">
+                <LocationIcon />
+                <div>
+                  <h3 className="font-bold text-base lg:text-lg">Address:</h3>
+                  <p className="text-base lg:text-lg">22023 Rustic Canyon Ln<br />Richmond, TX 77469, USA</p>
                 </div>
               </div>
             </div>
