@@ -37,6 +37,7 @@ const img91 = "/images/tiktok-logo.png";
 const img61 = "/images/amazon-logo.png";
 const img72 = "/images/walmart-logo.png";
 const img81 = "/images/shopify-logo.png";
+const imgTrustpilot = "/images/trust-pilot.jpg";
 
 interface HeaderProps {
   heroTitle?: string;
@@ -396,6 +397,11 @@ export default function Header({
                   </div>
               </button>
             </div>
+            <div className="hidden lg:block mt-3 ml-2">
+              <a href="https://www.trustpilot.com/review/ecomsharkss.com" target="_blank" rel="noopener noreferrer">
+                <Image src={imgTrustpilot} alt="Trustpilot" width={80} height={24} className="object-contain cursor-pointer hover:opacity-80 transition-opacity" />
+              </a>
+            </div>
              <div className="mt-8 lg:hidden">
                 <a 
                   href="tel:4694807938"
@@ -406,6 +412,11 @@ export default function Header({
                        <ArrowIcon />
                     </span>
                 </a>
+                <div className="mt-4 ml-1">
+                  <a href="https://www.trustpilot.com/review/ecomsharkss.com" target="_blank" rel="noopener noreferrer">
+                    <Image src={imgTrustpilot} alt="Trustpilot" width={50} height={15} className="object-contain cursor-pointer hover:opacity-80 transition-opacity" />
+                  </a>
+                </div>
             </div>
           </div>
           

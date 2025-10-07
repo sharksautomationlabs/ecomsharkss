@@ -35,6 +35,7 @@ const img91 = "/images/tiktok-logo.png";
 const img61 = "/images/amazon-logo.png";
 const img72 = "/images/walmart-logo.png";
 const img81 = "/images/shopify-logo.png";
+const imgTrustpilot = "/images/trust-pilot.jpg";
 
 interface ThankYouHeaderProps {
   heroTitle?: string;
@@ -66,7 +67,7 @@ export default function ThankYouHeader({
   return (
     // MODIFIED: Removed top margin from mobile
     <div className="w-full bg-[#052126] flex justify-center">
-      <div className="relative w-full max-w-[1920px] h-[50vh] lg:h-auto lg:aspect-[1920/1080] overflow-hidden select-none">
+      <div className="relative w-full max-w-[1920px] h-[50vh] lg:h-auto lg:aspect-[1920/1160] overflow-hidden select-none">
         
         <div className="absolute inset-0 z-0">
           <video 
@@ -236,6 +237,11 @@ export default function ThankYouHeader({
                 <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
               </button>
             </div>
+            <div className="hidden lg:block mt-3 ml-2">
+              <a href="https://www.trustpilot.com/review/ecomsharkss.com" target="_blank" rel="noopener noreferrer">
+                <Image src={imgTrustpilot} alt="Trustpilot" width={80} height={24} className="object-contain cursor-pointer hover:opacity-80 transition-opacity" />
+              </a>
+            </div>
              <div className="mt-8 lg:hidden">
                 <button 
                   className="bg-[#35c4dd] text-[#063f4a] font-semibold py-2.5 px-2 rounded-full text-base w-[160px] flex items-center justify-between shadow-lg"
@@ -256,6 +262,11 @@ export default function ThankYouHeader({
                        <ArrowIcon />
                     </span>
                 </button>
+                <div className="mt-4 ml-1">
+                  <a href="https://www.trustpilot.com/review/ecomsharkss.com" target="_blank" rel="noopener noreferrer">
+                    <Image src={imgTrustpilot} alt="Trustpilot" width={50} height={15} className="object-contain cursor-pointer hover:opacity-80 transition-opacity" />
+                  </a>
+                </div>
             </div>
           </div>
           
