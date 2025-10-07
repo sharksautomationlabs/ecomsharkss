@@ -213,7 +213,7 @@ export default function ThankYouHeader({
                {heroSubtitle}
              </p>
              <p className="hidden lg:block mt-6 text-white text-[18px] leading-[28px] max-w-[685px] font-medium" style={{ fontFamily: "'Barlow', sans-serif", ...textShadow }}>
-               Curious how?  Book a meeting with one of our senior consultants today.
+               Curious now?  Book a meeting with one of our senior consultants today.
              </p>
             <div className="hidden lg:flex items-center gap-6 mt-12">
             <button 
