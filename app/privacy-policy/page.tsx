@@ -121,7 +121,6 @@ export default function PrivacyPolicyPage() {
                       We may automatically collect certain information about your device and usage patterns, including:
                     </p>
                     <ul className="list-disc list-inside mt-2 space-y-1 text-[#2c2020]" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                      <li>IP address and location data</li>
                       <li>Browser type and version</li>
                       <li>Pages visited and time spent on our website</li>
                       <li>Referring website information</li>
@@ -247,7 +246,7 @@ export default function PrivacyPolicyPage() {
                 <div className="bg-[#f8fafc] rounded-lg p-6" style={{ fontFamily: "'Barlow', sans-serif" }}>
                   <p className="text-[#2c2020] mb-2"><strong>Email:</strong> info@ecomsharkss.com</p>
                   <p className="text-[#2c2020] mb-2"><strong>Phone:</strong> (469) 480-7938</p>
-                  <p className="text-[#2c2020]"><strong>Address:</strong> ECOM SHARKS, United States</p>
+                  <p className="text-[#2c2020]"><strong>Address:</strong> 22023 Rustic Canyon Ln, Richmond, TX 77469, USA</p>
                 </div>
               </motion.div>
 
