@@ -407,10 +407,9 @@ export default function Contact() {
             <div className="flex items-center gap-3 lg:gap-4">
               <span>Follow us:</span>
               <div className="flex items-center gap-2 lg:gap-3">
-                <SocialIcon path={socialLinks.facebook} href="https://facebook.com/SharksBookPublishers" />
-                <SocialIcon path={socialLinks.linkedin} />
-                <SocialIcon path={socialLinks.instagram} href="https://instagram.com/SharksBookPublishers" />
-                <SocialIcon path={socialLinks.x} />
+                <SocialIcon path={socialLinks.facebook} href="https://www.facebook.com/Ecommercesharksofficial" />
+                <SocialIcon path={socialLinks.linkedin} href="https://www.linkedin.com/company/ecom-sharkss/posts/?feedView=all" />
+                <SocialIcon path={socialLinks.instagram} href="https://www.instagram.com/ecommerce.sharks/" />
               </div>
             </div>
             <div className="flex items-center gap-2">
