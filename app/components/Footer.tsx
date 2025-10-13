@@ -278,7 +278,7 @@ export default function Contact() {
             animate={controls}
           >
             <h2 className="text-2xl lg:text-3xl font-bold" style={{ fontFamily: "'Barlow', sans-serif" }}>
-              Let's Talk About Your Book
+              Let's Talk About Your E-commerce Business
             </h2>
             <form onSubmit={handleSubmit} className="mt-6 lg:mt-8 space-y-4 lg:space-y-6">
               {/* Status Message */}

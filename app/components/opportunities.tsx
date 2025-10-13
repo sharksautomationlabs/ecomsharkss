@@ -166,7 +166,7 @@ export default function Opportunities() {
                 }}
                 className="flex items-center justify-center gap-3 bg-[#35c4dd] hover:bg-[#2cb4ca] transition-colors duration-300 rounded-full py-2.5 pl-6 pr-2 w-full lg:w-auto"
               >
-                <span className="font-semibold text-base lg:text-lg text-[#063f4a]" style={{ fontFamily: "'Barlow', sans-serif" }}>Order You Book</span>
+                <span className="font-semibold text-base lg:text-lg text-[#063f4a]" style={{ fontFamily: "'Barlow', sans-serif" }}>Order Your E-commerce Store</span>
                 <span className="bg-white rounded-full p-2.5 flex items-center justify-center w-10 h-10">
                   <Image src={imgArrowIcon} alt="arrow icon" width={20} height={20} className="lg:w-6 lg:h-6" />
                 </span>
