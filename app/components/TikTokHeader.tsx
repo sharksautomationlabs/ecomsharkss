@@ -115,7 +115,7 @@ export default function TikTokHeader() {
               style={{ backgroundImage: `url('${imgRectangle72}')` }}
             >
               <p className="text-white text-[20px] font-medium" style={{ fontFamily: "'Barlow', sans-serif", ...textShadow }}>
-                🌟 One-Stop All Ecommerce Accounts Solutions
+                🌟 Unify. Manage. Grow.
               </p>
               <div className="flex items-center gap-8">
                 <a href="tel:4694807938" className="flex items-center gap-3 text-white text-[20px] font-medium" style={{ fontFamily: "'Barlow', sans-serif", ...textShadow }}>
@@ -209,7 +209,7 @@ export default function TikTokHeader() {
                 {/* Top Bar Items */}
                 <div className="px-6 py-3 border-b border-white/20">
                   <p className="text-white text-xs font-medium mb-3" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                    🌟 One-Stop All Ecommerce Accounts Solutions
+                    🌟 Unify. Manage. Grow.
                   </p>
                   <div className="space-y-2">
                     <a 

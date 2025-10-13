@@ -7,6 +7,7 @@ export default function ContactPage() {
       <Header 
         heroTitle="Get In Touch With Our Expert Team"
         heroSubtitle="Ready to transform your e-commerce business? Contact ECOM SHARKS today for personalized solutions and expert guidance."
+        topNavText="🌟 Effortless Ecommerce: All Your Accounts, One Powerful Dashboard"
       />
       <Footer />
     </div>

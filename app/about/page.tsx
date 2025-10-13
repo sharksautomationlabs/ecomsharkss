@@ -11,6 +11,7 @@ export default function About() {
       <Header 
         heroTitle="Our Every Success Has History"
         heroSubtitle="Discover the journey, expertise, and values that drive ECOM SHARKS to deliver exceptional e-commerce solutions"
+        topNavText="🌟 The Ultimate Engine for Your Online Sales"
       />
       
       {/* Experts section showcasing the team */}

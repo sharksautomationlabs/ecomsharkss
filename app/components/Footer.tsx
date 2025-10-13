@@ -8,7 +8,6 @@ import { sendContactEmail, ContactFormData } from '../utils/emailjs';
 
 // Image and icon assets for the section
 const imgPattern = "/images/pattern-bg.png"; // Light blue water pattern background
-const imgShark = "/images/shark-underwater.png"; // Shark image
 const imgArrowIcon = "/images/arrow-icon-2.svg"; // Arrow for the button
 
 // Reusable Icon components for clarity and consistency
@@ -210,17 +209,13 @@ export default function Contact() {
 
   return (
     <footer ref={ref} className="relative w-full -pt-8 lg:pt-24 overflow-x-hidden">
-      {/* Background and Decorative Shark */}
+      {/* Background */}
       <div className="absolute inset-0 z-0">
         <div className="absolute inset-0 bg-gradient-to-b from-[#bef4fe] to-white" />
         <div 
           className="absolute inset-0 bg-repeat opacity-50"
           style={{ backgroundImage: `url('${imgPattern}')` }}
         />
-      </div>
-      {/* THE FIX: Shark container is larger and rotated slightly. */}
-      <div className="absolute bottom-32 left-1/2 -translate-x-1/2 w-[1000px] h-[1400px] z-0 transform rotate-15 animate-shark-lean">
-        <Image src={imgShark} alt="Shark" fill className="object-contain" />
       </div>
 
       {/* Main Content Area */}

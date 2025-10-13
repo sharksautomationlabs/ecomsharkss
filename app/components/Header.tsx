@@ -42,11 +42,13 @@ const imgTrustpilot = "/images/trust-pilot.jpg";
 interface HeaderProps {
   heroTitle?: string;
   heroSubtitle?: string;
+  topNavText?: string;
 }
 
 export default function Header({ 
   heroTitle = "Earn $4,000 in 30 Days Or We'll Work for Free",
-  heroSubtitle = "Keep scrolling—your path to financial freedom is just ahead. By the time you've explored 25% of this page, you'll discover the hidden gem that could change your life."
+  heroSubtitle = "Keep scrolling—your path to financial freedom is just ahead. By the time you've explored 25% of this page, you'll discover the hidden gem that could change your life.",
+  topNavText = "🌟 One-Stop All Ecommerce Accounts Solutions"
 }: HeaderProps) {
   const { videoRef, isInView } = useVideoLazyLoading();
   const textShadow = { textShadow: '0px 2px 5px rgba(0, 0, 0, 0.5)' };
@@ -127,7 +129,7 @@ export default function Header({
               style={{ backgroundImage: `url('${imgRectangle72}')` }}
             >
               <p className="text-white text-[20px] font-medium" style={{ fontFamily: "'Barlow', sans-serif", ...textShadow }}>
-                🌟 One-Stop All Ecommerce Accounts Solutions
+                {topNavText}
               </p>
               <div className="flex items-center gap-8">
                 <a href="tel:4694807938" className="flex items-center gap-3 text-white text-[20px] font-medium" style={{ fontFamily: "'Barlow', sans-serif", ...textShadow }}>
@@ -220,7 +222,7 @@ export default function Header({
                 {/* Top Bar Items */}
                 <div className="px-6 py-3 border-b border-white/20">
                   <p className="text-white text-xs font-medium mb-3" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                    🌟 One-Stop All Ecommerce Accounts Solutions
+                    {topNavText}
                   </p>
                   <div className="space-y-2">
                     <a 

@@ -151,6 +151,7 @@ export default function IdentityPage() {
       <Header 
         heroTitle="Meet Our Leadership Team - ECOM SHARKS"
         heroSubtitle="10+ Years of E-commerce Excellence | 40+ Team Members | 30+ Years Combined Experience"
+        topNavText="🌟 Simplify, Scale, Succeed: Your All-in-One Ecommerce Hub"
       />
       
       {/* Profile Section with Website Theme */}
@@ -835,12 +836,6 @@ export default function IdentityPage() {
               >
                 Get in Touch
               </h3>
-              <p 
-                className="text-3xl font-semibold mb-8" 
-                style={{ fontFamily: "'Barlow Condensed', sans-serif", textShadow: '0px 2px 4px rgba(0,0,0,0.3)' }}
-              >
-                with my direct line number
-              </p>
               <div className="w-32 h-1 bg-white/30 mx-auto rounded-full"></div>
             </motion.div>
             

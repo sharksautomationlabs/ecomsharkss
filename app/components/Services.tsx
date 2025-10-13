@@ -28,22 +28,22 @@ const ChatIcon = () => (
 const servicesData = [
   {
     title: 'Amazon',
-    description: 'Fresh voices and anticipated titles, available now.',
+    description: 'Vast Selection, unparalleled convenience, Fastest ROI.',
     logo: imgWalmartLogo,
   },
   {
     title: 'Tiktok',
-    description: "Stories readers can't stop talking about.",
+    description: "Don't just watch the trend, own it.",
     logo: imgTikTokLogo,
   },
   {
     title: 'Shopify',
-    description: "Be the first to discover tomorrow's favorites.",
+    description: "Your dream. Your brand. Your store",
     logo: imgShopifyLogo,
   },
   {
     title: 'Walmart',
-    description: 'Take your library wherever you go.',
+    description: 'Zero to $1000/- in days with Drop Shipping',
     logo: imgAmazonLogo,
   },
 ];
