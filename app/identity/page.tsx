@@ -16,7 +16,7 @@ const imgChatIcon = "/images/chat-icon.svg";
 const imgSharkUnderwater = "/images/shark-underwater-2.png";
 // const imgMissionShark = "/images/mission-shark-main.png";
 const imgPatternBg = "/images/pattern-bg.png";
-const imgFounder = "/images/founder.png";
+const imgFounders = "/images/founders.png";
 
 // Reusable Button Component matching website theme
 const GetQuoteButton = ({ small = false }: { small?: boolean }) => (
@@ -48,9 +48,11 @@ const GetQuoteButton = ({ small = false }: { small?: boolean }) => (
 );
 
 const ChatButton = () => (
-  <button className="group flex items-center justify-center gap-3 bg-transparent border-2 border-white text-white hover:bg-white hover:text-[#063f4a] transition-colors duration-300 rounded-full px-6 lg:px-8 py-3 text-base lg:text-lg font-semibold w-full lg:w-auto" style={{ fontFamily: "'Barlow', sans-serif" }}>
-    <Image src={imgChatIcon} alt="chat icon" width={20} height={20} />
-    <span>Live Chat</span>
+  <button className="flex items-center justify-between w-full lg:w-[170px] h-[56px] bg-white rounded-full border-2 border-[#35c4dd] p-2 shadow-lg">
+    <span className="pl-5 text-[#063f4a] font-semibold text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>Live Chat</span>
+    <div className="w-[44px] h-[44px] bg-[#063f4a] rounded-full flex items-center justify-center">
+      <Image src={imgChatIcon} alt="chat icon" width={28} height={28} />
+    </div>
   </button>
 );
 
@@ -65,7 +67,7 @@ const SocialIcon = ({ path, label, href }: { path: string; label: string; href?:
 
 export default function IdentityPage() {
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [selectedTeamMember, setSelectedTeamMember] = useState<'Aain' | 'zayn' | 'sharjeel' | null>(null);
+  const [selectedTeamMember, setSelectedTeamMember] = useState<'Aain' | 'zayn' | 'sharjeel' | 'minhaj' | null>(null);
   const controls = useAnimation();
   const { videoRef, isInView } = useVideoLazyLoading();
   const [ref, inView] = useInView({
@@ -189,21 +191,22 @@ export default function IdentityPage() {
         <div className="relative z-10 container mx-auto px-5 lg:px-5 lg:px-20 pb-16 lg:pb-24 text-white">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-6 lg:p-8 lg:gap-16 items-center">
             
-            {/* Left Column - Dynamic Founder Profile */}
+            {/* Left Column - Dynamic Founders Profile */}
             <motion.div 
               className="text-center lg:text-left"
               initial={{ opacity: 1 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.1 }}
             >
-              <div className="relative mb-6 lg:mb-8">
-                <div className="w-64 h-64 lg:w-80 lg:h-80 mx-auto lg:mx-0 rounded-full shadow-2xl border-4 border-white/20 overflow-hidden">
+              <div className="relative mb-6 lg:mb-8 mt-8 lg:mt-12">
+                <div className="w-80 h-80 lg:w-96 lg:h-96 mx-auto lg:mx-0 rounded-full shadow-2xl border-4 border-white/20 overflow-hidden">
                   <Image 
-                    src={selectedTeamMember === 'zayn' ? "/images/founder-1.jpg" : selectedTeamMember === 'sharjeel' ? "/images/founder-2.png" : imgFounder} 
-                    alt={selectedTeamMember === 'zayn' ? "Zayn - Senior E-commerce Consultant" : selectedTeamMember === 'sharjeel' ? "Sharjeel - Sr. Automation Consultation" : "Aain - Senior E-commerce Consultant"} 
-                    width={320} 
-                    height={320}
+                    src={selectedTeamMember === 'zayn' ? "/images/founder-1s.png" : selectedTeamMember === 'sharjeel' ? "/images/founder-2.png" : selectedTeamMember === 'minhaj' ? "/images/founder-3.jpg" : imgFounders} 
+                    alt={selectedTeamMember === 'zayn' ? "Zayn - Senior E-commerce Consultant" : selectedTeamMember === 'sharjeel' ? "Sharjeel - Sr. Automation Consultation" : selectedTeamMember === 'minhaj' ? "Minhaj - E-commerce Visionary" : "Aain - Senior E-commerce Consultant"} 
+                    width={384} 
+                    height={384}
                     className="w-full h-full object-cover"
+                    style={{ objectPosition: selectedTeamMember === 'minhaj' ? '85% 0%' : selectedTeamMember === 'zayn' ? 'center 30%' : selectedTeamMember === 'sharjeel' ? 'center 20%' : selectedTeamMember === 'Aain' ? 'center 20%' : 'center center' }}
                     priority
                     quality={90}
                   />
@@ -214,13 +217,13 @@ export default function IdentityPage() {
                 className="text-4xl lg:text-6xl font-semibold text-white mb-4" 
                 style={{ fontFamily: "'Barlow Condensed', sans-serif", textShadow: '0px 3px 6px rgba(0,0,0,0.5)' }}
               >
-                {selectedTeamMember === 'zayn' ? 'Zayn!' : selectedTeamMember === 'sharjeel' ? 'Sharjeel!' : 'Aain!'}
+                {selectedTeamMember === 'zayn' ? 'Zayn!' : selectedTeamMember === 'sharjeel' ? 'Sharjeel!' : selectedTeamMember === 'minhaj' ? 'Minhaj!' : 'Aain!'}
               </h2>
               <p 
                 className="text-lg lg:text-2xl text-[#35c4dd] mb-6 lg:mb-8" 
                 style={{ fontFamily: "'Barlow', sans-serif", textShadow: '0px 2px 4px rgba(0,0,0,0.5)' }}
               >
-                 {selectedTeamMember === 'zayn' ? 'Senior E-commerce Consultant' : selectedTeamMember === 'sharjeel' ? 'Sr. Automation Consultation' : 'Sr. Ecommerce Consultant'}
+                 {selectedTeamMember === 'zayn' ? 'Senior E-commerce Consultant' : selectedTeamMember === 'sharjeel' ? 'Sr. Automation Consultation' : selectedTeamMember === 'minhaj' ? 'E-commerce Visionary' : 'Sr. Ecommerce Consultant'}
               </p>
               
               <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 justify-center lg:justify-start mb-6 lg:mb-8">
@@ -241,6 +244,12 @@ export default function IdentityPage() {
                     <SocialIcon path={socialLinks.instagram} label="Instagram" href="https://www.instagram.com/sharjeelzahoorofficial/" />
                     <SocialIcon path={socialLinks.linkedin} label="LinkedIn" href="https://www.linkedin.com/in/sharjeel-zahoor-6a743927a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" />
                   </>
+                ) : selectedTeamMember === 'minhaj' ? (
+                  <>
+                    <SocialIcon path={socialLinks.instagram} label="Instagram" href="https://www.instagram.com/minhaj_official/" />
+                    <SocialIcon path={socialLinks.linkedin} label="LinkedIn" href="https://www.linkedin.com/in/minhaj-visionary" />
+                    <SocialIcon path={socialLinks.facebook} label="Facebook" href="https://www.facebook.com/minhaj.ecomsharkss" />
+                  </>
                 ) : (
                   <>
                     <SocialIcon path={socialLinks.instagram} label="Instagram" href="https://www.instagram.com/iamaainali?utm_source=qr&igsh=MTNjOGU4OXUwM3BwdQ==" />
@@ -250,7 +259,7 @@ export default function IdentityPage() {
               </div>
             </motion.div>
 
-            {/* Right Column - Interactive Founder Selection */}
+            {/* Right Column - Interactive Founders Selection */}
             <motion.div 
               variants={rightVariants}
               initial="hidden"
@@ -276,91 +285,82 @@ export default function IdentityPage() {
               </motion.p>
               
               {/* Team Member Selection Buttons */}
-              <motion.div 
-                className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8"
-                variants={containerVariants}
-                initial="hidden"
-                animate={controls}
-              >
+               <motion.div 
+                 className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-2 lg:gap-3 mb-8 justify-items-center"
+                 variants={containerVariants}
+                 initial="hidden"
+                 animate={controls}
+               >
                 <button
                   onClick={() => setSelectedTeamMember('Aain')}
-                  className={`flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 rounded-2xl transition-all duration-300 w-full sm:w-auto ${
+                  className={`w-20 h-20 rounded-full overflow-hidden border-4 transition-all duration-300 ${
                     selectedTeamMember === 'Aain' 
-                      ? 'bg-[#35c4dd] text-[#063f4a] shadow-lg' 
-                      : 'bg-white/10 text-white hover:bg-white/20'
+                      ? 'border-[#35c4dd] shadow-lg shadow-[#35c4dd]/50' 
+                      : 'border-white/30 hover:border-white/50'
                   }`}
                 >
-                  <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/30">
-                    <Image 
-                      src={imgFounder} 
-                        alt="Aain" 
-                      width={48} 
-                      height={48}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="text-left">
-                    <div className="font-semibold text-base sm:text-lg" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                      Aain
-                    </div>
-                    <div className="text-xs sm:text-sm opacity-80" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                      Sr. Ecommerce Consultant
-                    </div>
-                  </div>
+                  <Image 
+                    src={imgFounders} 
+                    alt="Aain" 
+                    width={80} 
+                    height={80}
+                    className="w-full h-full object-cover"
+                    style={{ objectPosition: 'center 20%' }}
+                  />
                 </button>
                 
                 <button
                   onClick={() => setSelectedTeamMember('zayn')}
-                  className={`flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 rounded-2xl transition-all duration-300 w-full sm:w-auto ${
+                  className={`w-20 h-20 rounded-full overflow-hidden border-4 transition-all duration-300 ${
                     selectedTeamMember === 'zayn' 
-                      ? 'bg-[#35c4dd] text-[#063f4a] shadow-lg' 
-                      : 'bg-white/10 text-white hover:bg-white/20'
+                      ? 'border-[#35c4dd] shadow-lg shadow-[#35c4dd]/50' 
+                      : 'border-white/30 hover:border-white/50'
                   }`}
                 >
-                  <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/30">
-                    <Image 
-                      src="/images/founder-1.jpg" 
-                        alt="Zayn" 
-                      width={48} 
-                      height={48}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="text-left">
-                    <div className="font-semibold text-base sm:text-lg" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                      Zayn
-                    </div>
-                    <div className="text-xs sm:text-sm opacity-80" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                       Sr.Ecommerce Consultant
-                    </div>
-                  </div>
+                  <Image 
+                    src="/images/founder-1s.png" 
+                    alt="Zayn" 
+                    width={80} 
+                    height={80}
+                    className="w-full h-full object-cover"
+                    style={{ objectPosition: 'center 30%' }}
+                  />
                 </button>
                 
                 <button
                   onClick={() => setSelectedTeamMember('sharjeel')}
-                  className={`flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 rounded-2xl transition-all duration-300 w-full sm:w-auto ${
+                  className={`w-20 h-20 rounded-full overflow-hidden border-4 transition-all duration-300 ${
                     selectedTeamMember === 'sharjeel' 
-                      ? 'bg-[#35c4dd] text-[#063f4a] shadow-lg' 
-                      : 'bg-white/10 text-white hover:bg-white/20'
+                      ? 'border-[#35c4dd] shadow-lg shadow-[#35c4dd]/50' 
+                      : 'border-white/30 hover:border-white/50'
                   }`}
                 >
-                  <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/30">
-                    <Image 
-                      src="/images/founder-2.png" 
-                      alt="Sharjeel" 
-                      width={48} 
-                      height={48}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <div className="text-left">
-                    <div className="font-semibold text-base sm:text-lg" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                      Sharjeel
-                    </div>
-                    <div className="text-xs sm:text-sm opacity-80" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                      Sr. Automation Consultation
-                    </div>
-                  </div>
+                  <Image 
+                    src="/images/founder-2.png" 
+                    alt="Sharjeel" 
+                    width={80} 
+                    height={80}
+                    className="w-full h-full object-cover"
+                    style={{ objectPosition: 'center 20%' }}
+                  />
+                </button>
+                
+                <button
+                  onClick={() => setSelectedTeamMember('minhaj')}
+                  className={`w-20 h-20 rounded-full overflow-hidden border-4 transition-all duration-300 ${
+                    selectedTeamMember === 'minhaj' 
+                      ? 'border-[#35c4dd] shadow-lg shadow-[#35c4dd]/50' 
+                      : 'border-white/30 hover:border-white/50'
+                  }`}
+                >
+                  <Image 
+                    src="/images/founder-3.jpg" 
+                    alt="Minhaj" 
+                    width={80} 
+                    height={80}
+                    className="w-full h-full object-cover"
+                    style={{ objectPosition: '85% 0%' }}
+                  />
                 </button>
               </motion.div>
 
@@ -392,6 +392,18 @@ export default function IdentityPage() {
                       <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
                         Success in e-commerce comes from understanding market dynamics, consumer behavior, and platform-specific requirements. I help clients navigate these complexities to achieve sustainable growth.
                 </p>
+                    </>
+                  ) : selectedTeamMember === 'minhaj' ? (
+                    <>
+                      <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                        ECOM SHARKS began with a simple belief: that building an online store shouldn't be complicated. Over the years, that belief has grown into a platform trusted by thousands of entrepreneurs worldwide.
+                      </p>
+                      <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                        With ECOM SHARKS 2.0, we're taking that vision global. Faster performance, smarter tools, and deeper integrations, all built on the foundation of trust we've earned from our community.
+                      </p>
+                      <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                        The journey ahead is exciting, and we're just getting started. My vision is to make e-commerce accessible, profitable, and sustainable for entrepreneurs everywhere.
+                      </p>
                     </>
                   ) : (
                     <>
@@ -593,7 +605,7 @@ export default function IdentityPage() {
                <h4 className="text-2xl lg:text-3xl font-bold text-[#063f4a] mb-6 text-center" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
                  Real Results Screenshots
                </h4>
-               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 max-w-6xl mx-auto">
+               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 max-w-6xl mx-auto mt-8">
                  {/* Left side screenshots - animate from left */}
                  <motion.div 
                    className="bg-white/80 backdrop-blur-xl rounded-2xl p-2 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-500"
@@ -606,6 +618,7 @@ export default function IdentityPage() {
                        width={300} 
                        height={300}
                        className="w-full h-full object-cover"
+                       style={{ objectPosition: 'center 30%' }}
                        loading="lazy"
                        quality={85}
                      />
@@ -629,6 +642,7 @@ export default function IdentityPage() {
                        width={300} 
                        height={300}
                        className="w-full h-full object-cover"
+                       style={{ objectPosition: 'center 30%' }}
                        loading="lazy"
                        quality={85}
                      />
@@ -652,6 +666,7 @@ export default function IdentityPage() {
                        width={300} 
                        height={300}
                        className="w-full h-full object-cover"
+                       style={{ objectPosition: 'center 30%' }}
                        loading="lazy"
                        quality={85}
                      />
@@ -675,6 +690,7 @@ export default function IdentityPage() {
                        width={300} 
                        height={300}
                        className="w-full h-full object-cover"
+                       style={{ objectPosition: 'center 30%' }}
                        loading="lazy"
                        quality={85}
                      />
@@ -753,11 +769,12 @@ export default function IdentityPage() {
                   <div className="relative z-10 flex items-center gap-4">
                     <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/30">
                       <Image 
-                        src={imgFounder} 
+                        src={imgFounders} 
                         alt="Aain - Senior E-commerce Consultant" 
                         width={48} 
                         height={48}
                         className="w-full h-full object-cover"
+                        style={{ objectPosition: 'center 20%' }}
                       />
                     </div>
                     <div>
@@ -907,13 +924,14 @@ export default function IdentityPage() {
                   </div>
                   
                   <div className="relative z-10 text-center">
-                    <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-white/30 mx-auto mb-8">
+                    <div className="w-28 h-28 rounded-full overflow-hidden border-2 border-white/30 mx-auto mb-8">
                       <Image 
-                        src="/images/founder-1.jpg" 
+                        src="/images/founder-1s.png" 
                         alt="Zayn - Sr.Ecommerce Consultant" 
-                        width={80} 
-                        height={80}
+                        width={112} 
+                        height={112}
                         className="w-full h-full object-cover"
+                        style={{ objectPosition: 'center 30%' }}
                       />
                     </div>
                     

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import { sendContactEmail, ContactFormData } from '../utils/emailjs';
 import { useVideoLazyLoading } from '../utils/videoLazyLoading';
+import { spamProtection, detectSuspiciousActivity } from '../utils/spamProtection';
 
 // Image assets
 const imgFounder = "/images/founder.png";
@@ -56,6 +57,15 @@ export default function CurrentOffer() {
     message: string;
   }>({ type: null, message: '' });
 
+  // Spam protection state
+  const [honeypotFieldName] = useState('website_url');
+  const [honeypotValue, setHoneypotValue] = useState('');
+  const [rateLimitStatus, setRateLimitStatus] = useState<{
+    allowed: boolean;
+    reason?: string;
+    waitTime?: number;
+  }>({ allowed: true });
+
   // Handle form input changes
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -87,6 +97,27 @@ export default function CurrentOffer() {
       setSubmitStatus({ type: 'error', message: 'Message is required' });
       return false;
     }
+
+
+    // Check rate limiting
+    const rateLimitCheck = spamProtection.canSubmit();
+    if (!rateLimitCheck.allowed) {
+      setSubmitStatus({ type: 'error', message: rateLimitCheck.reason || 'Submission not allowed at this time' });
+      return false;
+    }
+
+    // Check honeypot (should be empty)
+    if (!spamProtection.validateHoneypot({ [honeypotFieldName]: honeypotValue })) {
+      setSubmitStatus({ type: 'error', message: 'Invalid submission detected' });
+      return false;
+    }
+
+    // Check for suspicious patterns
+    if (detectSuspiciousActivity(formData)) {
+      setSubmitStatus({ type: 'error', message: 'Suspicious content detected. Please review your message.' });
+      return false;
+    }
+
     return true;
   };
 
@@ -105,6 +136,9 @@ export default function CurrentOffer() {
       const result = await sendContactEmail(formData);
       
       if (result.success) {
+        // Record successful submission for rate limiting
+        spamProtection.recordSubmission();
+        
         setSubmitStatus({ type: 'success', message: result.message });
         // Reset form
         setFormData({
@@ -113,6 +147,8 @@ export default function CurrentOffer() {
           phone: '',
           message: ''
         });
+        // Reset honeypot
+        setHoneypotValue('');
       } else {
         setSubmitStatus({ type: 'error', message: result.message });
       }
@@ -268,6 +304,28 @@ export default function CurrentOffer() {
                     style={{ fontFamily: "'Barlow', sans-serif" }}
                   ></textarea>
                 </div>
+
+                {/* Honeypot field - hidden from users */}
+                <div style={{ display: 'none' }}>
+                  <label htmlFor={honeypotFieldName}>Website URL (leave blank):</label>
+                  <input
+                    type="text"
+                    id={honeypotFieldName}
+                    name={honeypotFieldName}
+                    value={honeypotValue}
+                    onChange={(e) => setHoneypotValue(e.target.value)}
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
+
+
+                {/* Rate limit status */}
+                {!rateLimitStatus.allowed && (
+                  <div className="bg-yellow-500/20 text-yellow-200 border border-yellow-400/30 p-3 rounded-lg text-sm">
+                    <strong>Rate Limit:</strong> {rateLimitStatus.reason}
+                  </div>
+                )}
                 
                 <div className="pt-4">
                   <button
