@@ -7,7 +7,7 @@ import { useVideoLazyLoading } from '../utils/videoLazyLoading';
 import { spamProtection, detectSuspiciousActivity } from '../utils/spamProtection';
 
 // Image assets
-const imgFounder = "/images/founder.png";
+const imgFounder = "/images/founders.png";
 
 // Reusable Button Component
 const GetQuoteButton = ({ small = false }: { small?: boolean }) => (
@@ -196,13 +196,14 @@ export default function CurrentOffer() {
             <div className="space-y-6">
               <div className="bg-white/5 backdrop-blur-2xl rounded-2xl lg:rounded-3xl p-6 lg:p-8 border border-white/30 shadow-2xl">
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/30">
+                  <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/30 mt-2">
                     <Image 
-                      src="/images/founder-1.jpg" 
+                      src="/images/founder-1s.png" 
                       alt="Zayn - Senior E-commerce Consultant" 
                       width={48} 
                       height={48}
                       className="w-full h-full object-cover"
+                      style={{ objectPosition: 'center 30%' }}
                     />
                   </div>
                   <h3 className="text-2xl lg:text-3xl font-bold text-white" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
@@ -223,13 +224,14 @@ export default function CurrentOffer() {
             {/* Right Column - Contact Form */}
             <div className="bg-white/5 backdrop-blur-2xl rounded-2xl lg:rounded-3xl p-6 lg:p-8 border border-white/30 shadow-2xl">
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white/30">
+                <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white/30 mt-2">
                   <Image 
                     src={imgFounder} 
                     alt="Aain - Senior E-commerce Consultant" 
                     width={64} 
                     height={64}
                     className="w-full h-full object-cover"
+                    style={{ objectPosition: 'center 20%' }}
                   />
                 </div>
                 <div>

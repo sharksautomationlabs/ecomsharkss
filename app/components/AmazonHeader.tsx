@@ -8,7 +8,7 @@ import { useVideoLazyLoading } from '../utils/videoLazyLoading';
 
 // Hamburger Menu Icon for Mobile
 const HamburgerIcon = ({ isOpen }: { isOpen: boolean }) => (
-    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="transition-transform duration-300">
         {isOpen ? (
             <path d="M18 6L6 18M6 6L18 18" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
         ) : (
@@ -131,7 +131,7 @@ export default function AmazonHeader() {
 
             {/* Navigation Section - RESPONSIVE */}
             <div className="mt-2 lg:mt-6 flex items-center justify-between">
-                <div className="w-[140px] h-[100px] lg:w-[180px] lg:h-[140px] relative fade-in -ml-10 lg:-ml-12">
+                <div className="w-[100px] h-[70px] md:w-[140px] md:h-[100px] lg:w-[180px] lg:h-[140px] relative fade-in -ml-6 md:-ml-8 lg:-ml-12">
                     <Image src={imgImage1} alt="Ecom Sharks Logo" fill className="object-contain" />
                 </div>
                 <div className="hidden lg:flex w-[950px] h-[90px] bg-white/20 backdrop-blur-sm 
@@ -195,7 +195,7 @@ export default function AmazonHeader() {
               <div className="flex flex-col h-full">
                 {/* Header */}
                 <div className="flex items-center justify-between p-6 border-b border-white/20">
-                  <div className="w-[100px] h-[75px] relative -ml-8">
+                  <div className="w-[80px] h-[60px] relative -ml-6">
                     <Image src={imgImage1} alt="Ecom Sharks Logo" fill className="object-contain" />
                   </div>
                   <button 
@@ -343,7 +343,7 @@ export default function AmazonHeader() {
 
           {/* Hero Text Content - RESPONSIVE FOR AMAZON */}
           <div className="absolute top-1/2 -translate-y-1/2 left-5 w-1/2 lg:top-[300px] lg:left-20 lg:w-[781px] lg:translate-y-0 z-50 slide-in-left">
-            <h1 className="text-white text-3xl leading-tight pt-10 lg:text-[94px] lg:leading-[0.921] lg:pt-0" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 600, ...textShadow }}>
+            <h1 className="text-white text-xl leading-tight pt-10 lg:text-[94px] lg:leading-[0.921] lg:pt-0" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 600, ...textShadow }}>
               We Always Give The Best Amazon FBA Service To You
             </h1>
             <p className="hidden lg:block mt-6 text-white text-[24px] leading-[38px] max-w-[685px]" style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 500, ...textShadow }}>
@@ -376,11 +376,13 @@ export default function AmazonHeader() {
              <div className="mt-8 lg:hidden">
                 <a 
                   href="tel:4694807938"
-                  className="bg-[#35c4dd] text-[#063f4a] font-semibold py-2.5 px-2 rounded-full text-base w-[160px] flex items-center justify-between shadow-lg"
+                  className="bg-[#35c4dd] text-[#063f4a] font-semibold py-1.5 px-2 rounded-full text-xs w-[120px] flex items-center justify-between shadow-lg"
                 >
-                    <span className="pl-3">Contact Us</span>
-                    <span className="bg-white rounded-full w-8 h-8 flex items-center justify-center">
-                       <ArrowIcon />
+                    <span className="pl-1.5 text-xs">Contact Us</span>
+                    <span className="bg-white rounded-full w-6 h-6 flex items-center justify-center">
+                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                         <path d="M13.5 4.5L21 12M21 12L13.5 19.5M21 12H3" stroke="#063f4a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                       </svg>
                     </span>
                 </a>
                 <div className="mt-4 ml-2">
