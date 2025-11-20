@@ -1,4 +1,5 @@
 import emailjs from '@emailjs/browser';
+import { initiateRetellCallClient } from './retellClient';
 
 // EmailJS configuration
 const EMAILJS_SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || '';
@@ -24,8 +25,23 @@ export const sendContactEmail = async (formData: ContactFormData): Promise<{ suc
       });
       
       // For development/testing purposes, return success without sending email
+      // But still trigger Retell call if phone number is provided
       if (process.env.NODE_ENV === 'development') {
         console.log('Development mode: Simulating successful email send');
+        
+        // Still trigger Retell call in development mode if phone number is provided
+        if (formData.phone && formData.phone.trim()) {
+          initiateRetellCallClient({
+            name: formData.name,
+            phone: formData.phone,
+            email: formData.email,
+            message: formData.message,
+          }).catch((error) => {
+            // Log error but don't fail the submission
+            console.error('Failed to initiate Retell call:', error);
+          });
+        }
+        
         return {
           success: true,
           message: 'Thank you for your message! We will get back to you soon. (Development mode - email not sent)'
@@ -55,6 +71,20 @@ export const sendContactEmail = async (formData: ContactFormData): Promise<{ suc
     );
 
     if (response.status === 200) {
+      // Initiate Retell AI call after successful email send (non-blocking)
+      // Only trigger if phone number is provided
+      if (formData.phone && formData.phone.trim()) {
+        initiateRetellCallClient({
+          name: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          message: formData.message,
+        }).catch((error) => {
+          // Log error but don't fail the email submission
+          console.error('Failed to initiate Retell call:', error);
+        });
+      }
+
       return {
         success: true,
         message: 'Thank you for your message! We will get back to you soon.'

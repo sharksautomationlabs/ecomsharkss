@@ -291,6 +291,23 @@ export default function CurrentOffer() {
                 </div>
                 
                 <div>
+                  <label htmlFor="phone" className="block text-white/90 text-sm lg:text-base font-medium mb-2" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                    Phone Number
+                  </label>
+                  <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    required
+                    className="w-full px-4 py-3 bg-white/10 border border-white/30 rounded-xl text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-[#35c4dd] focus:border-transparent transition-all duration-300"
+                    placeholder="Enter your phone number (e.g., +1234567890)"
+                    style={{ fontFamily: "'Barlow', sans-serif" }}
+                  />
+                </div>
+                
+                <div>
                   <label htmlFor="message" className="block text-white/90 text-sm lg:text-base font-medium mb-2" style={{ fontFamily: "'Barlow', sans-serif" }}>
                     Message
                   </label>
