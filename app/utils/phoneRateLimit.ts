@@ -71,9 +71,8 @@ export const checkPhoneRateLimit = (
     // Get existing submissions
     const stored = localStorage.getItem(STORAGE_KEY);
     const today = getTodayDate();
-    const now = Date.now();
 
-    let submissions: SubmissionRecord[] = stored
+    const submissions: SubmissionRecord[] = stored
       ? JSON.parse(stored)
       : [];
 
@@ -126,7 +125,7 @@ export const recordPhoneSubmission = (phoneNumber: string): void => {
     const today = getTodayDate();
     const now = Date.now();
 
-    let submissions: SubmissionRecord[] = stored
+    const submissions: SubmissionRecord[] = stored
       ? JSON.parse(stored)
       : [];
 
