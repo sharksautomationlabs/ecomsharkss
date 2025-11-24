@@ -403,20 +403,20 @@ export default function ShopifyHeader() {
                 transform: `translateX(${-scrollPosition * (isDesktop ? 0.2 : 0.5)}px)`
               }}
             >
-                <Image src={imgDangerousSharkUnderwater2Copy1} alt="Shark" width={1000} height={600} objectFit="contain" className="transform -scale-x-100" />
+                <Image src={imgDangerousSharkUnderwater2Copy1} alt="Shark" width={1000} height={600} style={{ objectFit: 'contain' }} className="transform -scale-x-100" />
             </div>
 
             {/* Mobile Logo Layout */}
             <div className="lg:hidden absolute top-1/2 right-2 -translate-y-1/2 w-[45%] h-[70%]">
                 <div className="absolute top-[24%] right-[20%] w-[65%] h-auto z-40 logo-fade-in-shopify">
-                    <Image src={img81} alt="Shopify Logo" width={350} height={350} objectFit="contain" />
+                    <Image src={img81} alt="Shopify Logo" width={350} height={350} style={{ objectFit: 'contain' }} />
                 </div>
             </div>
 
             {/* Desktop Logo Layout */}
             <div className="hidden lg:block">
             <div className="absolute top-[44%] right-[20%] w-[16%] h-auto z-40 logo-fade-in-shopify">
-                <Image src={img81} alt="Shopify Logo" width={310} height={310} objectFit="contain" />
+                <Image src={img81} alt="Shopify Logo" width={310} height={310} style={{ objectFit: 'contain' }} />
                 </div>
             </div>
           </div>

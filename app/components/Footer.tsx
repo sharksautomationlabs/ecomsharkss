@@ -56,6 +56,7 @@ export default function Contact() {
     phone: '',
     message: ''
   });
+  const [countryCode, setCountryCode] = useState('+1');
   
   const [privacyPolicyAccepted, setPrivacyPolicyAccepted] = useState(false);
   const [consentGiven, setConsentGiven] = useState(false);
@@ -65,7 +66,7 @@ export default function Contact() {
     type: 'success' | 'error' | null;
     message: string;
   }>({ type: null, message: '' });
-  
+
   // Set triggerOnce to false to allow re-triggering
   const [ref, inView] = useInView({
     triggerOnce: false, // Set to false to re-trigger animation
@@ -80,13 +81,66 @@ export default function Contact() {
     }
   }, [controls, inView]);
 
+  // Format phone number based on country code
+  const formatPhoneNumber = (value: string, code: string): string => {
+    // Remove all non-digit characters
+    const digits = value.replace(/\D/g, '');
+    
+    // For US/Canada (+1), format as (XXX) XXX-XXXX
+    if (code === '+1') {
+      if (digits.length <= 3) {
+        return digits;
+      } else if (digits.length <= 6) {
+        return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+      } else {
+        return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6, 10)}`;
+      }
+    }
+    
+    // For other countries, format with spaces every 3-4 digits
+    if (digits.length <= 3) {
+      return digits;
+    } else if (digits.length <= 6) {
+      return `${digits.slice(0, 3)} ${digits.slice(3)}`;
+    } else if (digits.length <= 9) {
+      return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6)}`;
+    } else {
+      return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6, 9)} ${digits.slice(9, 12)}`;
+    }
+  };
+
+  // Handle country code change and reformat phone number
+  const handleCountryCodeChange = (newCode: string) => {
+    setCountryCode(newCode);
+    // Reformat existing phone number with new country code
+    if (formData.phone) {
+      const digits = formData.phone.replace(/\D/g, '');
+      const formatted = formatPhoneNumber(digits, newCode);
+      setFormData(prev => ({
+        ...prev,
+        phone: formatted
+      }));
+    }
+  };
+
   // Handle form input changes
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    
+    // Format phone number if it's the phone field
+    if (name === 'phone') {
+      const formatted = formatPhoneNumber(value, countryCode);
+      setFormData(prev => ({
+        ...prev,
+        [name]: formatted
+      }));
+    } else {
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    }
+    
     // Clear status message when user starts typing
     if (submitStatus.type) {
       setSubmitStatus({ type: null, message: '' });
@@ -134,7 +188,17 @@ export default function Contact() {
     setSubmitStatus({ type: null, message: '' });
 
     try {
-      const result = await sendContactEmail(formData);
+      // Combine country code with phone number
+      // Remove all formatting characters (spaces, dashes, parentheses)
+      let phoneNumber = formData.phone.replace(/\D/g, '');
+      // Combine country code with cleaned phone number
+      const fullPhoneNumber = countryCode + phoneNumber;
+      const formDataWithCountryCode = {
+        ...formData,
+        phone: fullPhoneNumber
+      };
+      
+      const result = await sendContactEmail(formDataWithCountryCode);
       
       if (result.success) {
         setSubmitStatus({ type: 'success', message: result.message });
@@ -145,6 +209,8 @@ export default function Contact() {
           phone: '',
           message: ''
         });
+        // Reset country code to default
+        setCountryCode('+1');
         // Reset checkboxes
         setPrivacyPolicyAccepted(false);
         setConsentGiven(false);
@@ -314,14 +380,228 @@ export default function Contact() {
                 </div>
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium ml-4 mb-1">Phone:</label>
-                  <input 
-                    type="tel" 
-                    id="phone" 
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    className="w-full h-12 lg:h-14 bg-white rounded-full px-4 lg:px-6 text-gray-800 focus:outline-none focus:ring-2 focus:ring-white" 
-                  />
+                  <div className="flex gap-2">
+                    <select
+                      value={countryCode}
+                      onChange={(e) => handleCountryCodeChange(e.target.value)}
+                      className="min-w-[100px] sm:min-w-[120px] h-12 lg:h-14 bg-white rounded-full px-2 sm:px-3 lg:px-4 text-gray-800 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-white"
+                    >
+                      <option value="+1" className="bg-white text-gray-800">🇺🇸 🇨🇦 +1</option>
+                      <option value="+7" className="bg-white text-gray-800">🇷🇺 🇰🇿 +7</option>
+                      <option value="+20" className="bg-white text-gray-800">🇪🇬 +20</option>
+                      <option value="+27" className="bg-white text-gray-800">🇿🇦 +27</option>
+                      <option value="+30" className="bg-white text-gray-800">🇬🇷 +30</option>
+                      <option value="+31" className="bg-white text-gray-800">🇳🇱 +31</option>
+                      <option value="+32" className="bg-white text-gray-800">🇧🇪 +32</option>
+                      <option value="+33" className="bg-white text-gray-800">🇫🇷 +33</option>
+                      <option value="+34" className="bg-white text-gray-800">🇪🇸 +34</option>
+                      <option value="+36" className="bg-white text-gray-800">🇭🇺 +36</option>
+                      <option value="+39" className="bg-white text-gray-800">🇮🇹 +39</option>
+                      <option value="+40" className="bg-white text-gray-800">🇷🇴 +40</option>
+                      <option value="+41" className="bg-white text-gray-800">🇨🇭 +41</option>
+                      <option value="+43" className="bg-white text-gray-800">🇦🇹 +43</option>
+                      <option value="+44" className="bg-white text-gray-800">🇬🇧 +44</option>
+                      <option value="+45" className="bg-white text-gray-800">🇩🇰 +45</option>
+                      <option value="+46" className="bg-white text-gray-800">🇸🇪 +46</option>
+                      <option value="+47" className="bg-white text-gray-800">🇳🇴 +47</option>
+                      <option value="+48" className="bg-white text-gray-800">🇵🇱 +48</option>
+                      <option value="+49" className="bg-white text-gray-800">🇩🇪 +49</option>
+                      <option value="+51" className="bg-white text-gray-800">🇵🇪 +51</option>
+                      <option value="+52" className="bg-white text-gray-800">🇲🇽 +52</option>
+                      <option value="+53" className="bg-white text-gray-800">🇨🇺 +53</option>
+                      <option value="+54" className="bg-white text-gray-800">🇦🇷 +54</option>
+                      <option value="+55" className="bg-white text-gray-800">🇧🇷 +55</option>
+                      <option value="+56" className="bg-white text-gray-800">🇨🇱 +56</option>
+                      <option value="+57" className="bg-white text-gray-800">🇨🇴 +57</option>
+                      <option value="+58" className="bg-white text-gray-800">🇻🇪 +58</option>
+                      <option value="+60" className="bg-white text-gray-800">🇲🇾 +60</option>
+                      <option value="+61" className="bg-white text-gray-800">🇦🇺 +61</option>
+                      <option value="+62" className="bg-white text-gray-800">🇮🇩 +62</option>
+                      <option value="+63" className="bg-white text-gray-800">🇵🇭 +63</option>
+                      <option value="+64" className="bg-white text-gray-800">🇳🇿 +64</option>
+                      <option value="+65" className="bg-white text-gray-800">🇸🇬 +65</option>
+                      <option value="+66" className="bg-white text-gray-800">🇹🇭 +66</option>
+                      <option value="+81" className="bg-white text-gray-800">🇯🇵 +81</option>
+                      <option value="+82" className="bg-white text-gray-800">🇰🇷 +82</option>
+                      <option value="+84" className="bg-white text-gray-800">🇻🇳 +84</option>
+                      <option value="+86" className="bg-white text-gray-800">🇨🇳 +86</option>
+                      <option value="+90" className="bg-white text-gray-800">🇹🇷 +90</option>
+                      <option value="+91" className="bg-white text-gray-800">🇮🇳 +91</option>
+                      <option value="+92" className="bg-white text-gray-800">🇵🇰 +92</option>
+                      <option value="+93" className="bg-white text-gray-800">🇦🇫 +93</option>
+                      <option value="+94" className="bg-white text-gray-800">🇱🇰 +94</option>
+                      <option value="+95" className="bg-white text-gray-800">🇲🇲 +95</option>
+                      <option value="+98" className="bg-white text-gray-800">🇮🇷 +98</option>
+                      <option value="+212" className="bg-white text-gray-800">🇲🇦 +212</option>
+                      <option value="+213" className="bg-white text-gray-800">🇩🇿 +213</option>
+                      <option value="+216" className="bg-white text-gray-800">🇹🇳 +216</option>
+                      <option value="+218" className="bg-white text-gray-800">🇱🇾 +218</option>
+                      <option value="+220" className="bg-white text-gray-800">🇬🇲 +220</option>
+                      <option value="+221" className="bg-white text-gray-800">🇸🇳 +221</option>
+                      <option value="+222" className="bg-white text-gray-800">🇲🇷 +222</option>
+                      <option value="+223" className="bg-white text-gray-800">🇲🇱 +223</option>
+                      <option value="+224" className="bg-white text-gray-800">🇬🇳 +224</option>
+                      <option value="+225" className="bg-white text-gray-800">🇨🇮 +225</option>
+                      <option value="+226" className="bg-white text-gray-800">🇧🇫 +226</option>
+                      <option value="+227" className="bg-white text-gray-800">🇳🇪 +227</option>
+                      <option value="+228" className="bg-white text-gray-800">🇹🇬 +228</option>
+                      <option value="+229" className="bg-white text-gray-800">🇧🇯 +229</option>
+                      <option value="+230" className="bg-white text-gray-800">🇲🇺 +230</option>
+                      <option value="+231" className="bg-white text-gray-800">🇱🇷 +231</option>
+                      <option value="+232" className="bg-white text-gray-800">🇸🇱 +232</option>
+                      <option value="+233" className="bg-white text-gray-800">🇬🇭 +233</option>
+                      <option value="+234" className="bg-white text-gray-800">🇳🇬 +234</option>
+                      <option value="+235" className="bg-white text-gray-800">🇹🇩 +235</option>
+                      <option value="+236" className="bg-white text-gray-800">🇨🇫 +236</option>
+                      <option value="+237" className="bg-white text-gray-800">🇨🇲 +237</option>
+                      <option value="+238" className="bg-white text-gray-800">🇨🇻 +238</option>
+                      <option value="+239" className="bg-white text-gray-800">🇸🇹 +239</option>
+                      <option value="+240" className="bg-white text-gray-800">🇬🇶 +240</option>
+                      <option value="+241" className="bg-white text-gray-800">🇬🇦 +241</option>
+                      <option value="+242" className="bg-white text-gray-800">🇨🇬 +242</option>
+                      <option value="+243" className="bg-white text-gray-800">🇨🇩 +243</option>
+                      <option value="+244" className="bg-white text-gray-800">🇦🇴 +244</option>
+                      <option value="+245" className="bg-white text-gray-800">🇬🇼 +245</option>
+                      <option value="+246" className="bg-white text-gray-800">🇮🇴 +246</option>
+                      <option value="+248" className="bg-white text-gray-800">🇸🇨 +248</option>
+                      <option value="+249" className="bg-white text-gray-800">🇸🇩 +249</option>
+                      <option value="+250" className="bg-white text-gray-800">🇷🇼 +250</option>
+                      <option value="+251" className="bg-white text-gray-800">🇪🇹 +251</option>
+                      <option value="+252" className="bg-white text-gray-800">🇸🇴 +252</option>
+                      <option value="+253" className="bg-white text-gray-800">🇩🇯 +253</option>
+                      <option value="+254" className="bg-white text-gray-800">🇰🇪 +254</option>
+                      <option value="+255" className="bg-white text-gray-800">🇹🇿 +255</option>
+                      <option value="+256" className="bg-white text-gray-800">🇺🇬 +256</option>
+                      <option value="+257" className="bg-white text-gray-800">🇧🇮 +257</option>
+                      <option value="+258" className="bg-white text-gray-800">🇲🇿 +258</option>
+                      <option value="+260" className="bg-white text-gray-800">🇿🇲 +260</option>
+                      <option value="+261" className="bg-white text-gray-800">🇲🇬 +261</option>
+                      <option value="+262" className="bg-white text-gray-800">🇷🇪 +262</option>
+                      <option value="+263" className="bg-white text-gray-800">🇿🇼 +263</option>
+                      <option value="+264" className="bg-white text-gray-800">🇳🇦 +264</option>
+                      <option value="+265" className="bg-white text-gray-800">🇲🇼 +265</option>
+                      <option value="+266" className="bg-white text-gray-800">🇱🇸 +266</option>
+                      <option value="+267" className="bg-white text-gray-800">🇧🇼 +267</option>
+                      <option value="+268" className="bg-white text-gray-800">🇸🇿 +268</option>
+                      <option value="+269" className="bg-white text-gray-800">🇰🇲 +269</option>
+                      <option value="+290" className="bg-white text-gray-800">🇸🇭 +290</option>
+                      <option value="+291" className="bg-white text-gray-800">🇪🇷 +291</option>
+                      <option value="+297" className="bg-white text-gray-800">🇦🇼 +297</option>
+                      <option value="+298" className="bg-white text-gray-800">🇫🇴 +298</option>
+                      <option value="+299" className="bg-white text-gray-800">🇬🇱 +299</option>
+                      <option value="+350" className="bg-white text-gray-800">🇬🇮 +350</option>
+                      <option value="+351" className="bg-white text-gray-800">🇵🇹 +351</option>
+                      <option value="+352" className="bg-white text-gray-800">🇱🇺 +352</option>
+                      <option value="+353" className="bg-white text-gray-800">🇮🇪 +353</option>
+                      <option value="+354" className="bg-white text-gray-800">🇮🇸 +354</option>
+                      <option value="+355" className="bg-white text-gray-800">🇦🇱 +355</option>
+                      <option value="+356" className="bg-white text-gray-800">🇲🇹 +356</option>
+                      <option value="+357" className="bg-white text-gray-800">🇨🇾 +357</option>
+                      <option value="+358" className="bg-white text-gray-800">🇫🇮 +358</option>
+                      <option value="+359" className="bg-white text-gray-800">🇧🇬 +359</option>
+                      <option value="+370" className="bg-white text-gray-800">🇱🇹 +370</option>
+                      <option value="+371" className="bg-white text-gray-800">🇱🇻 +371</option>
+                      <option value="+372" className="bg-white text-gray-800">🇪🇪 +372</option>
+                      <option value="+373" className="bg-white text-gray-800">🇲🇩 +373</option>
+                      <option value="+374" className="bg-white text-gray-800">🇦🇲 +374</option>
+                      <option value="+375" className="bg-white text-gray-800">🇧🇾 +375</option>
+                      <option value="+376" className="bg-white text-gray-800">🇦🇩 +376</option>
+                      <option value="+377" className="bg-white text-gray-800">🇲🇨 +377</option>
+                      <option value="+378" className="bg-white text-gray-800">🇸🇲 +378</option>
+                      <option value="+380" className="bg-white text-gray-800">🇺🇦 +380</option>
+                      <option value="+381" className="bg-white text-gray-800">🇷🇸 +381</option>
+                      <option value="+382" className="bg-white text-gray-800">🇲🇪 +382</option>
+                      <option value="+383" className="bg-white text-gray-800">🇽🇰 +383</option>
+                      <option value="+385" className="bg-white text-gray-800">🇭🇷 +385</option>
+                      <option value="+386" className="bg-white text-gray-800">🇸🇮 +386</option>
+                      <option value="+387" className="bg-white text-gray-800">🇧🇦 +387</option>
+                      <option value="+389" className="bg-white text-gray-800">🇲🇰 +389</option>
+                      <option value="+420" className="bg-white text-gray-800">🇨🇿 +420</option>
+                      <option value="+421" className="bg-white text-gray-800">🇸🇰 +421</option>
+                      <option value="+423" className="bg-white text-gray-800">🇱🇮 +423</option>
+                      <option value="+500" className="bg-white text-gray-800">🇫🇰 +500</option>
+                      <option value="+501" className="bg-white text-gray-800">🇧🇿 +501</option>
+                      <option value="+502" className="bg-white text-gray-800">🇬🇹 +502</option>
+                      <option value="+503" className="bg-white text-gray-800">🇸🇻 +503</option>
+                      <option value="+504" className="bg-white text-gray-800">🇭🇳 +504</option>
+                      <option value="+505" className="bg-white text-gray-800">🇳🇮 +505</option>
+                      <option value="+506" className="bg-white text-gray-800">🇨🇷 +506</option>
+                      <option value="+507" className="bg-white text-gray-800">🇵🇦 +507</option>
+                      <option value="+508" className="bg-white text-gray-800">🇵🇲 +508</option>
+                      <option value="+509" className="bg-white text-gray-800">🇭🇹 +509</option>
+                      <option value="+590" className="bg-white text-gray-800">🇧🇱 +590</option>
+                      <option value="+591" className="bg-white text-gray-800">🇧🇴 +591</option>
+                      <option value="+592" className="bg-white text-gray-800">🇬🇾 +592</option>
+                      <option value="+593" className="bg-white text-gray-800">🇪🇨 +593</option>
+                      <option value="+594" className="bg-white text-gray-800">🇬🇫 +594</option>
+                      <option value="+595" className="bg-white text-gray-800">🇵🇾 +595</option>
+                      <option value="+596" className="bg-white text-gray-800">🇲🇶 +596</option>
+                      <option value="+597" className="bg-white text-gray-800">🇸🇷 +597</option>
+                      <option value="+598" className="bg-white text-gray-800">🇺🇾 +598</option>
+                      <option value="+599" className="bg-white text-gray-800">🇧🇶 +599</option>
+                      <option value="+670" className="bg-white text-gray-800">🇹🇱 +670</option>
+                      <option value="+672" className="bg-white text-gray-800">🇦🇶 +672</option>
+                      <option value="+673" className="bg-white text-gray-800">🇧🇳 +673</option>
+                      <option value="+674" className="bg-white text-gray-800">🇳🇷 +674</option>
+                      <option value="+675" className="bg-white text-gray-800">🇵🇬 +675</option>
+                      <option value="+676" className="bg-white text-gray-800">🇹🇴 +676</option>
+                      <option value="+677" className="bg-white text-gray-800">🇸🇧 +677</option>
+                      <option value="+678" className="bg-white text-gray-800">🇻🇺 +678</option>
+                      <option value="+679" className="bg-white text-gray-800">🇫🇯 +679</option>
+                      <option value="+680" className="bg-white text-gray-800">🇵🇼 +680</option>
+                      <option value="+681" className="bg-white text-gray-800">🇼🇫 +681</option>
+                      <option value="+682" className="bg-white text-gray-800">🇨🇰 +682</option>
+                      <option value="+683" className="bg-white text-gray-800">🇳🇺 +683</option>
+                      <option value="+685" className="bg-white text-gray-800">🇼🇸 +685</option>
+                      <option value="+686" className="bg-white text-gray-800">🇰🇮 +686</option>
+                      <option value="+687" className="bg-white text-gray-800">🇳🇨 +687</option>
+                      <option value="+688" className="bg-white text-gray-800">🇹🇻 +688</option>
+                      <option value="+689" className="bg-white text-gray-800">🇵🇫 +689</option>
+                      <option value="+690" className="bg-white text-gray-800">🇹🇰 +690</option>
+                      <option value="+691" className="bg-white text-gray-800">🇫🇲 +691</option>
+                      <option value="+692" className="bg-white text-gray-800">🇲🇭 +692</option>
+                      <option value="+850" className="bg-white text-gray-800">🇰🇵 +850</option>
+                      <option value="+852" className="bg-white text-gray-800">🇭🇰 +852</option>
+                      <option value="+853" className="bg-white text-gray-800">🇲🇴 +853</option>
+                      <option value="+855" className="bg-white text-gray-800">🇰🇭 +855</option>
+                      <option value="+856" className="bg-white text-gray-800">🇱🇦 +856</option>
+                      <option value="+880" className="bg-white text-gray-800">🇧🇩 +880</option>
+                      <option value="+886" className="bg-white text-gray-800">🇹🇼 +886</option>
+                      <option value="+960" className="bg-white text-gray-800">🇲🇻 +960</option>
+                      <option value="+961" className="bg-white text-gray-800">🇱🇧 +961</option>
+                      <option value="+962" className="bg-white text-gray-800">🇯🇴 +962</option>
+                      <option value="+963" className="bg-white text-gray-800">🇸🇾 +963</option>
+                      <option value="+964" className="bg-white text-gray-800">🇮🇶 +964</option>
+                      <option value="+965" className="bg-white text-gray-800">🇰🇼 +965</option>
+                      <option value="+966" className="bg-white text-gray-800">🇸🇦 +966</option>
+                      <option value="+967" className="bg-white text-gray-800">🇾🇪 +967</option>
+                      <option value="+968" className="bg-white text-gray-800">🇴🇲 +968</option>
+                      <option value="+970" className="bg-white text-gray-800">🇵🇸 +970</option>
+                      <option value="+971" className="bg-white text-gray-800">🇦🇪 +971</option>
+                      <option value="+972" className="bg-white text-gray-800">🇮🇱 +972</option>
+                      <option value="+973" className="bg-white text-gray-800">🇧🇭 +973</option>
+                      <option value="+974" className="bg-white text-gray-800">🇶🇦 +974</option>
+                      <option value="+975" className="bg-white text-gray-800">🇧🇹 +975</option>
+                      <option value="+976" className="bg-white text-gray-800">🇲🇳 +976</option>
+                      <option value="+977" className="bg-white text-gray-800">🇳🇵 +977</option>
+                      <option value="+992" className="bg-white text-gray-800">🇹🇯 +992</option>
+                      <option value="+993" className="bg-white text-gray-800">🇹🇲 +993</option>
+                      <option value="+994" className="bg-white text-gray-800">🇦🇿 +994</option>
+                      <option value="+995" className="bg-white text-gray-800">🇬🇪 +995</option>
+                      <option value="+996" className="bg-white text-gray-800">🇰🇬 +996</option>
+                      <option value="+998" className="bg-white text-gray-800">🇺🇿 +998</option>
+                    </select>
+                    <input 
+                      type="tel" 
+                      id="phone" 
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      placeholder={countryCode === '+1' ? '(555) 123-4567' : '123 456 7890'}
+                      maxLength={countryCode === '+1' ? 14 : 15}
+                      className="flex-1 min-w-0 h-12 lg:h-14 bg-white rounded-full px-3 sm:px-4 lg:px-6 text-gray-800 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-white" 
+                    />
+                  </div>
                 </div>
               </div>
               <div>

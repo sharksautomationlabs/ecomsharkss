@@ -19,7 +19,6 @@ const imgShopifyLogo = "/images/shopify-logo.png";
 const imgWalmartLogo = "/images/walmart-logo.png";
 const imgAmazonLogo = "/images/amazon-logo.png";
 const imgTikTokLogo = "/images/tiktok-logo.png";
-const imgPatternMask = "/images/results-mask.svg";
 const imgWomanMask = "/images/mission-bg-mask.svg";
 
 // Reusable button icons
@@ -146,7 +145,7 @@ export default function MissionSection({
         <div className={`relative w-full max-w-[1920px] overflow-hidden select-none ${useCustomContent ? 'min-h-[800px] py-20' : 'min-h-[900px] lg:min-h-[1200px] py-16 pb-2 lg:py-20'}`}>
         
         <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#bef4fe] to-white" />
-        <div className="absolute inset-0 z-10" style={{ maskImage: `url('${imgPatternMask}')`, maskSize: '100% 100%' }}>
+        <div className="absolute inset-0 z-10">
             <div className="w-full h-full bg-repeat" style={{ backgroundImage: `url('${imgPattern011}')` }} />
         </div>
 
@@ -333,10 +332,10 @@ export default function MissionSection({
                             src={imgWoman} 
                             alt="Business woman" 
                             layout="fill" 
-                            objectFit="contain" 
                             className="filter grayscale transform -scale-x-100 w-full h-full" 
                             style={{ 
                               minHeight: '500px',
+                              objectFit: 'contain',
                               objectPosition: 'center',
                               width: '100%',
                               height: '100%'
@@ -349,7 +348,7 @@ export default function MissionSection({
                             alt={logoType === 'walmart' ? "Walmart Logo" : logoType === 'amazon' ? "Amazon Logo" : logoType === 'tiktok' ? "TikTok Logo" : "Shopify Logo"} 
                             width={300} 
                             height={300} 
-                            objectFit="contain" 
+                            style={{ objectFit: 'contain' }}
                           />
                       </div>
                       <style jsx>{`

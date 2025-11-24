@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import Image from 'next/image';
 import { motion, useAnimation, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -15,83 +15,91 @@ const imgPhoneIcon = "/images/header-phone-icon.svg";
 const imgArrowIcon = "/images/arrow-icon-4.svg";
 
 export default function Owners() {
-  const [scrollPosition, setScrollPosition] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
   const controls = useAnimation();
   
-  // Set triggerOnce to false to allow re-triggering
+  // Set triggerOnce to true for better performance - animations only run once
   const [ref, inView] = useInView({
-    triggerOnce: false, // Set to false to re-trigger animation
+    triggerOnce: true, // Changed to true for better performance
     threshold: 0.3,   // Trigger when 30% of the component is in view
   });
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollPosition(window.scrollY);
-    };
-
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 1024);
-    };
-
-    // Set initial mobile state
-    handleResize();
-
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
-  // Animate in when inView is true, and animate out when false
+  // Animate in when inView is true
   useEffect(() => {
     if (inView) {
       controls.start('visible');
-    } else {
-      controls.start('hidden'); // Reset to hidden state when out of view
     }
   }, [controls, inView]);
   
-  const containerVariants: Variants = {
+  // Memoized animation variants for better performance
+  const containerVariants: Variants = useMemo(() => ({
     hidden: {},
     visible: {
       transition: {
-        staggerChildren: 0.3,
-        delayChildren: 0.2,
+        staggerChildren: 0.2,
+        delayChildren: 0.1,
       },
     },
-  };
+  }), []);
 
-  // Spring animation variants like Experts section
-  const leftVariants: Variants = {
-    hidden: { x: -200, opacity: 0 },
+  // Optimized spring animation variants
+  const leftVariants: Variants = useMemo(() => ({
+    hidden: { x: -100, opacity: 0 },
     visible: {
       x: 0,
       opacity: 1,
       transition: {
         type: 'spring',
-        stiffness: 50,
-        damping: 20,
-        mass: 1.5,
+        stiffness: 100,
+        damping: 25,
+        mass: 1,
       },
     },
-  };
+  }), []);
 
-  const rightVariants: Variants = {
-    hidden: { x: 200, opacity: 0 },
+  const rightVariants: Variants = useMemo(() => ({
+    hidden: { x: 100, opacity: 0 },
     visible: {
       x: 0,
       opacity: 1,
       transition: {
         type: 'spring',
-        stiffness: 50,
-        damping: 20,
-        mass: 1.5,
+        stiffness: 100,
+        damping: 25,
+        mass: 1,
       },
     },
-  };
+  }), []);
+
+  // Memoized hand animation variants
+  const leftHandVariants: Variants = useMemo(() => ({
+    hidden: { x: -200, rotate: -30, opacity: 0 },
+    visible: {
+      x: 0,
+      rotate: 12,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 80,
+        damping: 20,
+        delay: 0.3,
+      },
+    },
+  }), []);
+
+  const rightHandVariants: Variants = useMemo(() => ({
+    hidden: { x: 200, rotate: 0, opacity: 0 },
+    visible: {
+      x: 0,
+      rotate: 12,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 80,
+        damping: 20,
+        delay: 0.5,
+      },
+    },
+  }), []);
 
   return (
     // Main wrapper to center the 1920px canvas.
@@ -108,8 +116,9 @@ export default function Owners() {
               src={imgBgShape} 
               alt="Teal background shape" 
               fill 
-              objectFit="cover" 
-              objectPosition="center"
+              style={{ objectFit: 'cover', objectPosition: 'center' }}
+              loading="lazy"
+              priority={false}
             />
           </div>
           <div 
@@ -128,60 +137,45 @@ export default function Owners() {
           {/* Left Hand */}
           <motion.div 
             className="absolute bottom-0 -left-22 w-[200px] h-[206px] lg:w-[400px] lg:h-[412px]"
-            initial={{ x: -300, rotate: -30, opacity: 0 }}
-            animate={{ 
-              x: 0,
-              rotate: 12, 
-              opacity: 1,
-              transition: { 
-                duration: 1.5, 
-                ease: "easeOut",
-                delay: 0.5
-              }
-            }}
-            whileInView={{ 
-              x: 0,
-              rotate: 12, 
-              opacity: 1,
-              transition: { 
-                duration: 1.5, 
-                ease: "easeOut",
-                delay: 0.5
-              }
-            }}
+            variants={leftHandVariants}
+            initial="hidden"
+            animate={controls}
           >
-            <Image src={imgLeftHand} alt="OK hand gesture" fill objectFit="contain" />
+            <Image 
+              src={imgLeftHand} 
+              alt="OK hand gesture" 
+              fill 
+              style={{ objectFit: 'contain' }}
+              loading="lazy"
+              priority={false}
+            />
           </motion.div>
           {/* Hand is smaller, repositioned, and rotated diagonally. */}
             {/* TikTok Logo position adjusted relative to the new hand position */}
             <div className="absolute top-[28%] right-[29%] w-[100px] h-[100px] lg:w-[200px] lg:h-[200px]">
-               <Image src={imgTikTokLogo} alt="TikTok Logo" fill objectFit="contain" />
+               <Image 
+                 src={imgTikTokLogo} 
+                 alt="TikTok Logo" 
+                 fill 
+                 style={{ objectFit: 'contain' }}
+                 loading="lazy"
+                 priority={false}
+               />
             </div>
           <motion.div 
             className="absolute -top-16 -right-20 w-[300px] h-[275px] lg:w-[600px] lg:h-[550px]"
-            initial={{ x: 300, rotate: 0, opacity: 0 }}
-            animate={{ 
-              x: 0,
-              rotate: 12, 
-              opacity: 1,
-              transition: { 
-                duration: 1.5, 
-                ease: "easeOut",
-                delay: 0.8
-              }
-            }}
-            whileInView={{ 
-              x: 0,
-              rotate: 12, 
-              opacity: 1,
-              transition: { 
-                duration: 1.5, 
-                ease: "easeOut",
-                delay: 0.8
-              }
-            }}
+            variants={rightHandVariants}
+            initial="hidden"
+            animate={controls}
           >
-            <Image src={imgRightHand} alt="Hand writing" fill objectFit="contain" />
+            <Image 
+              src={imgRightHand} 
+              alt="Hand writing" 
+              fill 
+              style={{ objectFit: 'contain' }}
+              loading="lazy"
+              priority={false}
+            />
           </motion.div>
         </motion.div>
 
@@ -215,7 +209,14 @@ export default function Owners() {
               <div className="mt-8 lg:mt-12 flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-x-12 lg:gap-y-6">
                 {/* Phone Number */}
                 <div className="flex items-center gap-3 lg:gap-4">
-                  <Image src={imgPhoneIcon} alt="Phone" width={48} height={48} className="lg:w-16 lg:h-16" />
+                  <Image 
+                    src={imgPhoneIcon} 
+                    alt="Phone" 
+                    width={48} 
+                    height={48} 
+                    className="lg:w-16 lg:h-16"
+                    loading="lazy"
+                  />
                   <span 
                     className="text-2xl lg:text-4xl xl:text-5xl font-semibold tracking-wider"
                     style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
@@ -245,7 +246,14 @@ export default function Owners() {
                     Get a Quote
                   </span>
                   <span className="bg-white rounded-full p-2.5 flex items-center justify-center w-10 h-10 relative z-10">
-                    <Image src={imgArrowIcon} alt="arrow icon" width={20} height={20} className="lg:w-6 lg:h-6" />
+                    <Image 
+                      src={imgArrowIcon} 
+                      alt="arrow icon" 
+                      width={20} 
+                      height={20} 
+                      className="lg:w-6 lg:h-6"
+                      loading="lazy"
+                    />
                   </span>
                   <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
                 </button>

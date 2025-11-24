@@ -25,21 +25,24 @@ export const sendContactEmail = async (formData: ContactFormData): Promise<{ suc
       });
       
       // For development/testing purposes, return success without sending email
-      // But still trigger Retell call if phone number is provided
+      // But still trigger Retell call if phone number is provided and starts with +1
       if (process.env.NODE_ENV === 'development') {
         console.log('Development mode: Simulating successful email send');
         
-        // Still trigger Retell call in development mode if phone number is provided
-        if (formData.phone && formData.phone.trim()) {
+        // Only trigger Retell call for US/Canada numbers (+1)
+        const phoneNumber = formData.phone.trim();
+        if (phoneNumber && phoneNumber.startsWith('+1')) {
           initiateRetellCallClient({
             name: formData.name,
-            phone: formData.phone,
+            phone: phoneNumber,
             email: formData.email,
             message: formData.message,
           }).catch((error) => {
             // Log error but don't fail the submission
             console.error('Failed to initiate Retell call:', error);
           });
+        } else if (phoneNumber) {
+          console.log('Phone number is not +1, skipping call initiation');
         }
         
         return {
@@ -72,17 +75,20 @@ export const sendContactEmail = async (formData: ContactFormData): Promise<{ suc
 
     if (response.status === 200) {
       // Initiate Retell AI call after successful email send (non-blocking)
-      // Only trigger if phone number is provided
-      if (formData.phone && formData.phone.trim()) {
+      // Only trigger if phone number is provided and starts with +1 (US/Canada)
+      const phoneNumber = formData.phone.trim();
+      if (phoneNumber && phoneNumber.startsWith('+1')) {
         initiateRetellCallClient({
           name: formData.name,
-          phone: formData.phone,
+          phone: phoneNumber,
           email: formData.email,
           message: formData.message,
         }).catch((error) => {
           // Log error but don't fail the email submission
           console.error('Failed to initiate Retell call:', error);
         });
+      } else if (phoneNumber) {
+        console.log('Phone number is not +1, form submitted without call initiation');
       }
 
       return {

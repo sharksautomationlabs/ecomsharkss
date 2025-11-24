@@ -429,36 +429,36 @@ export default function Header({
               className="absolute top-[60%] w-[65%] h-auto lg:top-[56%] lg:w-[52%] lg:h-[60%] animate-shark-complete"
               style={sharkAnimationStyle}
             >
-                <Image src={imgDangerousSharkUnderwater2Copy1} alt="Shark" width={1000} height={600} objectFit="contain" className="transform -scale-x-100" />
+                <Image src={imgDangerousSharkUnderwater2Copy1} alt="Shark" width={1000} height={600} style={{ objectFit: 'contain' }} className="transform -scale-x-100" />
             </div>
 
             <div className="lg:hidden absolute top-1/2 right-4 -translate-y-1/2 w-[45%] h-[70%]">
                 <div className="absolute top-[38%] right-[9%] w-[50%] h-auto logo-fade-in-amazon">
-                    <Image src={img61} alt="Amazon Logo" width={260} height={260} objectFit="contain" />
+                    <Image src={img61} alt="Amazon Logo" width={260} height={260} style={{ objectFit: 'contain' }} />
                 </div>
                 <div className="absolute top-[46%] right-[45%] w-[52%] h-auto logo-fade-in-shopify">
-                    <Image src={img81} alt="Shopify Logo" width={280} height={280} objectFit="contain" />
+                    <Image src={img81} alt="Shopify Logo" width={280} height={280} style={{ objectFit: 'contain' }} />
                 </div>
                 <div className="absolute top-[60%] right-[19%] w-[55%] h-auto z-40 logo-fade-in-tiktok">
-                    <Image src={img91} alt="TikTok Logo" width={290} height={290} objectFit="contain" />
+                    <Image src={img91} alt="TikTok Logo" width={290} height={290} style={{ objectFit: 'contain' }} />
                 </div>
                 <div className="absolute top-[22%] right-[30%] w-[55%] h-auto z-40 logo-fade-in-walmart">
-                    <Image src={img72} alt="Walmart Logo" width={310} height={310} objectFit="contain" />
+                    <Image src={img72} alt="Walmart Logo" width={310} height={310} style={{ objectFit: 'contain' }} />
                 </div>
             </div>
 
             <div className="hidden lg:block">
                 <div className="absolute top-[41%] right-[9%] w-[13.5%] h-auto logo-fade-in-amazon">
-                    <Image src={img61} alt="Amazon Logo" width={260} height={260} objectFit="contain" />
+                    <Image src={img61} alt="Amazon Logo" width={260} height={260} style={{ objectFit: 'contain' }} />
                 </div>
                 <div className="absolute top-[44%] right-[30%] w-[14.5%] h-auto logo-fade-in-shopify">
-                    <Image src={img81} alt="Shopify Logo" width={280} height={280} objectFit="contain" />
+                    <Image src={img81} alt="Shopify Logo" width={280} height={280} style={{ objectFit: 'contain' }} />
                 </div>
                 <div className="absolute top-[58%] right-[19%] w-[15%] h-auto z-40 logo-fade-in-tiktok">
-                    <Image src={img91} alt="TikTok Logo" width={290} height={290} objectFit="contain" />
+                    <Image src={img91} alt="TikTok Logo" width={290} height={290} style={{ objectFit: 'contain' }} />
                 </div>
                 <div className="absolute top-[25%] right-[20%] w-[16%] h-auto z-40 logo-fade-in-walmart">
-                    <Image src={img72} alt="Walmart Logo" width={310} height={310} objectFit="contain" />
+                    <Image src={img72} alt="Walmart Logo" width={310} height={310} style={{ objectFit: 'contain' }} />
                 </div>
             </div>
           </div>

@@ -181,7 +181,7 @@ export default function ResultsSection() {
                     alt="Shark"
                     width={980}
                     height={445}
-                    objectFit="contain"
+                    style={{ objectFit: 'contain' }}
                     className="transform -scale-x-100 animate-hand-pivot"
                   />
               </div>
@@ -191,7 +191,7 @@ export default function ResultsSection() {
                     alt="Hand holding results"
                     width={250}
                     height={250}
-                    objectFit="contain"
+                    style={{ objectFit: 'contain' }}
                     className="filter grayscale"
                   />
               </div>
@@ -201,7 +201,7 @@ export default function ResultsSection() {
                     alt="Walmart Logo"
                     width={190}
                     height={190}
-                    objectFit="contain"
+                    style={{ objectFit: 'contain' }}
                   />
               </div>
               <div className="absolute w-[28%] h-auto top-[12%] lg:top-[22%] right-[32%] z-30 animate-hand-pivot">
@@ -210,7 +210,7 @@ export default function ResultsSection() {
                      alt="Pen and paper"
                      width={166}
                      height={127}
-                     objectFit="contain"
+                     style={{ objectFit: 'contain' }}
                    />
               </div>
               <div
@@ -219,7 +219,7 @@ export default function ResultsSection() {
                   transformOrigin: '100% 50%', // right edge as pivot
                 }}
               >
-                <Image src={imgHand1} alt="Pen and paper" width={200000} height={200000} objectFit="contain" />
+                <Image src={imgHand1} alt="Pen and paper" width={200000} height={200000} style={{ objectFit: 'contain' }} />
               </div>
               <style jsx global>{`
                 @keyframes handPivotBounce {
