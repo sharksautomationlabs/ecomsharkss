@@ -1,11 +1,10 @@
 // Import Retell SDK
-// @ts-ignore - retell-sdk may not have TypeScript definitions
 import Retell from 'retell-sdk';
 
-// Retell AI configuration
-const RETELL_API_KEY = 'key_8366efc2e459f510d89805069a5d';
-const RETELL_AGENT_ID = 'agent_80c922ad9ead6d1554f8362c5d';
-const RETELL_FROM_NUMBER = '+14692109993';
+// Retell AI configuration from environment variables
+const RETELL_API_KEY = process.env.RETELL_API_KEY || '';
+const RETELL_AGENT_ID = process.env.RETELL_AGENT_ID || '';
+const RETELL_FROM_NUMBER = process.env.RETELL_FROM_NUMBER || '';
 
 // Initialize Retell client
 const getRetellClient = () => {
