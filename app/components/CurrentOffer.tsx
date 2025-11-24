@@ -189,7 +189,7 @@ export default function CurrentOffer() {
     try {
       // Combine country code with phone number
       // Remove all formatting characters (spaces, dashes, parentheses)
-      let phoneNumber = formData.phone.replace(/\D/g, '');
+      const phoneNumber = formData.phone.replace(/\D/g, '');
       // Combine country code with cleaned phone number
       const fullPhoneNumber = countryCode + phoneNumber;
       const formDataWithCountryCode = {
