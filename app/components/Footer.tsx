@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { motion, useAnimation, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { sendContactEmail, ContactFormData } from '../utils/emailjs';
+import { checkPhoneRateLimit, recordPhoneSubmission } from '../utils/phoneRateLimit';
 
 // Image and icon assets for the section
 const imgPattern = "/images/pattern-bg.png"; // Light blue water pattern background
@@ -193,6 +194,18 @@ export default function Contact() {
       const phoneNumber = formData.phone.replace(/\D/g, '');
       // Combine country code with cleaned phone number
       const fullPhoneNumber = countryCode + phoneNumber;
+      
+      // Check rate limit for +1 numbers (max 2 submissions per day)
+      const rateLimitCheck = checkPhoneRateLimit(fullPhoneNumber);
+      if (!rateLimitCheck.allowed) {
+        setSubmitStatus({ 
+          type: 'error', 
+          message: rateLimitCheck.reason || 'Daily submission limit reached. Please try again tomorrow.' 
+        });
+        setIsSubmitting(false);
+        return;
+      }
+      
       const formDataWithCountryCode = {
         ...formData,
         phone: fullPhoneNumber
@@ -201,6 +214,9 @@ export default function Contact() {
       const result = await sendContactEmail(formDataWithCountryCode);
       
       if (result.success) {
+        // Record phone number submission for +1 numbers
+        recordPhoneSubmission(fullPhoneNumber);
+        
         setSubmitStatus({ type: 'success', message: result.message });
         // Reset form
         setFormData({

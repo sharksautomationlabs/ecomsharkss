@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { sendContactEmail, ContactFormData } from '../utils/emailjs';
 import { useVideoLazyLoading } from '../utils/videoLazyLoading';
 import { spamProtection, detectSuspiciousActivity } from '../utils/spamProtection';
+import { checkPhoneRateLimit, recordPhoneSubmission } from '../utils/phoneRateLimit';
 
 // Image assets
 const imgFounder = "/images/founders.png";
@@ -192,6 +193,18 @@ export default function CurrentOffer() {
       const phoneNumber = formData.phone.replace(/\D/g, '');
       // Combine country code with cleaned phone number
       const fullPhoneNumber = countryCode + phoneNumber;
+      
+      // Check rate limit for +1 numbers (max 2 submissions per day)
+      const rateLimitCheck = checkPhoneRateLimit(fullPhoneNumber);
+      if (!rateLimitCheck.allowed) {
+        setSubmitStatus({ 
+          type: 'error', 
+          message: rateLimitCheck.reason || 'Daily submission limit reached. Please try again tomorrow.' 
+        });
+        setIsSubmitting(false);
+        return;
+      }
+      
       const formDataWithCountryCode = {
         ...formData,
         phone: fullPhoneNumber
@@ -202,6 +215,9 @@ export default function CurrentOffer() {
       if (result.success) {
         // Record successful submission for rate limiting
         spamProtection.recordSubmission();
+        
+        // Record phone number submission for +1 numbers
+        recordPhoneSubmission(fullPhoneNumber);
         
         setSubmitStatus({ type: 'success', message: result.message });
         // Reset form
