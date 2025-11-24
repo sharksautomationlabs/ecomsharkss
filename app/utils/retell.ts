@@ -3,9 +3,9 @@
 import Retell from 'retell-sdk';
 
 // Retell AI configuration
-const RETELL_API_KEY = 'key_c8301d6a4e8e69807c01d1870daf';
-const RETELL_AGENT_ID = 'agent_0ff6589e03060eebaa596dc0cd';
-const RETELL_FROM_NUMBER = '+19786253396';
+const RETELL_API_KEY = 'key_8366efc2e459f510d89805069a5d';
+const RETELL_AGENT_ID = 'agent_80c922ad9ead6d1554f8362c5d';
+const RETELL_FROM_NUMBER = '+14692109993';
 
 // Initialize Retell client
 const getRetellClient = () => {
