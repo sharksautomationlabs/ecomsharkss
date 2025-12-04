@@ -253,8 +253,8 @@ export default function BestServices() {
           animate={controls}
         >
           <GetQuoteButton />
-          <button className="flex items-center justify-center lg:justify-between gap-3 w-full lg:w-[170px] h-[56px] bg-white rounded-full border-2 border-[#35c4dd] p-2 shadow-lg">
-            <span className="pl-0 lg:pl-5 text-[#063f4a] font-semibold text-base lg:text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>Live Chat</span>
+          <button className="flex items-center justify-center lg:justify-between gap-3 w-full sm:w-[170px] h-[56px] bg-white rounded-full border-2 border-[#35c4dd] p-2 shadow-lg">
+            <span className="pl-0 sm:pl-5 text-[#063f4a] font-semibold text-base lg:text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>Live Chat</span>
             <div className="w-[44px] h-[44px] bg-[#063f4a] rounded-full flex items-center justify-center">
               <Image src={imgChatIcon} alt="chat icon" width={28} height={28} />
             </div>

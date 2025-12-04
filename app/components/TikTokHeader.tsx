@@ -3,8 +3,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { handleVideoEvents } from '../utils/videoUtils';
-import { useVideoLazyLoading } from '../utils/videoLazyLoading';
 
 // Hamburger Menu Icon for Mobile
 const HamburgerIcon = ({ isOpen }: { isOpen: boolean }) => (
@@ -45,7 +43,6 @@ export default function TikTokHeader() {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isDesktop, setIsDesktop] = useState(true);
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
-  const { videoRef, isInView } = useVideoLazyLoading();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -86,20 +83,25 @@ export default function TikTokHeader() {
       <div className="relative w-full max-w-[1920px] h-[50vh] lg:h-auto lg:aspect-[1920/1000] overflow-hidden select-none">
         
         {/* Background Video and Overlay */}
-        <div className="absolute inset-0 z-0">
-          <video 
-            ref={videoRef}
-            autoPlay={isInView}
-            loop 
-            muted 
-            playsInline
-            preload="metadata"
-            className="w-full h-full object-cover"
-            poster="/images/bi-vid.jpeg"
-            {...handleVideoEvents}
-          >
-            <source src="/images/bi-vid.mp4" type="video/mp4" />
-          </video>
+        <div className="absolute inset-0 z-0 w-full h-full overflow-hidden">
+          <iframe
+            src="https://player.vimeo.com/video/1143245934?autoplay=1&loop=1&muted=1&background=1&controls=0&playsinline=1"
+            className="absolute w-full h-full"
+            style={{ 
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              width: '100vw',
+              height: '56.25vw',
+              minHeight: '100%',
+              minWidth: '177.77%',
+              transform: 'translate(-50%, -50%)',
+              objectFit: 'cover'
+            }}
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+            frameBorder="0"
+          />
         </div>
         <div className="absolute inset-0 bg-[#052126]/60 z-10" />
 
@@ -425,3 +427,6 @@ export default function TikTokHeader() {
     </div>
   );
 }
+
+
+

@@ -48,8 +48,8 @@ const GetQuoteButton = ({ small = false }: { small?: boolean }) => (
 );
 
 const ChatButton = () => (
-  <button className="flex items-center justify-between w-full lg:w-[170px] h-[56px] bg-white rounded-full border-2 border-[#35c4dd] p-2 shadow-lg">
-    <span className="pl-5 text-[#063f4a] font-semibold text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>Live Chat</span>
+  <button className="flex items-center justify-center lg:justify-between gap-3 w-full sm:w-[170px] h-[56px] bg-white rounded-full border-2 border-[#35c4dd] p-2 shadow-lg">
+    <span className="pl-0 sm:pl-5 text-[#063f4a] font-semibold text-base lg:text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>Live Chat</span>
     <div className="w-[44px] h-[44px] bg-[#063f4a] rounded-full flex items-center justify-center">
       <Image src={imgChatIcon} alt="chat icon" width={28} height={28} />
     </div>
@@ -198,8 +198,8 @@ export default function IdentityPage() {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.1 }}
             >
-              <div className="relative mb-6 lg:mb-8 mt-8 lg:mt-12">
-                <div className="w-80 h-80 lg:w-96 lg:h-96 mx-auto lg:mx-0 rounded-full shadow-2xl border-4 border-white/20 overflow-hidden">
+              <div className="relative mb-6 lg:mb-8 mt-8 lg:mt-12 flex justify-center lg:justify-start">
+                <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full shadow-2xl border-4 border-white/20 overflow-hidden">
                   <Image 
                     src={selectedTeamMember === 'zayn' ? "/images/founder-1s.png" : selectedTeamMember === 'sharjeel' ? "/images/founder-2.png" : selectedTeamMember === 'minhaj' ? "/images/founder-3.jpg" : imgFounders} 
                     alt={selectedTeamMember === 'zayn' ? "Zayn - Senior E-commerce Consultant" : selectedTeamMember === 'sharjeel' ? "Sharjeel - Sr. Automation Consultation" : selectedTeamMember === 'minhaj' ? "Minhaj - E-commerce Visionary" : "Aain - Senior E-commerce Consultant"} 
@@ -710,6 +710,9 @@ export default function IdentityPage() {
               <motion.div 
                 className="space-y-8"
                 variants={leftVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.2 }}
               >
                 <div className="bg-white/80 backdrop-blur-xl rounded-2xl lg:rounded-3xl p-6 lg:p-8 shadow-xl border border-white/50 hover:shadow-2xl transition-all duration-500">
                   <div className="flex items-start gap-4">
@@ -748,6 +751,9 @@ export default function IdentityPage() {
               <motion.div 
                 className="relative"
                 variants={rightVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.2 }}
               >
                 <div className="bg-gradient-to-br from-[#35c4dd] to-[#063f4a] rounded-2xl lg:rounded-3xl p-8 lg:p-12 text-white shadow-2xl relative overflow-hidden">
                   {/* Background Pattern */}

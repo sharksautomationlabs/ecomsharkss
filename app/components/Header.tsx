@@ -3,8 +3,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { handleVideoEvents } from '../utils/videoUtils';
-import { useVideoLazyLoading } from '../utils/videoLazyLoading';
 
 // Hamburger Menu Icon for Mobile
 const HamburgerIcon = ({ isOpen }: { isOpen: boolean }) => (
@@ -50,7 +48,6 @@ export default function Header({
   heroSubtitle = "Keep scrolling—your path to financial freedom is just ahead. By the time you've explored 25% of this page, you'll discover the hidden gem that could change your life.",
   topNavText = "🌟 One-Stop All Ecommerce Accounts Solutions"
 }: HeaderProps) {
-  const { videoRef, isInView } = useVideoLazyLoading();
   const textShadow = { textShadow: '0px 2px 5px rgba(0, 0, 0, 0.5)' };
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isDesktop, setIsDesktop] = useState(true);
@@ -100,23 +97,27 @@ export default function Header({
   return (
     // MODIFIED: Removed top margin from mobile
     <div className="w-full bg-[#052126] flex justify-center">
-      <div className="relative w-full max-w-[1920px] h-[50vh] lg:h-auto lg:aspect-[1920/1080] overflow-hidden select-none">
+      <div className="relative w-full max-w-[1920px] h-[50vh] lg:h-auto lg:aspect-[1920/1200] overflow-hidden select-none">
         
-        <div className="absolute inset-0 z-0">
-          <video 
-            ref={videoRef}
-            autoPlay={isInView}
-            loop 
-            muted 
-            playsInline
-            preload="metadata"
-            crossOrigin="anonymous"
-            className="w-full h-full object-cover"
-            poster="/images/bi-vid.jpeg"
-            {...handleVideoEvents}
-          >
-            <source src="/images/bi-vid.mp4" type="video/mp4" />
-          </video>
+        <div className="absolute inset-0 z-0 w-full h-full overflow-hidden">
+          <iframe
+            src="https://player.vimeo.com/video/1143245934?autoplay=1&loop=1&muted=1&background=1&controls=0&playsinline=1"
+            className="absolute w-full h-full"
+            style={{ 
+              position: 'absolute',
+              top: '50%',
+              left: '50%',
+              width: '100vw',
+              height: '56.25vw',
+              minHeight: '100%',
+              minWidth: '177.77%',
+              transform: 'translate(-50%, -50%)',
+              objectFit: 'cover'
+            }}
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen
+            frameBorder="0"
+          />
         </div>
         <div className="absolute inset-0 bg-[#052126]/60 z-10" />
 

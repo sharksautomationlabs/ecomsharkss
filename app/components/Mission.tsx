@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { handleVideoEvents } from '../utils/videoUtils';
 import Image from 'next/image';
 import { motion, useAnimation, Variants, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -47,58 +46,19 @@ export default function MissionSection({
   logoType = 'shopify'
 }: MissionProps) {
   const [activeTab, setActiveTab] = useState('howWeWork');
-  const [hasUserInteracted, setHasUserInteracted] = useState(false);
   const controls = useAnimation();
-  const videoRef = React.useRef<HTMLVideoElement>(null);
   const [ref, inView] = useInView({
     triggerOnce: false,
     threshold: 0.25,
   });
 
-  // Track user interaction for audio policy compliance
-  useEffect(() => {
-    const handleUserInteraction = () => {
-      setHasUserInteracted(true);
-    };
-
-    // Listen for any user interaction
-    document.addEventListener('click', handleUserInteraction);
-    document.addEventListener('touchstart', handleUserInteraction);
-    document.addEventListener('keydown', handleUserInteraction);
-
-    return () => {
-      document.removeEventListener('click', handleUserInteraction);
-      document.removeEventListener('touchstart', handleUserInteraction);
-      document.removeEventListener('keydown', handleUserInteraction);
-    };
-  }, []);
-
   useEffect(() => {
     if (inView) {
       controls.start('visible');
-      // Play video when section is in view and How We Work tab is active
-      if (activeTab === 'howWeWork' && videoRef.current) {
-        // Try to play with audio first
-        videoRef.current.muted = false;
-        videoRef.current.volume = 1.0;
-        videoRef.current.play().catch((error) => {
-          console.log('Autoplay with sound blocked, trying muted fallback:', error.message);
-          // If autoplay with sound fails, try with muted
-          if (videoRef.current) {
-            videoRef.current.muted = true;
-            videoRef.current.play().catch(console.error);
-          }
-        });
-      }
     } else {
       controls.start('hidden');
-      // Mute and pause video when section is out of view
-      if (videoRef.current) {
-        videoRef.current.muted = true;
-        videoRef.current.pause();
-      }
     }
-  }, [controls, inView, activeTab]);
+  }, [controls, inView]);
 
   const contentData = {
     howWeWork: {
@@ -275,43 +235,22 @@ export default function MissionSection({
                     animate={controls}
                     variants={personWipeUpVariants}
                   >
-                    <div 
-                      className="relative w-full max-w-[600px] aspect-video sm:h-[300px] md:h-[400px] md:max-w-[450px] lg:max-w-[600px] bg-black rounded-2xl overflow-hidden shadow-2xl group cursor-pointer"
-                      onClick={() => {
-                        if (videoRef.current) {
-                          videoRef.current.muted = false;
-                          videoRef.current.volume = 1.0;
-                          setHasUserInteracted(true);
-                          // Try to play if not already playing
-                          if (videoRef.current.paused) {
-                            videoRef.current.play().catch(console.error);
-                          }
-                        }
-                      }}
-                    >
-                      <video
-                        ref={videoRef}
-                        className="w-full h-full object-contain sm:object-cover"
-                        muted={false}
-                        loop
-                        playsInline
-                        controls
-                        preload="auto"
-                        poster="/images/sharjeel.jpg"
-                        onVolumeChange={() => {
-                          // Allow manual volume control
-                          if (videoRef.current) {
-                            // User can manually control volume through video controls
-                          }
-                        }}
-                        {...handleVideoEvents}
-                      >
-                        <source src="/images/sharjeel.mp4" type="video/mp4" />
-                        Your browser does not support the video tag.
-                      </video>
-                      {/* Audio status indicator */}
-                      <div className="absolute top-2 right-2 sm:top-4 sm:right-4 bg-black bg-opacity-70 text-white px-2 py-1 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        Audio enabled
+                    <div className="relative w-full max-w-[600px] bg-black rounded-2xl overflow-hidden shadow-2xl">
+                      <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
+                        <iframe
+                          src="https://player.vimeo.com/video/1143261391?autoplay=0&loop=0&muted=0&controls=1&playsinline=1&title=0&byline=0&portrait=0&dnt=1&responsive=1"
+                          style={{ 
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            width: '100%',
+                            height: '100%',
+                            border: 'none'
+                          }}
+                          allow="autoplay; fullscreen; picture-in-picture"
+                          allowFullScreen
+                          frameBorder="0"
+                        />
                       </div>
                     </div>
                   </motion.div>

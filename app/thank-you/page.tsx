@@ -4,7 +4,7 @@ import React from 'react';
 import { motion, useAnimation, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useVideoLazyLoading } from '../utils/videoLazyLoading';
-import ThankYouHeader from '../components/ThankYouHeader';
+import Header from '../components/Header';
 
 export default function ThanksPage() {
   const controls = useAnimation();
@@ -77,7 +77,7 @@ export default function ThanksPage() {
 
   return (
     <div className="w-full bg-white">
-      <ThankYouHeader 
+      <Header 
         heroTitle="You're In! Let's Get Ready for Your Call"
         heroSubtitle="Congratulations! Your call is booked. This is the first step toward building your hands-off e-commerce business. Before we talk, I have two quick videos below that will answer all of your questions and make our call as productive as possible."
       />

@@ -14,19 +14,24 @@ const imgBgShape = "/images/bg-rectangle-2.svg";
 const imgPhoneIcon = "/images/header-phone-icon.svg"; 
 const imgArrowIcon = "/images/arrow-icon-4.svg";
 
-export default function Owners() {
+function Owners() {
   const controls = useAnimation();
   
   // Set triggerOnce to true for better performance - animations only run once
   const [ref, inView] = useInView({
     triggerOnce: true, // Changed to true for better performance
-    threshold: 0.3,   // Trigger when 30% of the component is in view
+    threshold: 0.1,   // Lower threshold for faster trigger
+    rootMargin: '50px', // Start loading earlier
   });
 
   // Animate in when inView is true
   useEffect(() => {
     if (inView) {
-      controls.start('visible');
+      // Small delay to ensure images start loading first
+      const timer = setTimeout(() => {
+        controls.start('visible');
+      }, 50);
+      return () => clearTimeout(timer);
     }
   }, [controls, inView]);
   
@@ -41,31 +46,25 @@ export default function Owners() {
     },
   }), []);
 
-  // Optimized spring animation variants
+  // Optimized spring animation variants - lighter animations for better performance
   const leftVariants: Variants = useMemo(() => ({
-    hidden: { x: -100, opacity: 0 },
+    hidden: { opacity: 0 },
     visible: {
-      x: 0,
       opacity: 1,
       transition: {
-        type: 'spring',
-        stiffness: 100,
-        damping: 25,
-        mass: 1,
+        duration: 0.4,
+        ease: 'easeOut',
       },
     },
   }), []);
 
   const rightVariants: Variants = useMemo(() => ({
-    hidden: { x: 100, opacity: 0 },
+    hidden: { opacity: 0 },
     visible: {
-      x: 0,
       opacity: 1,
       transition: {
-        type: 'spring',
-        stiffness: 100,
-        damping: 25,
-        mass: 1,
+        duration: 0.4,
+        ease: 'easeOut',
       },
     },
   }), []);
@@ -77,11 +76,11 @@ export default function Owners() {
       x: 0,
       rotate: 12,
       opacity: 1,
+      scale: 1,
       transition: {
-        type: 'spring',
-        stiffness: 80,
-        damping: 20,
-        delay: 0.3,
+        duration: 0.5,
+        ease: 'easeOut',
+        delay: 0.2,
       },
     },
   }), []);
@@ -92,11 +91,11 @@ export default function Owners() {
       x: 0,
       rotate: 12,
       opacity: 1,
+      scale: 1,
       transition: {
-        type: 'spring',
-        stiffness: 80,
-        damping: 20,
-        delay: 0.5,
+        duration: 0.5,
+        ease: 'easeOut',
+        delay: 0.3,
       },
     },
   }), []);
@@ -119,11 +118,18 @@ export default function Owners() {
               style={{ objectFit: 'cover', objectPosition: 'center' }}
               loading="lazy"
               priority={false}
+              sizes="100vw"
+              quality={75}
             />
           </div>
           <div 
             className="absolute inset-0 opacity-20"
-            style={{ backgroundImage: `url('${imgPattern}')` }}
+            style={{ 
+              backgroundImage: inView ? `url('${imgPattern}')` : 'none',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat'
+            }}
           />
         </div>
 
@@ -148,6 +154,8 @@ export default function Owners() {
               style={{ objectFit: 'contain' }}
               loading="lazy"
               priority={false}
+              sizes="(max-width: 1024px) 200px, 400px"
+              quality={75}
             />
           </motion.div>
           {/* Hand is smaller, repositioned, and rotated diagonally. */}
@@ -160,6 +168,8 @@ export default function Owners() {
                  style={{ objectFit: 'contain' }}
                  loading="lazy"
                  priority={false}
+                 sizes="(max-width: 1024px) 100px, 200px"
+                 quality={75}
                />
             </div>
           <motion.div 
@@ -175,6 +185,8 @@ export default function Owners() {
               style={{ objectFit: 'contain' }}
               loading="lazy"
               priority={false}
+              sizes="(max-width: 1024px) 300px, 600px"
+              quality={75}
             />
           </motion.div>
         </motion.div>
@@ -216,6 +228,7 @@ export default function Owners() {
                     height={48} 
                     className="lg:w-16 lg:h-16"
                     loading="lazy"
+                    quality={75}
                   />
                   <span 
                     className="text-2xl lg:text-4xl xl:text-5xl font-semibold tracking-wider"
@@ -253,6 +266,7 @@ export default function Owners() {
                       height={20} 
                       className="lg:w-6 lg:h-6"
                       loading="lazy"
+                      quality={75}
                     />
                   </span>
                   <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
@@ -265,3 +279,5 @@ export default function Owners() {
     </div>
   );
 }
+
+export default React.memo(Owners);

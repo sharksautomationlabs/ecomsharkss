@@ -4,8 +4,6 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion, useAnimation, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { handleVideoEvents } from '../utils/videoUtils';
-import { useVideoLazyLoading } from '../utils/videoLazyLoading';
 
 const imgChatCircleDots = "/images/chat-icon.svg";
 
@@ -35,8 +33,8 @@ export default function ExpertsSection({
   subtitle = "Our dedicated team stands at the forefront of Amazon's fulfillment programs and beyond. We don't just help businesses grow—we empower them to scale and thrive!"
 }: ExpertsProps) {
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
   const controls = useAnimation();
-  const { videoRef, isInView } = useVideoLazyLoading();
   
   // MODIFICATION 1: Set triggerOnce to false to allow re-triggering
   const [ref, inView] = useInView({
@@ -49,8 +47,17 @@ export default function ExpertsSection({
       setScrollPosition(window.scrollY);
     };
 
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+
+    handleResize(); // Set initial value
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
+    };
   }, []);
 
   // MODIFICATION 2: Animate in when inView is true, and animate out when false
@@ -160,19 +167,24 @@ export default function ExpertsSection({
           <motion.div className="relative lg:absolute right-0 lg:right-0 top-0 lg:top-0 w-full lg:w-[45%] h-[400px] lg:h-[90%] lg:col-span-6 mt-8 lg:mt-0" variants={rightVariants}>
             <div className="relative w-full h-full">
                 <div className="absolute inset-0 rounded-[20px] lg:rounded-[40px] overflow-hidden">
-                    <video 
-                      ref={videoRef}
-                      autoPlay={isInView}
-                      loop 
-                      muted 
-                      playsInline
-                      preload="metadata"
-                      className="absolute inset-0 w-full h-full object-cover"
-                      poster="/images/logos-underwater.png"
-                      {...handleVideoEvents}
-                    >
-                      <source src="/images/under-water-logos.mp4" type="video/mp4" />
-                    </video>
+                    <iframe
+                      src="https://player.vimeo.com/video/1143260109?autoplay=1&loop=1&muted=1&background=1&controls=0&playsinline=1"
+                      className="absolute w-full h-full"
+                      style={{ 
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        width: '100vw',
+                        height: '56.25vw',
+                        minHeight: '100%',
+                        minWidth: isMobile ? '300%' : '177.77%',
+                        transform: isMobile ? 'translate(-50%, -50%) scale(1.8)' : 'translate(-50%, -50%)',
+                        objectFit: 'cover'
+                      }}
+                      allow="autoplay; fullscreen; picture-in-picture"
+                      allowFullScreen
+                      frameBorder="0"
+                    />
                     <div className="absolute inset-0 bg-[#052126] opacity-40"></div>
                 </div>
 {/* 

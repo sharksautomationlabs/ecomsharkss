@@ -46,6 +46,7 @@ export default function EcommerceAutomationPage() {
         heroTitle="The Only E-commerce Investment with a Guaranteed Return"
         heroSubtitle="The Done-For-You System That Gets You to $4,000 in 90 Days—or We Work for Free."
       />
+      <CTASection />
       <EcommerceAutomationExperts 
         title="About Us"
         subtitle="We've helped investors and entrepreneurs just like you launch profitable, hands-off e-commerce stores. Our proven system handles everything from product sourcing to fulfillment, so you can earn truly passive income without the guesswork."
@@ -53,7 +54,6 @@ export default function EcommerceAutomationPage() {
       <CallProcess />
       <StrategyCall />
       <Testimonials testimonials={customTestimonials} />
-      <CTASection />
       <CTAFooter />
       <Footer />
     </div>

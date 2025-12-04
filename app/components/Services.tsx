@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { useVideoLazyLoading } from '../utils/videoLazyLoading';
 const imgChatCircleDots = "/images/chat-icon.svg";
 /*
@@ -30,21 +31,25 @@ const servicesData = [
     title: 'Amazon',
     description: 'Vast Selection, unparalleled convenience, Fastest ROI.',
     logo: imgWalmartLogo,
+    route: '/amazon',
   },
   {
     title: 'Tiktok',
     description: "Don't just watch the trend, own it.",
     logo: imgTikTokLogo,
+    route: '/tiktok',
   },
   {
     title: 'Shopify',
     description: "Your dream. Your brand. Your store",
     logo: imgShopifyLogo,
+    route: '/shopify',
   },
   {
     title: 'Walmart',
     description: 'Zero to $1000/- in days with Drop Shipping',
     logo: imgAmazonLogo,
+    route: '/walmart',
   },
 ];
 
@@ -96,8 +101,11 @@ export default function Services() {
           {/* Services Grid */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-x-6 w-full max-w-[1200px] mt-8 lg:mt-16 mx-5 lg:mx-20">
             {servicesData.map((service, index) => (
-              // CARD SIZE REDUCED
-              <div key={index} className="bg-white/10 backdrop-blur-lg rounded-2xl lg:rounded-3xl px-4 lg:px-6 py-4 lg:py-5 border border-white/20 h-[280px] lg:h-[320px] flex flex-col items-center text-center overflow-hidden service-card-flash">
+              <Link 
+                key={index} 
+                href={service.route}
+                className="bg-white/10 backdrop-blur-lg rounded-2xl lg:rounded-3xl px-4 lg:px-6 py-4 lg:py-5 border border-white/20 h-[280px] lg:h-[320px] flex flex-col items-center text-center overflow-hidden service-card-flash hover:bg-white/15 transition-all duration-300 cursor-pointer"
+              >
                 <h2 className="text-lg lg:text-[28px] font-semibold" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
                   {service.title}
                 </h2>
@@ -116,7 +124,7 @@ export default function Services() {
                     <Image src={service.logo} alt={`${service.title} Logo`} fill className="object-contain" />
                   </div>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
           

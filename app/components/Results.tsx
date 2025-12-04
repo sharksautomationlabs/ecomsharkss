@@ -172,7 +172,7 @@ export default function ResultsSection() {
               <div 
                 className="absolute w-[120%] h-auto top-[50%] z-10 animate-shark-complete"
                 style={{ 
-                  left: `${240 - (scrollPosition * 0.05)}%`,
+                  left: `${290 - (scrollPosition * 0.05)}%`,
                   transform: `translateX(${-scrollPosition * 0.4}px)`
                 }}
               >
