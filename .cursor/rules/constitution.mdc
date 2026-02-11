@@ -1,0 +1,49 @@
+---
+description: ECOM SHARKS project constitution — core principles, tech stack, conventions, and quality gates
+alwaysApply: true
+---
+
+# ECOM SHARKS Constitution
+
+## Tech Stack
+- **Next.js 15** App Router, **React 19**, **TypeScript 5**
+- **Tailwind CSS 4** (sole styling system), **Framer Motion 12** (animations)
+- **Lucide React** (icons), **EmailJS** (contact forms), **Retell SDK** (AI calls)
+- **Meta Pixel + Microsoft Clarity** (analytics), **Calendly** (scheduling)
+- No database, no auth, no global state library
+
+## Architecture Rules
+- App Router only (`app/` directory) — never Pages Router
+- Server Components by default; `'use client'` only when needed (state, effects, events, browser APIs)
+- Components in `app/components/` (PascalCase files), utils in `app/utils/` (camelCase files)
+- Route folders in kebab-case (`privacy-policy/`, `ecommerce-automation/`)
+- Path alias `@/*` → project root; prefer absolute imports for cross-directory
+
+## Performance
+- LCP < 2.5s, CLS < 0.1, FID < 100ms
+- Use `next/dynamic` for heavy components, `next/image` with WebP/AVIF
+- Lazy-load videos via Intersection Observer
+- Third-party scripts via `next/script` (`afterInteractive` / `lazyOnload`)
+
+## Styling
+- Tailwind utilities only — no CSS Modules or styled-components
+- Brand: primary `#35c4dd`, darks `#063f4a` / `#052126` / `#2c2420`, light `#bef4fe`
+- Fonts: Barlow + Barlow Condensed via `next/font/google`
+- Custom keyframes in `app/globals.css`
+
+## Patterns
+- Functional components only, default exports, `React.memo` for expensive pure components
+- Local state (`useState`/`useEffect`) — no Redux/Zustand/Context
+- Shared animation variants in `app/utils/animations.ts` — reuse before creating
+- API routes: `try/catch` → `NextResponse.json({ success, message }, { status })`
+- Form errors: `{ type: 'success' | 'error', message }` pattern
+
+## Security
+- Never hardcode secrets; use `.env` (git-ignored), `NEXT_PUBLIC_` prefix for client vars
+- Spam protection (honeypot, rate limits, content checks) on all public forms
+- Security headers enforced in `next.config.ts`
+
+## Quality Gates
+- `next lint` must pass (zero errors)
+- No `any` in new code
+- Lighthouse perf ≥ 90 on landing pages

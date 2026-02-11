@@ -236,7 +236,7 @@ export default function IdentityPage() {
                 {selectedTeamMember === 'zayn' ? (
                   <>
                     <SocialIcon path={socialLinks.instagram} label="Instagram" href="https://www.instagram.com/muhammadzayaanofficial/" />
-                    <SocialIcon path={socialLinks.facebook} label="Facebook" href="https://www.facebook.com/profile.php?id=61580837862800" />
+                    <SocialIcon path={socialLinks.facebook} label="Facebook" href="https://www.facebook.com/people/Ecommerce-Sharks/61584113035162/" />
                     <SocialIcon path={socialLinks.linkedin} label="LinkedIn" href="https://www.linkedin.com/in/muhammad-zayaan-b7b220259?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" />
                   </>
                 ) : selectedTeamMember === 'sharjeel' ? (
@@ -248,7 +248,7 @@ export default function IdentityPage() {
                   <>
                     <SocialIcon path={socialLinks.instagram} label="Instagram" href="https://www.instagram.com/minhaj_official/" />
                     <SocialIcon path={socialLinks.linkedin} label="LinkedIn" href="https://www.linkedin.com/in/minhaj-visionary" />
-                    <SocialIcon path={socialLinks.facebook} label="Facebook" href="https://www.facebook.com/minhaj.ecomsharkss" />
+                    <SocialIcon path={socialLinks.facebook} label="Facebook" href="https://www.facebook.com/people/Ecommerce-Sharks/61584113035162/" />
                   </>
                 ) : (
                   <>

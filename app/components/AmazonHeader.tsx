@@ -136,9 +136,9 @@ export default function AmazonHeader() {
                 <div className="w-[100px] h-[70px] md:w-[140px] md:h-[100px] lg:w-[180px] lg:h-[140px] relative fade-in -ml-6 md:-ml-8 lg:-ml-12">
                     <Image src={imgImage1} alt="Ecom Sharks Logo" fill className="object-contain" />
                 </div>
-                <div className="hidden lg:flex w-[950px] h-[90px] bg-white/20 backdrop-blur-sm 
+                <div className="hidden lg:flex w-[1150px] h-[90px] bg-white/20 backdrop-blur-sm 
                             rounded-2xl items-center justify-end px-10 gap-8 border-2 border-white">
-                    <div className="flex items-center gap-6 text-white text-[18px] font-medium" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                    <div className="flex items-center gap-5 text-white text-[16px] font-medium" style={{ fontFamily: "'Barlow', sans-serif" }}>
                         <Link href="/" className="hover:text-[#35c4dd]" style={textShadow}>Home</Link>
                         <Link href="/about" className="hover:text-[#35c4dd]" style={textShadow}>About Us</Link>
                         <Link href="/amazon" className="hover:text-[#35c4dd]" style={textShadow}>Amazon</Link>
@@ -146,6 +146,8 @@ export default function AmazonHeader() {
                         <Link href="/tiktok" className="hover:text-[#35c4dd]" style={textShadow}>Tiktok</Link>
                         <Link href="/walmart" className="hover:text-[#35c4dd]" style={textShadow}>Walmart</Link>
                         <Link href="/identity" className="hover:text-[#35c4dd]" style={textShadow}>Identity</Link>
+                        <Link href="/ecomautomation" className="hover:text-[#35c4dd]" style={textShadow}>Ecom Auto</Link>
+                        <Link href="/ecomautomation2" className="hover:text-[#35c4dd]" style={textShadow}>Ecom Auto 2</Link>
                         <Link href="/contact" className="hover:text-[#35c4dd]" style={textShadow}>Contact</Link>
                     </div>
                      <button 
@@ -291,6 +293,22 @@ export default function AmazonHeader() {
                       onClick={() => setIsMobileNavOpen(false)}
                     >
                       Identity
+                    </Link>
+                    <Link 
+                      href="/ecomautomation" 
+                      className="block text-white text-base font-medium hover:text-[#35c4dd] transition-colors py-1"
+                      style={{ fontFamily: "'Barlow', sans-serif" }}
+                      onClick={() => setIsMobileNavOpen(false)}
+                    >
+                      Ecom Automation
+                    </Link>
+                    <Link 
+                      href="/ecomautomation2" 
+                      className="block text-white text-base font-medium hover:text-[#35c4dd] transition-colors py-1"
+                      style={{ fontFamily: "'Barlow', sans-serif" }}
+                      onClick={() => setIsMobileNavOpen(false)}
+                    >
+                      Ecom Automation 2
                     </Link>
                     <Link 
                       href="/contact" 

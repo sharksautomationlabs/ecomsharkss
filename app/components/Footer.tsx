@@ -698,7 +698,7 @@ export default function Contact() {
             <div className="flex items-center gap-3 lg:gap-4">
               <span>Follow us:</span>
               <div className="flex items-center gap-2 lg:gap-3">
-                <SocialIcon path={socialLinks.facebook} href="https://www.facebook.com/Ecommercesharksofficial" />
+                <SocialIcon path={socialLinks.facebook} href="https://www.facebook.com/people/Ecommerce-Sharks/61584113035162/" />
                 <SocialIcon path={socialLinks.linkedin} href="https://www.linkedin.com/company/ecom-sharkss/posts/?feedView=all" />
                 <SocialIcon path={socialLinks.instagram} href="https://www.instagram.com/ecommerce.sharks/" />
               </div>
