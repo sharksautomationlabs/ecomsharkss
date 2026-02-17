@@ -158,8 +158,6 @@ export default function Header({
                         <Link href="/tiktok" className="hover:text-[#35c4dd]" style={textShadow}>Tiktok</Link>
                         <Link href="/walmart" className="hover:text-[#35c4dd]" style={textShadow}>Walmart</Link>
                         <Link href="/identity" className="hover:text-[#35c4dd]" style={textShadow}>Identity</Link>
-                        <Link href="/ecomautomation" className="hover:text-[#35c4dd]" style={textShadow}>Ecom Auto</Link>
-                        <Link href="/ecomautomation2" className="hover:text-[#35c4dd]" style={textShadow}>Ecom Auto 2</Link>
                         <Link href="/contact" className="hover:text-[#35c4dd]" style={textShadow}>Contact</Link>
                     </div>
                      <button 
@@ -305,22 +303,6 @@ export default function Header({
                       onClick={() => setIsMobileNavOpen(false)}
                     >
                       Identity
-                    </Link>
-                    <Link 
-                      href="/ecomautomation" 
-                      className="block text-white text-base font-medium hover:text-[#35c4dd] transition-colors py-1"
-                      style={{ fontFamily: "'Barlow', sans-serif" }}
-                      onClick={() => setIsMobileNavOpen(false)}
-                    >
-                      Ecom Automation
-                    </Link>
-                    <Link 
-                      href="/ecomautomation2" 
-                      className="block text-white text-base font-medium hover:text-[#35c4dd] transition-colors py-1"
-                      style={{ fontFamily: "'Barlow', sans-serif" }}
-                      onClick={() => setIsMobileNavOpen(false)}
-                    >
-                      Ecom Automation 2
                     </Link>
                     <Link 
                       href="/contact" 
