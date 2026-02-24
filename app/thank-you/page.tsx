@@ -1,233 +1,231 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, useAnimation, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { useVideoLazyLoading } from '../utils/videoLazyLoading';
-import Header from '../components/Header';
+import Image from 'next/image';
+import Link from 'next/link';
+import { CheckCircle, Star } from 'lucide-react';
+import EcomWealthFAQ from '../components/EcomWealthFAQ';
+import { precallFaqItems } from '../utils/ecomwealthContent';
 
 export default function ThanksPage() {
-  const controls = useAnimation();
-  const { videoRef, isInView } = useVideoLazyLoading();
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.25,
-  });
+  const [userName, setUserName] = useState('');
 
-  const footerControls = useAnimation();
-  const [footerRef, footerInView] = useInView({
-    triggerOnce: true,
-    threshold: 0.25,
-  });
+  const heroControls = useAnimation();
+  const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.2 });
 
-  React.useEffect(() => {
-    if (inView) {
-      controls.start('visible');
-    }
-  }, [controls, inView]);
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get('Name') || params.get('name') || '';
+    setUserName(name);
+  }, []);
 
-  // Ensure videos stay visible once animated in
-  React.useEffect(() => {
-    if (inView) {
-      controls.set('visible');
-    }
-  }, [controls, inView]);
-
-  React.useEffect(() => {
-    if (footerInView) {
-      footerControls.start('visible');
-    }
-  }, [footerControls, footerInView]);
+  useEffect(() => { if (heroInView) heroControls.start('visible'); }, [heroControls, heroInView]);
 
   const containerVariants: Variants = {
     hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.1,
-      },
-    },
+    visible: { transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
   };
 
-  const textVariants: Variants = {
+  const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        type: 'spring',
-        stiffness: 100,
-        damping: 20,
-      },
-    },
+    visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100, damping: 20 } },
   };
 
-  const videoVariants: Variants = {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        type: 'spring',
-        stiffness: 100,
-        damping: 20,
-      },
-    },
-  };
+  const reviews = [
+    { name: 'Sarah M.', stars: 5, quote: 'Incredible experience! The team set up my store in 2 weeks. Already seeing sales. So glad I took the call.' },
+    { name: 'David K.', stars: 5, quote: 'Finally a hands-off solution that actually works. Best decision I\'ve made. ECOM SHARKS delivered on every promise.' },
+    { name: 'Jennifer L.', stars: 5, quote: 'Professional, transparent, and delivers on their promises. I spoke with multiple companies—transparency made me comfortable moving forward.' },
+    { name: 'Michael R.', stars: 5, quote: 'From zero to $8K in the first month. The support team is amazing. The question wasn\'t if it works, it was trust.' },
+    { name: 'Emily T.', stars: 5, quote: 'No inventory, no stress. Exactly what I needed as a busy parent. They handle everything.' },
+    { name: 'James P.', stars: 5, quote: 'ECOM SHARKS built and runs my store completely. I just check the dashboard weekly. Game changer.' },
+    { name: 'Alex M.', stars: 5, quote: 'Within 45 days my store was generating consistent revenue. Best partnership I\'ve ever made.' },
+    { name: 'Nina S.', stars: 5, quote: 'I had zero e-commerce experience. Their team set everything up. Now I\'m making sales daily. Absolutely incredible.' },
+    { name: 'Robert C.', stars: 5, quote: 'The hands-off approach is real. They manage my store end-to-end while I focus on my day job. Highly recommend!' },
+  ];
+
+  const prepareChecklist = [
+    { text: 'Double-Check Your Phone Number: Make sure the number you provided is correct and can receive calls.' },
+    { text: 'Be Ready to Answer: At your scheduled time, expect a call from our team. If you miss it, No-Shows will NOT be rescheduled.' },
+    { text: 'Come Prepared: Be in a quiet environment and prepare any questions you may have.' },
+  ];
 
   return (
-    <div className="w-full bg-white">
-      <Header 
-        heroTitle="You're In! Let's Get Ready for Your Call"
-        heroSubtitle="Congratulations! Your call is booked. This is the first step toward building your hands-off e-commerce business. Before we talk, I have two quick videos below that will answer all of your questions and make our call as productive as possible."
-      />
+    <div className="w-full bg-white overflow-x-hidden">
 
-      {/* Videos Section */}
-      <div ref={ref} className="py-16 lg:py-24">
-        <div className="container mx-auto px-5 lg:px-20">
-          <motion.div
-            initial="hidden"
-            animate={controls}
-            variants={containerVariants}
-            className="max-w-6xl mx-auto"
-          >
-            {/* First Video */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ type: 'spring', stiffness: 100, damping: 20 }}
-              className="mb-16 lg:mb-20"
-            >
-              <div className="relative rounded-2xl lg:rounded-3xl shadow-2xl overflow-hidden">
-                {/* Background Video */}
-                <div className="absolute inset-0 z-0">
-                  <video 
-                    ref={videoRef}
-                    autoPlay={isInView}
-                    loop 
-                    muted 
-                    playsInline
-                    preload="metadata"
-                    className="absolute inset-0 w-full h-full object-cover object-center"
-                    poster="/images/bi-vid.jpeg"
-                  >
-                    <source src="/images/bi-vid.mp4" type="video/mp4" />
-                  </video>
-                  <div className="absolute inset-0 bg-[#052126]/70" />
+      {/* ============ HERO ============ */}
+      <div ref={heroRef} className="relative bg-[#052126] pt-6 lg:pt-8 pb-20 lg:pb-24 overflow-hidden">
+        <div className="absolute top-[-200px] right-[-100px] w-[500px] h-[500px] bg-[#35c4dd]/8 rounded-full blur-3xl" />
+        <div className="absolute bottom-[-150px] left-[-80px] w-[400px] h-[400px] bg-[#063f4a]/50 rounded-full blur-3xl" />
+
+        <div className="container mx-auto px-5 lg:px-20 relative z-10">
+          <motion.div initial="hidden" animate={heroControls} variants={containerVariants} className="max-w-4xl mx-auto text-center">
+            <motion.div variants={fadeInUp} className="mb-2 flex justify-center">
+              <Link href="/" className="inline-block">
+                <div className="relative w-[140px] h-[95px] lg:w-[200px] lg:h-[130px]">
+                  <Image src="/images/quote-logo.png" alt="ECOM SHARKS" fill className="object-contain" priority />
                 </div>
-                
-                {/* Content */}
-                <div className="relative z-10 p-6 lg:p-8">
-                  <h2 
-                    className="text-2xl lg:text-3xl font-bold text-white mb-4" 
-                    style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-                  >
-                    Watch This First: How to Get the Most Out of Our Call.
-                  </h2>
-                  
-                  <p 
-                    className="text-base lg:text-lg text-gray-200 mb-6 leading-relaxed" 
-                    style={{ fontFamily: "'Barlow', sans-serif" }}
-                  >
-                    This video will walk you through what to expect on the call and what you need to prepare, so we can get right to the details and not waste a single minute.
-                  </p>
-                  
-                  <div className="relative w-full bg-white rounded-xl overflow-hidden" style={{ paddingBottom: '56.25%' }}>
-                    <iframe
-                      className="absolute top-0 left-0 w-full h-full"
-                      src="https://www.youtube.com/embed/PkzqxZQwK_E?si=VStYF-HeP5wcyBUB"
-                      title="How to Get the Most Out of Our Call"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    ></iframe>
-                  </div>
-                </div>
-              </div>
+              </Link>
             </motion.div>
 
-            {/* Second Video */}
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ type: 'spring', stiffness: 100, damping: 20, delay: 0.2 }}
+            <motion.div
+              variants={fadeInUp}
+              className="inline-block bg-[#35c4dd] text-[#063f4a] font-bold py-3 px-5 lg:py-4 lg:px-6 rounded-full border-2 border-[#35c4dd]/80 mb-8"
+              style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
             >
-              <div className="relative rounded-2xl lg:rounded-3xl shadow-2xl overflow-hidden">
-                {/* Background Video */}
-                <div className="absolute inset-0 z-0">
-                  <video 
-                    ref={videoRef}
-                    autoPlay={isInView}
-                    loop 
-                    muted 
-                    playsInline
-                    preload="metadata"
-                    className="absolute inset-0 w-full h-full object-cover object-center"
-                    poster="/images/bi-vid.jpeg"
-                  >
-                    <source src="/images/bi-vid.mp4" type="video/mp4" />
-                  </video>
-                  <div className="absolute inset-0 bg-[#052126]/70" />
-                </div>
-                
-                {/* Content */}
-                <div className="relative z-10 p-6 lg:p-8">
-                  <h2 
-                    className="text-2xl lg:text-3xl font-bold text-white mb-4" 
-                    style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-                  >
-                    Watch This Next: See Exactly How Our Clients Are Hitting $4,000 a Month.
-                  </h2>
-                  
-                  <p 
-                    className="text-base lg:text-lg text-gray-200 mb-6 leading-relaxed" 
-                    style={{ fontFamily: "'Barlow', sans-serif" }}
-                  >
-                    This video will walk you through what to expect on the call and what you need to prepare, so we can get right to the details and not waste a single minute.
-                  </p>
-                  
-                  <div className="relative w-full bg-white rounded-xl overflow-hidden" style={{ paddingBottom: '56.25%' }}>
-                    <iframe
-                      className="absolute top-0 left-0 w-full h-full"
-                      src="https://www.youtube.com/embed/3kE6P9VgPuc?si=gsdM9QvEVxgrUo3S"
-                      title="See Exactly How Our Clients Are Hitting $4,000 a Month"
-                      frameBorder="0"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    ></iframe>
-                  </div>
-                </div>
-              </div>
+              <span className="text-lg md:text-2xl lg:text-3xl">
+                CONGRATS{userName ? `, ${userName}` : ''}! Your Call Has Been Booked!
+              </span>
+            </motion.div>
+
+            <motion.p
+              variants={fadeInUp}
+              className="text-base lg:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-10"
+              style={{ fontFamily: "'Barlow', sans-serif" }}
+            >
+              <strong className="text-white">IMPORTANT:</strong> Please complete the <strong className="text-[#35c4dd]">4 steps</strong> below to keep your scheduled call confirmed and ensure we make the most of our time together.
+            </motion.p>
+
+            <motion.h2
+              variants={fadeInUp}
+              className="text-xl lg:text-3xl font-bold text-white text-center mb-6"
+              style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+            >
+              Step 1: Watch This Short Video <span className="text-[#35c4dd]">(2 Minutes)</span>
+            </motion.h2>
+            <motion.div variants={fadeInUp} className="relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-xl ring-2 ring-white/10" style={{ paddingBottom: '56.25%' }}>
+              <iframe
+                className="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/PkzqxZQwK_E"
+                title="How to Get the Most Out of Our Call"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
             </motion.div>
           </motion.div>
         </div>
       </div>
 
-      {/* Footer CTA */}
-      <div ref={footerRef} className="bg-gradient-to-b from-white to-[#f8fafc] py-16 lg:py-24">
+      {/* ============ STEP 2: FAQ ============ */}
+      <div className="py-16 lg:py-24 bg-white">
+        <div className="container mx-auto px-5 lg:px-20">
+          <div className="max-w-3xl mx-auto">
+            <h2
+              className="text-2xl lg:text-4xl font-bold text-[#063f4a] text-center mb-12"
+              style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+            >
+              Step 2: Go Through Our Frequently Asked Questions Below
+            </h2>
+            <EcomWealthFAQ items={precallFaqItems} />
+          </div>
+        </div>
+      </div>
+
+      {/* ============ STEP 3: SEE WHAT OTHERS HAVE TO SAY ============ */}
+      <div className="py-16 lg:py-24 bg-gray-50">
+        <div className="container mx-auto px-5 lg:px-20">
+          <div className="max-w-4xl mx-auto">
+            <h2
+              className="text-2xl lg:text-4xl font-bold text-[#063f4a] text-center mb-6"
+              style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+            >
+              Step 3: See What Others Have To Say
+            </h2>
+            <p
+              className="text-center text-[#2c2420]/70 mb-10"
+              style={{ fontFamily: "'Barlow', sans-serif" }}
+            >
+              First-hand experiences from clients, sharing what it&apos;s actually been like partnering with our team.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {reviews.map((r, i) => (
+                <div
+                  key={i}
+                  className="bg-white rounded-2xl p-6 shadow-lg border border-[#35c4dd]/20"
+                >
+                  <div className="flex gap-0.5 mb-3">
+                    {Array.from({ length: r.stars }).map((_, j) => (
+                      <Star key={j} className="w-5 h-5 fill-[#35c4dd] text-[#35c4dd]" />
+                    ))}
+                  </div>
+                  <p className="text-[#2c2420]/80 text-sm lg:text-base leading-relaxed mb-4" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                    &quot;{r.quote}&quot;
+                  </p>
+                  <p className="text-sm font-semibold text-[#063f4a]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+                    — {r.name}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ============ STEP 4: PREPARE FOR YOUR CALL ============ */}
+      <div className="py-16 lg:py-24 bg-white">
+        <div className="container mx-auto px-5 lg:px-20">
+          <div className="max-w-3xl mx-auto">
+            <h2
+              className="text-2xl lg:text-4xl font-bold text-[#063f4a] text-center mb-10"
+              style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+            >
+              Step 4: Prepare For Your Call
+            </h2>
+            <div className="space-y-4">
+              {prepareChecklist.map((item, i) => (
+                <div key={i} className="flex gap-3 items-start">
+                  <CheckCircle className="w-6 h-6 text-[#35c4dd] shrink-0 mt-0.5" />
+                  <p className="text-[#2c2420]/80 text-base lg:text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                    {item.text}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ============ FINAL CTA ============ */}
+      <div className="py-16 lg:py-24 bg-gradient-to-b from-[#063f4a] to-[#052126]">
         <div className="container mx-auto px-5 lg:px-20 text-center">
-          <motion.div
-            initial="hidden"
-            animate={footerControls}
-            variants={containerVariants}
-            className="max-w-4xl mx-auto"
+          <h2
+            className="text-2xl lg:text-4xl font-bold text-white mb-6"
+            style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
           >
-            <motion.div variants={textVariants}>
-              <h2 
-                className="text-2xl lg:text-4xl font-bold text-[#063f4a] mb-6" 
-                style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-              >
-                Ready to Transform Your Business?
-              </h2>
-              
-              <p 
-                className="text-lg lg:text-xl text-[#2c2420] leading-relaxed" 
-                style={{ fontFamily: "'Barlow', sans-serif" }}
-              >
-                We're excited to speak with you and help you build your hands-off e-commerce business. See you on the call!
-              </p>
-            </motion.div>
-          </motion.div>
+            We Look Forward To Seeing You On The Call!
+          </h2>
+          <Link
+            href="/"
+            className="inline-block text-[#35c4dd] hover:text-[#bef4fe] font-medium transition-colors"
+            style={{ fontFamily: "'Barlow', sans-serif" }}
+          >
+            Back to Homepage
+          </Link>
+        </div>
+      </div>
+
+      {/* ============ FOOTER ============ */}
+      <div className="bg-[#052126] border-t border-white/10 py-10 lg:py-14">
+        <div className="container mx-auto px-5 lg:px-20">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <Link href="/privacy-policy" className="text-gray-400 hover:text-[#35c4dd] text-sm transition-colors" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                Privacy Policy
+              </Link>
+              <span className="text-gray-600">|</span>
+              <Link href="/contact" className="text-gray-400 hover:text-[#35c4dd] text-sm transition-colors" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                Contact Us
+              </Link>
+            </div>
+            <p className="text-gray-500 text-sm mb-6" style={{ fontFamily: "'Barlow', sans-serif" }}>
+              ECOM SHARKS &copy; {new Date().getFullYear()}. All Rights Reserved.
+            </p>
+            <p className="text-gray-600 text-xs leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
+              ECOM SHARKS provides e-commerce management services. We do not guarantee income or specific results. Individual results vary. Testimonials reflect real experiences but are not guarantees. By using this site, you acknowledge that you are responsible for your decisions and outcomes.
+            </p>
+          </div>
         </div>
       </div>
     </div>
