@@ -190,14 +190,14 @@ export default function EcomAutomationPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-xl border border-[#35c4dd]/20 flex items-center justify-center min-h-[180px]">
+              <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-xl border border-[#35c4dd]/20 aspect-[4/3] flex items-center justify-center">
                 <Image
                   src={`/images/partner-results/result-${i}.png`}
                   alt={`Partner store result ${i}`}
                   width={480}
-                  height={320}
+                  height={360}
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                  className="w-full h-auto object-contain"
+                  className="w-full h-full object-contain"
                   loading="lazy"
                 />
               </div>
