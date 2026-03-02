@@ -155,13 +155,15 @@ export default function EcomAutomationPage() {
           </p>
           <div className="grid grid-cols-2 gap-6 max-w-4xl mx-auto">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-lg border border-[#35c4dd]/10 aspect-[4/3]">
+              <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-lg border border-[#35c4dd]/10 flex items-center justify-center min-h-[200px]">
                 <Image
                   src={`/images/reviews/review-${i}.png`}
                   alt={`Trustpilot review ${i}`}
-                  width={600}
-                  height={450}
-                  className="w-full h-full object-cover"
+                  width={480}
+                  height={320}
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="w-full h-auto object-contain"
+                  priority={i <= 2}
                 />
               </div>
             ))}
@@ -188,13 +190,15 @@ export default function EcomAutomationPage() {
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-xl border border-[#35c4dd]/20 aspect-[4/3]">
+              <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-xl border border-[#35c4dd]/20 flex items-center justify-center min-h-[180px]">
                 <Image
                   src={`/images/partner-results/result-${i}.png`}
                   alt={`Partner store result ${i}`}
-                  width={600}
-                  height={450}
-                  className="w-full h-full object-cover"
+                  width={480}
+                  height={320}
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  className="w-full h-auto object-contain"
+                  loading="lazy"
                 />
               </div>
             ))}
