@@ -5,7 +5,7 @@ import { motion, useAnimation, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 import Link from 'next/link';
-import { CheckCircle, Star } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 import EcomWealthFAQ from '../components/EcomWealthFAQ';
 import { precallFaqItems } from '../utils/ecomwealthContent';
 
@@ -32,18 +32,6 @@ export default function ThanksPage() {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100, damping: 20 } },
   };
-
-  const reviews = [
-    { name: 'Sarah M.', stars: 5, quote: 'Incredible experience! The team set up my store in 2 weeks. Already seeing sales. So glad I took the call.' },
-    { name: 'David K.', stars: 5, quote: 'Finally a hands-off solution that actually works. Best decision I\'ve made. ECOM SHARKS delivered on every promise.' },
-    { name: 'Jennifer L.', stars: 5, quote: 'Professional, transparent, and delivers on their promises. I spoke with multiple companies—transparency made me comfortable moving forward.' },
-    { name: 'Michael R.', stars: 5, quote: 'From zero to $8K in the first month. The support team is amazing. The question wasn\'t if it works, it was trust.' },
-    { name: 'Emily T.', stars: 5, quote: 'No inventory, no stress. Exactly what I needed as a busy parent. They handle everything.' },
-    { name: 'James P.', stars: 5, quote: 'ECOM SHARKS built and runs my store completely. I just check the dashboard weekly. Game changer.' },
-    { name: 'Alex M.', stars: 5, quote: 'Within 45 days my store was generating consistent revenue. Best partnership I\'ve ever made.' },
-    { name: 'Nina S.', stars: 5, quote: 'I had zero e-commerce experience. Their team set everything up. Now I\'m making sales daily. Absolutely incredible.' },
-    { name: 'Robert C.', stars: 5, quote: 'The hands-off approach is real. They manage my store end-to-end while I focus on my day job. Highly recommend!' },
-  ];
 
   const prepareChecklist = [
     { text: 'Double-Check Your Phone Number: Make sure the number you provided is correct and can receive calls.' },
@@ -139,25 +127,30 @@ export default function ThanksPage() {
             >
               First-hand experiences from clients, sharing what it&apos;s actually been like partnering with our team.
             </p>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {reviews.map((r, i) => (
-                <div
-                  key={i}
-                  className="bg-white rounded-2xl p-6 shadow-lg border border-[#35c4dd]/20"
-                >
-                  <div className="flex gap-0.5 mb-3">
-                    {Array.from({ length: r.stars }).map((_, j) => (
-                      <Star key={j} className="w-5 h-5 fill-[#35c4dd] text-[#35c4dd]" />
-                    ))}
-                  </div>
-                  <p className="text-[#2c2420]/80 text-sm lg:text-base leading-relaxed mb-4" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                    &quot;{r.quote}&quot;
-                  </p>
-                  <p className="text-sm font-semibold text-[#063f4a]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                    — {r.name}
-                  </p>
+            <div className="grid grid-cols-2 gap-6 max-w-4xl mx-auto">
+              {[1, 2, 3, 4].map((i) => (
+                <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-lg border border-[#35c4dd]/10 flex items-center justify-center min-h-[200px]">
+                  <Image
+                    src={`/images/reviews/review-${i}.png`}
+                    alt={`Trustpilot review ${i}`}
+                    width={480}
+                    height={320}
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    className="w-full h-auto object-contain"
+                  />
                 </div>
               ))}
+            </div>
+            <div className="text-center mt-8">
+              <a
+                href="https://www.trustpilot.com/review/ecomsharkss.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-[#35c4dd] hover:text-[#2bb3cb] font-semibold transition-colors"
+                style={{ fontFamily: "'Barlow', sans-serif" }}
+              >
+                See all reviews on Trustpilot →
+              </a>
             </div>
           </div>
         </div>
