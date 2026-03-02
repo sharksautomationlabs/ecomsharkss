@@ -96,14 +96,13 @@ export default function EcomAutomationPage() {
                 </div>
               </Link>
             </motion.div>
-            <motion.h1 variants={fadeInUp} className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-white mb-2 leading-[1.15] tracking-tight" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-              {heroContent.headlineLine1}
+            <motion.h1 variants={fadeInUp} className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-white mb-6 leading-[1.15] tracking-tight" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+              Your fully managed ecommerce business
               <br />
-              {heroContent.headlineLine2}
+              with atleast $4000 guranteed sales
+              <br />
+              <span className="text-[#35c4dd]">in 30 days.</span>
             </motion.h1>
-            <motion.p variants={fadeInUp} className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-semibold text-[#35c4dd] mb-6 leading-[1.1] tracking-tight" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-              {heroContent.headlineTagline}
-            </motion.p>
             <motion.p variants={fadeInUp} className="text-lg lg:text-xl text-gray-300 mb-6 max-w-3xl mx-auto leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
               {heroContent.subhead}
             </motion.p>
