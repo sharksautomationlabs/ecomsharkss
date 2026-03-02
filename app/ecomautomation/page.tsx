@@ -5,12 +5,11 @@ import { motion, useAnimation, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Play, Star } from 'lucide-react';
+import { Play } from 'lucide-react';
 import EcomWealthFAQ from '../components/EcomWealthFAQ';
 import {
   heroContent,
   trustStripContent,
-  fakeReviews,
   caseStudies,
   applyCtaContent,
   footerContent,
@@ -146,7 +145,7 @@ export default function EcomAutomationPage() {
         </div>
       </div>
 
-      {/* Fake Reviews */}
+      {/* Trustpilot Reviews */}
       <div className="py-12 lg:py-16 bg-gray-50">
         <div className="container mx-auto px-5 lg:px-20">
           <h2 className="text-2xl lg:text-4xl font-bold text-[#063f4a] text-center mb-4" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
@@ -155,22 +154,29 @@ export default function EcomAutomationPage() {
           <p className="text-center text-[#2c2420]/70 mb-10 max-w-2xl mx-auto" style={{ fontFamily: "'Barlow', sans-serif" }}>
             Trusted by hundreds of investors who chose ECOM SHARKS for their hands-off eCommerce stores.
           </p>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-            {fakeReviews.map((r, i) => (
-              <div key={i} className="bg-white rounded-2xl p-6 shadow-lg border border-[#35c4dd]/10">
-                <div className="flex gap-0.5 mb-3">
-                  {Array.from({ length: r.stars }).map((_, j) => (
-                    <Star key={j} className="w-5 h-5 fill-[#35c4dd] text-[#35c4dd]" />
-                  ))}
-                </div>
-                <p className="text-[#2c2420]/80 text-sm lg:text-base leading-relaxed mb-4" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                  &quot;{r.quote}&quot;
-                </p>
-                <p className="text-sm font-semibold text-[#063f4a]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                  — {r.name}
-                </p>
+          <div className="grid grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {[1, 2, 3, 4].map((i) => (
+              <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-lg border border-[#35c4dd]/10">
+                <Image
+                  src={`/images/reviews/review-${i}.png`}
+                  alt={`Trustpilot review ${i}`}
+                  width={600}
+                  height={400}
+                  className="w-full h-auto object-contain"
+                />
               </div>
             ))}
+          </div>
+          <div className="text-center mt-8">
+            <a
+              href="https://www.trustpilot.com/review/ecomsharkss.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-[#35c4dd] hover:text-[#2bb3cb] font-semibold transition-colors"
+              style={{ fontFamily: "'Barlow', sans-serif" }}
+            >
+              See all reviews on Trustpilot →
+            </a>
           </div>
         </div>
       </div>
