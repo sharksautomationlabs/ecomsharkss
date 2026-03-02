@@ -13,9 +13,18 @@ import {
   fakeReviews,
   caseStudies,
   applyCtaContent,
-  faqItems,
   footerContent,
 } from '../utils/ecomwealthContent';
+
+const faqItems = [
+  { id: 'faq-1', question: 'Can you really guarantee $4,000 in sales in 30 days?', answer: 'Yes, it is 110% true. We provide this guarantee because of our tested, high profit products and our proven system. We don\'t guess, we execute with data. That is why we are more than confident in hitting that target for your store.' },
+  { id: 'faq-2', question: 'What happens on this call?', answer: 'We build a high level blueprint for your brand if you have an existing one or a launch plan if you are starting fresh. We find where you are losing money and create a roadmap to dominate your niche. You leave with total clarity.' },
+  { id: 'faq-3', question: 'Is there a catch or a fee?', answer: 'Not at all. This session is free because we believe in showing value first. If we see a big opportunity to grow your store together, we can discuss a partnership, but there is zero pressure.' },
+  { id: 'faq-4', question: 'Is my business the right fit?', answer: 'We work with founders and investors ready to stop playing small. Whether you are scaling an existing brand or starting today, this is for owners who prioritize aggressive growth on platforms like TikTok and Shopify.' },
+  { id: 'faq-5', question: 'How do I prepare?', answer: 'Find a quiet space and bring a notepad. If you have an existing brand, have your store data ready. We want to give you the best advice possible so please show up focused and ready to work.' },
+  { id: 'faq-6', question: 'Can I reschedule my time?', answer: 'Our calendar fills up fast. If something comes up, use the link in your email to reschedule at least 24 hours in advance. This lets another hungry entrepreneur take your spot.' },
+  { id: 'faq-7', question: 'Who am I speaking with?', answer: 'You are talking to a senior strategist from the Ecom Sharkss team. These are real experts who scale stores every day. No fluff and no beginners, just pros who know how to win.' },
+];
 
 const CALENDLY_URL = 'https://calendly.com/ecomsharkss-info/30min';
 
