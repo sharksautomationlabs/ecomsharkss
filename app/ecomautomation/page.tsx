@@ -192,7 +192,7 @@ export default function EcomAutomationPage() {
             {[1, 2, 3, 4, 5, 6].map((i) => (
               <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-xl border border-[#35c4dd]/20 aspect-[4/3] flex items-center justify-center">
                 <Image
-                  src={`/images/partner-results/result-${i}.png`}
+                  src={`/images/partner-results/result-${i === 2 ? '2-tiktok' : i}.png`}
                   alt={`Partner store result ${i}`}
                   width={480}
                   height={360}
