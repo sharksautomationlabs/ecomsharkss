@@ -10,7 +10,6 @@ import EcomWealthFAQ from '../components/EcomWealthFAQ';
 import {
   heroContent,
   trustStripContent,
-  caseStudies,
   applyCtaContent,
   footerContent,
 } from '../utils/ecomwealthContent';
@@ -156,13 +155,13 @@ export default function EcomAutomationPage() {
           </p>
           <div className="grid grid-cols-2 gap-6 max-w-4xl mx-auto">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-lg border border-[#35c4dd]/10">
+              <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-lg border border-[#35c4dd]/10 aspect-[4/3]">
                 <Image
                   src={`/images/reviews/review-${i}.png`}
                   alt={`Trustpilot review ${i}`}
                   width={600}
-                  height={400}
-                  className="w-full h-auto object-contain"
+                  height={450}
+                  className="w-full h-full object-cover"
                 />
               </div>
             ))}
@@ -181,60 +180,35 @@ export default function EcomAutomationPage() {
         </div>
       </div>
 
-      {/* PartnerStoreResults - Case Studies */}
+      {/* PartnerStoreResults - Dashboard Screenshots */}
       <div className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-5 lg:px-20">
-          <h2 className="text-2xl lg:text-4xl font-bold text-[#063f4a] text-center mb-4" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+          <h2 className="text-2xl lg:text-4xl font-bold text-[#063f4a] text-center mb-10" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
             Inside Look at Partner Store Results
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-            {caseStudies.map((c, i) => (
-              <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-xl border border-[#35c4dd]/20">
-                {/* Fake Browser Window / Landing Page */}
-                <div className="border-b border-gray-200 bg-gray-50 px-3 py-2 flex items-center gap-2">
-                  <div className="flex gap-1.5">
-                    <div className="w-3 h-3 rounded-full bg-red-300" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-300" />
-                    <div className="w-3 h-3 rounded-full bg-green-300" />
-                  </div>
-                  <div className="flex-1 bg-white rounded-lg px-3 py-1.5 text-xs text-gray-500 font-mono truncate" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                    https://{c.landingPageUrl}
-                  </div>
-                </div>
-                {/* Fake Store / Landing Page Content */}
-                <div className="p-4 bg-gray-50">
-                  <div className="bg-white rounded-lg border border-gray-100 overflow-hidden shadow-sm">
-                    {/* Hero / Banner Image */}
-                    <div className="relative h-32 lg:h-40 w-full overflow-hidden bg-gray-100">
-                      <Image src={c.heroImage} alt={`${c.storeName} landing page`} fill className="object-cover" sizes="(max-width: 768px) 100vw, 50vw" />
-                    </div>
-                    <div className="h-8 bg-[#063f4a] flex items-center px-4">
-                      <span className="text-white text-xs font-semibold" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>{c.storeName}</span>
-                    </div>
-                    {/* Product Grid */}
-                    <div className="p-3 grid grid-cols-3 gap-2">
-                      {c.productImages.map((src, j) => (
-                        <div key={j} className="relative aspect-square rounded overflow-hidden bg-gray-100">
-                          <Image src={src} alt="" fill className="object-cover" sizes="80px" />
-                        </div>
-                      ))}
-                    </div>
-                    <div className="h-8 bg-[#35c4dd]/10 border-t border-gray-100 flex items-center justify-center">
-                      <span className="text-xs text-[#063f4a] font-medium" style={{ fontFamily: "'Barlow', sans-serif" }}>{c.figure} revenue · {c.timeframe}</span>
-                    </div>
-                  </div>
-                </div>
-                {/* Quote Section */}
-                <div className="p-6 border-t border-gray-100">
-                  <p className="text-[#2c2420]/80 text-sm lg:text-base leading-relaxed mb-3" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                    &quot;{c.quote}&quot;
-                  </p>
-                  <p className="text-sm font-semibold text-[#063f4a]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                    — {c.name}
-                  </p>
-                </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-xl border border-[#35c4dd]/20 aspect-[4/3]">
+                <Image
+                  src={`/images/partner-results/result-${i}.png`}
+                  alt={`Partner store result ${i}`}
+                  width={600}
+                  height={450}
+                  className="w-full h-full object-cover"
+                />
               </div>
             ))}
+          </div>
+          {/* Calendly Embed - Second */}
+          <div className="mt-16 max-w-4xl mx-auto">
+            <iframe
+              src="https://calendly.com/ecomsharkss-info/30min"
+              width="100%"
+              height="650"
+              frameBorder="0"
+              title="Book a call with ECOM SHARKS"
+              className="rounded-2xl overflow-hidden"
+            />
           </div>
         </div>
       </div>
