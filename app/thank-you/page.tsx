@@ -80,7 +80,7 @@ export default function ThanksPage() {
               className="text-xl lg:text-3xl font-bold text-white text-center mb-6"
               style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
             >
-              Step 1: Watch This Short Video <span className="text-[#35c4dd]">(2 Minutes)</span>
+              Step 1: Watch This Short Video <span className="text-[#35c4dd]">(3 Minutes)</span>
             </motion.h2>
             <motion.div variants={fadeInUp} className="relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-xl ring-2 ring-white/10" style={{ paddingBottom: '56.25%' }}>
               <iframe
