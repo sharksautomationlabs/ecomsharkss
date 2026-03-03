@@ -94,7 +94,7 @@ export default function EcomAutomationPage() {
                 </div>
               </Link>
             </motion.div>
-            <motion.h1 variants={fadeInUp} className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-light text-white mb-6 leading-[1.15] tracking-tight" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+            <motion.h1 variants={fadeInUp} className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-white mb-6 leading-[1.0] tracking-tight" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
               Your fully managed ecommerce business
               <br />
               with atleast $4000 guranteed sales
