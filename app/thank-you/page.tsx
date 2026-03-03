@@ -5,21 +5,30 @@ import { motion, useAnimation, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 import Link from 'next/link';
-import { CheckCircle } from 'lucide-react';
+import { CheckCircle, Calendar } from 'lucide-react';
 import EcomWealthFAQ from '../components/EcomWealthFAQ';
 import { precallFaqItems } from '../utils/ecomwealthContent';
 
 export default function ThanksPage() {
   const [userName, setUserName] = useState('');
+  const [icsLink, setIcsLink] = useState<string | null>(null);
 
   const heroControls = useAnimation();
   const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.2 });
 
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
-    const name = params.get('Name') || params.get('name') || '';
-    setUserName(name);
+    setUserName(params.get('Name') || params.get('name') || '');
+    setIcsLink(params.get('ics_link') || params.get('icslink') || null);
   }, []);
+
+  const handleAddToCalendar = () => {
+    if (icsLink) {
+      window.open(decodeURIComponent(icsLink), '_blank');
+    } else {
+      window.open('https://calendar.google.com', '_blank');
+    }
+  };
 
   useEffect(() => { if (heroInView) heroControls.start('visible'); }, [heroControls, heroInView]);
 
@@ -72,7 +81,7 @@ export default function ThanksPage() {
               className="text-base lg:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-10"
               style={{ fontFamily: "'Barlow', sans-serif" }}
             >
-              <strong className="text-white">IMPORTANT:</strong> Please complete the <strong className="text-[#35c4dd]">4 steps</strong> below to keep your scheduled call confirmed and ensure we make the most of our time together.
+              <strong className="text-white">IMPORTANT:</strong> Please complete the <strong className="text-[#35c4dd]">5 steps</strong> below to keep your scheduled call confirmed and ensure we make the most of our time together.
             </motion.p>
 
             <motion.h2
@@ -80,7 +89,26 @@ export default function ThanksPage() {
               className="text-xl lg:text-3xl font-bold text-white text-center mb-6"
               style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
             >
-              Step 1: Watch This Short Video <span className="text-[#35c4dd]">(3 Minutes)</span>
+              Step 1: Click The Button Below To Add The Event To Your Calendar
+            </motion.h2>
+            <motion.div variants={fadeInUp} className="flex justify-center mb-12">
+              <button
+                type="button"
+                onClick={handleAddToCalendar}
+                className="inline-flex items-center gap-2 bg-[#35c4dd] hover:bg-[#2bb3cb] text-[#063f4a] font-bold py-4 px-8 rounded-full transition-all shadow-lg text-lg lg:text-xl"
+                style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+              >
+                <Calendar className="w-6 h-6" />
+                Add The Event To Your Calendar
+              </button>
+            </motion.div>
+
+            <motion.h2
+              variants={fadeInUp}
+              className="text-xl lg:text-3xl font-bold text-white text-center mb-6"
+              style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+            >
+              Step 2: Watch This Short Video <span className="text-[#35c4dd]">(3 Minutes)</span>
             </motion.h2>
             <motion.div variants={fadeInUp} className="relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-xl ring-2 ring-white/10" style={{ paddingBottom: '56.25%' }}>
               <iframe
@@ -121,7 +149,7 @@ export default function ThanksPage() {
               className="text-2xl lg:text-4xl font-bold text-[#063f4a] text-center mb-12"
               style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
             >
-              Step 2: Go Through Our Frequently Asked Questions Below
+              Step 3: Go Through Our Frequently Asked Questions Below
             </h2>
             <EcomWealthFAQ items={precallFaqItems} />
           </div>
@@ -136,7 +164,7 @@ export default function ThanksPage() {
               className="text-2xl lg:text-4xl font-bold text-[#063f4a] text-center mb-6"
               style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
             >
-              Step 3: See What Others Have To Say
+              Step 4: See What Others Have To Say
             </h2>
             <p
               className="text-center text-[#2c2420]/70 mb-10"
@@ -181,7 +209,7 @@ export default function ThanksPage() {
               className="text-2xl lg:text-4xl font-bold text-[#063f4a] text-center mb-10"
               style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
             >
-              Step 4: Prepare For Your Call
+              Step 5: Prepare For Your Call
             </h2>
             <div className="space-y-4">
               {prepareChecklist.map((item, i) => (
