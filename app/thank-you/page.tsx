@@ -156,7 +156,40 @@ export default function ThanksPage() {
         </div>
       </div>
 
-      {/* ============ STEP 3: SEE WHAT OTHERS HAVE TO SAY ============ */}
+      {/* ============ PARTNER STORE RESULTS (above reviews) ============ */}
+      <div className="py-16 lg:py-24 bg-[#bef4fe]/15">
+        <div className="container mx-auto px-5 lg:px-20">
+          <h2
+            className="text-2xl lg:text-4xl font-bold text-[#063f4a] text-center mb-4"
+            style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+          >
+            Inside Look at Partner Store Results
+          </h2>
+          <p
+            className="text-center text-[#2c2420]/70 mb-10 max-w-3xl mx-auto"
+            style={{ fontFamily: "'Barlow', sans-serif" }}
+          >
+            A glimpse into the sales activity clients have experienced using our fully managed, zero-inventory, Profit-First automation system. Individual results vary.
+          </p>
+          <div className="grid grid-cols-1 gap-6 max-w-4xl mx-auto">
+            {[1, 3, 4, 5, 6, 7].map((i) => (
+              <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-xl border border-[#35c4dd]/20 aspect-[4/3] flex items-center justify-center">
+                <Image
+                  src={`/images/thank-you-results/result-${i}.png`}
+                  alt={`Partner store result ${i}`}
+                  width={800}
+                  height={600}
+                  sizes="100vw"
+                  className="w-full h-full object-contain"
+                  loading="lazy"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {/* ============ STEP 4: SEE WHAT OTHERS HAVE TO SAY ============ */}
       <div className="py-16 lg:py-24 bg-gray-50">
         <div className="container mx-auto px-5 lg:px-20">
           <div className="max-w-4xl mx-auto">
