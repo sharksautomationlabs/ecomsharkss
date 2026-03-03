@@ -92,6 +92,23 @@ export default function ThanksPage() {
                 allowFullScreen
               />
             </motion.div>
+            <motion.h2
+              variants={fadeInUp}
+              className="text-xl lg:text-3xl font-bold text-white text-center mb-6 mt-12"
+              style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+            >
+              Watch the 2nd video
+            </motion.h2>
+            <motion.div variants={fadeInUp} className="relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-xl ring-2 ring-white/10" style={{ paddingBottom: '56.25%' }}>
+              <iframe
+                className="absolute top-0 left-0 w-full h-full"
+                src="https://www.youtube.com/embed/3kE6P9VgPuc"
+                title="Client results - How our clients hit $4,000+ per month"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </motion.div>
           </motion.div>
         </div>
       </div>
