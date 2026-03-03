@@ -81,7 +81,7 @@ export default function ThanksPage() {
               className="text-base lg:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-10"
               style={{ fontFamily: "'Barlow', sans-serif" }}
             >
-              <strong className="text-white">IMPORTANT:</strong> Please complete the <strong className="text-[#35c4dd]">5 steps</strong> below to keep your scheduled call confirmed and ensure we make the most of our time together.
+              Follow the steps below to confirm your call.
             </motion.p>
 
             <motion.h2
@@ -95,10 +95,10 @@ export default function ThanksPage() {
               <button
                 type="button"
                 onClick={handleAddToCalendar}
-                className="inline-flex items-center gap-2 bg-[#35c4dd] hover:bg-[#2bb3cb] text-[#063f4a] font-bold py-4 px-8 rounded-full transition-all shadow-lg text-lg lg:text-xl"
+                className="w-full max-w-md mx-auto flex items-center justify-center gap-3 bg-white/10 hover:bg-white/15 border-2 border-[#35c4dd]/60 rounded-2xl py-5 px-6 text-white font-bold transition-all shadow-xl hover:shadow-[#35c4dd]/20 text-lg lg:text-xl"
                 style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
               >
-                <Calendar className="w-6 h-6" />
+                <Calendar className="w-7 h-7 text-[#35c4dd]" />
                 Add The Event To Your Calendar
               </button>
             </motion.div>
