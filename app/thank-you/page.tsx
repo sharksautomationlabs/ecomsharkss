@@ -127,15 +127,15 @@ export default function ThanksPage() {
             >
               First-hand experiences from clients, sharing what it&apos;s actually been like partnering with our team.
             </p>
-            <div className="grid grid-cols-2 gap-6 max-w-4xl mx-auto">
-              {[1, 2, 3, 4].map((i) => (
+            <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              {[1, 2, 3, 4, 5, 6].map((i) => (
                 <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-lg border border-[#35c4dd]/10 flex items-center justify-center min-h-[200px]">
                   <Image
                     src={`/images/reviews/review-${i}.png`}
                     alt={`Trustpilot review ${i}`}
                     width={480}
                     height={320}
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="w-full h-auto object-contain"
                   />
                 </div>
