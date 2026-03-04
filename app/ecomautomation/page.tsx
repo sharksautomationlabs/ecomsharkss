@@ -108,7 +108,7 @@ export default function EcomAutomationPage() {
               {heroContent.doneForYouText.split('. ')[0]}. <span className="text-white">{heroContent.doneForYouText.split('. ')[1]}</span>. {heroContent.videoPrompt}
             </motion.div>
             <motion.div variants={fadeInUp} className="max-w-4xl mx-auto rounded-b-2xl overflow-hidden shadow-2xl ring-2 ring-white/10 -mt-px">
-              <LazyYouTube youtubeId={heroContent.videoEmbedUrl.split('/').pop() || 'bigJBm1x1qE'} title={heroContent.videoTitle} />
+              <LazyYouTube youtubeId="ZPY3hkj7xSE" title="ECOM SHARKS - Fully Managed E-Commerce Business" />
             </motion.div>
             <motion.p variants={fadeInUp} className="mt-6 text-2xl lg:text-3xl text-gray-300 font-medium leading-snug" style={{ fontFamily: "'Barlow', sans-serif" }}>
               {heroContent.applyBelowLine1}
