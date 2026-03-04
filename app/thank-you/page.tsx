@@ -130,7 +130,7 @@ export default function ThanksPage() {
             <motion.div variants={fadeInUp} className="relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-xl ring-2 ring-white/10" style={{ paddingBottom: '56.25%' }}>
               <iframe
                 className="absolute top-0 left-0 w-full h-full"
-                src="https://www.youtube.com/embed/3kE6P9VgPuc"
+                src="https://www.youtube.com/embed/ZPY3hkj7xSE"
                 title="Client results - How our clients hit $4,000+ per month"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
