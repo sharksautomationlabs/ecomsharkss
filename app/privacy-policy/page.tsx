@@ -106,7 +106,7 @@ export default function PrivacyPolicyPage() {
                       We may collect personal information that you voluntarily provide to us, including:
                     </p>
                     <ul className="list-disc list-inside mt-2 space-y-1 text-[#2c2020]" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                      <li>Name and contact information (email, phone number, address)</li>
+                      <li>Name and contact information (email and phone number)</li>
                       <li>Business information and preferences</li>
                       <li>Communication preferences</li>
                       <li>Any other information you choose to provide</li>
@@ -245,8 +245,7 @@ export default function PrivacyPolicyPage() {
                 </p>
                 <div className="bg-[#f8fafc] rounded-lg p-6" style={{ fontFamily: "'Barlow', sans-serif" }}>
                   <p className="text-[#2c2020] mb-2"><strong>Email:</strong> info@ecomsharkss.com</p>
-                  <p className="text-[#2c2020] mb-2"><strong>Phone:</strong> (469) 480-7938</p>
-                  <p className="text-[#2c2020]"><strong>Address:</strong> 22023 Rustic Canyon Ln, Richmond, TX 77469, USA</p>
+                  <p className="text-[#2c2020]"><strong>Phone:</strong> (469) 480-7938</p>
                 </div>
               </motion.div>
 
