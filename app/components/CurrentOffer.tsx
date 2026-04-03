@@ -1,14 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import Image from 'next/image';
 import { sendContactEmail, ContactFormData } from '../utils/emailjs';
 import { useVideoLazyLoading } from '../utils/videoLazyLoading';
 import { spamProtection, detectSuspiciousActivity } from '../utils/spamProtection';
 import { checkPhoneRateLimit, recordPhoneSubmission } from '../utils/phoneRateLimit';
-
-// Image assets
-const imgFounder = "/images/founders.png";
 
 // Reusable Button Component
 const GetQuoteButton = ({ small = false }: { small?: boolean }) => (
@@ -277,17 +273,7 @@ export default function CurrentOffer() {
             {/* Left Column - Offer Details */}
             <div className="space-y-6">
               <div className="bg-white/5 backdrop-blur-2xl rounded-2xl lg:rounded-3xl p-6 lg:p-8 border border-white/30 shadow-2xl">
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/30 mt-2">
-                    <Image 
-                      src="/images/founder-1s.png" 
-                      alt="Zayn - Senior E-commerce Consultant" 
-                      width={48} 
-                      height={48}
-                      className="w-full h-full object-cover"
-                      style={{ objectPosition: 'center 30%' }}
-                    />
-                  </div>
+                <div className="mb-6">
                   <h3 className="text-2xl lg:text-3xl font-bold text-white" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
                     Launch Your Walmart Store
                   </h3>
@@ -305,25 +291,13 @@ export default function CurrentOffer() {
 
             {/* Right Column - Contact Form */}
             <div className="bg-white/5 backdrop-blur-2xl rounded-2xl lg:rounded-3xl p-6 lg:p-8 border border-white/30 shadow-2xl">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white/30 mt-2">
-                  <Image 
-                    src={imgFounder} 
-                    alt="Aain - Senior E-commerce Consultant" 
-                    width={64} 
-                    height={64}
-                    className="w-full h-full object-cover"
-                    style={{ objectPosition: 'center 20%' }}
-                  />
-                </div>
-                <div>
-                  <h3 className="text-2xl lg:text-3xl font-bold text-white" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                    Get Started Today
-                  </h3>
-                  <p className="text-white/80 text-sm lg:text-base" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                    Speak directly with our senior consultant
-                  </p>
-                </div>
+              <div className="mb-6">
+                <h3 className="text-2xl lg:text-3xl font-bold text-white" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+                  Get Started Today
+                </h3>
+                <p className="text-white/80 text-sm lg:text-base mt-1" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                  Speak directly with our senior consultant
+                </p>
               </div>
               
               <form onSubmit={handleSubmit} className="space-y-4 lg:space-y-6">

@@ -63,7 +63,7 @@ export default function MissionSection({
   const contentData = {
     howWeWork: {
       title: 'How We Work',
-      description: 'Meet Sharjeel Zahoor – Your Senior Consultant\n\nWondering what you\'ll actually gain by working with us?\nWe\'ve created a free 3-minute masterclass where you\'ll discover:\n\n• How Ecommerce really works\n• What automation is, and why it\'s the backbone of online success\n• How automation can help you achieve financial freedom, independence, and a reliable passive income stream\n\nThis video is packed with insights worth millions of dollars—yet it\'s free for you to explore.\n\nOur senior consultant, Sharjeel Zahoor, will walk you through the process step by step.\n\nConnect with Sharjeel ',
+      description: 'Meet Sharjeel Zahoor – Your Senior Consultant\n\nWondering what you\'ll actually gain by working with us? Here\'s what we focus on with every client:\n\n• How ecommerce really works\n• What automation is, and why it\'s the backbone of online success\n• How automation can help you achieve financial freedom, independence, and a reliable passive income stream\n\nOur senior consultant, Sharjeel Zahoor, will walk you through the process step by step.\n\nConnect with Sharjeel ',
       badge: 'Free Masterclass'
     },
     mission: {
@@ -227,35 +227,6 @@ export default function MissionSection({
 
               {/* Right Image Collage */}
               <div className={`${useCustomContent ? 'relative lg:absolute right-0 lg:right-[-5%] top-0 w-full lg:w-[60%] h-[400px] lg:h-[100%] z-10 mt-2 lg:mt-0' : 'relative lg:absolute right-0 lg:right-[-10%] top-0 lg:top-[-10%] w-full lg:w-[65%] h-[400px] lg:h-[120%] z-10 mt-2 lg:mt-0'}`}>
-                {activeTab === 'howWeWork' ? (
-                  // Video section for How We Work
-                  <motion.div 
-                    className="relative w-full h-full flex items-center justify-center py-0 px-1 sm:p-4"
-                    initial="hidden"
-                    animate={controls}
-                    variants={personWipeUpVariants}
-                  >
-                    <div className="relative w-full max-w-[600px] bg-black rounded-2xl overflow-hidden shadow-2xl">
-                      <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-                        <iframe
-                          src="https://player.vimeo.com/video/1143261391?autoplay=0&loop=0&muted=0&controls=1&playsinline=1&title=0&byline=0&portrait=0&dnt=1&responsive=1"
-                          style={{ 
-                            position: 'absolute',
-                            top: 0,
-                            left: 0,
-                            width: '100%',
-                            height: '100%',
-                            border: 'none'
-                          }}
-                          allow="autoplay; fullscreen; picture-in-picture"
-                          allowFullScreen
-                          frameBorder="0"
-                        />
-                      </div>
-                    </div>
-                  </motion.div>
-                ) : (
-                  // Original image collage for Mission
                   <motion.div 
                     className="relative w-full h-full" 
                     style={{ maskImage: `url('${imgWomanMask}')`, maskSize: 'contain', maskRepeat: 'no-repeat', maskPosition: 'center' }}
@@ -294,7 +265,6 @@ export default function MissionSection({
                           @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-15px); } }
                       `}</style>
                   </motion.div>
-                )}
               </div>
           </div>
         </div>
