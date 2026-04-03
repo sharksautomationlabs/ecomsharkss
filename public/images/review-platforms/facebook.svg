@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 36" role="img" aria-label="Facebook">
+  <circle cx="18" cy="18" r="15" fill="#1877F2"/>
+  <path fill="#fff" d="M20.4 12.2v2.1h-1.6c-.6 0-.7.3-.7.7v1.5h2.3l-.3 2.3h-2v6.5h-2.7v-6.5h-1.9v-2.3h1.9v-1.5c0-2 1.1-3.3 3.3-3.3.9 0 1.7.1 1.7.1z"/>
+  <text x="40" y="24" font-family="system-ui,Segoe UI,sans-serif" font-size="16" font-weight="700" fill="#1877F2">facebook</text>
+</svg>

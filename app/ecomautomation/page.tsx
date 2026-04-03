@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Play } from 'lucide-react';
 import EcomWealthFAQ from '../components/EcomWealthFAQ';
+import PlatformReviewsSection from '../components/PlatformReviewsSection';
 import {
   heroContent,
   trustStripContent,
@@ -144,43 +145,7 @@ export default function EcomAutomationPage() {
         </div>
       </div>
 
-      {/* Trustpilot Reviews */}
-      <div className="py-12 lg:py-16 bg-gray-50">
-        <div className="container mx-auto px-5 lg:px-20">
-          <h2 className="text-2xl lg:text-4xl font-bold text-[#063f4a] text-center mb-4" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-            What Our Partners Say
-          </h2>
-          <p className="text-center text-[#2c2420]/70 mb-10 max-w-2xl mx-auto" style={{ fontFamily: "'Barlow', sans-serif" }}>
-            Trusted by hundreds of investors who chose ECOM SHARKS for their hands-off eCommerce stores.
-          </p>
-          <div className="grid grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-lg border border-[#35c4dd]/10 flex items-center justify-center min-h-[200px]">
-                <Image
-                  src={`/images/reviews/review-${i}.png`}
-                  alt={`Trustpilot review ${i}`}
-                  width={480}
-                  height={320}
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  className="w-full h-auto object-contain"
-                  priority={i <= 2}
-                />
-              </div>
-            ))}
-          </div>
-          <div className="text-center mt-8">
-            <a
-              href="https://www.trustpilot.com/review/ecomsharkss.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-[#35c4dd] hover:text-[#2bb3cb] font-semibold transition-colors"
-              style={{ fontFamily: "'Barlow', sans-serif" }}
-            >
-              See all reviews on Trustpilot →
-            </a>
-          </div>
-        </div>
-      </div>
+      <PlatformReviewsSection />
 
       {/* PartnerStoreResults - Dashboard Screenshots */}
       <div className="py-16 lg:py-24 bg-white">

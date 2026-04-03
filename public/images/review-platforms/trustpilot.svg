@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 36" role="img" aria-label="Trustpilot">
+  <rect width="36" height="36" rx="6" fill="#00b67a"/>
+  <path fill="#fff" d="M18 11l2.2 6.8h7.2l-5.8 4.2 2.2 6.8L18 24.8l-5.8 4.2 2.2-6.8-5.8-4.2h7.2L18 11z"/>
+  <text x="44" y="25" font-family="system-ui,Segoe UI,sans-serif" font-size="16" font-weight="700" fill="#191919">Trustpilot</text>
+</svg>
