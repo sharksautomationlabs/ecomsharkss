@@ -14,6 +14,8 @@ import {
   applyCtaContent,
   footerContent,
 } from '../utils/ecomwealthContent';
+import CalendlyInlineEmbed from '../components/CalendlyInlineEmbed';
+import { setupCalendlyRedirect } from '../utils/calendlyRedirect';
 
 const faqItems = [
   { id: 'faq-1', question: 'Can you really guarantee $4,000 in sales in 30 days?', answer: 'Yes, it is 110% true. We provide this guarantee because of our tested, high profit products and our proven system. We don\'t guess, we execute with data. That is why we are more than confident in hitting that target for your store.' },
@@ -28,10 +30,18 @@ const faqItems = [
 const CALENDLY_URL = 'https://calendly.com/ecomsharkss-info/30min';
 
 function openCalendly() {
-  if (typeof window !== 'undefined') {
-    const w = window as unknown as { Calendly?: { initPopupWidget: (opts: { url: string }) => void } };
-    if (w.Calendly) w.Calendly.initPopupWidget({ url: CALENDLY_URL });
-  }
+  if (typeof window === 'undefined') return;
+  const w = window as unknown as {
+    Calendly?: {
+      initPopupWidget: (opts: { url: string; onEventScheduled?: () => void }) => void;
+    };
+  };
+  w.Calendly?.initPopupWidget({
+    url: CALENDLY_URL,
+    onEventScheduled: () => {
+      window.location.assign('/thank-you');
+    },
+  });
 }
 
 const containerVariants: Variants = {
@@ -79,6 +89,10 @@ export default function EcomAutomationPage() {
   const heroControls = useAnimation();
   const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.2 });
   useEffect(() => { if (heroInView) heroControls.start('visible'); }, [heroControls, heroInView]);
+
+  useEffect(() => {
+    setupCalendlyRedirect();
+  }, []);
 
   return (
     <div className="w-full bg-white overflow-x-hidden">
@@ -133,13 +147,10 @@ export default function EcomAutomationPage() {
       <div className="py-8 lg:py-12 bg-white">
         <div className="container mx-auto px-5 lg:px-20">
           <div className="max-w-4xl mx-auto">
-            <iframe
-              src="https://calendly.com/ecomsharkss-info/30min"
-              width="100%"
-              height="650"
-              frameBorder="0"
+            <CalendlyInlineEmbed
+              schedulingPageUrl={CALENDLY_URL}
               title="Book a call with ECOM SHARKS"
-              className="rounded-2xl overflow-hidden"
+              minHeight={650}
             />
           </div>
         </div>
@@ -170,13 +181,10 @@ export default function EcomAutomationPage() {
           </div>
           {/* Calendly Embed - Second */}
           <div className="mt-16 max-w-4xl mx-auto">
-            <iframe
-              src="https://calendly.com/ecomsharkss-info/30min"
-              width="100%"
-              height="650"
-              frameBorder="0"
+            <CalendlyInlineEmbed
+              schedulingPageUrl={CALENDLY_URL}
               title="Book a call with ECOM SHARKS"
-              className="rounded-2xl overflow-hidden"
+              minHeight={650}
             />
           </div>
         </div>
