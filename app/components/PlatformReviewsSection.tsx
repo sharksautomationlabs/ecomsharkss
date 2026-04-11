@@ -17,7 +17,7 @@ const REVIEW_CARDS = [
     imageSrc: '/images/reviews/review-3.png',
   },
   {
-    name: 'Trustpilot',
+    name: 'Trustpilot', // Keep this if you still want 4 review cards above, or remove it if not needed.
     imageSrc: '/images/reviews/review-4.png',
   },
 ] as const;
@@ -43,12 +43,6 @@ const LOGO_ROW = [
     linkLabel: 'Read on Reviews.io',
   },
   {
-    name: 'Trustpilot',
-    logoSrc: '/images/review-platforms/logo-trustpilot.png',
-    href: 'https://www.trustpilot.com/review/ecomsharkss.com',
-    linkLabel: 'See on Trustpilot',
-  },
-  {
     name: 'Facebook',
     logoSrc: '/images/review-platforms/facebook.svg',
     href: 'https://www.facebook.com/people/Ecommerce-Sharks/61584113035162/?sk=reviews',
@@ -70,7 +64,8 @@ export default function PlatformReviewsSection() {
           className="text-center text-[#2c2420]/70 mb-10 max-w-2xl mx-auto"
           style={{ fontFamily: "'Barlow', sans-serif" }}
         >
-          Trusted by investors who chose ECOM SHARKS—see reviews on Clutch, Bark, Reviews.io, Trustpilot, and Facebook.
+          {/* Removed Trustpilot from text description */}
+          Trusted by investors who chose ECOM SHARKS—see reviews on Clutch, Bark, Reviews.io, and Facebook.
         </p>
 
         <div className="grid grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto">
@@ -94,13 +89,14 @@ export default function PlatformReviewsSection() {
         <div className="mt-8 sm:mt-10 max-w-5xl mx-auto w-full px-1">
           <div className="bg-white rounded-2xl border border-[#35c4dd]/15 shadow-md px-3 py-4 sm:px-5 sm:py-5 md:px-8 md:py-6">
             <div className="overflow-x-auto pb-1 [scrollbar-width:thin] -mx-1 px-1">
-              <div className="grid min-w-[min(100%,480px)] grid-cols-5 sm:min-w-0 gap-2 sm:gap-3 md:gap-4 items-start">
+              {/* FIXED: Changed grid-cols-5 to grid-cols-4 and added justify-items-center */}
+              <div className="grid min-w-[min(100%,480px)] grid-cols-4 sm:min-w-0 gap-2 sm:gap-3 md:gap-4 items-start justify-items-center">
                 {LOGO_ROW.map((item) => {
                   const isSvg = item.logoSrc.endsWith('.svg');
                   return (
                     <div
                       key={item.name}
-                      className="flex min-w-0 flex-col items-center justify-center gap-1.5 sm:gap-2"
+                      className="flex w-full min-w-0 flex-col items-center justify-center gap-1.5 sm:gap-2"
                     >
                       <div className="flex h-10 w-full items-center justify-center bg-white px-0.5 sm:h-12 md:h-[52px]">
                         <Image
