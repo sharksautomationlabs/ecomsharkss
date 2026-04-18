@@ -244,8 +244,6 @@ export default function PrivacyPolicyPage() {
                   If you have any questions about this Privacy Policy or our privacy practices, please contact us:
                 </p>
                 <div className="bg-[#f8fafc] rounded-lg p-6" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                  <p className="text-[#2c2020] mb-2"><strong>Email:</strong> info@ecomsharkss.com</p>
-                  <p className="text-[#2c2020]"><strong>Phone:</strong> (469) 480-7938</p>
                 </div>
               </motion.div>
 

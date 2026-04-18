@@ -63,7 +63,7 @@ export default function MissionSection({
   const contentData = {
     howWeWork: {
       title: 'How We Work',
-      description: 'Meet Sharjeel Zahoor – Your Senior Consultant\n\nWondering what you\'ll actually gain by working with us? Here\'s what we focus on with every client:\n\n• How ecommerce really works\n• What automation is, and why it\'s the backbone of online success\n• How automation can help you achieve financial freedom, independence, and a reliable passive income stream\n\nOur senior consultant, Sharjeel Zahoor, will walk you through the process step by step.\n\nConnect with Sharjeel ',
+      description: 'Meet Your Senior Consultant\n\nWondering what you\'ll actually gain by working with us? Here\'s what we focus on with every client:\n\n• How ecommerce really works\n• What automation is, and why it\'s the backbone of online success\n• How automation can help you achieve financial freedom, independence, and a reliable passive income stream\n\nOur senior consultant will walk you through the process step by step.\n\nConnect with us ',
       badge: 'Free Masterclass'
     },
     mission: {

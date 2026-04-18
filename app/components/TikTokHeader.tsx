@@ -120,14 +120,6 @@ export default function TikTokHeader() {
                 🌟 Unify. Manage. Grow.
               </p>
               <div className="flex items-center gap-8">
-                <a href="tel:4694807938" className="flex items-center gap-3 text-white text-[20px] font-medium" style={{ fontFamily: "'Barlow', sans-serif", ...textShadow }}>
-                  <Image src={imgGroup1000004908} alt="phone" width={32} height={32} />
-                  <span>(469) 480-7938</span>
-                </a>
-                <a href="mailto:info@ecomsharkss.com" className="flex items-center gap-3 text-white text-[20px] font-medium" style={{ fontFamily: "'Barlow', sans-serif", ...textShadow }}>
-                  <Image src={imgGroup1000004909} alt="email" width={32} height={32} />
-                  <span>info@ecomsharkss.com</span>
-                </a>
               </div>
             </div>
 
@@ -213,22 +205,6 @@ export default function TikTokHeader() {
                     🌟 Unify. Manage. Grow.
                   </p>
                   <div className="space-y-2">
-                    <a 
-                      href="tel:4694807938" 
-                      className="flex items-center gap-2 text-white text-xs font-medium hover:text-[#35c4dd] transition-colors"
-                      style={{ fontFamily: "'Barlow', sans-serif" }}
-                    >
-                      <Image src={imgGroup1000004908} alt="phone" width={16} height={16} />
-                      <span>(469) 480-7938</span>
-                    </a>
-                    <a 
-                      href="mailto:info@ecomsharkss.com" 
-                      className="flex items-center gap-2 text-white text-xs font-medium hover:text-[#35c4dd] transition-colors"
-                      style={{ fontFamily: "'Barlow', sans-serif" }}
-                    >
-                      <Image src={imgGroup1000004909} alt="email" width={16} height={16} />
-                      <span>info@ecomsharkss.com</span>
-                    </a>
                   </div>
                 </div>
 
@@ -344,7 +320,7 @@ export default function TikTokHeader() {
             </p>
             <div className="hidden lg:flex items-center gap-6 mt-12">
             <a 
-              href="tel:4694807938"
+              href="/contact"
               className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative"
             >
                 <span className="relative z-10">Contact Us</span>
@@ -368,7 +344,7 @@ export default function TikTokHeader() {
             </div>
              <div className="mt-8 lg:hidden">
                 <a 
-                  href="tel:4694807938"
+                  href="/contact"
                   className="bg-[#35c4dd] text-[#063f4a] font-semibold py-1.5 px-2 rounded-full text-xs w-[120px] flex items-center justify-between shadow-lg"
                 >
                     <span className="pl-1.5 text-xs">Contact Us</span>

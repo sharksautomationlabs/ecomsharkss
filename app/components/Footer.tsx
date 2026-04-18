@@ -314,20 +314,6 @@ export default function Contact() {
               Ready to elevate your e-Commerce success?. ECOM SHARKS is here to support you at every step. Whether you have questions, need expert guidance, or want customized solution for your brand, our team is just a message away. Let's build something amazing together!
             </p>
             <div className="mt-8 lg:mt-12 space-y-4 lg:space-y-6">
-              <div className="flex items-center gap-3 lg:gap-4">
-                <GeneralInquiriesIcon />
-                <div>
-                  <h3 className="font-bold text-base lg:text-lg">General Inquiries:</h3>
-                  <p className="text-base lg:text-lg">info@ecomsharkss.com</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 lg:gap-4">
-                <PhoneIcon />
-                <div>
-                  <h3 className="font-bold text-base lg:text-lg">Phone:</h3>
-                  <p className="text-base lg:text-lg">(469) 480-7938</p>
-                </div>
-              </div>
             </div>
           </motion.div>
 
