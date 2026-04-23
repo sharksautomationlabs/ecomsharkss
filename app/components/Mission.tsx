@@ -62,14 +62,14 @@ export default function MissionSection({
 
   const contentData = {
     howWeWork: {
-      title: 'How We Work',
+      title: 'How We Work With You',
       description: 'Meet Your Senior Consultant\n\nWondering what you\'ll actually gain by working with us? Here\'s what we focus on with every client:\n\n• How ecommerce really works\n• What automation is, and why it\'s the backbone of online success\n• How automation can help you achieve financial freedom, independence, and a reliable passive income stream\n\nOur senior consultant will walk you through the process step by step.\n\nConnect with us ',
-      badge: 'Free Masterclass'
+      badge: 'Free walkthrough'
     },
     mission: {
       title: 'Our Mission',
-      description: 'At Ecom Sharkss, our mission is to empower entrepreneurs and businesses to scale new heights in the digital marketplace. Through tailored solutions for Amazon, Walmart, Shopify, and TikTok, we help brands stand out, grow sustainably, and achieve long-term success with innovation, expertise, and dedication.',
-      badge: 'About Us'
+      description: 'At Aain ali, our mission is to empower entrepreneurs and businesses to scale new heights in the digital marketplace. Through tailored solutions for Amazon, Walmart, Shopify, and TikTok, we help brands stand out, grow sustainably, and achieve long-term success with innovation, expertise, and dedication.',
+      badge: 'Why we exist'
     }
   };
 

@@ -96,7 +96,7 @@ export default function CTASection() {
               className="text-3xl lg:text-5xl font-bold text-[#063f4a] mb-6" 
               style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
             >
-              Ready to Launch Your Passive Income Asset?
+              Ready to put your store on autopilot?
             </h2>
             
             <p 

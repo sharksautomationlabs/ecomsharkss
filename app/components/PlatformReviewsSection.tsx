@@ -58,14 +58,14 @@ export default function PlatformReviewsSection() {
           className="text-2xl lg:text-4xl font-bold text-[#063f4a] text-center mb-4"
           style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
         >
-          What Our Partners Say
+          Proof from people who work with Aain Ali
         </h2>
         <p
           className="text-center text-[#2c2420]/70 mb-10 max-w-2xl mx-auto"
           style={{ fontFamily: "'Barlow', sans-serif" }}
         >
           {/* Removed Trustpilot from text description */}
-          Trusted by investors who chose ECOM SHARKS—see reviews on Clutch, Bark, Reviews.io, and Facebook.
+          Trusted by investors who chose Aain ali—see reviews on Clutch, Bark, Reviews.io, and Facebook.
         </p>
 
         <div className="grid grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto">

@@ -17,15 +17,15 @@ const imgChatIcon = "/images/chat-icon.svg";
 const servicesData = [
   {
     id: 1,
-    title: "Expertise in Inventory Management",
-    description: "Our inventory management services ensure your products are always in stock and ready to meet customer demand.",
+    title: "WFS-ready inventory & velocity",
+    description: "Right stock, right place, right time—so you win buy box moments without chaos.",
     icon: "/images/amazon-logo.png",
     concept: "Walmart"
   },
   {
     id: 2,
-    title: "Order Processing Automation",
-    description: "Improve efficiency & attain massive profitability by automating order fulfillment processes & make leaps in competitive world.",
+    title: "Orders, SLAs, and support—automated",
+    description: "Fewer delays, faster resolutions, and cleaner ops as volume ramps.",
     icon: "/images/amazon-logo.png",
     concept: "Walmart"
   }
@@ -172,17 +172,17 @@ export default function WalmartBestServices() {
           initial="hidden"
           animate={controls}
         >
-          <h1 
-            className="text-3xl lg:text-5xl xl:text-6xl font-bold tracking-wide" 
+          <h1
+            className="text-3xl lg:text-5xl xl:text-6xl font-bold tracking-wide"
             style={{ fontFamily: "'Barlow Condensed', sans-serif", textShadow: '0px 3px 6px rgba(0,0,0,0.5)' }}
           >
-            We Provide the Best Services for Your Product
+            Walmart services designed for market share
           </h1>
-          <p 
+          <p
             className="mt-4 max-w-4xl mx-auto text-base lg:text-lg text-gray-200 leading-relaxed"
             style={{ fontFamily: "'Barlow', sans-serif" }}
           >
-            At ECOM SHARKS, we offer top-tier solutions designed to streamline your Walmart business. Our expert team ensures every aspect operates flawlessly & seamlessly.
+            Catalog, fulfillment, and customer ops—tuned for Walmart’s rules and your growth targets.
           </p>
         </motion.div>
 

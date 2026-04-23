@@ -26,7 +26,7 @@ const ArrowIcon = () => (
   All image paths are kept exactly as provided by you.
 */
 const imgImage37 = "/images/main-bg-sand.png";
-const imgImage1 = "/images/quote-logo.png";
+const imgImage1 = "/images/Aain-Ali1.png";
 const imgRectangle72 = "/images/header-top-bar.png";
 const imgGroup1000004908 = "/images/header-phone-icon.svg";
 const imgGroup1000004909 = "/images/header-email-icon.svg";
@@ -126,7 +126,7 @@ export default function ShopifyHeader() {
             {/* Navigation Section - RESPONSIVE */}
             <div className="mt-2 lg:mt-6 flex items-center justify-between">
                 <div className="w-[100px] h-[70px] md:w-[140px] md:h-[100px] lg:w-[180px] lg:h-[140px] relative fade-in -ml-6 md:-ml-8 lg:-ml-12">
-                    <Image src={imgImage1} alt="Ecom Sharks Logo" fill className="object-contain" />
+                    <Image src={imgImage1} alt="Aain ali Logo" fill className="object-contain" />
                 </div>
                 <div className="hidden lg:flex w-[1150px] h-[90px] bg-white/20 backdrop-blur-sm 
                             rounded-2xl items-center justify-end px-10 gap-8 border-2 border-white">
@@ -189,7 +189,7 @@ export default function ShopifyHeader() {
                 {/* Header */}
                 <div className="flex items-center justify-between p-6 border-b border-white/20">
                   <div className="w-[80px] h-[60px] relative -ml-6">
-                    <Image src={imgImage1} alt="Ecom Sharks Logo" fill className="object-contain" />
+                    <Image src={imgImage1} alt="Aain ali Logo" fill className="object-contain" />
                   </div>
                   <button 
                     onClick={() => setIsMobileNavOpen(false)}
@@ -313,10 +313,10 @@ export default function ShopifyHeader() {
           {/* Hero Text Content - RESPONSIVE FOR SHOPIFY */}
           <div className="absolute top-1/2 -translate-y-1/2 left-5 w-1/2 lg:top-[300px] lg:left-20 lg:w-[781px] lg:translate-y-0 z-50 slide-in-left">
             <h1 className="text-white text-xl leading-tight pt-10 lg:text-[94px] lg:leading-[0.921] lg:pt-0" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 600, ...textShadow }}>
-              We Always Give The Best Shopify Store Service To You
+              Shopify Stores Built to Convert—and Scale
             </h1>
             <p className="hidden lg:block mt-6 text-white text-[24px] leading-[38px] max-w-[685px]" style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 500, ...textShadow }}>
-              Boost your Digital Presence on Shopify with ECOM SHARKS
+              CRO, merchandising, and automations that turn traffic into AOV—with Aain Ali
             </p>
             <div className="hidden lg:flex items-center gap-6 mt-12">
             <a 

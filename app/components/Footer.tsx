@@ -308,12 +308,26 @@ export default function Contact() {
             animate={controls}
           >
             <h1 className="text-4xl lg:text-7xl xl:text-8xl font-semibold" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-              Contact
+              Let’s talk growth
             </h1>
             <p className="mt-4 lg:mt-6 text-base lg:text-xl xl:text-2xl leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-              Ready to elevate your e-Commerce success?. ECOM SHARKS is here to support you at every step. Whether you have questions, need expert guidance, or want customized solution for your brand, our team is just a message away. Let's build something amazing together!
+              Ready to elevate your e-Commerce success?. Aain ali is here to support you at every step. Whether you have questions, need expert guidance, or want customized solution for your brand, our team is just a message away. Let's build something amazing together!
             </p>
             <div className="mt-8 lg:mt-12 space-y-4 lg:space-y-6">
+              <div className="flex items-center gap-3 lg:gap-4">
+                <GeneralInquiriesIcon />
+                <div>
+                  <h3 className="font-bold text-base lg:text-lg">Email</h3>
+                  <p className="text-base lg:text-lg">info@ecomsharkss.com</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 lg:gap-4">
+                <PhoneIcon />
+                <div>
+                  <h3 className="font-bold text-base lg:text-lg">Phone</h3>
+                  <p className="text-base lg:text-lg">(469) 480-7938</p>
+                </div>
+              </div>
             </div>
           </motion.div>
 
@@ -325,7 +339,7 @@ export default function Contact() {
             animate={controls}
           >
             <h2 className="text-2xl lg:text-3xl font-bold" style={{ fontFamily: "'Barlow', sans-serif" }}>
-              Let's Talk About Your E-commerce Business
+              Tell us what you’re building
             </h2>
             <form onSubmit={handleSubmit} className="mt-6 lg:mt-8 space-y-4 lg:space-y-6">
               {/* Status Message */}
@@ -627,7 +641,7 @@ export default function Contact() {
                     className="mt-1 w-5 h-5 text-[#35c4dd] bg-white border-2 border-white rounded focus:ring-[#35c4dd] focus:ring-2 flex-shrink-0"
                   />
                   <label htmlFor="consent" className="text-sm text-white/90 leading-relaxed">
-                    I consent to being contacted by ECOM SHARKS regarding my inquiry and understand that my information will be used in accordance with the privacy policy.
+                    I consent to being contacted by Aain ali regarding my inquiry and understand that my information will be used in accordance with the privacy policy.
                   </label>
                 </div>
               </div>
@@ -664,7 +678,7 @@ export default function Contact() {
       <div className="relative z-10 mt-0">
         <div className="bg-[#063f4a] py-4 lg:py-6">
           <div className="container mx-auto px-5 lg:px-20 flex flex-col md:flex-row items-center justify-between gap-4 lg:gap-6 text-white text-xs lg:text-sm">
-            <p>© 2025 Ecom Sharkss. All Rights Reserved.</p>
+            <p>© 2025 Aain ali. All Rights Reserved.</p>
             <div className="flex items-center gap-3 lg:gap-4">
               <span>Follow us:</span>
               <div className="flex items-center gap-2 lg:gap-3">

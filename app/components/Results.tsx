@@ -119,10 +119,10 @@ export default function ResultsSection() {
           <div className="w-full lg:w-1/2 xl:w-2/5 pt-8 pb-8 lg:pt-8 lg:pb-24 lg:py-0 text-center lg:text-left">
             {/* All fonts and styles remain exactly as you provided. */}
             <h1 className="text-4xl lg:text-[94px] font-semibold text-[#2c2420] leading-tight lg:leading-[0.921]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                More Than<br />Management,<br />We Deliver Results
+                Beyond Day-to-Day<br />Management—<br />We Ship Outcomes
             </h1>
             <p className="mt-6 lg:mt-8 text-base lg:text-[20px] text-[#333333] leading-6 lg:leading-[32px]" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                With ECOM SHARKS, you&apos;re not simply partnering with an agency—you&apos;re creating a future-proof Amazon business built for long-term success.
+                With Aain ali, you&apos;re not simply partnering with an agency—you&apos;re creating a future-proof Amazon business built for long-term success.
             </p>
             <ul className="mt-4 lg:mt-6 space-y-2 list-disc list-inside text-base lg:text-[20px] text-[#333333]" style={{ fontFamily: "'Barlow', sans-serif" }}>
                 <li>Scalable Growth</li>

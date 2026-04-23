@@ -10,7 +10,7 @@ import { useInView } from 'react-intersection-observer';
 */
 const imgPattern011 = "/images/testimonials-pattern-bg.png"; 
 const imgShark21 = "/images/quote-shark.png"; 
-const imgImage1 = "/images/quote-logo.png"; 
+const imgImage1 = "/images/Aain-Ali1.png"; 
 const imgRectangle34624302 = "/images/quote-bg-rectangle.svg"; 
 const imgGroup1321315061 = "/images/header-phone-icon.svg";
 const imgArrowIcon = "/images/arrow-icon.svg";
@@ -137,11 +137,11 @@ export default function QuoteSection() {
           animate={controls}
         >
             <div className="w-[140px] h-[100px] lg:w-[180px] lg:h-[140px] relative mt-16 lg:mt-12 -ml-10 lg:-ml-12">
-             <Image src={imgImage1} alt="Ecom Sharks Logo" fill className="object-contain" />
+             <Image src={imgImage1} alt="Aain ali Logo" fill className="object-contain" />
            </div>
 
            <h1 className="mt-6 lg:mt-8 text-4xl lg:text-[94px] font-semibold leading-tight lg:leading-[0.921] max-w-4xl" style={{ fontFamily: "'Barlow Condensed', sans-serif", ...textShadow }}>
-             Ecom Sharks Helps You Scale Smarter, Sell Faster
+             Scale Smarter. Sell Faster—with Aain Ali
            </h1>
 
           <div className="mt-8 lg:mt-12 flex flex-col lg:flex-row items-start lg:items-center gap-4 lg:gap-8">

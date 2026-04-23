@@ -17,15 +17,15 @@ const imgChatIcon = "/images/chat-icon.svg";
 const servicesData = [
   {
     id: 1,
-    title: "Expertise in Inventory Management",
-    description: "Our inventory management services ensure your products are always in stock and ready to meet customer demand.",
+    title: "Creative tied to conversion",
+    description: "Hooks, offers, and creators aligned to what actually sells—not vanity metrics.",
     icon: "/images/tiktok-logo.png",
     concept: "TikTok"
   },
   {
     id: 2,
-    title: "Order Processing Automation",
-    description: "Improve efficiency & attain massive profitability by automating order fulfillment processes & make leaps in competitive world.",
+    title: "Ops behind viral demand",
+    description: "When attention spikes, your fulfillment, CX, and catalog stay calm and profitable.",
     icon: "/images/tiktok-logo.png",
     concept: "TikTok"
   }
@@ -176,13 +176,13 @@ export default function TikTokBestServices() {
             className="text-3xl lg:text-5xl xl:text-6xl font-bold tracking-wide" 
             style={{ fontFamily: "'Barlow Condensed', sans-serif", textShadow: '0px 3px 6px rgba(0,0,0,0.5)' }}
           >
-            We Provide the Best Services for Your Product
+            TikTok Shop growth, built for scale—not guesswork
           </h1>
           <p 
             className="mt-4 max-w-4xl mx-auto text-base lg:text-lg text-gray-200 leading-relaxed"
             style={{ fontFamily: "'Barlow', sans-serif" }}
           >
-            At ECOM SHARKS, we offer top-tier solutions designed to streamline your TikTok business. Our expert team ensures every aspect operates flawlessly & seamlessly.
+            Content, creators, and commerce working as one system—built to handle spikes.
           </p>
         </motion.div>
 

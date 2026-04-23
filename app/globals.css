@@ -23,7 +23,60 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-barlow), "Barlow", ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Site-wide heading system (Barlow Condensed + consistent rhythm) */
+@layer base {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-barlow-condensed), "Barlow Condensed", ui-sans-serif, system-ui, sans-serif !important;
+    text-wrap: balance;
+    font-synthesis: none;
+    font-feature-settings: "kern" 1, "liga" 1;
+  }
+
+  h1 {
+    letter-spacing: -0.04em;
+    line-height: 0.95;
+  }
+
+  h2 {
+    letter-spacing: -0.032em;
+    line-height: 1.05;
+  }
+
+  h3 {
+    letter-spacing: -0.022em;
+    line-height: 1.1;
+  }
+
+  h4,
+  h5,
+  h6 {
+    letter-spacing: -0.015em;
+    line-height: 1.15;
+  }
+
+  /* Hero / dark-overlay headlines: clearer over video & imagery */
+  h1.text-white,
+  h2.text-white,
+  h3.text-white,
+  h4.text-white,
+  h5.text-white,
+  h6.text-white {
+    text-shadow: 0 2px 32px rgba(0, 0, 0, 0.4);
+  }
+
+  /* In-page section titles (brand deep teal) */
+  h2[class~="text-[#063f4a]"],
+  h3[class~="text-[#063f4a]"] {
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+  }
 }
 
 /* Floating animations for logos */

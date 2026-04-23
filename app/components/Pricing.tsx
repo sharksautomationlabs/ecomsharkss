@@ -15,18 +15,18 @@ const imgChatIcon = "/images/chat-icon.svg";
 // Pricing plan data.
 const pricingPlans = [
   {
-    title: "Basic",
-    description: "Optimize your store with expert assistance and marketing strategies for up to 50 products.",
+    title: "Launch",
+    description: "Get live fast with the essentials: setup, core listings, and performance reporting for up to 50 SKUs.",
     features: ["Full account setup and optimization", "Product listing management for up to 50 items", "Basic marketing and advertising support", "Monthly performance reports", "Customer service management"],
   },
   {
-    title: "Standard",
-    description: "Elevate your online presence with advanced optimization and support for 100 products.",
+    title: "Scale",
+    description: "Add velocity: deeper optimization, more SKUs, and a dedicated point of contact each week.",
     features: ["Comprehensive account setup and advanced optimization", "Product listing management for up to 100 items", "Advanced marketing and advertising strategies", "Weekly performance analytics", "Dedicated account manager", "Customer service management", "Inventory management support", "Access to premium resources and tutorials"],
   },
   {
-    title: "Premium",
-    description: "Ultimate e-commerce solution with custom services & dedicated support for your business.",
+    title: "Dominate",
+    description: "Full-stack partnership: custom campaigns, real-time reporting, and senior operators embedded in your account.",
     features: ["Tailored account setup and full optimization", "Unlimited product listing management", "Custom marketing and advertising campaigns", "Real-time performance analytics", "Dedicated team of account managers", "Comprehensive customer service solutions", "Advanced inventory and supply chain management", "Customized training and support", "Access to exclusive tools and resources"],
   },
 ];
@@ -104,14 +104,14 @@ export default function Pricing() {
             className="text-3xl lg:text-5xl xl:text-6xl font-bold tracking-wide leading-tight" 
             style={{ fontFamily: "'Barlow Condensed', sans-serif", textShadow: '0px 3px 6px rgba(0,0,0,0.5)' }}
           >
-            Choose a variety of price options
+            Pick a plan that matches your pace
           </h1>
           {/* FONT APPLIED: Barlow for the paragraph */}
           <p 
             className="mt-4 max-w-4xl mx-auto text-base lg:text-lg text-gray-200 leading-relaxed"
             style={{ fontFamily: "'Barlow', sans-serif" }}
           >
-            Explore our diverse range of pricing plans tailored to meet your needs...
+            Three clear tiers—so you can start lean, add leverage, or go all-in with a fully embedded team.
           </p>
         </div>
 

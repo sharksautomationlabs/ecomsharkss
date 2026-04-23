@@ -1,5 +1,5 @@
 // Content for Ecom Wealth Replica page
-// Adapted for ECOM SHARKS brand; structure matches ecomwealthautomation.com
+// Adapted for Aain ali brand; structure matches ecomwealthautomation.com
 
 export interface SuccessStory {
   name: string;
@@ -50,9 +50,9 @@ export interface CaseStudy {
 }
 
 export const heroContent = {
-  headlineLine1: 'Your Fully Managed eCommerce Business —',
-  headlineLine2: 'Built & Operated by Our Expert Team in as',
-  headlineTagline: 'Little as 14 Days',
+  headlineLine1: 'A Fully Managed eCommerce Business —',
+  headlineLine2: 'Live in as',
+  headlineTagline: '14 Days (or less)',
   subhead: 'We partner with qualified investors to build and manage automated eCommerce stores — leveraging USA suppliers and proven systems to launch high-performing online businesses.',
   doneForYouText: '100% Done-For-You. No Experience Required.',
   videoPrompt: 'Watch this quick video 👇',
@@ -60,11 +60,11 @@ export const heroContent = {
   applyBelowLine2: 'management team 👇',
   ctaText: 'See If You Qualify',
   videoEmbedUrl: 'https://www.youtube.com/embed/bigJBm1x1qE',
-  videoTitle: 'ECOM SHARKS - Fully Managed E-Commerce Business',
+  videoTitle: 'Aain ali - Fully Managed E-Commerce Business',
 };
 
 export const trustStripContent = {
-  partnershipsText: 'Limited Partnerships Available Monthly — Protected by Our "No Profit, No Payment" Guarantee',
+  partnershipsText: 'Limited partners each month—backed by our performance-aligned guarantee',
   guaranteeText: 'If your store doesn\'t generate more than your initial investment, we\'ll work until it does — making this a risk-free opportunity.',
 };
 
@@ -76,7 +76,7 @@ export const fakeReviews: Review[] = [
   { name: 'Jennifer L.', stars: 5, quote: 'Professional, transparent, and delivers on their promises. Highly recommend!' },
   { name: 'Michael R.', stars: 5, quote: 'From zero to $8K in the first month. The support team is amazing.' },
   { name: 'Emily T.', stars: 5, quote: 'No inventory, no stress. Exactly what I needed as a busy parent.' },
-  { name: 'James P.', stars: 5, quote: 'ECOM SHARKS built and runs my store completely. I just check the dashboard weekly. Game changer.' },
+  { name: 'James P.', stars: 5, quote: 'Aain ali built and runs my store completely. I just check the dashboard weekly. Game changer.' },
 ];
 
 export const videoTestimonials: VideoTestimonial[] = [
@@ -88,28 +88,28 @@ export const successStories: SuccessStory[] = [
   {
     name: 'Jackson H.',
     headline: '$140,000 in Sales His First 9 Months',
-    quote: 'When I started with ECOM SHARKS, I didn\'t know what to expect. I just wanted something that could grow quietly in the background while I kept my full-time job. The team handled everything, the store build, suppliers, order fulfilment and within a week, I saw my first sale. Nine months later my store had passed $140,000 in total sales. Watching that happen without managing the store myself was surreal.',
+    quote: 'When I started with Aain ali, I didn\'t know what to expect. I just wanted something that could grow quietly in the background while I kept my full-time job. The team handled everything, the store build, suppliers, order fulfilment and within a week, I saw my first sale. Nine months later my store had passed $140,000 in total sales. Watching that happen without managing the store myself was surreal.',
     timeframe: '9 months',
     figure: '$140,000',
   },
   {
     name: 'Sienna B.',
     headline: '$0 To Over $75,000 In Sales In 7 Months',
-    quote: 'I\'m a mom of two, and I\'d tried every side hustle that promised flexibility. When I partnered with ECOM SHARKS, their team built my store from scratch and kept me updated each week. By month seven my store had cleared $75,000 in sales. Now the profits pay for family vacations and give me breathing room every month.',
+    quote: 'I\'m a mom of two, and I\'d tried every side hustle that promised flexibility. When I partnered with Aain ali, their team built my store from scratch and kept me updated each week. By month seven my store had cleared $75,000 in sales. Now the profits pay for family vacations and give me breathing room every month.',
     timeframe: '7 months',
     figure: '$75,000',
   },
   {
     name: 'Mike N.',
     headline: 'From Debt To Buying His Mom Her Dream Car',
-    quote: 'I joined ECOM SHARKS after seeing a friend\'s results. In just six months, my store produced around $45,000 in sales. Enough for me to clear my remaining debt and surprise my mom with the car she\'d always wanted. The best part is how hands-off it\'s been. The team handles every moving part.',
+    quote: 'I joined Aain ali after seeing a friend\'s results. In just six months, my store produced around $45,000 in sales. Enough for me to clear my remaining debt and surprise my mom with the car she\'d always wanted. The best part is how hands-off it\'s been. The team handles every moving part.',
     timeframe: '6 months',
     figure: '$45,000',
   },
   {
     name: 'Ethan T.',
     headline: '$45,000 in Sales in His First 6 Months',
-    quote: 'I wanted something I could invest in that didn\'t rely on guessing the stock market. Partnering with ECOM SHARKS was exactly what I was looking for. Within the first few weeks, I started seeing sales roll in. Over six months, my store reached around $45,000 in total sales.',
+    quote: 'I wanted something I could invest in that didn\'t rely on guessing the stock market. Partnering with Aain ali was exactly what I was looking for. Within the first few weeks, I started seeing sales roll in. Over six months, my store reached around $45,000 in total sales.',
     timeframe: '6 months',
     figure: '$45,000',
   },
@@ -128,7 +128,7 @@ export const caseStudies: CaseStudy[] = [
     name: 'Marcus J.',
     figure: '$47,000',
     timeframe: '6 months',
-    quote: 'I invested with ECOM SHARKS while keeping my day job. Within 6 months my store had generated $47,000 in revenue. Zero inventory, zero hassle.',
+    quote: 'I invested with Aain ali while keeping my day job. Within 6 months my store had generated $47,000 in revenue. Zero inventory, zero hassle.',
     storeName: 'HomeStyle Essentials',
     landingPageUrl: 'homestyle-essentials.store',
     heroImage: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=280&fit=crop',
@@ -156,7 +156,7 @@ export const caseStudies: CaseStudy[] = [
     name: 'Robert K.',
     figure: '$10,000',
     timeframe: '30 days',
-    quote: 'As a complete beginner, I had no idea what to expect. ECOM SHARKS built my store and within 30 days I had over $10K in sales.',
+    quote: 'As a complete beginner, I had no idea what to expect. Aain ali built my store and within 30 days I had over $10K in sales.',
     storeName: 'Outdoor Living Co',
     landingPageUrl: 'outdoorlivingco.store',
     heroImage: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600&h=280&fit=crop',
@@ -187,22 +187,22 @@ export const resultsDisclaimer = 'A glimpse into the sales activity clients have
 export const proofDisclaimer = 'These client stories reflect their personal experiences and individual results. They are examples and not guarantees of future performance. Results vary based on factors such as store activation timeline, available capital, product selection, market conditions, and client involvement. Your results may differ.';
 
 export const teamDepartments: TeamDepartment[] = [
-  { name: 'Product Research', description: 'Find winning products that sell' },
-  { name: 'Supplier Sourcing', description: 'Partner with USA suppliers' },
-  { name: 'Listing Creation', description: 'Optimize listings for conversions' },
-  { name: 'Order Fulfillment', description: 'Handle fulfillment and shipping' },
-  { name: 'Customer Service', description: 'Manage support and returns' },
-  { name: 'Account Performance', description: 'Monitor and scale your store' },
+  { name: 'Product intelligence', description: 'Find offers with real demand' },
+  { name: 'Supplier partnerships', description: 'Reliable USA-first sourcing' },
+  { name: 'Listing production', description: 'Pages built to convert' },
+  { name: 'Fulfillment ops', description: 'Fast, accurate shipping' },
+  { name: 'Customer care', description: 'Support that protects your brand' },
+  { name: 'Growth & performance', description: 'Track, tune, and scale what works' },
 ];
 
 export const guaranteeContent = {
-  heading: 'Risk-Free Buy-Back Guarantee',
+  heading: 'Performance-Aligned Guarantee',
   body: 'If your store doesn\'t generate more than your initial investment, we\'ll buy it back and cover the difference — making this a completely risk-free investment opportunity.',
 };
 
 export const marketContent = {
-  heading: 'The global e-commerce market is expected to total $8.15 Trillion in 2026',
-  subheading: 'Global eCommerce Revenue (in trillions)',
+  heading: 'E-commerce will top $8.15 trillion by 2026',
+  subheading: 'The channel is massive—execution decides who wins',
 };
 
 export const applyCtaContent = {
@@ -211,7 +211,7 @@ export const applyCtaContent = {
 };
 
 export const precallFaqItems: FAQItem[] = [
-  { id: 'precall-1', question: 'Is This Legit or Just Another Scam?', answer: 'ECOM SHARKS is a real e-commerce management company. We build and operate stores for qualified partners. We are transparent about our process, fees, and what you can expect. You own your store; we manage operations.' },
+  { id: 'precall-1', question: 'Is This Legit or Just Another Scam?', answer: 'Aain ali is a real e-commerce management company. We build and operate stores for qualified partners. We are transparent about our process, fees, and what you can expect. You own your store; we manage operations.' },
   { id: 'precall-2', question: 'How Do I Know This Is a Real Service, Not Just a Course?', answer: 'We provide a fully done-for-you service. Our team builds your store, sources products, handles listings, fulfillment, and customer service. You receive a live, operating store—not just training or course materials.' },
   { id: 'precall-3', question: 'Why Should I Trust You?', answer: 'We operate with full transparency. Our team has years of experience in e-commerce. We share real client results, offer clear contracts, and our incentives are aligned—we only succeed when your store succeeds.' },
   { id: 'precall-4', question: 'What Does the Upfront Capital Actually Cover?', answer: 'Your investment covers store setup, product research, supplier relationships, listing creation, and initial operational costs. We outline all costs clearly before you commit.' },
@@ -234,8 +234,8 @@ export const precallFaqItems: FAQItem[] = [
 export const faqItems: FAQItem[] = [
   {
     id: 'faq-1',
-    question: 'What Is ECOM SHARKS?',
-    answer: 'ECOM SHARKS builds, launches, and manages fully done-for-you eCommerce stores. We handle everything—from store setup and supplier sourcing to daily operations, order fulfillment, customer service, and ongoing scaling—so you can earn hands-off without buying inventory upfront or needing eCommerce experience.',
+    question: 'What Is Aain ali?',
+    answer: 'Aain ali builds, launches, and manages fully done-for-you eCommerce stores. We handle everything—from store setup and supplier sourcing to daily operations, order fulfillment, customer service, and ongoing scaling—so you can earn hands-off without buying inventory upfront or needing eCommerce experience.',
   },
   {
     id: 'faq-2',
@@ -275,14 +275,14 @@ export const faqItems: FAQItem[] = [
 ];
 
 export const footerContent = {
-  copyright: `ECOM SHARKS © ${new Date().getFullYear()}. All Rights Reserved.`,
+  copyright: `Aain ali © ${new Date().getFullYear()}. All Rights Reserved.`,
   links: [
     { href: '/privacy-policy', label: 'Privacy Policy' },
     { href: '/contact', label: 'Contact Us' },
   ],
   disclaimers: [
-    'ECOM SHARKS provides e-commerce management services and business opportunities. We do not offer a "get rich quick" program or guaranteed money-making system. Success depends on economic uncertainties, market conditions, and platform-specific policies. Testimonials on this page are from real clients. The results you see are not typical. Individual results may vary. Past performance does not guarantee future outcomes.',
-    'All materials are the intellectual property of ECOM SHARKS and are protected by copyright. ECOM SHARKS may refer to or link to third-party content or services and is not responsible for such content.',
+    'Aain ali provides e-commerce management services and business opportunities. We do not offer a "get rich quick" program or guaranteed money-making system. Success depends on economic uncertainties, market conditions, and platform-specific policies. Testimonials on this page are from real clients. The results you see are not typical. Individual results may vary. Past performance does not guarantee future outcomes.',
+    'All materials are the intellectual property of Aain ali and are protected by copyright. Aain ali may refer to or link to third-party content or services and is not responsible for such content.',
     'This site is not part of or endorsed by Facebook™, Meta Platforms Inc., Google™, YouTube™, Amazon™, TikTok™, Shopify™, or Walmart™. All trademarks belong to their respective owners.',
   ],
 };

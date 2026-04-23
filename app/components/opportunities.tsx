@@ -20,13 +20,13 @@ const imgCardMask = "/images/service-mask.svg";
 // Data for the two cards to keep the code clean and scalable.
 const cardData = [
   {
-    title: "Departments:",
-    description: "Ecom Account Managers, Design, Marketing, Production, Sales, Finance, HR.",
+    title: "Teams you’ll work alongside",
+    description: "Account leadership, design, media, production, GTM, finance, and people ops—one coordinated org.",
     backgroundImage: "/images/departments-image.png",
   },
   {
-    title: "Opportunities:",
-    description: "Full-time roles, internships, and freelance partnerships.",
+    title: "Ways to work with us",
+    description: "Full-time, internship, and trusted freelance partners—pick the path that fits.",
     backgroundImage: "/images/opportunities-image.png",
   }
 ];
@@ -143,13 +143,13 @@ export default function Opportunities() {
               className="text-5xl lg:text-8xl xl:text-9xl font-semibold leading-tight lg:leading-none"
               style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
             >
-              Careers
+              Build with us
             </h1>
             <h2
               className="mt-4 lg:mt-6 text-2xl lg:text-4xl xl:text-5xl font-semibold max-w-md"
               style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
             >
-              We're always looking for passionate people to join our mission.
+              We hire operators who love commerce, craft, and moving fast.
             </h2>
             <div className="mt-8 lg:mt-12 flex flex-col lg:flex-row items-start lg:items-center gap-4 lg:gap-6">
               <button 

@@ -128,7 +128,7 @@ export default function Testimonials({ testimonials: customTestimonials }: Testi
     {
       name: "Sarah Johnson",
       subtitle: "E-commerce Entrepreneur",
-      review: "ECOM SHARKS transformed our business completely. Their automation services helped us scale from $10K to $100K monthly revenue in just 6 months. The team's expertise and dedication are unmatched.",
+      review: "Aain ali transformed our business completely. Their automation services helped us scale from $10K to $100K monthly revenue in just 6 months. The team's expertise and dedication are unmatched.",
       rating: 5,
       postDate: "Dec 15, 2024",
       replyDate: "Dec 16, 2024",
@@ -137,7 +137,7 @@ export default function Testimonials({ testimonials: customTestimonials }: Testi
     {
       name: "Michael Chen",
       subtitle: "Online Store Owner",
-      review: "Working with ECOM SHARKS has been a game-changer. Their automation solutions saved us countless hours and significantly increased our profit margins. Highly recommend their services!",
+      review: "Working with Aain ali has been a game-changer. Their automation solutions saved us countless hours and significantly increased our profit margins. Highly recommend their services!",
       rating: 4,
       postDate: "Nov 28, 2024",
       replyDate: "Nov 29, 2024",
@@ -146,7 +146,7 @@ export default function Testimonials({ testimonials: customTestimonials }: Testi
     {
       name: "Emily Rodriguez",
       subtitle: "Business Owner",
-      review: "The level of professionalism and results we've achieved with ECOM SHARKS is incredible. They've helped us streamline our operations and boost our sales by 300%. Truly exceptional service!",
+      review: "The level of professionalism and results we've achieved with Aain ali is incredible. They've helped us streamline our operations and boost our sales by 300%. Truly exceptional service!",
       rating: 5,
       postDate: "Jan 8, 2025",
       replyDate: "Jan 9, 2025",
@@ -172,7 +172,7 @@ export default function Testimonials({ testimonials: customTestimonials }: Testi
             className="text-3xl lg:text-6xl font-bold text-gray-800"
             style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
           >
-            Client Testimonials
+            What Clients Say After Partnering With Us
           </h1>
           <p 
             className="mt-4 text-base lg:text-lg text-gray-600 max-w-2xl mx-auto"

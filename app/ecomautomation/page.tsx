@@ -24,7 +24,7 @@ const faqItems = [
   { id: 'faq-4', question: 'Is my business the right fit?', answer: 'We work with founders and investors ready to stop playing small. Whether you are scaling an existing brand or starting today, this is for owners who prioritize aggressive growth on platforms like TikTok and Shopify.' },
   { id: 'faq-5', question: 'How do I prepare?', answer: 'Find a quiet space and bring a notepad. If you have an existing brand, have your store data ready. We want to give you the best advice possible so please show up focused and ready to work.' },
   { id: 'faq-6', question: 'Can I reschedule my time?', answer: 'Our calendar fills up fast. If something comes up, use the link in your email to reschedule at least 24 hours in advance. This lets another hungry entrepreneur take your spot.' },
-  { id: 'faq-7', question: 'Who am I speaking with?', answer: 'You are talking to a senior strategist from the Ecom Sharkss team. These are real experts who scale stores every day. No fluff and no beginners, just pros who know how to win.' },
+  { id: 'faq-7', question: 'Who am I speaking with?', answer: 'You are talking to a senior strategist from the Aain ali team. These are real experts who scale stores every day. No fluff and no beginners, just pros who know how to win.' },
 ];
 
 const CALENDLY_URL = 'https://calendly.com/ecomsharkss-info/30min';
@@ -105,16 +105,16 @@ export default function EcomAutomationPage() {
             <motion.div variants={fadeInUp} className="mb-4 flex justify-center">
               <Link href="/" className="inline-block">
                 <div className="relative w-[130px] h-[90px] lg:w-[180px] lg:h-[120px]">
-                  <Image src="/images/quote-logo.png" alt="ECOM SHARKS" fill className="object-contain" priority />
+                  <Image src="/images/Aain-Ali1.png" alt="Aain ali" fill className="object-contain" priority />
                 </div>
               </Link>
             </motion.div>
             <motion.h1 variants={fadeInUp} className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-light text-white mb-6 leading-[1.0] tracking-tight" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-              Your fully managed ecommerce business
+              A fully managed e-commerce business—
               <br />
-              with atleast $4000 guranteed sales
+              with at least $4,000 in trackable sales
               <br />
-              <span className="text-[#35c4dd]">in 30 days.</span>
+              <span className="text-[#35c4dd]">in your first 30 days.</span>
             </motion.h1>
             <motion.p variants={fadeInUp} className="text-lg lg:text-xl text-gray-300 mb-6 max-w-3xl mx-auto leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
               {heroContent.subhead}
@@ -123,7 +123,7 @@ export default function EcomAutomationPage() {
               {heroContent.doneForYouText.split('. ')[0]}. <span className="text-white">{heroContent.doneForYouText.split('. ')[1]}</span>. {heroContent.videoPrompt}
             </motion.div>
             <motion.div variants={fadeInUp} className="max-w-4xl mx-auto rounded-b-2xl overflow-hidden shadow-2xl ring-2 ring-white/10 -mt-px">
-              <LazyYouTube youtubeId="ZPY3hkj7xSE" title="ECOM SHARKS - Fully Managed E-Commerce Business" />
+              <LazyYouTube youtubeId="ZPY3hkj7xSE" title="Aain ali - Fully Managed E-Commerce Business" />
             </motion.div>
             <motion.p variants={fadeInUp} className="mt-6 text-2xl lg:text-3xl text-gray-300 font-medium leading-snug" style={{ fontFamily: "'Barlow', sans-serif" }}>
               {heroContent.applyBelowLine1}
@@ -149,7 +149,7 @@ export default function EcomAutomationPage() {
           <div className="max-w-4xl mx-auto">
             <CalendlyInlineEmbed
               schedulingPageUrl={CALENDLY_URL}
-              title="Book a call with ECOM SHARKS"
+              title="Book a call with Aain ali"
               minHeight={650}
             />
           </div>
@@ -162,7 +162,7 @@ export default function EcomAutomationPage() {
       <div className="py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-5 lg:px-20">
           <h2 className="text-2xl lg:text-4xl font-bold text-[#063f4a] text-center mb-10" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-            Inside Look at Partner Store Results
+            Real partner results—on the record
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
             {[1, 2, 3, 4, 5, 6].map((i) => (
@@ -183,24 +183,24 @@ export default function EcomAutomationPage() {
           <div className="mt-16 max-w-4xl mx-auto">
             <CalendlyInlineEmbed
               schedulingPageUrl={CALENDLY_URL}
-              title="Book a call with ECOM SHARKS"
+              title="Book a call with Aain ali"
               minHeight={650}
             />
           </div>
         </div>
       </div>
 
-      {/* Market Graph Section - ECOM SHARKS theme */}
+      {/* Market Graph Section - Aain ali theme */}
       <div className="py-16 lg:py-24 bg-[#052126] relative overflow-hidden">
         <div className="absolute top-[-100px] right-[-50px] w-[300px] h-[300px] bg-[#35c4dd]/10 rounded-full blur-3xl" />
         <div className="container mx-auto px-5 lg:px-20 relative z-10">
           <h2 className="text-3xl lg:text-5xl font-bold text-white text-center mb-2 max-w-5xl mx-auto leading-tight" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-            The global e-commerce market is projected to reach
+            Global e-commerce is on pace to pass
             <br />
-            <span className="text-[#35c4dd]">$8.15 Trillion by 2026</span>
+            <span className="text-[#35c4dd]">$8.15 trillion by 2026</span>
           </h2>
           <p className="text-center text-white/90 text-base lg:text-lg mb-10" style={{ fontFamily: "'Barlow', sans-serif" }}>
-            Global eCommerce Revenue (in trillions)
+            Trillions in online revenue—are you positioned to capture your slice?
           </p>
           <div className="max-w-5xl mx-auto">
             {/* Combined Bar + Line Chart */}
@@ -260,7 +260,7 @@ export default function EcomAutomationPage() {
       <div className="py-16 lg:py-24 bg-gray-50">
         <div className="container mx-auto px-5 lg:px-20">
           <h2 className="text-2xl lg:text-4xl font-bold text-[#063f4a] text-center mb-12" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-            Frequently Asked Questions
+            Questions we hear most often
           </h2>
           <div className="max-w-3xl mx-auto">
             <EcomWealthFAQ items={faqItems} />

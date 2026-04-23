@@ -25,7 +25,7 @@ const ArrowIcon = () => (
 /*
   All image paths are kept exactly as provided by you.
 */
-const imgImage1 = "/images/quote-logo.png";
+const imgImage1 = "/images/Aain-Ali1.png";
 const imgRectangle72 = "/images/header-top-bar.png";
 const imgGroup1000004908 = "/images/header-phone-icon.svg";
 const imgGroup1000004909 = "/images/header-email-icon.svg";
@@ -44,9 +44,9 @@ interface HeaderProps {
 }
 
 export default function Header({ 
-  heroTitle = "Earn $4,000 in 30 Days Or We'll Work for Free",
-  heroSubtitle = "Keep scrolling—your path to financial freedom is just ahead. By the time you've explored 25% of this page, you'll discover the hidden gem that could change your life.",
-  topNavText = "🌟 One-Stop All Ecommerce Accounts Solutions"
+  heroTitle = "$4,000 in 30 Days—or We Keep Working for Free",
+  heroSubtitle = "Scroll to see how Aain Ali helps brands turn attention into revenue across Amazon, Shopify, TikTok, and Walmart—with senior operators who run the details for you.",
+  topNavText = "🌟 One team. Every major channel. One growth plan."
 }: HeaderProps) {
   const textShadow = { textShadow: '0px 2px 5px rgba(0, 0, 0, 0.5)' };
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -138,7 +138,7 @@ export default function Header({
 
             <div className="mt-2 lg:mt-6 flex items-center justify-between">
                 <div className="w-[100px] h-[70px] md:w-[140px] md:h-[100px] lg:w-[180px] lg:h-[140px] relative fade-in -ml-6 md:-ml-8 lg:-ml-12">
-                    <Image src={imgImage1} alt="Ecom Sharks Logo" fill className="object-contain" priority />
+                    <Image src={imgImage1} alt="Aain ali Logo" fill className="object-contain" priority />
                 </div>
                 <div className="hidden lg:flex w-[1150px] h-[90px] bg-white/20 backdrop-blur-sm 
                             rounded-2xl items-center justify-end px-10 gap-8 border-2 border-white">
@@ -201,7 +201,7 @@ export default function Header({
                 {/* Header */}
                 <div className="flex items-center justify-between p-6 border-b border-white/20">
                   <div className="w-[80px] h-[60px] relative -ml-6">
-                    <Image src={imgImage1} alt="Ecom Sharks Logo" fill className="object-contain" priority />
+                    <Image src={imgImage1} alt="Aain ali Logo" fill className="object-contain" priority />
                   </div>
                   <button 
                     onClick={() => setIsMobileNavOpen(false)}

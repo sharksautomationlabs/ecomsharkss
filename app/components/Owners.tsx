@@ -210,13 +210,13 @@ function Owners() {
                 className="text-4xl lg:text-7xl xl:text-8xl font-semibold leading-tight lg:leading-none"
                 style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
               >
-                For Ecommerce Owners
+                Built for owners who want leverage—not longer hours
               </h1>
               <p 
                 className="mt-4 lg:mt-6 text-base lg:text-xl xl:text-2xl leading-relaxed"
                 style={{ fontFamily: "'Barlow', sans-serif" }}
               >
-                At Ecom Sharkss, we understand the challenges you <br className="hidden lg:block"/> face  in today's competitive digital marketplace...
+                At Aain ali, we understand the challenges you <br className="hidden lg:block"/> face  in today's competitive digital marketplace...
               </p>
               <div className="mt-8 lg:mt-12 flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-x-12 lg:gap-y-6">
                 {/* Phone Number */}

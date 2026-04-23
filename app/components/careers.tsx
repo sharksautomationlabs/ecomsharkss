@@ -18,23 +18,23 @@ const ArrowIcon = () => (
 // Data array holds all unique content for each card.
 const careerData = [
   {
-    title: "Announcements",
-    description: "New Titles, Bestseller Achievements, And Award Nominations.",
+    title: "Company updates",
+    description: "Launches, milestones, and wins worth sharing with the team.",
     personImage: "/images/Asset1.png",
   },
   {
-    title: "Career",
-    description: "We're Always Looking For Passionate People To Join Our Mission.",
+    title: "Open roles",
+    description: "We’re always looking for operators who care about craft and client outcomes.",
     personImage: "/images/Asset2.png",
   },
   {
-    title: "Blog",
-    description: "Insights Into Amazon, Shopify, Walmart, Tiktok And Behind-The-Comerce Stories.",
+    title: "Insights & playbooks",
+    description: "Notes from the field—Amazon, Shopify, Walmart, TikTok, and what’s working now.",
     personImage: "/images/Asset3.png",
   },
   {
-    title: "News",
-    description: "Latest Updates, Industry Insights, And Company News.",
+    title: "Newsroom",
+    description: "Industry moves, product updates, and the occasional sharp opinion.",
     personImage: "/images/Asset4.png",
   },
 ];
@@ -186,7 +186,7 @@ export default function Careers() {
             className="text-4xl lg:text-7xl xl:text-8xl font-medium text-gray-800"
             style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
           >
-            Career
+            Careers
           </h1>
         </motion.div>
         

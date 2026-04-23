@@ -61,7 +61,7 @@ export default function ThanksPage() {
             <motion.div variants={fadeInUp} className="mb-2 flex justify-center">
               <Link href="/" className="inline-block">
                 <div className="relative w-[140px] h-[95px] lg:w-[200px] lg:h-[130px]">
-                  <Image src="/images/quote-logo.png" alt="ECOM SHARKS" fill className="object-contain" priority />
+                  <Image src="/images/Aain-Ali1.png" alt="Aain ali" fill className="object-contain" priority />
                 </div>
               </Link>
             </motion.div>
@@ -89,7 +89,7 @@ export default function ThanksPage() {
               className="text-xl lg:text-3xl font-bold text-white text-center mb-6"
               style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
             >
-              Step 1: Click The Button Below To Add The Event To Your Calendar
+              Step 1: Add the call to your calendar
             </motion.h2>
             <motion.div variants={fadeInUp} className="flex justify-center mb-12">
               <button
@@ -108,7 +108,7 @@ export default function ThanksPage() {
               className="text-xl lg:text-3xl font-bold text-white text-center mb-6"
               style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
             >
-              Step 2: Watch This Short Video <span className="text-[#35c4dd]">(3 Minutes)</span>
+              Step 2: Watch the 3-minute prep video
             </motion.h2>
             <motion.div variants={fadeInUp} className="relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-xl ring-2 ring-white/10" style={{ paddingBottom: '56.25%' }}>
               <iframe
@@ -125,7 +125,7 @@ export default function ThanksPage() {
               className="text-xl lg:text-3xl font-bold text-white text-center mb-6 mt-12"
               style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
             >
-              Watch the 2nd video
+              Step 3: Then watch the results walkthrough
             </motion.h2>
             <motion.div variants={fadeInUp} className="relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-xl ring-2 ring-white/10" style={{ paddingBottom: '56.25%' }}>
               <iframe
@@ -149,7 +149,7 @@ export default function ThanksPage() {
               className="text-2xl lg:text-4xl font-bold text-[#063f4a] text-center mb-12"
               style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
             >
-              Step 3: Go Through Our Frequently Asked Questions Below
+              Step 4: Read the FAQs—so there are no surprises
             </h2>
             <EcomWealthFAQ items={precallFaqItems} />
           </div>
@@ -163,7 +163,7 @@ export default function ThanksPage() {
             className="text-2xl lg:text-4xl font-bold text-[#063f4a] text-center mb-4"
             style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
           >
-            Inside Look at Partner Store Results
+            Partner store snapshots
           </h2>
           <p
             className="text-center text-[#2c2420]/70 mb-10 max-w-3xl mx-auto"
@@ -197,7 +197,7 @@ export default function ThanksPage() {
               className="text-2xl lg:text-4xl font-bold text-[#063f4a] text-center mb-6"
               style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
             >
-              Step 4: See What Others Have To Say
+              Step 5: See what other partners experienced
             </h2>
             <p
               className="text-center text-[#2c2420]/70 mb-10"
@@ -242,7 +242,7 @@ export default function ThanksPage() {
               className="text-2xl lg:text-4xl font-bold text-[#063f4a] text-center mb-10"
               style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
             >
-              Step 5: Prepare For Your Call
+              Step 6: Show up ready (quick checklist)
             </h2>
             <div className="space-y-4">
               {prepareChecklist.map((item, i) => (
@@ -265,7 +265,7 @@ export default function ThanksPage() {
             className="text-2xl lg:text-4xl font-bold text-white mb-6"
             style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
           >
-            We Look Forward To Seeing You On The Call!
+            We’re ready when you are—see you on the call
           </h2>
           <Link
             href="/"
@@ -291,10 +291,10 @@ export default function ThanksPage() {
               </Link>
             </div>
             <p className="text-gray-500 text-sm mb-6" style={{ fontFamily: "'Barlow', sans-serif" }}>
-              ECOM SHARKS &copy; {new Date().getFullYear()}. All Rights Reserved.
+              Aain ali &copy; {new Date().getFullYear()}. All Rights Reserved.
             </p>
             <p className="text-gray-600 text-xs leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-              ECOM SHARKS provides e-commerce management services. We do not guarantee income or specific results. Individual results vary. Testimonials reflect real experiences but are not guarantees. By using this site, you acknowledge that you are responsible for your decisions and outcomes.
+              Aain ali provides e-commerce management services. We do not guarantee income or specific results. Individual results vary. Testimonials reflect real experiences but are not guarantees. By using this site, you acknowledge that you are responsible for your decisions and outcomes.
             </p>
           </div>
         </div>

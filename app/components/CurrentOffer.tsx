@@ -264,7 +264,7 @@ export default function CurrentOffer() {
           {/* Section Header */}
           <div className="text-center mb-12 lg:mb-16">
             <h2 className="text-4xl lg:text-6xl xl:text-7xl font-bold text-white mb-6" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-              Our Current Offer
+              This week’s offer
             </h2>
             <div className="w-24 h-1 bg-[#35c4dd] mx-auto rounded-full"></div>
           </div>
@@ -275,7 +275,7 @@ export default function CurrentOffer() {
               <div className="bg-white/5 backdrop-blur-2xl rounded-2xl lg:rounded-3xl p-6 lg:p-8 border border-white/30 shadow-2xl">
                 <div className="mb-6">
                   <h3 className="text-2xl lg:text-3xl font-bold text-white" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                    Launch Your Walmart Store
+                    Launch (or relaunch) your Walmart store
                   </h3>
                 </div>
                 <p className="text-lg lg:text-xl text-white/90 leading-relaxed mb-6" style={{ fontFamily: "'Barlow', sans-serif" }}>
@@ -293,7 +293,7 @@ export default function CurrentOffer() {
             <div className="bg-white/5 backdrop-blur-2xl rounded-2xl lg:rounded-3xl p-6 lg:p-8 border border-white/30 shadow-2xl">
               <div className="mb-6">
                 <h3 className="text-2xl lg:text-3xl font-bold text-white" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                  Get Started Today
+                  Book your call
                 </h3>
                 <p className="text-white/80 text-sm lg:text-base mt-1" style={{ fontFamily: "'Barlow', sans-serif" }}>
                   Speak directly with our senior consultant

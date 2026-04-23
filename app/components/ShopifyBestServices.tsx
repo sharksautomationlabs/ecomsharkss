@@ -17,15 +17,15 @@ const imgChatIcon = "/images/chat-icon.svg";
 const servicesData = [
   {
     id: 1,
-    title: "Expertise in Inventory Management",
-    description: "Our inventory management services ensure your products are always in stock and ready to meet customer demand.",
+    title: "Storefront & catalog health",
+    description: "Navigation, collections, and PDPs structured for clarity, speed, and conversion.",
     icon: "/images/shopify-logo.png",
     concept: "Shopify"
   },
   {
     id: 2,
-    title: "Order Processing Automation",
-    description: "Improve efficiency & attain massive profitability by automating order fulfillment processes & make leaps in competitive world.",
+    title: "Checkout-to-fulfillment automation",
+    description: "Reduce leakage, speed up handoffs, and protect margins as order volume grows.",
     icon: "/images/shopify-logo.png",
     concept: "Shopify"
   }
@@ -179,13 +179,13 @@ export default function ShopifyBestServices() {
             className="text-3xl lg:text-5xl xl:text-6xl font-bold tracking-wide" 
             style={{ fontFamily: "'Barlow Condensed', sans-serif", textShadow: '0px 3px 6px rgba(0,0,0,0.5)' }}
           >
-            We Provide the Best Services for Your Product
+            Shopify systems that turn visitors into repeat buyers
           </h1>
           <p 
             className="mt-4 max-w-4xl mx-auto text-base lg:text-lg text-gray-200 leading-relaxed"
             style={{ fontFamily: "'Barlow', sans-serif" }}
           >
-            At ECOM SHARKS, we offer top-tier solutions designed to streamline your Shopify business. Our expert team ensures every aspect operates flawlessly & seamlessly.
+            Merchandising, CRO, and back-office flow—so every visit has a path to purchase.
           </p>
         </motion.div>
 

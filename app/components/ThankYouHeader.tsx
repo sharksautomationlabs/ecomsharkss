@@ -12,7 +12,7 @@ const ArrowIcon = () => (
 /*
   All image paths are kept exactly as provided by you.
 */
-const imgImage1 = "/images/quote-logo.png";
+const imgImage1 = "/images/Aain-Ali1.png";
 const imgRectangle72 = "/images/header-top-bar.png";
 const imgGroup1000004908 = "/images/header-phone-icon.svg";
 const imgGroup1000004909 = "/images/header-email-icon.svg";
@@ -28,8 +28,8 @@ interface ThankYouHeaderProps {
 }
 
 export default function ThankYouHeader({ 
-  heroTitle = "You're In! Let's Get Ready for Your Call",
-  heroSubtitle = "Congratulations! Your call is booked. This is the first step toward building your hands-off e-commerce business. Before we talk, I have two quick videos below that will answer all of your questions and make our call as productive as possible."
+  heroTitle = "You’re Booked—Let’s Make the Call Count",
+  heroSubtitle = "Your next step is simple: watch the two short videos below. They’ll answer the big questions so we can spend your call on strategy—not basics."
 }: ThankYouHeaderProps) {
   const textShadow = { textShadow: '0px 2px 5px rgba(0, 0, 0, 0.5)' };
 
@@ -70,7 +70,7 @@ export default function ThankYouHeader({
               style={{ backgroundImage: `url('${imgRectangle72}')` }}
             >
               <p className="text-white text-[20px] font-medium" style={{ fontFamily: "'Barlow', sans-serif", ...textShadow }}>
-                🌟 One-Stop All Ecommerce Accounts Solutions
+                🌟 One team. Every channel. Clear next steps.
               </p>
               <div className="flex items-center gap-8">
               </div>
@@ -78,7 +78,7 @@ export default function ThankYouHeader({
 
             <div className="mt-2 lg:mt-6 flex items-center gap-4">
                 <div className="w-[100px] h-[70px] md:w-[140px] md:h-[100px] lg:w-[180px] lg:h-[140px] relative fade-in -ml-6 md:-ml-8 lg:-ml-12">
-                    <Image src={imgImage1} alt="Ecom Sharks Logo" fill className="object-contain" priority />
+                    <Image src={imgImage1} alt="Aain ali Logo" fill className="object-contain" priority />
                 </div>
             </div>
           </header>
