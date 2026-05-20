@@ -49,7 +49,7 @@ const cleanOldSubmissions = (): void => {
 
 /**
  * Check if a +1 phone number can submit (hasn't exceeded daily limit)
- * @param phoneNumber - Full phone number with country code (e.g., +14694807938)
+ * @param phoneNumber - Full phone number with country code (e.g., +17738287104)
  * @returns Object with allowed status and reason if not allowed
  */
 export const checkPhoneRateLimit = (
@@ -104,7 +104,7 @@ export const checkPhoneRateLimit = (
 
 /**
  * Record a phone number submission
- * @param phoneNumber - Full phone number with country code (e.g., +14694807938)
+ * @param phoneNumber - Full phone number with country code (e.g., +17738287104)
  */
 export const recordPhoneSubmission = (phoneNumber: string): void => {
   // Only track +1 numbers

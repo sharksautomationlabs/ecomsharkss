@@ -325,7 +325,7 @@ export default function Contact() {
                 <PhoneIcon />
                 <div>
                   <h3 className="font-bold text-base lg:text-lg">Phone</h3>
-                  <p className="text-base lg:text-lg">(469) 480-7938</p>
+                  <p className="text-base lg:text-lg">+1 (773) 828-7104</p>
                 </div>
               </div>
             </div>
