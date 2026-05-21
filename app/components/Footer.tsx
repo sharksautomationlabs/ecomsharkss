@@ -29,6 +29,15 @@ const PhoneIcon = () => (
     </div>
 );
 
+const AddressIcon = () => (
+    <div className="w-12 h-12 bg-[#063f4a] rounded-full flex items-center justify-center flex-shrink-0">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            <circle cx="12" cy="9" r="2.5" stroke="white" strokeWidth="2"/>
+        </svg>
+    </div>
+);
+
 const SocialIcon = ({ path, href }: { path: string; href?: string }) => (
   <a href={href || "#"} className="w-8 h-8 bg-gray-400 hover:bg-[#35c4dd] transition-colors rounded-full flex items-center justify-center">
     <svg className="w-4 h-4 text-[#063f4a]" fill="currentColor" viewBox="0 0 24 24">
@@ -326,6 +335,13 @@ export default function Contact() {
                 <div>
                   <h3 className="font-bold text-base lg:text-lg">Phone</h3>
                   <p className="text-base lg:text-lg">+1 (773) 828-7104</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 lg:gap-4">
+                <AddressIcon />
+                <div>
+                  <h3 className="font-bold text-base lg:text-lg">Address</h3>
+                  <p className="text-base lg:text-lg">30 N Gould St Ste N, Sheridan, WY 82801, United States</p>
                 </div>
               </div>
             </div>
@@ -688,9 +704,9 @@ export default function Contact() {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <a href="#" className="hover:text-[#35c4dd] transition-colors">Privacy Policy</a>
+              <a href="/privacy-policy" className="hover:text-[#35c4dd] transition-colors">Privacy Policy</a>
               <span>|</span>
-              <a href="#" className="hover:text-[#35c4dd] transition-colors">Terms of Use</a>
+              <a href="/terms-of-use" className="hover:text-[#35c4dd] transition-colors">Terms of Use</a>
             </div>
           </div>
         </div>
