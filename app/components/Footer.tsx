@@ -230,7 +230,6 @@ export default function Contact() {
         // Reset checkboxes
         setPrivacyPolicyAccepted(false);
         setConsentGiven(false);
-        setSmsConsent(false);
       } else {
         setSubmitStatus({ type: 'error', message: result.message });
       }
