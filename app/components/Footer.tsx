@@ -61,7 +61,8 @@ export default function Contact() {
   
   const [privacyPolicyAccepted, setPrivacyPolicyAccepted] = useState(false);
   const [consentGiven, setConsentGiven] = useState(false);
-  
+  const [smsConsent, setSmsConsent] = useState(false);
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     type: 'success' | 'error' | null;
@@ -174,6 +175,10 @@ export default function Contact() {
       setSubmitStatus({ type: 'error', message: 'You must give consent to continue' });
       return false;
     }
+    if (!smsConsent) {
+      setSubmitStatus({ type: 'error', message: 'You must agree to receive SMS messages to continue' });
+      return false;
+    }
     return true;
   };
 
@@ -230,6 +235,7 @@ export default function Contact() {
         // Reset checkboxes
         setPrivacyPolicyAccepted(false);
         setConsentGiven(false);
+        setSmsConsent(false);
       } else {
         setSubmitStatus({ type: 'error', message: result.message });
       }
@@ -661,11 +667,20 @@ export default function Contact() {
                   </label>
                 </div>
 
-              </div>
 
-              <p className="text-xs text-white/80 leading-relaxed">
-                By entering your number, you agree to receive informational messages from Aain Ali LLC at the number provided and agree to our terms &amp; privacy policy. Message frequency varies. Message &amp; data rates may apply. Reply STOP to cancel. Reply HELP for info.
-              </p>
+                <div className="flex items-start gap-3">
+                  <input
+                    type="checkbox"
+                    id="sms-consent-footer"
+                    checked={smsConsent}
+                    onChange={(e) => setSmsConsent(e.target.checked)}
+                    className="mt-1 w-5 h-5 text-[#35c4dd] bg-white border-2 border-white rounded focus:ring-[#35c4dd] focus:ring-2 flex-shrink-0"
+                  />
+                  <label htmlFor="sms-consent-footer" className="text-xs text-white/90 leading-relaxed">
+                    By entering your number, you agree to receive informational messages from Aain Ali LLC at the number provided and agree to our terms &amp; privacy policy. Message frequency varies. Message &amp; data rates may apply. Reply STOP to cancel. Reply HELP for info.
+                  </label>
+                </div>
+              </div>
 
               <div>
                 <button 
