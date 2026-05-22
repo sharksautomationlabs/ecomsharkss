@@ -164,6 +164,9 @@ export default function PrivacyPolicyPage() {
                   <li>With trusted service providers who assist us in operating our website and conducting our business</li>
                   <li>In connection with a business transfer or acquisition</li>
                 </ul>
+                <p className="text-base lg:text-lg text-[#2c2020] leading-relaxed mt-4 font-medium" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                  No mobile information will be shared with third parties/affiliates for marketing/promotional purposes.
+                </p>
               </motion.div>
 
               {/* Data Security */}

@@ -63,6 +63,7 @@ export default function CurrentOffer() {
     reason?: string;
     waitTime?: number;
   }>({ allowed: true });
+  const [smsConsent, setSmsConsent] = useState(false);
 
   // Format phone number based on country code
   const formatPhoneNumber = (value: string, code: string): string => {
@@ -150,6 +151,11 @@ export default function CurrentOffer() {
     }
 
 
+    if (!smsConsent) {
+      setSubmitStatus({ type: 'error', message: 'You must agree to receive SMS messages to continue' });
+      return false;
+    }
+
     // Check rate limiting
     const rateLimitCheck = spamProtection.canSubmit();
     if (!rateLimitCheck.allowed) {
@@ -227,6 +233,8 @@ export default function CurrentOffer() {
         setCountryCode('+1');
         // Reset honeypot
         setHoneypotValue('');
+        // Reset SMS consent
+        setSmsConsent(false);
       } else {
         setSubmitStatus({ type: 'error', message: result.message });
       }
@@ -615,7 +623,21 @@ export default function CurrentOffer() {
                     <strong>Rate Limit:</strong> {rateLimitStatus.reason}
                   </div>
                 )}
-                
+
+                {/* SMS Consent Checkbox */}
+                <div className="flex items-start gap-3">
+                  <input
+                    type="checkbox"
+                    id="sms-consent-offer"
+                    checked={smsConsent}
+                    onChange={(e) => setSmsConsent(e.target.checked)}
+                    className="mt-1 w-5 h-5 flex-shrink-0 accent-[#35c4dd]"
+                  />
+                  <label htmlFor="sms-consent-offer" className="text-xs text-white/80 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                    By checking this box, you agree to receive SMS messages from Aain Ali LLC related to inquiries, appointments, onboarding updates, account notifications, and service-related communication. Message frequency varies. Message &amp; data rates may apply. Reply STOP to opt out or HELP for assistance. Consent is not a condition of purchase. View our <a href="/privacy-policy" className="underline hover:text-white transition-colors">Privacy Policy</a> and <a href="/terms-of-use" className="underline hover:text-white transition-colors">Terms of use</a>.
+                  </label>
+                </div>
+
                 <div className="pt-4">
                   <button
                     type="submit"

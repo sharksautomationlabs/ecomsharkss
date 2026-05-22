@@ -61,6 +61,7 @@ export default function Contact() {
   
   const [privacyPolicyAccepted, setPrivacyPolicyAccepted] = useState(false);
   const [consentGiven, setConsentGiven] = useState(false);
+  const [smsConsent, setSmsConsent] = useState(false);
   
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
@@ -174,6 +175,10 @@ export default function Contact() {
       setSubmitStatus({ type: 'error', message: 'You must give consent to continue' });
       return false;
     }
+    if (!smsConsent) {
+      setSubmitStatus({ type: 'error', message: 'You must agree to receive SMS messages to continue' });
+      return false;
+    }
     return true;
   };
 
@@ -230,6 +235,7 @@ export default function Contact() {
         // Reset checkboxes
         setPrivacyPolicyAccepted(false);
         setConsentGiven(false);
+        setSmsConsent(false);
       } else {
         setSubmitStatus({ type: 'error', message: result.message });
       }
@@ -658,6 +664,19 @@ export default function Contact() {
                   />
                   <label htmlFor="consent" className="text-sm text-white/90 leading-relaxed">
                     I consent to being contacted by Aain ali regarding my inquiry and understand that my information will be used in accordance with the privacy policy.
+                  </label>
+                </div>
+
+                <div className="flex items-start gap-3">
+                  <input
+                    type="checkbox"
+                    id="sms-consent-footer"
+                    checked={smsConsent}
+                    onChange={(e) => setSmsConsent(e.target.checked)}
+                    className="mt-1 w-5 h-5 text-[#35c4dd] bg-white border-2 border-white rounded focus:ring-[#35c4dd] focus:ring-2 flex-shrink-0"
+                  />
+                  <label htmlFor="sms-consent-footer" className="text-xs text-white/90 leading-relaxed">
+                    By checking this box, you agree to receive SMS messages from Aain Ali LLC related to inquiries, appointments, onboarding updates, account notifications, and service-related communication. Message frequency varies. Message &amp; data rates may apply. Reply STOP to opt out or HELP for assistance. Consent is not a condition of purchase. View our <a href="/privacy-policy" className="underline hover:text-[#d0f7ff] transition-colors">Privacy Policy</a> and <a href="/terms-of-use" className="underline hover:text-[#d0f7ff] transition-colors">Terms of use</a>.
                   </label>
                 </div>
               </div>
