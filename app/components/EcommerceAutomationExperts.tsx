@@ -20,8 +20,8 @@ interface EcommerceAutomationExpertsProps {
 }
 
 export default function EcommerceAutomationExperts({ 
-  title = "Automation Experts, On Your Side",
-  subtitle = "We build, launch, and run the day-to-day—so you get a business that hums: sourcing, ops, and growth under one experienced team."
+  title = "Meet the Experts Behind ECOM SHARKSS Success",
+  subtitle = "Our dedicated team stands at the forefront of Amazon's fulfillment programs and beyond. We don't just help businesses grow—we empower them to scale and thrive!"
 }: EcommerceAutomationExpertsProps) {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
@@ -114,7 +114,7 @@ export default function EcommerceAutomationExperts({
           <motion.div className="lg:col-span-6 z-10" variants={leftVariants}>
             <div className="inline-flex items-center gap-2 lg:gap-3 bg-[#d0f7ff] text-[#2c2420] px-3 lg:px-4 py-2 lg:py-2.5 rounded-full mb-6 lg:mb-8">
               <span className="text-lg lg:text-xl">💬</span>
-              <span className="font-medium text-sm lg:text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>The team in your corner</span>
+              <span className="font-medium text-sm lg:text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>Welcome Message</span>
             </div>
 
             <h1 className="text-4xl lg:text-[94px] font-semibold text-[#2c2020] leading-tight lg:leading-[0.921]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>

@@ -26,7 +26,7 @@ const ArrowIcon = () => (
   All image paths are kept exactly as provided by you.
 */
 const imgImage37 = "/images/main-bg-sand.png";
-const imgImage1 = "/images/Aain-Ali1.png";
+const imgImage1 = "/images/quote-logo.png";
 const imgRectangle72 = "/images/header-top-bar.png";
 const imgGroup1000004908 = "/images/header-phone-icon.svg";
 const imgGroup1000004909 = "/images/header-email-icon.svg";
@@ -120,23 +120,32 @@ export default function TikTokHeader() {
                 🌟 Unify. Manage. Grow.
               </p>
               <div className="flex items-center gap-8">
+                <a href="tel:4694807938" className="flex items-center gap-3 text-white text-[20px] font-medium" style={{ fontFamily: "'Barlow', sans-serif", ...textShadow }}>
+                  <Image src={imgGroup1000004908} alt="phone" width={32} height={32} />
+                  <span>(469) 480-7938</span>
+                </a>
+                <a href="mailto:info@ecomsharkss.com" className="flex items-center gap-3 text-white text-[20px] font-medium" style={{ fontFamily: "'Barlow', sans-serif", ...textShadow }}>
+                  <Image src={imgGroup1000004909} alt="email" width={32} height={32} />
+                  <span>info@ecomsharkss.com</span>
+                </a>
               </div>
             </div>
 
             {/* Navigation Section - RESPONSIVE */}
             <div className="mt-2 lg:mt-6 flex items-center justify-between">
                 <div className="w-[100px] h-[70px] md:w-[140px] md:h-[100px] lg:w-[180px] lg:h-[140px] relative fade-in -ml-6 md:-ml-8 lg:-ml-12">
-                    <Image src={imgImage1} alt="Aain ali Logo" fill className="object-contain" />
+                    <Image src={imgImage1} alt="Ecom Sharks Logo" fill className="object-contain" />
                 </div>
                 <div className="hidden lg:flex w-[1150px] h-[90px] bg-white/20 backdrop-blur-sm 
                             rounded-2xl items-center justify-end px-10 gap-8 border-2 border-white">
-                    <div className="flex items-center gap-5 text-white text-[16px] font-medium" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                    <div className="flex items-center gap-5 text-white text-[18px] font-medium" style={{ fontFamily: "'Barlow', sans-serif" }}>
                         <Link href="/" className="hover:text-[#35c4dd]" style={textShadow}>Home</Link>
                         <Link href="/about" className="hover:text-[#35c4dd]" style={textShadow}>About Us</Link>
                         <Link href="/amazon" className="hover:text-[#35c4dd]" style={textShadow}>Amazon</Link>
                         <Link href="/shopify" className="hover:text-[#35c4dd]" style={textShadow}>Shopify</Link>
                         <Link href="/tiktok" className="hover:text-[#35c4dd]" style={textShadow}>Tiktok</Link>
                         <Link href="/walmart" className="hover:text-[#35c4dd]" style={textShadow}>Walmart</Link>
+                        <Link href="/identity" className="hover:text-[#35c4dd]" style={textShadow}>Identity</Link>
                         <Link href="/contact" className="hover:text-[#35c4dd]" style={textShadow}>Contact</Link>
                     </div>
                      <button 
@@ -189,7 +198,7 @@ export default function TikTokHeader() {
                 {/* Header */}
                 <div className="flex items-center justify-between p-6 border-b border-white/20">
                   <div className="w-[80px] h-[60px] relative -ml-6">
-                    <Image src={imgImage1} alt="Aain ali Logo" fill className="object-contain" />
+                    <Image src={imgImage1} alt="Ecom Sharks Logo" fill className="object-contain" />
                   </div>
                   <button 
                     onClick={() => setIsMobileNavOpen(false)}
@@ -205,6 +214,22 @@ export default function TikTokHeader() {
                     🌟 Unify. Manage. Grow.
                   </p>
                   <div className="space-y-2">
+                    <a 
+                      href="tel:4694807938" 
+                      className="flex items-center gap-2 text-white text-xs font-medium hover:text-[#35c4dd] transition-colors"
+                      style={{ fontFamily: "'Barlow', sans-serif" }}
+                    >
+                      <Image src={imgGroup1000004908} alt="phone" width={16} height={16} />
+                      <span>(469) 480-7938</span>
+                    </a>
+                    <a 
+                      href="mailto:info@ecomsharkss.com" 
+                      className="flex items-center gap-2 text-white text-xs font-medium hover:text-[#35c4dd] transition-colors"
+                      style={{ fontFamily: "'Barlow', sans-serif" }}
+                    >
+                      <Image src={imgGroup1000004909} alt="email" width={16} height={16} />
+                      <span>info@ecomsharkss.com</span>
+                    </a>
                   </div>
                 </div>
 
@@ -260,6 +285,14 @@ export default function TikTokHeader() {
                       Walmart
                     </Link>
                     <Link 
+                      href="/identity" 
+                      className="block text-white text-base font-medium hover:text-[#35c4dd] transition-colors py-1"
+                      style={{ fontFamily: "'Barlow', sans-serif" }}
+                      onClick={() => setIsMobileNavOpen(false)}
+                    >
+                      Identity
+                    </Link>
+                    <Link 
                       href="/contact" 
                       className="block text-white text-base font-medium hover:text-[#35c4dd] transition-colors py-1"
                       style={{ fontFamily: "'Barlow', sans-serif" }}
@@ -313,14 +346,14 @@ export default function TikTokHeader() {
           {/* Hero Text Content - RESPONSIVE FOR TIKTOK */}
           <div className="absolute top-1/2 -translate-y-1/2 left-5 w-1/2 lg:top-[300px] lg:left-20 lg:w-[781px] lg:translate-y-0 z-50 slide-in-left">
             <h1 className="text-white text-xl leading-tight pt-10 lg:text-[94px] lg:leading-[0.921] lg:pt-0" style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 600, ...textShadow }}>
-              TikTok Shop Growth for Brands Ready to Break Out
+              We Always Give The Best TikTok Shop Service To You
             </h1>
             <p className="hidden lg:block mt-6 text-white text-[24px] leading-[38px] max-w-[685px]" style={{ fontFamily: "'Barlow', sans-serif", fontWeight: 500, ...textShadow }}>
-              Creative-to-commerce, audience growth, and ops under one roof—with Aain Ali
+              Boost your Digital Presence on TikTok with ECOM SHARKS
             </p>
             <div className="hidden lg:flex items-center gap-6 mt-12">
             <a 
-              href="/contact"
+              href="tel:4694807938"
               className="group flex items-center justify-center gap-3 bg-[#35c4dd] text-[#063f4a] font-semibold py-2 pl-6 pr-2 rounded-full text-lg shadow-lg overflow-hidden relative"
             >
                 <span className="relative z-10">Contact Us</span>
@@ -344,7 +377,7 @@ export default function TikTokHeader() {
             </div>
              <div className="mt-8 lg:hidden">
                 <a 
-                  href="/contact"
+                  href="tel:4694807938"
                   className="bg-[#35c4dd] text-[#063f4a] font-semibold py-1.5 px-2 rounded-full text-xs w-[120px] flex items-center justify-between shadow-lg"
                 >
                     <span className="pl-1.5 text-xs">Contact Us</span>

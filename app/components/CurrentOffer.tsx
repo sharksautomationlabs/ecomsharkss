@@ -1,10 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { sendContactEmail, ContactFormData } from '../utils/emailjs';
 import { useVideoLazyLoading } from '../utils/videoLazyLoading';
 import { spamProtection, detectSuspiciousActivity } from '../utils/spamProtection';
 import { checkPhoneRateLimit, recordPhoneSubmission } from '../utils/phoneRateLimit';
+
+// Image assets
+const imgFounder = "/images/founders.png";
 
 // Reusable Button Component
 const GetQuoteButton = ({ small = false }: { small?: boolean }) => (
@@ -63,7 +67,6 @@ export default function CurrentOffer() {
     reason?: string;
     waitTime?: number;
   }>({ allowed: true });
-  const [smsConsent, setSmsConsent] = useState(false);
 
   // Format phone number based on country code
   const formatPhoneNumber = (value: string, code: string): string => {
@@ -151,11 +154,6 @@ export default function CurrentOffer() {
     }
 
 
-    if (!smsConsent) {
-      setSubmitStatus({ type: 'error', message: 'You must agree to receive SMS messages to continue' });
-      return false;
-    }
-
     // Check rate limiting
     const rateLimitCheck = spamProtection.canSubmit();
     if (!rateLimitCheck.allowed) {
@@ -233,8 +231,6 @@ export default function CurrentOffer() {
         setCountryCode('+1');
         // Reset honeypot
         setHoneypotValue('');
-        // Reset SMS consent
-        setSmsConsent(false);
       } else {
         setSubmitStatus({ type: 'error', message: result.message });
       }
@@ -272,7 +268,7 @@ export default function CurrentOffer() {
           {/* Section Header */}
           <div className="text-center mb-12 lg:mb-16">
             <h2 className="text-4xl lg:text-6xl xl:text-7xl font-bold text-white mb-6" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-              This week’s offer
+              Our Current Offer
             </h2>
             <div className="w-24 h-1 bg-[#35c4dd] mx-auto rounded-full"></div>
           </div>
@@ -281,9 +277,19 @@ export default function CurrentOffer() {
             {/* Left Column - Offer Details */}
             <div className="space-y-6">
               <div className="bg-white/5 backdrop-blur-2xl rounded-2xl lg:rounded-3xl p-6 lg:p-8 border border-white/30 shadow-2xl">
-                <div className="mb-6">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/30 mt-2">
+                    <Image 
+                      src="/images/founder-1s.png" 
+                      alt="Zayn - Senior E-commerce Consultant" 
+                      width={48} 
+                      height={48}
+                      className="w-full h-full object-cover"
+                      style={{ objectPosition: 'center 30%' }}
+                    />
+                  </div>
                   <h3 className="text-2xl lg:text-3xl font-bold text-white" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                    Launch (or relaunch) your Walmart store
+                    Launch Your Walmart Store
                   </h3>
                 </div>
                 <p className="text-lg lg:text-xl text-white/90 leading-relaxed mb-6" style={{ fontFamily: "'Barlow', sans-serif" }}>
@@ -299,13 +305,25 @@ export default function CurrentOffer() {
 
             {/* Right Column - Contact Form */}
             <div className="bg-white/5 backdrop-blur-2xl rounded-2xl lg:rounded-3xl p-6 lg:p-8 border border-white/30 shadow-2xl">
-              <div className="mb-6">
-                <h3 className="text-2xl lg:text-3xl font-bold text-white" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                  Book your call
-                </h3>
-                <p className="text-white/80 text-sm lg:text-base mt-1" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                  Speak directly with our senior consultant
-                </p>
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-white/30 mt-2">
+                  <Image 
+                    src={imgFounder} 
+                    alt="Aain - Senior E-commerce Consultant" 
+                    width={64} 
+                    height={64}
+                    className="w-full h-full object-cover"
+                    style={{ objectPosition: 'center 20%' }}
+                  />
+                </div>
+                <div>
+                  <h3 className="text-2xl lg:text-3xl font-bold text-white" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+                    Get Started Today
+                  </h3>
+                  <p className="text-white/80 text-sm lg:text-base" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                    Speak directly with our senior consultant
+                  </p>
+                </div>
               </div>
               
               <form onSubmit={handleSubmit} className="space-y-4 lg:space-y-6">
@@ -623,21 +641,7 @@ export default function CurrentOffer() {
                     <strong>Rate Limit:</strong> {rateLimitStatus.reason}
                   </div>
                 )}
-
-                {/* SMS Consent Checkbox */}
-                <div className="flex items-start gap-3">
-                  <input
-                    type="checkbox"
-                    id="sms-consent-offer"
-                    checked={smsConsent}
-                    onChange={(e) => setSmsConsent(e.target.checked)}
-                    className="mt-1 w-5 h-5 flex-shrink-0 accent-[#35c4dd]"
-                  />
-                  <label htmlFor="sms-consent-offer" className="text-xs text-white/80 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                    By checking this box, you agree to receive SMS messages from Aain Ali LLC related to inquiries, appointments, onboarding updates, account notifications, and service-related communication. Message frequency varies. Message &amp; data rates may apply. Reply STOP to opt out or HELP for assistance. Consent is not a condition of purchase. View our <a href="/privacy-policy" className="underline hover:text-white transition-colors">Privacy Policy</a> and <a href="/terms-of-use" className="underline hover:text-white transition-colors">Terms of use</a>.
-                  </label>
-                </div>
-
+                
                 <div className="pt-4">
                   <button
                     type="submit"

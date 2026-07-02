@@ -53,14 +53,14 @@ export default function PrivacyPolicyPage() {
   return (
     <>
       <Head>
-        <title>Privacy Policy - Aain ali</title>
-        <meta name="description" content="Privacy Policy for Aain ali. Learn how we collect, use, and protect your information." />
+        <title>Privacy Policy - ECOM SHARKS</title>
+        <meta name="description" content="Privacy Policy for ECOM SHARKS. Learn how we collect, use, and protect your information." />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       
       <div className="w-full bg-white min-h-screen">
         <Header 
-          heroTitle="Privacy & your data"
+          heroTitle="Privacy Policy"
           heroSubtitle="Your privacy is important to us. This policy explains how we collect, use, and protect your information."
         />
       
@@ -85,22 +85,22 @@ export default function PrivacyPolicyPage() {
               {/* Introduction */}
               <motion.div variants={textVariants} className="mb-8">
                 <h2 className="text-2xl lg:text-3xl font-bold text-[#063f4a] mb-4" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                  How to read this policy
+                  Introduction
                 </h2>
                 <p className="text-base lg:text-lg text-[#2c2020] leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                  Aain ali ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
+                  ECOM SHARKS ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website or use our services.
                 </p>
               </motion.div>
 
               {/* Information We Collect */}
               <motion.div variants={textVariants} className="mb-8">
                 <h2 className="text-2xl lg:text-3xl font-bold text-[#063f4a] mb-4" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                  What we collect
+                  Information We Collect
                 </h2>
                 <div className="space-y-4">
                   <div>
                     <h3 className="text-xl font-semibold text-[#063f4a] mb-2" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                      Information you provide
+                      Personal Information
                     </h3>
                     <p className="text-base lg:text-lg text-[#2c2020] leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
                       We may collect personal information that you voluntarily provide to us, including:
@@ -115,7 +115,7 @@ export default function PrivacyPolicyPage() {
                   
                   <div>
                     <h3 className="text-xl font-semibold text-[#063f4a] mb-2" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                      Information collected automatically
+                      Automatically Collected Information
                     </h3>
                     <p className="text-base lg:text-lg text-[#2c2020] leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
                       We may automatically collect certain information about your device and usage patterns, including:
@@ -132,7 +132,7 @@ export default function PrivacyPolicyPage() {
               {/* How We Use Your Information */}
               <motion.div variants={textVariants} className="mb-8">
                 <h2 className="text-2xl lg:text-3xl font-bold text-[#063f4a] mb-4" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                  How we use your information
+                  How We Use Your Information
                 </h2>
                 <p className="text-base lg:text-lg text-[#2c2020] leading-relaxed mb-4" style={{ fontFamily: "'Barlow', sans-serif" }}>
                   We use the information we collect to:
@@ -152,7 +152,7 @@ export default function PrivacyPolicyPage() {
               {/* Information Sharing */}
               <motion.div variants={textVariants} className="mb-8">
                 <h2 className="text-2xl lg:text-3xl font-bold text-[#063f4a] mb-4" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                  When we share information
+                  Information Sharing and Disclosure
                 </h2>
                 <p className="text-base lg:text-lg text-[#2c2020] leading-relaxed mb-4" style={{ fontFamily: "'Barlow', sans-serif" }}>
                   We do not sell, trade, or otherwise transfer your personal information to third parties without your consent, except in the following circumstances:
@@ -164,15 +164,12 @@ export default function PrivacyPolicyPage() {
                   <li>With trusted service providers who assist us in operating our website and conducting our business</li>
                   <li>In connection with a business transfer or acquisition</li>
                 </ul>
-                <p className="text-base lg:text-lg text-[#2c2020] leading-relaxed mt-4 font-medium" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                  No mobile information will be shared with third parties/affiliates for marketing/promotional purposes.
-                </p>
               </motion.div>
 
               {/* Data Security */}
               <motion.div variants={textVariants} className="mb-8">
                 <h2 className="text-2xl lg:text-3xl font-bold text-[#063f4a] mb-4" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                  How we protect your data
+                  Data Security
                 </h2>
                 <p className="text-base lg:text-lg text-[#2c2020] leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
                   We implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. However, no method of transmission over the internet or electronic storage is 100% secure.
@@ -182,7 +179,7 @@ export default function PrivacyPolicyPage() {
               {/* Your Rights */}
               <motion.div variants={textVariants} className="mb-8">
                 <h2 className="text-2xl lg:text-3xl font-bold text-[#063f4a] mb-4" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                  Your choices & rights
+                  Your Rights
                 </h2>
                 <p className="text-base lg:text-lg text-[#2c2020] leading-relaxed mb-4" style={{ fontFamily: "'Barlow', sans-serif" }}>
                   You have the right to:
@@ -201,7 +198,7 @@ export default function PrivacyPolicyPage() {
               {/* Cookies */}
               <motion.div variants={textVariants} className="mb-8">
                 <h2 className="text-2xl lg:text-3xl font-bold text-[#063f4a] mb-4" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                  Cookies & similar tech
+                  Cookies and Tracking Technologies
                 </h2>
                 <p className="text-base lg:text-lg text-[#2c2020] leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
                   We use cookies and similar tracking technologies to enhance your experience on our website. You can control cookie settings through your browser preferences.
@@ -211,7 +208,7 @@ export default function PrivacyPolicyPage() {
               {/* Third-Party Links */}
               <motion.div variants={textVariants} className="mb-8">
                 <h2 className="text-2xl lg:text-3xl font-bold text-[#063f4a] mb-4" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                  Third‑party sites
+                  Third-Party Links
                 </h2>
                 <p className="text-base lg:text-lg text-[#2c2020] leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
                   Our website may contain links to third-party websites. We are not responsible for the privacy practices or content of these external sites. We encourage you to review the privacy policies of any third-party sites you visit.
@@ -221,7 +218,7 @@ export default function PrivacyPolicyPage() {
               {/* Children's Privacy */}
               <motion.div variants={textVariants} className="mb-8">
                 <h2 className="text-2xl lg:text-3xl font-bold text-[#063f4a] mb-4" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                  Children’s privacy
+                  Children's Privacy
                 </h2>
                 <p className="text-base lg:text-lg text-[#2c2020] leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
                   Our services are not directed to children under 13 years of age. We do not knowingly collect personal information from children under 13. If we become aware that we have collected personal information from a child under 13, we will take steps to delete such information.
@@ -231,7 +228,7 @@ export default function PrivacyPolicyPage() {
               {/* Changes to Privacy Policy */}
               <motion.div variants={textVariants} className="mb-8">
                 <h2 className="text-2xl lg:text-3xl font-bold text-[#063f4a] mb-4" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                  Updates to this policy
+                  Changes to This Privacy Policy
                 </h2>
                 <p className="text-base lg:text-lg text-[#2c2020] leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
                   We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date. You are advised to review this Privacy Policy periodically for any changes.
@@ -241,12 +238,14 @@ export default function PrivacyPolicyPage() {
               {/* Contact Information */}
               <motion.div variants={textVariants} className="mb-8">
                 <h2 className="text-2xl lg:text-3xl font-bold text-[#063f4a] mb-4" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-                  Questions? Talk to us
+                  Contact Us
                 </h2>
                 <p className="text-base lg:text-lg text-[#2c2020] leading-relaxed mb-4" style={{ fontFamily: "'Barlow', sans-serif" }}>
                   If you have any questions about this Privacy Policy or our privacy practices, please contact us:
                 </p>
                 <div className="bg-[#f8fafc] rounded-lg p-6" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                  <p className="text-[#2c2020] mb-2"><strong>Email:</strong> info@ecomsharkss.com</p>
+                  <p className="text-[#2c2020]"><strong>Phone:</strong> (469) 480-7938</p>
                 </div>
               </motion.div>
 

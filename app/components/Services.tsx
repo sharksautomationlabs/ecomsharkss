@@ -28,26 +28,26 @@ const ChatIcon = () => (
 
 const servicesData = [
   {
-    title: 'Amazon FBA',
-    description: 'Listings, ads, and supply-chain ops that stack growth.',
+    title: 'Amazon',
+    description: 'Vast Selection, unparalleled convenience, Fastest ROI.',
     logo: imgWalmartLogo,
     route: '/amazon',
   },
   {
-    title: 'TikTok Shop',
-    description: "Turns views into a repeatable sales engine.",
+    title: 'Tiktok',
+    description: "Don't just watch the trend, own it.",
     logo: imgTikTokLogo,
     route: '/tiktok',
   },
   {
     title: 'Shopify',
-    description: "A storefront engineered for conversion and retention.",
+    description: "Your dream. Your brand. Your store",
     logo: imgShopifyLogo,
     route: '/shopify',
   },
   {
     title: 'Walmart',
-    description: 'Marketplace execution built for scale and clean ops.',
+    description: 'Zero to $1000/- in days with Drop Shipping',
     logo: imgAmazonLogo,
     route: '/walmart',
   },
@@ -95,7 +95,7 @@ export default function Services() {
         {/* Content Layer */}
         <div className="relative z-20 w-full h-full flex flex-col items-center justify-center text-white pt-12 lg:pt-20 px-5 lg:px-0">
           <h1 className="text-4xl lg:text-[94px] font-semibold" style={{ fontFamily: "'Barlow Condensed', sans-serif", ...textShadow }}>
-            Channels We Scale for You
+            Services
           </h1>
           
           {/* Services Grid */}

@@ -12,16 +12,16 @@ const imgArrowIcon = "/images/arrow-icon.svg";
 // Call process steps data
 const callProcessSteps = [
   {
-    title: "Where you are now",
-    description: "We align on your goals, constraints, and timeline—so advice is specific, not generic."
+    title: "Your Situation",
+    description: "We'll review your background and goals to understand how our system can best serve you."
   },
   {
-    title: "How the system works", 
-    description: "A clear walkthrough of the automated model—what we run, what you approve, and what “good” looks like."
+    title: "Our System", 
+    description: "We'll walk you through a live demonstration of our automated store system, so you can see it in action."
   },
   {
-    title: "Your 90-day roadmap",
-    description: "A practical plan to hit milestones fast—with the right levers, not more busywork."
+    title: "Your Path",
+    description: "We'll map out a personalized strategy to help you achieve a guaranteed return in just 90 days."
   }
 ];
 
@@ -127,14 +127,14 @@ export default function CallProcess() {
           {/* Section Header */}
           <motion.div variants={cardVariants}>
             <div className="inline-flex items-center gap-2 lg:gap-3 bg-white/20 backdrop-blur-sm text-white px-3 lg:px-4 py-2 lg:py-2.5 rounded-full mb-6 lg:mb-8">
-              <span className="font-medium text-sm lg:text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>On the call</span>
+              <span className="font-medium text-sm lg:text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>Call Process</span>
             </div>
             
             <h1 
               className="text-3xl lg:text-5xl xl:text-6xl font-bold text-white leading-tight" 
               style={{ fontFamily: "'Barlow Condensed', sans-serif", textShadow: '0px 3px 6px rgba(0,0,0,0.5)' }}
             >
-              How your strategy call works
+              What Happens on the Call?
             </h1>
             
             <p 

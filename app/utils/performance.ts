@@ -6,7 +6,7 @@ export const preloadCriticalResources = () => {
     // Preload critical images
     const criticalImages = [
       '/images/bi-vid.jpeg',
-      '/images/Aain-Ali1.png',
+      '/images/quote-logo.png',
       '/images/shark-underwater-2.png'
     ];
 

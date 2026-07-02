@@ -200,7 +200,7 @@ export default function StrategyCall() {
               className="text-4xl lg:text-6xl font-bold text-[#063f4a] mb-6" 
               style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
             >
-              What you get on the free strategy call
+              What you'll get in the free strategy call?
             </h1>
             <div className="w-24 h-1 bg-gradient-to-r from-[#35c4dd] to-[#063f4a] mx-auto rounded-full"></div>
           </motion.div>
@@ -224,7 +224,7 @@ export default function StrategyCall() {
             className="mb-12 lg:mb-16"
           >
             <h2 className="text-2xl lg:text-3xl font-bold text-[#063f4a] mb-8 text-center" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-              Momentum in the first 30 days
+              Guaranteed High Profits Within the First Month
             </h2>
             
              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">

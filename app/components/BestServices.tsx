@@ -17,15 +17,15 @@ const imgChatIcon = "/images/chat-icon.svg";
 const servicesData = [
   {
     id: 1,
-    title: "Inventory that stays in stock",
-    description: "Forecasting, restock triggers, and supplier sync—so you sell through without fire drills.",
+    title: "Expertise in Inventory Management",
+    description: "Our inventory management services ensure your products are always in stock and ready to meet customer demand.",
     icon: "/images/walmart-logo.png",
     concept: "Amazon"
   },
   {
     id: 2,
-    title: "Fulfillment that matches your demand",
-    description: "Faster handoffs, fewer errors, and happier customers on every order.",
+    title: "Superior Order Fulfillment Solutions",
+    description: "We guarantee fast, reliable delivery, ensuring your customers receive their orders promptly and in perfect condition.",
     icon: "/images/walmart-logo.png",
     concept: "Amazon"
   }
@@ -179,13 +179,13 @@ export default function BestServices() {
             className="text-3xl lg:text-5xl xl:text-6xl font-bold tracking-wide" 
             style={{ fontFamily: "'Barlow Condensed', sans-serif", textShadow: '0px 3px 6px rgba(0,0,0,0.5)' }}
           >
-            Amazon services built for compounding growth
+            We Provide the Best Services for Your Product
           </h1>
           <p 
             className="mt-4 max-w-4xl mx-auto text-base lg:text-lg text-gray-200 leading-relaxed"
             style={{ fontFamily: "'Barlow', sans-serif" }}
           >
-            From catalog health to fulfillment handoffs, Aain Ali keeps the machine running—so you can focus on strategy, not firefighting.
+            At ECOM SHARKS, we offer top-tier solutions designed to streamline your Amazon business. Our expert team ensures every aspect operates flawlessly & seamlessly.
           </p>
         </motion.div>
 

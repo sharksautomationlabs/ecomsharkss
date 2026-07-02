@@ -29,15 +29,6 @@ const PhoneIcon = () => (
     </div>
 );
 
-const AddressIcon = () => (
-    <div className="w-12 h-12 bg-[#063f4a] rounded-full flex items-center justify-center flex-shrink-0">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            <circle cx="12" cy="9" r="2.5" stroke="white" strokeWidth="2"/>
-        </svg>
-    </div>
-);
-
 const SocialIcon = ({ path, href }: { path: string; href?: string }) => (
   <a href={href || "#"} className="w-8 h-8 bg-gray-400 hover:bg-[#35c4dd] transition-colors rounded-full flex items-center justify-center">
     <svg className="w-4 h-4 text-[#063f4a]" fill="currentColor" viewBox="0 0 24 24">
@@ -61,8 +52,7 @@ export default function Contact() {
   
   const [privacyPolicyAccepted, setPrivacyPolicyAccepted] = useState(false);
   const [consentGiven, setConsentGiven] = useState(false);
-  const [smsConsent, setSmsConsent] = useState(false);
-
+  
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{
     type: 'success' | 'error' | null;
@@ -175,10 +165,6 @@ export default function Contact() {
       setSubmitStatus({ type: 'error', message: 'You must give consent to continue' });
       return false;
     }
-    if (!smsConsent) {
-      setSubmitStatus({ type: 'error', message: 'You must agree to receive SMS messages to continue' });
-      return false;
-    }
     return true;
   };
 
@@ -235,7 +221,6 @@ export default function Contact() {
         // Reset checkboxes
         setPrivacyPolicyAccepted(false);
         setConsentGiven(false);
-        setSmsConsent(false);
       } else {
         setSubmitStatus({ type: 'error', message: result.message });
       }
@@ -323,31 +308,24 @@ export default function Contact() {
             animate={controls}
           >
             <h1 className="text-4xl lg:text-7xl xl:text-8xl font-semibold" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
-              Let’s talk growth
+              Contact
             </h1>
             <p className="mt-4 lg:mt-6 text-base lg:text-xl xl:text-2xl leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-              Ready to elevate your e-Commerce success?. Aain ali is here to support you at every step. Whether you have questions, need expert guidance, or want customized solution for your brand, our team is just a message away. Let's build something amazing together!
+              Ready to elevate your e-Commerce success?. ECOM SHARKS is here to support you at every step. Whether you have questions, need expert guidance, or want customized solution for your brand, our team is just a message away. Let's build something amazing together!
             </p>
             <div className="mt-8 lg:mt-12 space-y-4 lg:space-y-6">
               <div className="flex items-center gap-3 lg:gap-4">
                 <GeneralInquiriesIcon />
                 <div>
-                  <h3 className="font-bold text-base lg:text-lg">Email</h3>
-                  <p className="text-base lg:text-lg">aainalillc@gmail.com</p>
+                  <h3 className="font-bold text-base lg:text-lg">General Inquiries:</h3>
+                  <p className="text-base lg:text-lg">info@ecomsharkss.com</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 lg:gap-4">
                 <PhoneIcon />
                 <div>
-                  <h3 className="font-bold text-base lg:text-lg">Phone</h3>
-                  <p className="text-base lg:text-lg">+1 (773) 828-7104</p>
-                </div>
-              </div>
-              <div className="flex items-center gap-3 lg:gap-4">
-                <AddressIcon />
-                <div>
-                  <h3 className="font-bold text-base lg:text-lg">Address</h3>
-                  <p className="text-base lg:text-lg">30 N Gould St Ste N, Sheridan, WY 82801, United States</p>
+                  <h3 className="font-bold text-base lg:text-lg">Phone:</h3>
+                  <p className="text-base lg:text-lg">(469) 480-7938</p>
                 </div>
               </div>
             </div>
@@ -361,7 +339,7 @@ export default function Contact() {
             animate={controls}
           >
             <h2 className="text-2xl lg:text-3xl font-bold" style={{ fontFamily: "'Barlow', sans-serif" }}>
-              Tell us what you’re building
+              Let's Talk About Your E-commerce Business
             </h2>
             <form onSubmit={handleSubmit} className="mt-6 lg:mt-8 space-y-4 lg:space-y-6">
               {/* Status Message */}
@@ -663,25 +641,11 @@ export default function Contact() {
                     className="mt-1 w-5 h-5 text-[#35c4dd] bg-white border-2 border-white rounded focus:ring-[#35c4dd] focus:ring-2 flex-shrink-0"
                   />
                   <label htmlFor="consent" className="text-sm text-white/90 leading-relaxed">
-                    I consent to being contacted by Aain ali regarding my inquiry and understand that my information will be used in accordance with the privacy policy.
-                  </label>
-                </div>
-
-
-                <div className="flex items-start gap-3">
-                  <input
-                    type="checkbox"
-                    id="sms-consent-footer"
-                    checked={smsConsent}
-                    onChange={(e) => setSmsConsent(e.target.checked)}
-                    className="mt-1 w-5 h-5 text-[#35c4dd] bg-white border-2 border-white rounded focus:ring-[#35c4dd] focus:ring-2 flex-shrink-0"
-                  />
-                  <label htmlFor="sms-consent-footer" className="text-xs text-white/90 leading-relaxed">
-                    By entering your number, you agree to receive informational messages from Aain Ali LLC at the number provided and agree to our terms &amp; privacy policy. Message frequency varies. Message &amp; data rates may apply. Reply STOP to cancel. Reply HELP for info.
+                    I consent to being contacted by ECOM SHARKS regarding my inquiry and understand that my information will be used in accordance with the privacy policy.
                   </label>
                 </div>
               </div>
-
+              
               <div>
                 <button 
                   type="submit" 
@@ -714,7 +678,7 @@ export default function Contact() {
       <div className="relative z-10 mt-0">
         <div className="bg-[#063f4a] py-4 lg:py-6">
           <div className="container mx-auto px-5 lg:px-20 flex flex-col md:flex-row items-center justify-between gap-4 lg:gap-6 text-white text-xs lg:text-sm">
-            <p>© 2025 Aain ali. All Rights Reserved.</p>
+            <p>© 2025 Ecom Sharkss. All Rights Reserved.</p>
             <div className="flex items-center gap-3 lg:gap-4">
               <span>Follow us:</span>
               <div className="flex items-center gap-2 lg:gap-3">
@@ -724,9 +688,9 @@ export default function Contact() {
               </div>
             </div>
             <div className="flex items-center gap-2">
-              <a href="/privacy-policy" className="hover:text-[#35c4dd] transition-colors">Privacy Policy</a>
+              <a href="#" className="hover:text-[#35c4dd] transition-colors">Privacy Policy</a>
               <span>|</span>
-              <a href="/terms-of-use" className="hover:text-[#35c4dd] transition-colors">Terms of Use</a>
+              <a href="#" className="hover:text-[#35c4dd] transition-colors">Terms of Use</a>
             </div>
           </div>
         </div>
