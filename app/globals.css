@@ -11,6 +11,23 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-barlow);
   --font-mono: var(--font-barlow-condensed);
+  --font-montserrat: var(--font-montserrat);
+  --font-barlow: var(--font-barlow);
+}
+
+/* Funnel pages accent: remap Tailwind teal scale to the ECOM SHARKS logo blue (#154a89) */
+@theme {
+  --color-teal-50: #eef4fb;
+  --color-teal-100: #dce9f7;
+  --color-teal-200: #b9d2ee;
+  --color-teal-300: #8ab3e0;
+  --color-teal-400: #4d84c4;
+  --color-teal-500: #2a67ab;
+  --color-teal-600: #154a89;
+  --color-teal-700: #123e73;
+  --color-teal-800: #0f335e;
+  --color-teal-900: #0c284a;
+  --color-teal-950: #081b33;
 }
 
 @media (prefers-color-scheme: dark) {

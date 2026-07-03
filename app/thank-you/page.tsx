@@ -6,8 +6,19 @@ import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 import Link from 'next/link';
 import { CheckCircle, Calendar } from 'lucide-react';
-import EcomWealthFAQ from '../components/EcomWealthFAQ';
-import { precallFaqItems } from '../utils/ecomwealthContent';
+import EcomWealthFAQ from '@/components/EcomWealthFAQ';
+import { FunnelReviewCardsGrid } from '@/components/PlatformReviewsSection';
+import { precallFaqItems } from '@/lib/ecomwealthContent';
+import {
+  FUNNEL_BRAND_NAME,
+  FUNNEL_CONTACT_EMAIL,
+  FUNNEL_CONTACT_MAILTO,
+  FUNNEL_CONTACT_PHONE_DISPLAY,
+  FUNNEL_CONTACT_PHONE_TEL,
+  FUNNEL_LOGO_SRC,
+} from '@/lib/funnelBrand';
+
+type FbqWindow = Window & { fbq?: (...args: unknown[]) => void };
 
 export default function ThanksPage() {
   const [userName, setUserName] = useState('');
@@ -20,6 +31,8 @@ export default function ThanksPage() {
     const params = new URLSearchParams(window.location.search);
     setUserName(params.get('Name') || params.get('name') || '');
     setIcsLink(params.get('ics_link') || params.get('icslink') || null);
+    // Fire Lead conversion event for Meta Pixel
+    (window as FbqWindow).fbq?.('track', 'Lead');
   }, []);
 
   const handleAddToCalendar = () => {
@@ -34,12 +47,12 @@ export default function ThanksPage() {
 
   const containerVariants: Variants = {
     hidden: {},
-    visible: { transition: { staggerChildren: 0.15, delayChildren: 0.1 } },
+    visible: { transition: { staggerChildren: 0.035, delayChildren: 0 } },
   };
 
   const fadeInUp: Variants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100, damping: 20 } },
+    hidden: { opacity: 0, y: 16 },
+    visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 200, damping: 26 } },
   };
 
   const prepareChecklist = [
@@ -49,68 +62,63 @@ export default function ThanksPage() {
   ];
 
   return (
-    <div className="w-full bg-white overflow-x-hidden">
+    <div className="w-full min-h-screen bg-white text-slate-700 overflow-x-hidden">
 
       {/* ============ HERO ============ */}
-      <div ref={heroRef} className="relative bg-[#052126] pt-6 lg:pt-8 pb-20 lg:pb-24 overflow-hidden">
-        <div className="absolute top-[-200px] right-[-100px] w-[500px] h-[500px] bg-[#35c4dd]/8 rounded-full blur-3xl" />
-        <div className="absolute bottom-[-150px] left-[-80px] w-[400px] h-[400px] bg-[#063f4a]/50 rounded-full blur-3xl" />
+      <div ref={heroRef} className="relative bg-white pt-6 lg:pt-8 pb-20 lg:pb-24 overflow-hidden border-b border-slate-200">
+        <div className="absolute top-[-200px] right-[-100px] w-[500px] h-[500px] bg-teal-200/40 rounded-full blur-3xl" />
+        <div className="absolute bottom-[-150px] left-[-80px] w-[400px] h-[400px] bg-teal-100/50 rounded-full blur-3xl" />
 
         <div className="container mx-auto px-5 lg:px-20 relative z-10">
           <motion.div initial="hidden" animate={heroControls} variants={containerVariants} className="max-w-4xl mx-auto text-center">
             <motion.div variants={fadeInUp} className="mb-2 flex justify-center">
               <Link href="/" className="inline-block">
-                <div className="relative w-[140px] h-[95px] lg:w-[200px] lg:h-[130px]">
-                  <Image src="/images/quote-logo.png" alt="ECOM SHARKS" fill className="object-contain" priority />
+                <div className="relative w-[160px] h-[52px] lg:w-[220px] lg:h-[72px]">
+                  <Image src={FUNNEL_LOGO_SRC} alt={FUNNEL_BRAND_NAME} fill className="object-contain object-center" priority sizes="(max-width: 1024px) 160px, 220px" />
                 </div>
               </Link>
             </motion.div>
 
             <motion.div
               variants={fadeInUp}
-              className="inline-block bg-[#35c4dd] text-[#063f4a] font-bold py-3 px-5 lg:py-4 lg:px-6 rounded-full border-2 border-[#35c4dd]/80 mb-8"
-              style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+              className="inline-block bg-teal-500 text-white font-bold py-3 px-5 lg:py-4 lg:px-6 rounded-full border-2 border-teal-500 mb-8"
             >
-              <span className="text-lg md:text-2xl lg:text-3xl">
+              <span className="text-2xl md:text-4xl lg:text-5xl">
                 CONGRATS{userName ? `, ${userName}` : ''}! Your Call Has Been Booked!
               </span>
             </motion.div>
 
             <motion.p
               variants={fadeInUp}
-              className="text-base lg:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed mb-10"
-              style={{ fontFamily: "'Barlow', sans-serif" }}
+              className="text-lg lg:text-2xl text-slate-600 max-w-3xl mx-auto leading-relaxed mb-10"
             >
               Follow the steps below to confirm your call.
             </motion.p>
 
             <motion.h2
               variants={fadeInUp}
-              className="text-xl lg:text-3xl font-bold text-white text-center mb-6"
-              style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+              className="text-3xl lg:text-5xl font-bold text-slate-900 text-center mb-6"
             >
-              Step 1: Click The Button Below To Add The Event To Your Calendar
+              Step 1: Add the call to your calendar
             </motion.h2>
             <motion.div variants={fadeInUp} className="flex justify-center mb-12">
               <button
                 type="button"
                 onClick={handleAddToCalendar}
-                className="w-full max-w-md mx-auto flex items-center justify-center gap-3 bg-white/10 hover:bg-white/15 border-2 border-[#35c4dd]/60 rounded-2xl py-5 px-6 text-white font-bold transition-all shadow-xl hover:shadow-[#35c4dd]/20 text-lg lg:text-xl"
-                style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+                className="w-full max-w-md mx-auto flex items-center justify-center gap-3 bg-white hover:bg-slate-50 border-2 border-teal-300 rounded-2xl py-5 px-6 text-slate-900 font-bold transition-all shadow-md hover:shadow-teal-500/20 text-xl lg:text-2xl"
               >
-                <Calendar className="w-7 h-7 text-[#35c4dd]" />
+                <Calendar className="w-7 h-7 text-teal-600" />
                 Add The Event To Your Calendar
               </button>
             </motion.div>
 
             <motion.h2
               variants={fadeInUp}
-              className="text-xl lg:text-3xl font-bold text-white text-center mb-6"
-              style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+              className="text-3xl lg:text-5xl font-bold text-slate-900 text-center mb-6"
             >
-              Step 2: Watch This Short Video <span className="text-[#35c4dd]">(3 Minutes)</span>
+              Step 2: Watch the 3-minute prep video
             </motion.h2>
-            <motion.div variants={fadeInUp} className="relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-xl ring-2 ring-white/10" style={{ paddingBottom: '56.25%' }}>
+            <motion.div variants={fadeInUp} className="relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-xl ring-1 ring-slate-200" style={{ paddingBottom: '56.25%' }}>
               <iframe
                 className="absolute top-0 left-0 w-full h-full"
                 src="https://www.youtube.com/embed/PkzqxZQwK_E"
@@ -122,12 +130,11 @@ export default function ThanksPage() {
             </motion.div>
             <motion.h2
               variants={fadeInUp}
-              className="text-xl lg:text-3xl font-bold text-white text-center mb-6 mt-12"
-              style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
+              className="text-3xl lg:text-5xl font-bold text-slate-900 text-center mb-6 mt-12"
             >
-              Watch the 2nd video
+              Step 3: Then watch the results walkthrough
             </motion.h2>
-            <motion.div variants={fadeInUp} className="relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-xl ring-2 ring-white/10" style={{ paddingBottom: '56.25%' }}>
+            <motion.div variants={fadeInUp} className="relative w-full max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-xl ring-1 ring-slate-200" style={{ paddingBottom: '56.25%' }}>
               <iframe
                 className="absolute top-0 left-0 w-full h-full"
                 src="https://www.youtube.com/embed/ZPY3hkj7xSE"
@@ -142,14 +149,11 @@ export default function ThanksPage() {
       </div>
 
       {/* ============ STEP 2: FAQ ============ */}
-      <div className="py-16 lg:py-24 bg-white">
+      <div className="py-16 lg:py-24 bg-slate-50 border-y border-slate-200">
         <div className="container mx-auto px-5 lg:px-20">
           <div className="max-w-3xl mx-auto">
-            <h2
-              className="text-2xl lg:text-4xl font-bold text-[#063f4a] text-center mb-12"
-              style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-            >
-              Step 3: Go Through Our Frequently Asked Questions Below
+            <h2 className="text-4xl lg:text-6xl font-bold text-slate-900 text-center mb-12 tracking-tight">
+              Step 4: Read the FAQs—so there are no surprises
             </h2>
             <EcomWealthFAQ items={precallFaqItems} />
           </div>
@@ -157,23 +161,17 @@ export default function ThanksPage() {
       </div>
 
       {/* ============ PARTNER STORE RESULTS (above reviews) ============ */}
-      <div className="py-16 lg:py-24 bg-[#bef4fe]/15">
+      <div className="py-16 lg:py-24 bg-white border-y border-slate-200">
         <div className="container mx-auto px-5 lg:px-20">
-          <h2
-            className="text-2xl lg:text-4xl font-bold text-[#063f4a] text-center mb-4"
-            style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-          >
-            Inside Look at Partner Store Results
+          <h2 className="text-4xl lg:text-6xl font-bold text-slate-900 text-center mb-4 tracking-tight">
+            Partner store snapshots
           </h2>
-          <p
-            className="text-center text-[#2c2420]/70 mb-10 max-w-3xl mx-auto"
-            style={{ fontFamily: "'Barlow', sans-serif" }}
-          >
+          <p className="text-center text-slate-600 text-lg lg:text-xl mb-10 max-w-3xl mx-auto leading-relaxed">
             A glimpse into the sales activity clients have experienced using our fully managed, zero-inventory, Profit-First automation system. Individual results vary.
           </p>
           <div className="grid grid-cols-1 gap-6 max-w-4xl mx-auto">
             {[1, 3, 4, 5, 6, 7].map((i) => (
-              <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-xl border border-[#35c4dd]/20 aspect-[4/3] flex items-center justify-center">
+              <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-md border border-slate-200 aspect-[4/3] flex items-center justify-center">
                 <Image
                   src={`/images/thank-you-results/result-${i}.png`}
                   alt={`Partner store result ${i}`}
@@ -189,66 +187,33 @@ export default function ThanksPage() {
         </div>
       </div>
 
-      {/* ============ STEP 4: SEE WHAT OTHERS HAVE TO SAY ============ */}
-      <div className="py-16 lg:py-24 bg-gray-50">
+      {/* ============ STEP 5: SEE WHAT OTHERS HAVE TO SAY ============ */}
+      <div className="py-16 lg:py-24 bg-slate-50 border-y border-slate-200">
         <div className="container mx-auto px-5 lg:px-20">
           <div className="max-w-4xl mx-auto">
-            <h2
-              className="text-2xl lg:text-4xl font-bold text-[#063f4a] text-center mb-6"
-              style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-            >
-              Step 4: See What Others Have To Say
+            <h2 className="text-4xl lg:text-6xl font-bold text-slate-900 text-center mb-6 tracking-tight">
+              Step 5: See what other partners experienced
             </h2>
-            <p
-              className="text-center text-[#2c2420]/70 mb-10"
-              style={{ fontFamily: "'Barlow', sans-serif" }}
-            >
+            <p className="text-center text-slate-600 text-lg lg:text-xl mb-10 leading-relaxed">
               First-hand experiences from clients, sharing what it&apos;s actually been like partnering with our team.
             </p>
-            <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {[1, 2, 3, 4, 5, 6].map((i) => (
-                <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-lg border border-[#35c4dd]/10 flex items-center justify-center min-h-[200px]">
-                  <Image
-                    src={`/images/reviews/review-${i}.png`}
-                    alt={`Trustpilot review ${i}`}
-                    width={480}
-                    height={320}
-                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="w-full h-auto object-contain"
-                  />
-                </div>
-              ))}
-            </div>
-            <div className="text-center mt-8">
-              <a
-                href="https://www.trustpilot.com/review/ecomsharkss.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-[#35c4dd] hover:text-[#2bb3cb] font-semibold transition-colors"
-                style={{ fontFamily: "'Barlow', sans-serif" }}
-              >
-                See all reviews on Trustpilot →
-              </a>
-            </div>
+            <FunnelReviewCardsGrid />
           </div>
         </div>
       </div>
 
       {/* ============ STEP 4: PREPARE FOR YOUR CALL ============ */}
-      <div className="py-16 lg:py-24 bg-white">
+      <div className="py-16 lg:py-24 bg-white border-y border-slate-200">
         <div className="container mx-auto px-5 lg:px-20">
           <div className="max-w-3xl mx-auto">
-            <h2
-              className="text-2xl lg:text-4xl font-bold text-[#063f4a] text-center mb-10"
-              style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-            >
-              Step 5: Prepare For Your Call
+            <h2 className="text-4xl lg:text-6xl font-bold text-slate-900 text-center mb-10 tracking-tight">
+              Step 6: Show up ready (quick checklist)
             </h2>
             <div className="space-y-4">
               {prepareChecklist.map((item, i) => (
                 <div key={i} className="flex gap-3 items-start">
-                  <CheckCircle className="w-6 h-6 text-[#35c4dd] shrink-0 mt-0.5" />
-                  <p className="text-[#2c2420]/80 text-base lg:text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                  <CheckCircle className="w-6 h-6 text-teal-600 shrink-0 mt-0.5" />
+                  <p className="text-slate-700 text-lg lg:text-xl">
                     {item.text}
                   </p>
                 </div>
@@ -259,18 +224,14 @@ export default function ThanksPage() {
       </div>
 
       {/* ============ FINAL CTA ============ */}
-      <div className="py-16 lg:py-24 bg-gradient-to-b from-[#063f4a] to-[#052126]">
+      <div className="py-16 lg:py-24 bg-gradient-to-b from-teal-50 to-white border-t border-slate-200">
         <div className="container mx-auto px-5 lg:px-20 text-center">
-          <h2
-            className="text-2xl lg:text-4xl font-bold text-white mb-6"
-            style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
-          >
-            We Look Forward To Seeing You On The Call!
+          <h2 className="text-4xl lg:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
+            We’re ready when you are—see you on the call
           </h2>
           <Link
             href="/"
-            className="inline-block text-[#35c4dd] hover:text-[#bef4fe] font-medium transition-colors"
-            style={{ fontFamily: "'Barlow', sans-serif" }}
+            className="inline-block text-teal-600 hover:text-teal-700 font-medium transition-colors"
           >
             Back to Homepage
           </Link>
@@ -278,23 +239,31 @@ export default function ThanksPage() {
       </div>
 
       {/* ============ FOOTER ============ */}
-      <div className="bg-[#052126] border-t border-white/10 py-10 lg:py-14">
+      <div className="bg-slate-50 border-t border-slate-200 py-10 lg:py-14">
         <div className="container mx-auto px-5 lg:px-20">
           <div className="max-w-4xl mx-auto text-center">
             <div className="flex items-center justify-center gap-4 mb-4">
-              <Link href="/privacy-policy" className="text-gray-400 hover:text-[#35c4dd] text-sm transition-colors" style={{ fontFamily: "'Barlow', sans-serif" }}>
+              <Link href="/privacy-policy" className="text-slate-500 hover:text-teal-600 text-sm transition-colors">
                 Privacy Policy
               </Link>
-              <span className="text-gray-600">|</span>
-              <Link href="/contact" className="text-gray-400 hover:text-[#35c4dd] text-sm transition-colors" style={{ fontFamily: "'Barlow', sans-serif" }}>
+              <span className="text-slate-300">|</span>
+              <Link href="/contact" className="text-slate-500 hover:text-teal-600 text-sm transition-colors">
                 Contact Us
               </Link>
             </div>
-            <p className="text-gray-500 text-sm mb-6" style={{ fontFamily: "'Barlow', sans-serif" }}>
-              ECOM SHARKS &copy; {new Date().getFullYear()}. All Rights Reserved.
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center items-center gap-3 sm:gap-8 mb-6">
+              <a href={FUNNEL_CONTACT_MAILTO} className="text-teal-600 hover:text-teal-700 font-semibold text-sm transition-colors">
+                {FUNNEL_CONTACT_EMAIL}
+              </a>
+              <a href={FUNNEL_CONTACT_PHONE_TEL} className="text-slate-900 font-semibold text-sm hover:text-teal-600 transition-colors">
+                {FUNNEL_CONTACT_PHONE_DISPLAY}
+              </a>
+            </div>
+            <p className="text-slate-500 text-sm mb-6">
+              {FUNNEL_BRAND_NAME} &copy; {new Date().getFullYear()}. All Rights Reserved.
             </p>
-            <p className="text-gray-600 text-xs leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-              ECOM SHARKS provides e-commerce management services. We do not guarantee income or specific results. Individual results vary. Testimonials reflect real experiences but are not guarantees. By using this site, you acknowledge that you are responsible for your decisions and outcomes.
+            <p className="text-slate-500 text-sm leading-relaxed">
+              {FUNNEL_BRAND_NAME} provides e-commerce management services. We do not guarantee income or specific results. Individual results vary. Testimonials reflect real experiences but are not guarantees. By using this site, you acknowledge that you are responsible for your decisions and outcomes.
             </p>
           </div>
         </div>
