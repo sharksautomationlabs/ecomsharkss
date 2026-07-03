@@ -4,76 +4,18 @@ import React, { useEffect, useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Image from 'next/image';
-import { motion, useAnimation, Variants } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import { motion, Variants } from 'framer-motion';
 import { useVideoLazyLoading } from '../utils/videoLazyLoading';
 
 // Image assets matching the website theme
-const imgBlueWaveShape = "/images/service-bg-vector.svg";
-const imgMaskShape = "/images/service-mask.svg";
-const imgArrowIcon = "/images/arrow-icon.svg";
-const imgChatIcon = "/images/chat-icon.svg";
 const imgSharkUnderwater = "/images/shark-underwater-2.png";
 // const imgMissionShark = "/images/mission-shark-main.png";
 const imgPatternBg = "/images/pattern-bg.png";
 const imgFounders = "/images/founders.png";
 
-// Reusable Button Component matching website theme
-const GetQuoteButton = ({ small = false }: { small?: boolean }) => (
-  <button 
-    className={`group flex items-center justify-center lg:justify-between gap-3 bg-[#35c4dd] hover:bg-[#2cb4ca] transition-colors duration-300 rounded-full overflow-hidden relative ${small ? 'h-12 w-full lg:w-44 pl-6 pr-1' : 'h-14 w-full lg:w-48 pl-6 pr-1.5'}`}
-    onClick={() => {
-      if (typeof window !== 'undefined' && (window as unknown as { Calendly?: { initPopupWidget: (options: { url: string }) => void } }).Calendly) {
-        (window as unknown as { Calendly: { initPopupWidget: (options: { url: string, onEventScheduled?: (e: any) => void }) => void } }).Calendly.initPopupWidget({
-          url: 'https://calendly.com/ecomsharkss-info/30min',
-          onEventScheduled: function(e: any) {
-            // Redirect to thank you page when appointment is scheduled
-            window.location.href = '/thank-you';
-          }
-        });
-      }
-    }}
-  >
-    <span 
-      className={`font-semibold text-[#063f4a] relative z-10 ${small ? 'text-base lg:text-lg' : 'text-lg lg:text-base lg:text-xl'}`}
-      style={{ fontFamily: "'Barlow', sans-serif" }}
-    >
-      Get A Quote
-    </span>
-    <span className={`bg-white rounded-full flex items-center justify-center relative z-10 ${small ? 'w-10 h-10' : 'w-10 h-10'}`}>
-      <Image src={imgArrowIcon} alt="arrow icon" width={small ? 18 : 20} height={small ? 18 : 20} />
-    </span>
-    <div className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-white rounded-full transform scale-0 group-hover:scale-[25] transition-transform duration-[1000ms] ease-in-out origin-center group-hover:duration-[1500ms]"></div>
-  </button>
-);
-
-const ChatButton = () => (
-  <button className="flex items-center justify-center lg:justify-between gap-3 w-full sm:w-[170px] h-[56px] bg-white rounded-full border-2 border-[#35c4dd] p-2 shadow-lg">
-    <span className="pl-0 sm:pl-5 text-[#063f4a] font-semibold text-base lg:text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>Live Chat</span>
-    <div className="w-[44px] h-[44px] bg-[#063f4a] rounded-full flex items-center justify-center">
-      <Image src={imgChatIcon} alt="chat icon" width={28} height={28} />
-    </div>
-  </button>
-);
-
-// Social Media Icons
-const SocialIcon = ({ path, label, href }: { path: string; label: string; href?: string }) => (
-  <a href={href || "#"} className="w-12 h-12 bg-white/20 backdrop-blur-xl border border-white/30 rounded-full flex items-center justify-center hover:bg-[#35c4dd] hover:border-[#35c4dd] transition-all duration-300 group">
-    <svg className="w-6 h-6 text-white group-hover:text-[#063f4a] transition-colors" fill="currentColor" viewBox="0 0 24 24">
-      <path d={path}/>
-    </svg>
-  </a>
-);
-
 export default function IdentityPage() {
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [selectedTeamMember, setSelectedTeamMember] = useState<'Aain' | 'zayn' | 'sharjeel' | 'minhaj' | null>(null);
-  const controls = useAnimation();
   const { videoRef, isInView } = useVideoLazyLoading();
-  const [ref, inView] = useInView({
-    triggerOnce: false,
-    threshold: 0.3,
-  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -83,14 +25,6 @@ export default function IdentityPage() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  useEffect(() => {
-    if (inView) {
-      controls.start('visible');
-    } else {
-      controls.start('hidden');
-    }
-  }, [controls, inView]);
 
   const containerVariants: Variants = {
     hidden: {},
@@ -142,289 +76,14 @@ export default function IdentityPage() {
     },
   };
 
-  const socialLinks = {
-    facebook: "M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z",
-    instagram: "M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z",
-    linkedin: "M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z",
-  };
-
   return (
     <div className="w-full bg-white overflow-x-hidden">
       <Header 
-        heroTitle="Meet Our Leadership Team - ECOM SHARKS"
+        heroTitle="Our Identity - ECOM SHARKS"
         heroSubtitle="10+ Years of E-commerce Excellence | 40+ Team Members | 30+ Years Combined Experience"
         topNavText="🌟 Simplify, Scale, Succeed: Your All-in-One Ecommerce Hub"
       />
       
-      {/* Profile Section with Website Theme */}
-      <section ref={ref} className="relative w-full bg-white pt-16 lg:pt-32 xl:pt-48">
-        {/* Background elements matching website theme */}
-        <div className="absolute top-0 left-0 right-0 bottom-0">
-          <div className="absolute inset-0 z-0">
-            <Image src={imgBlueWaveShape} alt="Wavy background shape" fill className="object-cover object-top" />
-          </div>
-          <div className="absolute inset-0 z-10" 
-               style={{
-                  maskImage: `url('${imgMaskShape}')`,
-                  maskSize: 'cover',
-                  maskRepeat: 'no-repeat',
-                  maskPosition: 'top center',
-               }}>
-            <div className="relative w-full h-full">
-              <video 
-                ref={videoRef}
-                autoPlay={isInView}
-                loop 
-                muted 
-                playsInline
-                preload="metadata"
-                className="absolute inset-0 w-full h-full object-cover blur-md"
-                poster="/images/bi-vid.jpeg"
-              >
-                <source src="/images/bi-vid.mp4" type="video/mp4" />
-              </video>
-              <div className="absolute inset-0 bg-[#052126]/40" />
-            </div>
-          </div>
-        </div>
-
-        <div className="relative z-10 container mx-auto px-5 lg:px-5 lg:px-20 pb-16 lg:pb-24 text-white">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-6 lg:p-8 lg:gap-16 items-center">
-            
-            {/* Left Column - Dynamic Founders Profile */}
-            <motion.div 
-              className="text-center lg:text-left"
-              initial={{ opacity: 1 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.1 }}
-            >
-              <div className="relative mb-6 lg:mb-8 mt-8 lg:mt-12 flex justify-center lg:justify-start">
-                <div className="w-80 h-80 lg:w-96 lg:h-96 rounded-full shadow-2xl border-4 border-white/20 overflow-hidden">
-                  <Image 
-                    src={selectedTeamMember === 'zayn' ? "/images/founder-1s.png" : selectedTeamMember === 'sharjeel' ? "/images/founder-2.png" : selectedTeamMember === 'minhaj' ? "/images/founder-3.jpg" : imgFounders} 
-                    alt={selectedTeamMember === 'zayn' ? "Zayn - Senior E-commerce Consultant" : selectedTeamMember === 'sharjeel' ? "Sharjeel - Sr. Automation Consultation" : selectedTeamMember === 'minhaj' ? "Minhaj - E-commerce Visionary" : "Aain - Senior E-commerce Consultant"} 
-                    width={384} 
-                    height={384}
-                    className="w-full h-full object-cover"
-                    style={{ objectPosition: selectedTeamMember === 'minhaj' ? '85% 0%' : selectedTeamMember === 'zayn' ? 'center 30%' : selectedTeamMember === 'sharjeel' ? 'center 20%' : selectedTeamMember === 'Aain' ? 'center 20%' : 'center center' }}
-                    priority
-                    quality={90}
-                  />
-                </div>
-              </div>
-              
-              <h2 
-                className="text-4xl lg:text-6xl font-semibold text-white mb-4" 
-                style={{ fontFamily: "'Barlow Condensed', sans-serif", textShadow: '0px 3px 6px rgba(0,0,0,0.5)' }}
-              >
-                {selectedTeamMember === 'zayn' ? 'Zayn!' : selectedTeamMember === 'sharjeel' ? 'Sharjeel!' : selectedTeamMember === 'minhaj' ? 'Minhaj!' : 'Aain!'}
-              </h2>
-              <p 
-                className="text-lg lg:text-2xl text-[#35c4dd] mb-6 lg:mb-8" 
-                style={{ fontFamily: "'Barlow', sans-serif", textShadow: '0px 2px 4px rgba(0,0,0,0.5)' }}
-              >
-                 {selectedTeamMember === 'zayn' ? 'Senior E-commerce Consultant' : selectedTeamMember === 'sharjeel' ? 'Sr. Automation Consultation' : selectedTeamMember === 'minhaj' ? 'E-commerce Visionary' : 'Sr. Ecommerce Consultant'}
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-4 lg:gap-6 justify-center lg:justify-start mb-6 lg:mb-8">
-                <GetQuoteButton />
-                <ChatButton />
-              </div>
-
-              {/* Social Links */}
-              <div className="flex gap-4 justify-center lg:justify-start">
-                {selectedTeamMember === 'zayn' ? (
-                  <>
-                    <SocialIcon path={socialLinks.instagram} label="Instagram" href="https://www.instagram.com/muhammadzayaanofficial/" />
-                    <SocialIcon path={socialLinks.facebook} label="Facebook" href="https://www.facebook.com/people/Ecommerce-Sharks/61584113035162/" />
-                    <SocialIcon path={socialLinks.linkedin} label="LinkedIn" href="https://www.linkedin.com/in/muhammad-zayaan-b7b220259?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" />
-                  </>
-                ) : selectedTeamMember === 'sharjeel' ? (
-                  <>
-                    <SocialIcon path={socialLinks.instagram} label="Instagram" href="https://www.instagram.com/sharjeelzahoorofficial/" />
-                    <SocialIcon path={socialLinks.linkedin} label="LinkedIn" href="https://www.linkedin.com/in/sharjeel-zahoor-6a743927a?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" />
-                  </>
-                ) : selectedTeamMember === 'minhaj' ? (
-                  <>
-                    <SocialIcon path={socialLinks.instagram} label="Instagram" href="https://www.instagram.com/minhaj_official/" />
-                    <SocialIcon path={socialLinks.linkedin} label="LinkedIn" href="https://www.linkedin.com/in/minhaj-visionary" />
-                    <SocialIcon path={socialLinks.facebook} label="Facebook" href="https://www.facebook.com/people/Ecommerce-Sharks/61584113035162/" />
-                  </>
-                ) : (
-                  <>
-                    <SocialIcon path={socialLinks.instagram} label="Instagram" href="https://www.instagram.com/iamaainali?utm_source=qr&igsh=MTNjOGU4OXUwM3BwdQ==" />
-                    <SocialIcon path={socialLinks.linkedin} label="LinkedIn" href="https://www.linkedin.com/in/aainali?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" />
-                  </>
-                )}
-              </div>
-            </motion.div>
-
-            {/* Right Column - Interactive Founders Selection */}
-            <motion.div 
-              variants={rightVariants}
-              initial="hidden"
-              animate={controls}
-            >
-              <motion.h3 
-                className="text-3xl lg:text-5xl font-semibold text-white mb-4 lg:mb-6 text-center lg:text-left" 
-                style={{ fontFamily: "'Barlow Condensed', sans-serif", textShadow: '0px 3px 6px rgba(0,0,0,0.5)' }}
-                variants={headerVariants}
-                initial="hidden"
-                animate={controls}
-              >
-                Meet Our Leadership Team
-              </motion.h3>
-              <motion.p 
-                className="text-base lg:text-lg text-gray-300 mb-6 lg:mb-8 text-center lg:text-left" 
-                style={{ fontFamily: "'Barlow', sans-serif" }}
-                variants={headerVariants}
-                initial="hidden"
-                animate={controls}
-              >
-                Click on a team member to learn more about them
-              </motion.p>
-              
-              {/* Team Member Selection Buttons */}
-               <motion.div 
-                 className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-2 lg:gap-3 mb-8 justify-items-center"
-                 variants={containerVariants}
-                 initial="hidden"
-                 animate={controls}
-               >
-                <button
-                  onClick={() => setSelectedTeamMember('Aain')}
-                  className={`w-20 h-20 rounded-full overflow-hidden border-4 transition-all duration-300 ${
-                    selectedTeamMember === 'Aain' 
-                      ? 'border-[#35c4dd] shadow-lg shadow-[#35c4dd]/50' 
-                      : 'border-white/30 hover:border-white/50'
-                  }`}
-                >
-                  <Image 
-                    src={imgFounders} 
-                    alt="Aain" 
-                    width={80} 
-                    height={80}
-                    className="w-full h-full object-cover"
-                    style={{ objectPosition: 'center 20%' }}
-                  />
-                </button>
-                
-                <button
-                  onClick={() => setSelectedTeamMember('zayn')}
-                  className={`w-20 h-20 rounded-full overflow-hidden border-4 transition-all duration-300 ${
-                    selectedTeamMember === 'zayn' 
-                      ? 'border-[#35c4dd] shadow-lg shadow-[#35c4dd]/50' 
-                      : 'border-white/30 hover:border-white/50'
-                  }`}
-                >
-                  <Image 
-                    src="/images/founder-1s.png" 
-                    alt="Zayn" 
-                    width={80} 
-                    height={80}
-                    className="w-full h-full object-cover"
-                    style={{ objectPosition: 'center 30%' }}
-                  />
-                </button>
-                
-                <button
-                  onClick={() => setSelectedTeamMember('sharjeel')}
-                  className={`w-20 h-20 rounded-full overflow-hidden border-4 transition-all duration-300 ${
-                    selectedTeamMember === 'sharjeel' 
-                      ? 'border-[#35c4dd] shadow-lg shadow-[#35c4dd]/50' 
-                      : 'border-white/30 hover:border-white/50'
-                  }`}
-                >
-                  <Image 
-                    src="/images/founder-2.png" 
-                    alt="Sharjeel" 
-                    width={80} 
-                    height={80}
-                    className="w-full h-full object-cover"
-                    style={{ objectPosition: 'center 20%' }}
-                  />
-                </button>
-                
-                <button
-                  onClick={() => setSelectedTeamMember('minhaj')}
-                  className={`w-20 h-20 rounded-full overflow-hidden border-4 transition-all duration-300 ${
-                    selectedTeamMember === 'minhaj' 
-                      ? 'border-[#35c4dd] shadow-lg shadow-[#35c4dd]/50' 
-                      : 'border-white/30 hover:border-white/50'
-                  }`}
-                >
-                  <Image 
-                    src="/images/founder-3.jpg" 
-                    alt="Minhaj" 
-                    width={80} 
-                    height={80}
-                    className="w-full h-full object-cover"
-                    style={{ objectPosition: '85% 0%' }}
-                  />
-                </button>
-              </motion.div>
-
-              {/* Dynamic Content Based on Selected Team Member - Only shows when a team member is selected */}
-              {selectedTeamMember && (
-                <div 
-                  className="space-y-4 lg:space-y-6"
-                >
-                  {selectedTeamMember === 'Aain' ? (
-                    <>
-                      <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                  With over 5 years of experience in e-commerce consulting, I specialize in helping businesses optimize their online presence across multiple platforms. My expertise covers Amazon FBA, Shopify store management, and digital marketing strategies.
-                </p>
-                      <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                  I focus on data-driven approaches to product research, inventory management, and customer acquisition. My goal is to help businesses scale efficiently while maintaining healthy profit margins.
-                </p>
-                      <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                  Success in e-commerce requires the right combination of market research, strategic planning, and consistent execution. I work with clients to develop sustainable growth strategies.
-                </p>
-                    </>
-                  ) : selectedTeamMember === 'zayn' ? (
-                    <>
-                      <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                        As a Senior E-commerce Consultant, I focus on identifying profitable opportunities and optimizing product performance across various platforms. My approach combines market analysis with practical implementation strategies.
-                      </p>
-                      <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                        I work with businesses to develop comprehensive product strategies, from initial research to launch optimization. My expertise includes trend analysis, competitive research, and performance tracking.
-                      </p>
-                      <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                        Success in e-commerce comes from understanding market dynamics, consumer behavior, and platform-specific requirements. I help clients navigate these complexities to achieve sustainable growth.
-                </p>
-                    </>
-                  ) : selectedTeamMember === 'minhaj' ? (
-                    <>
-                      <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                        ECOM SHARKS began with a simple belief: that building an online store shouldn't be complicated. Over the years, that belief has grown into a platform trusted by thousands of entrepreneurs worldwide.
-                      </p>
-                      <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                        With ECOM SHARKS 2.0, we're taking that vision global. Faster performance, smarter tools, and deeper integrations, all built on the foundation of trust we've earned from our community.
-                      </p>
-                      <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                        The journey ahead is exciting, and we're just getting started. My vision is to make e-commerce accessible, profitable, and sustainable for entrepreneurs everywhere.
-                      </p>
-                    </>
-                  ) : (
-                    <>
-                      <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                        As a Senior Automation Specialist, I specialize in creating automated solutions that streamline e-commerce operations. My expertise covers workflow automation, process optimization, and system integration across multiple platforms.
-                      </p>
-                      <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                        I focus on developing custom automation tools that reduce manual work, increase efficiency, and improve accuracy. My goal is to help businesses scale their operations through intelligent automation systems.
-                      </p>
-                      <p className="text-base lg:text-xl text-gray-200 leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
-                        Success in automation comes from understanding business processes, identifying optimization opportunities, and implementing scalable solutions. I work with clients to transform their operations through strategic automation.
-                      </p>
-                    </>
-                  )}
-                </div>
-              )}
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
 
        {/* Stats Section with Enhanced Design */}
        <section className="relative w-full bg-white py-16 lg:py-16 lg:py-32">

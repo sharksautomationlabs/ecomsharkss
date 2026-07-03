@@ -15,11 +15,11 @@ export default function About() {
       />
       
       {/* Experts section showcasing the team */}
-      <Experts 
+      <Experts
         title="Meet the Experts Behind ECOM SHARKS Success"
         subtitle="Our dedicated team stands at the forefront of Amazon's fulfillment programs and beyond. We don't just help businesses grow—we empower them to scale and thrive! With our deep e-Commerce expertise, we position your brand in the consumer spotlight, ensuring lasting success in the competitive marketplace."
       />
-      
+
       {/* Mission section with company values and goals */}
       <Mission 
         useCustomContent={true}

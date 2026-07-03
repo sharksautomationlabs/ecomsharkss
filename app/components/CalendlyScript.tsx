@@ -5,6 +5,12 @@ import { useEffect } from 'react';
 
 export default function CalendlyScript() {
   useEffect(() => {
+    // Load Calendly CSS lazily so it doesn't block first paint
+    const cssLink = document.createElement('link');
+    cssLink.rel = 'stylesheet';
+    cssLink.href = 'https://assets.calendly.com/assets/external/widget.css';
+    document.head.appendChild(cssLink);
+
     // Add styles to make Calendly badge smaller and move it up
     const style = document.createElement('style');
     style.textContent = `
@@ -32,6 +38,7 @@ export default function CalendlyScript() {
     
     return () => {
       document.head.removeChild(style);
+      document.head.removeChild(cssLink);
     };
   }, []);
 

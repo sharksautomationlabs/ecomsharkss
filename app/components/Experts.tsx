@@ -184,6 +184,7 @@ export default function ExpertsSection({
                       allow="autoplay; fullscreen; picture-in-picture"
                       allowFullScreen
                       frameBorder="0"
+                      loading="lazy"
                     />
                     <div className="absolute inset-0 bg-[#052126] opacity-40"></div>
                 </div>

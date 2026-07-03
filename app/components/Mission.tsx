@@ -63,8 +63,8 @@ export default function MissionSection({
   const contentData = {
     howWeWork: {
       title: 'How We Work',
-      description: 'Meet Sharjeel Zahoor – Your Senior Consultant\n\nWondering what you\'ll actually gain by working with us?\nWe\'ve created a free 3-minute masterclass where you\'ll discover:\n\n• How Ecommerce really works\n• What automation is, and why it\'s the backbone of online success\n• How automation can help you achieve financial freedom, independence, and a reliable passive income stream\n\nThis video is packed with insights worth millions of dollars—yet it\'s free for you to explore.\n\nOur senior consultant, Sharjeel Zahoor, will walk you through the process step by step.\n\nConnect with Sharjeel ',
-      badge: 'Free Masterclass'
+      description: 'Meet Sharjeel Zahoor – Your Senior Consultant\n\nWondering what you\'ll actually gain by working with us?\nBook a free consultation where you\'ll discover:\n\n• How Ecommerce really works\n• What automation is, and why it\'s the backbone of online success\n• How automation can help you achieve financial freedom, independence, and a reliable passive income stream\n\nThese insights are worth millions of dollars—yet they\'re free for you to explore.\n\nOur senior consultant, Sharjeel Zahoor, will walk you through the process step by step.\n\nConnect with Sharjeel ',
+      badge: 'Free Consultation'
     },
     mission: {
       title: 'Our Mission',
@@ -235,23 +235,15 @@ export default function MissionSection({
                     animate={controls}
                     variants={personWipeUpVariants}
                   >
-                    <div className="relative w-full max-w-[600px] bg-black rounded-2xl overflow-hidden shadow-2xl">
-                      <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden' }}>
-                        <iframe
-                          src="https://player.vimeo.com/video/1143261391?autoplay=0&loop=0&muted=0&controls=1&playsinline=1&title=0&byline=0&portrait=0&dnt=1&responsive=1"
-                          style={{ 
-                            position: 'absolute',
-                            top: 0,
-                            left: 0,
-                            width: '100%',
-                            height: '100%',
-                            border: 'none'
-                          }}
-                          allow="autoplay; fullscreen; picture-in-picture"
-                          allowFullScreen
-                          frameBorder="0"
-                        />
-                      </div>
+                    <div className="relative w-full h-full max-w-[600px]">
+                      <Image
+                        src={imgWoman}
+                        alt="Business woman taking notes"
+                        fill
+                        className="object-contain"
+                        style={{ objectPosition: 'center bottom' }}
+                        quality={90}
+                      />
                     </div>
                   </motion.div>
                 ) : (

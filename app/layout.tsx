@@ -101,13 +101,15 @@ export default function RootLayout({
         <link rel="preload" href="/images/bi-vid.jpeg" as="image" />
         <link rel="preload" href="/images/quote-logo.png" as="image" />
         
+        {/* Preconnect to Vimeo for faster hero video start */}
+        <link rel="preconnect" href="https://player.vimeo.com" />
+        <link rel="preconnect" href="https://f.vimeocdn.com" />
+        <link rel="preconnect" href="https://i.vimeocdn.com" />
+
         {/* DNS prefetch for external domains */}
         <link rel="dns-prefetch" href="https://assets.calendly.com" />
         <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
         <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-        
-        {/* Calendly CSS */}
-        <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
         
         {/* Microsoft Clarity */}
         <script
