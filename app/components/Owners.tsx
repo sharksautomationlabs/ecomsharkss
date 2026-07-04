@@ -234,7 +234,7 @@ function Owners() {
                     className="text-2xl lg:text-4xl xl:text-5xl font-semibold tracking-wider"
                     style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
                   >
-                    (469) 480-7938
+                    (713) 337-7701
                   </span>
                 </div>
                 {/* Get a Quote Button */}

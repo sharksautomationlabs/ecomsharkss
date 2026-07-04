@@ -6,7 +6,6 @@ import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { usePathname } from 'next/navigation';
 import { Play, Check, X } from 'lucide-react';
 import {
   heroContent,
@@ -26,7 +25,6 @@ import {
 } from '@/lib/funnelBrand';
 
 // Heavy below-fold components — loaded only when scrolled into view
-const EcomQuestionnaire = dynamic(() => import('@/components/EcomQuestionnaire'), { ssr: false });
 const CalendlyInlineEmbed = dynamic(() => import('@/components/CalendlyInlineEmbed'), { ssr: false });
 const PlatformReviewsSection = dynamic(() => import('@/components/PlatformReviewsSection'), { ssr: false });
 const EcomWealthFAQ = dynamic(() => import('@/components/EcomWealthFAQ'), { ssr: false });
@@ -42,14 +40,6 @@ const faqItems = [
 ];
 
 const CALENDLY_URL_DEFAULT = 'https://calendly.com/ecomsharkss-info/30min';
-/** `/ecommerce-automation` funnel — The Retail Automation calendar (not sharksretail). */
-const CALENDLY_URL_ECOMMERCE_AUTOMATION =
-  `https://calendly.com/theretailautomation/30min?month=${new Date().toISOString().slice(0, 7)}`;
-
-function isEcommerceAutomationPath(pathname: string | null) {
-  if (!pathname) return false;
-  return pathname === '/ecommerce-automation' || pathname.startsWith('/ecommerce-automation/');
-}
 
 const containerVariants: Variants = {
   hidden: {},
@@ -158,13 +148,8 @@ function CtaButton({
 }
 
 export default function EcomAutomationPage() {
-  const pathname = usePathname();
-  const isEcomAutomationFunnel = isEcommerceAutomationPath(pathname);
-  const calendlyUrl = isEcomAutomationFunnel ? CALENDLY_URL_ECOMMERCE_AUTOMATION : CALENDLY_URL_DEFAULT;
+  const calendlyUrl = CALENDLY_URL_DEFAULT;
   const calendlyRef = useRef<HTMLDivElement>(null);
-  const questionnaireRef = useRef<HTMLDivElement>(null);
-  // Calendly stays hidden until the visitor completes the questionnaire.
-  const [quizComplete, setQuizComplete] = useState(false);
 
   const openCalendly = () => {
     if (typeof window === 'undefined') return;
@@ -181,23 +166,13 @@ export default function EcomAutomationPage() {
     });
   };
 
-  // Before the quiz is done there's no Calendly to scroll to — send visitors to
-  // the questionnaire instead so they qualify first.
   const scrollToCalendly = () => {
-    const target = quizComplete ? calendlyRef.current : questionnaireRef.current;
-    target?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    calendlyRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   };
 
   const heroControls = useAnimation();
   const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.2 });
   useEffect(() => { if (heroInView) heroControls.start('visible'); }, [heroControls, heroInView]);
-
-  // Once the quiz is complete the Calendly section mounts — scroll it into view.
-  useEffect(() => {
-    if (quizComplete) {
-      calendlyRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  }, [quizComplete]);
 
   return (
     <div className="w-full min-h-screen bg-white text-slate-700 overflow-x-hidden">
@@ -273,32 +248,10 @@ export default function EcomAutomationPage() {
         </div>
       </div>
 
-      {/* Questionnaire Section — hidden once the visitor completes it */}
-      {!quizComplete && (
-        <div ref={questionnaireRef} className="py-12 lg:py-16 bg-slate-50 border-b border-slate-200">
-          <div className="container mx-auto px-5 lg:px-20">
-            <div className="max-w-2xl mx-auto bg-white border border-slate-200 rounded-2xl px-6 py-8 lg:px-10 lg:py-10 shadow-lg">
-              <EcomQuestionnaire onComplete={() => setQuizComplete(true)} />
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Calendly Embed — mounted from the start so the iframe loads in the
-          background while the visitor fills the quiz, but kept off-screen
-          (collapsed to zero height) until the questionnaire is complete. This
-          way it's already loaded the instant we reveal it. */}
-      <div
-        ref={calendlyRef}
-        aria-hidden={!quizComplete}
-        className={quizComplete ? 'py-8 lg:py-12 bg-slate-50' : ''}
-        style={quizComplete ? undefined : { height: 0, overflow: 'hidden', pointerEvents: 'none' }}
-      >
+      {/* Calendly Embed */}
+      <div ref={calendlyRef} className="py-8 lg:py-12 bg-slate-50">
         <div className="container mx-auto px-5 lg:px-20">
           <div className="max-w-4xl mx-auto">
-            <p className="text-center text-teal-600 font-semibold text-base uppercase tracking-widest mb-2" style={{ fontFamily: 'var(--font-barlow)' }}>
-              Step 2
-            </p>
             <h2 className="text-center text-4xl lg:text-5xl font-bold text-slate-900 mb-6" style={{ fontFamily: 'var(--font-montserrat)' }}>
               Pick a Time That Works for You
             </h2>

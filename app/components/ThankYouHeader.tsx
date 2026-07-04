@@ -73,9 +73,9 @@ export default function ThankYouHeader({
                 🌟 One-Stop All Ecommerce Accounts Solutions
               </p>
               <div className="flex items-center gap-8">
-                <a href="tel:4694807938" className="flex items-center gap-3 text-white text-[20px] font-medium" style={{ fontFamily: "'Barlow', sans-serif", ...textShadow }}>
+                <a href="tel:+17133377701" className="flex items-center gap-3 text-white text-[20px] font-medium" style={{ fontFamily: "'Barlow', sans-serif", ...textShadow }}>
                   <Image src={imgGroup1000004908} alt="phone" width={32} height={32} />
-                  <span>(469) 480-7938</span>
+                  <span>(713) 337-7701</span>
                 </a>
                 <a href="mailto:info@ecomsharkss.com" className="flex items-center gap-3 text-white text-[20px] font-medium" style={{ fontFamily: "'Barlow', sans-serif", ...textShadow }}>
                   <Image src={imgGroup1000004909} alt="email" width={32} height={32} />
