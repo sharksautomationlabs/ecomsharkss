@@ -1,13 +1,16 @@
 const THANK_YOU_PATH = '/thank-you';
 
+const EMBED_DOMAIN =
+  process.env.NEXT_PUBLIC_SITE_HOSTNAME ?? 'thesharkretail.com';
+
 /** Calendly requires these on raw iframe src so the embed can postMessage the parent. */
-export function buildCalendlyEmbedUrl(schedulingPageUrl: string): string {
-  if (typeof window === 'undefined') {
-    return schedulingPageUrl;
-  }
+export function buildCalendlyEmbedUrl(
+  schedulingPageUrl: string,
+  hostname = typeof window !== 'undefined' ? window.location.hostname : EMBED_DOMAIN
+): string {
   try {
     const u = new URL(schedulingPageUrl);
-    u.searchParams.set('embed_domain', window.location.hostname);
+    u.searchParams.set('embed_domain', hostname);
     u.searchParams.set('embed_type', 'Inline');
     u.searchParams.set('hide_landing_page_details', '1');
     u.searchParams.set('hide_gdpr_banner', '1');
@@ -18,6 +21,11 @@ export function buildCalendlyEmbedUrl(schedulingPageUrl: string): string {
   } catch {
     return schedulingPageUrl;
   }
+}
+
+/** Stable embed URL for SSR, layout prefetch, and initial iframe src (avoids hydration reload). */
+export function buildCalendlyEmbedUrlStatic(schedulingPageUrl: string): string {
+  return buildCalendlyEmbedUrl(schedulingPageUrl, EMBED_DOMAIN);
 }
 
 export function redirectToThankYouAfterBooking() {

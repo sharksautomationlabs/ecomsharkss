@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import { Montserrat, Barlow } from 'next/font/google';
 import EcomwealthCalendlyRoot from '@/components/EcomwealthCalendlyRoot';
+import { buildCalendlyEmbedUrlStatic } from '@/lib/calendlyRedirect';
 
 const montserrat = Montserrat({
   weight: ['300', '400', '500', '600', '700', '800'],
@@ -23,6 +24,10 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
+const CALENDLY_EMBED_PREFETCH = buildCalendlyEmbedUrlStatic(
+  'https://calendly.com/ecomsharkss-info/30min'
+);
+
 export default function EcommerceAutomationFunnelLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
@@ -40,17 +45,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       {/* YouTube thumbnail: preconnect so img loads without DNS delay */}
       <link rel="preconnect" href="https://img.youtube.com" crossOrigin="" />
       <link rel="dns-prefetch" href="https://www.youtube.com" />
-      {/* Calendly: preconnect + CSS preload so widget is ready before JS hydrates */}
+      {/* Calendly: preconnect + prefetch embed document before client JS hydrates */}
       <link rel="preconnect" href="https://calendly.com" crossOrigin="" />
       <link rel="preconnect" href="https://assets.calendly.com" crossOrigin="" />
       <link rel="dns-prefetch" href="https://calendly.com" />
-      <link rel="dns-prefetch" href="https://assets.calendly.com" />
-      <link
-        rel="preload"
-        href="https://assets.calendly.com/assets/external/widget.css"
-        as="style"
-        fetchPriority="high"
-      />
+      <link rel="prefetch" href={CALENDLY_EMBED_PREFETCH} as="document" />
       <EcomwealthCalendlyRoot />
       <div className={`${montserrat.variable} ${barlow.variable} min-h-screen bg-white`}>
         {children}

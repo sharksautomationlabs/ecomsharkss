@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Play, Check, X } from 'lucide-react';
+import CalendlyInlineEmbed from '@/components/CalendlyInlineEmbed';
 import {
   heroContent,
   trustStripContent,
@@ -25,7 +26,6 @@ import {
 } from '@/lib/funnelBrand';
 
 // Heavy below-fold components — loaded only when scrolled into view
-const CalendlyInlineEmbed = dynamic(() => import('@/components/CalendlyInlineEmbed'), { ssr: false });
 const PlatformReviewsSection = dynamic(() => import('@/components/PlatformReviewsSection'), { ssr: false });
 const EcomWealthFAQ = dynamic(() => import('@/components/EcomWealthFAQ'), { ssr: false });
 
@@ -150,21 +150,6 @@ function CtaButton({
 export default function EcomAutomationPage() {
   const calendlyUrl = CALENDLY_URL_DEFAULT;
   const calendlyRef = useRef<HTMLDivElement>(null);
-
-  const openCalendly = () => {
-    if (typeof window === 'undefined') return;
-    const w = window as unknown as {
-      Calendly?: {
-        initPopupWidget: (opts: { url: string; onEventScheduled?: () => void }) => void;
-      };
-    };
-    w.Calendly?.initPopupWidget({
-      url: calendlyUrl,
-      onEventScheduled: () => {
-        window.location.assign('/thank-you');
-      },
-    });
-  };
 
   const scrollToCalendly = () => {
     calendlyRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
