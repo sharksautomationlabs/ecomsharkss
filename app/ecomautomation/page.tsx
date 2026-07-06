@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, useAnimation, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
@@ -8,6 +8,11 @@ import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import { Play, Check, X } from 'lucide-react';
 import CalendlyInlineEmbed from '@/components/CalendlyInlineEmbed';
+import {
+  CALENDLY_EMBED_ID,
+  CALENDLY_SCHEDULING_URL,
+  scrollToCalendlyEmbed,
+} from '@/lib/calendlyRedirect';
 import {
   heroContent,
   trustStripContent,
@@ -39,7 +44,7 @@ const faqItems = [
   { id: 'faq-7', question: 'What experience do I need?', answer: 'None. This is built for investors and business owners who want another income-producing asset, not another skill set to learn. Our team handles the operations; your role is ownership and oversight.' },
 ];
 
-const CALENDLY_URL_DEFAULT = 'https://calendly.com/ecomsharkss-info/30min';
+type PagePart = 'full' | 'hero' | 'after-calendly';
 
 const containerVariants: Variants = {
   hidden: {},
@@ -76,7 +81,7 @@ function LazyYouTube({ youtubeId, title }: { youtubeId: string; title: string })
             src={`https://img.youtube.com/vi/${youtubeId}/hqdefault.jpg`}
             alt={title}
             className="w-full h-full object-cover"
-            fetchPriority="high"
+            fetchPriority="low"
           />
           <div className="absolute inset-0 flex items-center justify-center bg-black/40 group-hover:bg-black/25 transition-colors">
             <div className="w-16 h-16 bg-red-600 hover:bg-red-500 rounded-full flex items-center justify-center shadow-2xl transition-colors">
@@ -147,22 +152,22 @@ function CtaButton({
   );
 }
 
-export default function EcomAutomationPage() {
-  const calendlyUrl = CALENDLY_URL_DEFAULT;
-  const calendlyRef = useRef<HTMLDivElement>(null);
-
-  const scrollToCalendly = () => {
-    calendlyRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
+export default function EcomAutomationPage({
+  part = 'full',
+  calendlyEmbed,
+}: {
+  part?: PagePart;
+  calendlyEmbed?: React.ReactNode;
+}) {
+  const calendlyUrl = CALENDLY_SCHEDULING_URL;
+  const scrollToCalendly = scrollToCalendlyEmbed;
 
   const heroControls = useAnimation();
   const [heroRef, heroInView] = useInView({ triggerOnce: true, threshold: 0.2 });
   useEffect(() => { if (heroInView) heroControls.start('visible'); }, [heroControls, heroInView]);
 
-  return (
-    <div className="w-full min-h-screen bg-white text-slate-700 overflow-x-hidden">
-      {/* Hero */}
-      <div ref={heroRef} className="relative bg-white pt-4 lg:pt-8 pb-8 lg:pb-12 overflow-hidden border-b border-slate-200">
+  const heroSection = (
+    <div ref={heroRef} className="relative bg-white pt-4 lg:pt-8 pb-8 lg:pb-12 overflow-hidden border-b border-slate-200">
         <div className="absolute top-[-200px] right-[-100px] w-[500px] h-[500px] bg-teal-200/40 rounded-full blur-3xl" />
         <div className="absolute bottom-[-150px] left-[-80px] w-[400px] h-[400px] bg-teal-100/50 rounded-full blur-3xl" />
         <div className="container mx-auto px-5 lg:px-20 relative z-10">
@@ -223,33 +228,36 @@ export default function EcomAutomationPage() {
           </motion.div>
         </div>
       </div>
+  );
 
-      {/* TrustStrip */}
+  const calendlySection =
+    part === 'full' ? (
+      calendlyEmbed ?? (
+        <div id={CALENDLY_EMBED_ID} className="py-8 lg:py-12 bg-slate-50 scroll-mt-4">
+          <div className="container mx-auto px-5 lg:px-20">
+            <div className="max-w-4xl mx-auto">
+              <h2 className="text-center text-4xl lg:text-5xl font-bold text-slate-900 mb-6" style={{ fontFamily: 'var(--font-montserrat)' }}>
+                Pick a Time That Works for You
+              </h2>
+              <CalendlyInlineEmbed
+                schedulingPageUrl={calendlyUrl}
+                title={`Book a call with ${FUNNEL_BRAND_NAME}`}
+                minHeight={650}
+                preload
+              />
+            </div>
+          </div>
+        </div>
+      )
+    ) : null;
+
+  const afterCalendlySection = (
+    <>
       <div className="py-4 lg:py-6 bg-teal-50 border-y border-teal-100">
         <div className="container mx-auto px-5 lg:px-20 text-center">
           <p className="text-xl lg:text-2xl text-slate-900 font-semibold max-w-3xl mx-auto" style={{ fontFamily: "var(--font-montserrat)" }}>
             {trustStripContent.partnershipsText}
           </p>
-        </div>
-      </div>
-
-      {/* Calendly Embed */}
-      <div ref={calendlyRef} className="py-8 lg:py-12 bg-slate-50">
-        <div className="container mx-auto px-5 lg:px-20">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-center text-4xl lg:text-5xl font-bold text-slate-900 mb-6" style={{ fontFamily: 'var(--font-montserrat)' }}>
-              Pick a Time That Works for You
-            </h2>
-            <CalendlyInlineEmbed
-              schedulingPageUrl={calendlyUrl}
-              title={`Book a call with ${FUNNEL_BRAND_NAME}`}
-              minHeight={650}
-              // Always eager-load: with the section collapsed the lazy
-              // IntersectionObserver would never fire, so force the iframe to
-              // start loading immediately in the background.
-              preload
-            />
-          </div>
         </div>
       </div>
 
@@ -652,6 +660,24 @@ export default function EcomAutomationPage() {
           </div>
         </div>
       </div>
+    </>
+  );
+
+  const pageShellClass = 'w-full min-h-screen bg-white text-slate-700 overflow-x-hidden';
+
+  if (part === 'hero') {
+    return <div className={pageShellClass}>{heroSection}</div>;
+  }
+
+  if (part === 'after-calendly') {
+    return <div className={pageShellClass}>{afterCalendlySection}</div>;
+  }
+
+  return (
+    <div className={pageShellClass}>
+      {heroSection}
+      {calendlySection}
+      {afterCalendlySection}
     </div>
   );
 }

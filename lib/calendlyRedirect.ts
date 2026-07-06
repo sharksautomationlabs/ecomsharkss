@@ -1,5 +1,14 @@
 const THANK_YOU_PATH = '/thank-you';
 
+export const CALENDLY_EMBED_ID = 'calendly-embed';
+
+export const CALENDLY_SCHEDULING_URL = 'https://calendly.com/ecomsharkss-info/30min';
+
+export function scrollToCalendlyEmbed() {
+  if (typeof document === 'undefined') return;
+  document.getElementById(CALENDLY_EMBED_ID)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
 const EMBED_DOMAIN =
   process.env.NEXT_PUBLIC_SITE_HOSTNAME ?? 'thesharkretail.com';
 
