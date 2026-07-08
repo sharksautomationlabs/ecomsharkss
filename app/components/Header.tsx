@@ -157,7 +157,6 @@ export default function Header({
                         <Link href="/shopify" className="hover:text-[#35c4dd]" style={textShadow}>Shopify</Link>
                         <Link href="/tiktok" className="hover:text-[#35c4dd]" style={textShadow}>Tiktok</Link>
                         <Link href="/walmart" className="hover:text-[#35c4dd]" style={textShadow}>Walmart</Link>
-                        <Link href="/identity" className="hover:text-[#35c4dd]" style={textShadow}>Identity</Link>
                         <Link href="/contact" className="hover:text-[#35c4dd]" style={textShadow}>Contact</Link>
                     </div>
                      <button 
@@ -295,14 +294,6 @@ export default function Header({
                       onClick={() => setIsMobileNavOpen(false)}
                     >
                       Walmart
-                    </Link>
-                    <Link 
-                      href="/identity" 
-                      className="block text-white text-base font-medium hover:text-[#35c4dd] transition-colors py-1"
-                      style={{ fontFamily: "'Barlow', sans-serif" }}
-                      onClick={() => setIsMobileNavOpen(false)}
-                    >
-                      Identity
                     </Link>
                     <Link 
                       href="/contact" 
