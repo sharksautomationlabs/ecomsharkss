@@ -688,6 +688,8 @@ export default function Contact() {
               </div>
             </div>
             <div className="flex items-center gap-2">
+              <a href="/reviews" className="hover:text-[#35c4dd] transition-colors">Reviews</a>
+              <span>|</span>
               <a href="#" className="hover:text-[#35c4dd] transition-colors">Privacy Policy</a>
               <span>|</span>
               <a href="#" className="hover:text-[#35c4dd] transition-colors">Terms of Use</a>

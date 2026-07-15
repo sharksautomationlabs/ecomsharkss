@@ -145,6 +145,7 @@ export default function WalmartHeader() {
                         <Link href="/shopify" className="hover:text-[#35c4dd]" style={textShadow}>Shopify</Link>
                         <Link href="/tiktok" className="hover:text-[#35c4dd]" style={textShadow}>Tiktok</Link>
                         <Link href="/walmart" className="hover:text-[#35c4dd]" style={textShadow}>Walmart</Link>
+                        <Link href="/reviews" className="hover:text-[#35c4dd]" style={textShadow}>Reviews</Link>
                         <Link href="/contact" className="hover:text-[#35c4dd]" style={textShadow}>Contact</Link>
                     </div>
                      <button 
@@ -283,8 +284,16 @@ export default function WalmartHeader() {
                     >
                       Walmart
                     </Link>
-                    <Link 
-                      href="/contact" 
+                    <Link
+                      href="/reviews"
+                      className="block text-white text-base font-medium hover:text-[#35c4dd] transition-colors py-1"
+                      style={{ fontFamily: "'Barlow', sans-serif" }}
+                      onClick={() => setIsMobileNavOpen(false)}
+                    >
+                      Reviews
+                    </Link>
+                    <Link
+                      href="/contact"
                       className="block text-white text-base font-medium hover:text-[#35c4dd] transition-colors py-1"
                       style={{ fontFamily: "'Barlow', sans-serif" }}
                       onClick={() => setIsMobileNavOpen(false)}
