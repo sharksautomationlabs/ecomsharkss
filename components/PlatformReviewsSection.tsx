@@ -43,6 +43,33 @@ export const FUNNEL_REVIEW_CARDS = [
   },
 ] as const;
 
+const REVIEW_VIDEOS = [
+  { name: 'Partner review video 1', src: '/videos/review-video-1.mp4' },
+  { name: 'Partner review video 2', src: '/videos/review-video-2.mp4' },
+] as const;
+
+export function FunnelReviewVideosGrid() {
+  return (
+    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 max-w-5xl mx-auto mb-4 sm:mb-8">
+      {REVIEW_VIDEOS.map((video) => (
+        <div
+          key={video.src}
+          className="bg-white rounded-2xl shadow-md border border-slate-200 p-2 sm:p-3 flex flex-col"
+        >
+          <video
+            src={video.src}
+            controls
+            playsInline
+            preload="metadata"
+            className="w-full h-[300px] sm:h-[420px] lg:h-[500px] rounded-lg bg-slate-900 object-contain"
+            aria-label={video.name}
+          />
+        </div>
+      ))}
+    </div>
+  );
+}
+
 export function FunnelReviewCardsGrid() {
   return (
     <div className="grid grid-cols-2 gap-3 sm:gap-6 max-w-3xl mx-auto">
@@ -77,6 +104,7 @@ export default function PlatformReviewsSection() {
           {`Trusted by investors who chose ${FUNNEL_BRAND_NAME}—recent feedback from partners on the experience.`}
         </p>
 
+        <FunnelReviewVideosGrid />
         <FunnelReviewCardsGrid />
 
         <div className="mt-8 lg:mt-10 max-w-2xl mx-auto">
