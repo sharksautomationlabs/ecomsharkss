@@ -50,7 +50,7 @@ const REVIEW_VIDEOS = [
 
 export function FunnelReviewVideosGrid() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 max-w-5xl mx-auto mb-4 sm:mb-8">
+    <div className="grid grid-cols-1 gap-4 sm:gap-8 max-w-3xl mx-auto mb-4 sm:mb-8">
       {REVIEW_VIDEOS.map((video) => (
         <div
           key={video.src}
