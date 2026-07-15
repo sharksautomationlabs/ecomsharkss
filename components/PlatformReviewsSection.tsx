@@ -3,6 +3,27 @@
 import Image from 'next/image';
 import { FUNNEL_BRAND_NAME } from '@/lib/funnelBrand';
 
+const REVIEW_PLATFORMS = [
+  {
+    name: 'Reviews.io',
+    logoSrc: '/images/review-platforms/logo-reviews-io.png',
+    href: 'https://www.reviews.io/company-reviews/store/www.ecomsharkss.com',
+    linkLabel: 'Read reviews',
+  },
+  {
+    name: 'Bark',
+    logoSrc: '/images/review-platforms/logo-bark.png',
+    href: 'https://www.bark.com/en/ca/company/ecom-sharkss/bvoaVv/',
+    linkLabel: 'See profile',
+  },
+  {
+    name: 'Clutch',
+    logoSrc: '/images/review-platforms/logo-clutch.png',
+    href: 'https://clutch.co/profile/ecom-sharkss',
+    linkLabel: 'View profile',
+  },
+] as const;
+
 export const FUNNEL_REVIEW_CARDS = [
   {
     name: 'Duke Morrison',
@@ -57,6 +78,36 @@ export default function PlatformReviewsSection() {
         </p>
 
         <FunnelReviewCardsGrid />
+
+        <div className="mt-8 lg:mt-10 max-w-2xl mx-auto">
+          <p className="text-center text-slate-500 text-xs font-semibold uppercase tracking-[0.18em] mb-4">
+            Verified reviews across trusted platforms
+          </p>
+          <div className="grid grid-cols-3 gap-2 sm:gap-3">
+            {REVIEW_PLATFORMS.map((platform) => (
+              <a
+                key={platform.name}
+                href={platform.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex flex-col items-center justify-between gap-2 bg-white rounded-xl shadow-sm border border-slate-200 px-3 py-3 transition-all hover:border-teal-300 hover:shadow-md"
+              >
+                <span className="flex h-8 w-full items-center justify-center">
+                  <Image
+                    src={platform.logoSrc}
+                    alt={`${platform.name} logo`}
+                    width={120}
+                    height={32}
+                    className="max-h-6 sm:max-h-7 w-auto max-w-[100px] sm:max-w-[110px] object-contain"
+                  />
+                </span>
+                <span className="text-[10px] sm:text-xs font-semibold text-teal-600 group-hover:text-teal-700 text-center leading-snug transition-colors">
+                  {platform.linkLabel} →
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
