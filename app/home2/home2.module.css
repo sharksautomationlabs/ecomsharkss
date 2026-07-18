@@ -1,0 +1,94 @@
+/*
+  Only the handful of effects Tailwind genuinely can't express live here
+  (3D coin flip, conic-gradient ring, infinite marquee, floaty shield).
+  Everything else in this page is plain Tailwind utility classes.
+*/
+
+.root {
+  font-family: var(--font-eh2-manrope), sans-serif;
+}
+
+.heading {
+  font-family: var(--font-eh2-archivo), sans-serif;
+  font-stretch: 110%;
+  letter-spacing: -0.01em;
+}
+
+.godrays {
+  background:
+    radial-gradient(ellipse 60% 45% at 20% -10%, rgba(53, 196, 221, 0.16), transparent 60%),
+    radial-gradient(ellipse 45% 40% at 78% -8%, rgba(126, 235, 255, 0.1), transparent 60%);
+}
+
+.edgeFade {
+  -webkit-mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
+  mask-image: linear-gradient(90deg, transparent, black 6%, black 94%, transparent);
+}
+
+@keyframes eh2Marquee {
+  to { transform: translateX(-50%); }
+}
+.marqueeTrack {
+  animation: eh2Marquee 26s linear infinite;
+}
+.marqueeTrackSlow {
+  animation: eh2Marquee 22s linear infinite;
+}
+
+@keyframes eh2Spin {
+  from { transform: rotateY(0); }
+  to { transform: rotateY(360deg); }
+}
+.coin {
+  animation: eh2Spin 7s linear infinite;
+  transform-style: preserve-3d;
+}
+.coinFace {
+  backface-visibility: hidden;
+}
+.coinFaceBack {
+  transform: rotateY(180deg);
+}
+
+@property --eh2-ang {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+@keyframes eh2Ring {
+  to { --eh2-ang: 360deg; }
+}
+.offerRing::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: conic-gradient(from var(--eh2-ang, 0deg), transparent 0 70%, rgba(53, 196, 221, 0.5) 82%, transparent 95%);
+  animation: eh2Ring 5s linear infinite;
+  z-index: -1;
+  filter: blur(14px);
+  border-radius: inherit;
+}
+
+@keyframes eh2Floaty {
+  0%, 100% { transform: translateY(0) rotateX(4deg) rotateY(-6deg); }
+  50% { transform: translateY(-18px) rotateX(-4deg) rotateY(6deg); }
+}
+.shield {
+  animation: eh2Floaty 5.5s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+.gradientNum {
+  background: linear-gradient(180deg, #ffe9ae, #ffc94a 55%, #c98f10);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 8px 26px rgba(255, 201, 74, 0.35));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .coin, .shield, .marqueeTrack, .marqueeTrackSlow, .offerRing::before {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
