@@ -7,15 +7,55 @@ export const EMAIL = 'info@ecomsharkss.com';
 export const CALENDLY_URL = 'https://calendly.com/ecomsharkss-info/30min';
 export const LOGO = '/images/quote-logo.png';
 
+let calendlyReady: Promise<void> | null = null;
+
+/**
+ * The site-wide CalendlyScript component loads widget.js with strategy="afterInteractive",
+ * which can still be mid-flight when someone clicks a CTA right after the page paints —
+ * that made the popup feel like it was doing nothing for a few seconds. This loads (or
+ * reuses) the widget on demand so the click always opens the popup as soon as it can,
+ * instead of silently no-oping while the script finishes loading.
+ */
+function ensureCalendlyLoaded(): Promise<void> {
+  if (typeof window === 'undefined') return Promise.resolve();
+  if ((window as any).Calendly) return Promise.resolve();
+  if (calendlyReady) return calendlyReady;
+
+  calendlyReady = new Promise((resolve) => {
+    if (!document.querySelector('link[href*="calendly.com/assets/external/widget.css"]')) {
+      const css = document.createElement('link');
+      css.rel = 'stylesheet';
+      css.href = 'https://assets.calendly.com/assets/external/widget.css';
+      document.head.appendChild(css);
+    }
+
+    const existing = document.querySelector<HTMLScriptElement>('script[src*="calendly.com/assets/external/widget.js"]');
+    if (existing) {
+      if ((window as any).Calendly) { resolve(); return; }
+      existing.addEventListener('load', () => resolve(), { once: true });
+      return;
+    }
+
+    const script = document.createElement('script');
+    script.src = 'https://assets.calendly.com/assets/external/widget.js';
+    script.async = true;
+    script.onload = () => resolve();
+    document.head.appendChild(script);
+  });
+
+  return calendlyReady;
+}
+
 export function openCalendly() {
-  if (typeof window !== 'undefined' && (window as any).Calendly) {
-    (window as any).Calendly.initPopupWidget({
+  if (typeof window === 'undefined') return;
+  ensureCalendlyLoaded().then(() => {
+    (window as any).Calendly?.initPopupWidget({
       url: CALENDLY_URL,
       onEventScheduled: function () {
         window.location.href = '/thank-you';
       },
     });
-  }
+  });
 }
 
 export const tickerItems = [

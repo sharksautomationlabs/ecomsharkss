@@ -37,6 +37,10 @@ export default function Home2Page() {
 
   return (
     <main className={`${archivo.variable} ${manrope.variable} ${styles.root} relative min-h-screen overflow-x-hidden bg-[#03101e] text-[#eaf7fb]`}>
+      {/* warms up the connection so the "Get Started" popup opens as fast as possible */}
+      <link rel="preconnect" href="https://calendly.com" />
+      <link rel="preconnect" href="https://assets.calendly.com" />
+
       <Background />
       <DepthGauge />
       {/* ticker sits above the nav bar */}
