@@ -10,11 +10,13 @@ export const LOGO = '/images/quote-logo.png';
 let calendlyReady: Promise<void> | null = null;
 
 /**
- * The site-wide CalendlyScript component loads widget.js with strategy="afterInteractive",
- * which can still be mid-flight when someone clicks a CTA right after the page paints —
- * that made the popup feel like it was doing nothing for a few seconds. This loads (or
- * reuses) the widget on demand so the click always opens the popup as soon as it can,
- * instead of silently no-oping while the script finishes loading.
+ * The site-wide CalendlyScript component (app/components/CalendlyScript.tsx, mounted in
+ * the root layout) already loads widget.js on every page with strategy="afterInteractive".
+ * We just wait for `window.Calendly` to show up instead of injecting a second copy of the
+ * script — two independent <script> tags for the same widget.js would mean Calendly's init
+ * code (badge widget, message listeners) runs twice, which wastes time and can misbehave.
+ * We only fall back to loading it ourselves if the site-wide copy genuinely never appears
+ * (blocked by an extension, failed request, etc).
  */
 function ensureCalendlyLoaded(): Promise<void> {
   if (typeof window === 'undefined') return Promise.resolve();
@@ -29,18 +31,28 @@ function ensureCalendlyLoaded(): Promise<void> {
       document.head.appendChild(css);
     }
 
-    const existing = document.querySelector<HTMLScriptElement>('script[src*="calendly.com/assets/external/widget.js"]');
-    if (existing) {
-      if ((window as any).Calendly) { resolve(); return; }
-      existing.addEventListener('load', () => resolve(), { once: true });
-      return;
-    }
+    const start = Date.now();
+    const poll = setInterval(() => {
+      if ((window as any).Calendly) {
+        clearInterval(poll);
+        resolve();
+        return;
+      }
+      if (Date.now() - start < 3000) return;
 
-    const script = document.createElement('script');
-    script.src = 'https://assets.calendly.com/assets/external/widget.js';
-    script.async = true;
-    script.onload = () => resolve();
-    document.head.appendChild(script);
+      // Site-wide script never showed up in time — load it ourselves as a last resort.
+      clearInterval(poll);
+      const existing = document.querySelector<HTMLScriptElement>('script[src*="calendly.com/assets/external/widget.js"]');
+      if (existing) {
+        existing.addEventListener('load', () => resolve(), { once: true });
+        return;
+      }
+      const script = document.createElement('script');
+      script.src = 'https://assets.calendly.com/assets/external/widget.js';
+      script.async = true;
+      script.onload = () => resolve();
+      document.head.appendChild(script);
+    }, 80);
   });
 
   return calendlyReady;

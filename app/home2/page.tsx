@@ -36,22 +36,20 @@ export default function Home2Page() {
     return () => { document.documentElement.style.scrollBehavior = previous; };
   }, []);
 
-  // Start loading Calendly in the background once the page is idle, so it's
-  // already warm by the time someone actually taps a "Get Started" button.
+  // Start loading Calendly in the background shortly after mount, so it's already
+  // warm by the time someone taps a "Get Started" button. Uses a fixed timeout rather
+  // than requestIdleCallback — this page runs a continuous rAF-driven 3D background,
+  // which can starve idle callbacks almost indefinitely on slower devices.
   useEffect(() => {
-    const idle = (window as any).requestIdleCallback || ((cb: () => void) => setTimeout(cb, 1200));
-    const id = idle(prefetchCalendly);
-    return () => {
-      const cancel = (window as any).cancelIdleCallback || clearTimeout;
-      cancel(id);
-    };
+    const id = setTimeout(prefetchCalendly, 800);
+    return () => clearTimeout(id);
   }, []);
 
   return (
     <main className={`${archivo.variable} ${manrope.variable} ${styles.root} relative min-h-screen overflow-x-hidden bg-[#03101e] text-[#eaf7fb]`}>
       {/* warms up the connection so the "Get Started" popup opens as fast as possible */}
-      <link rel="preconnect" href="https://calendly.com" />
-      <link rel="preconnect" href="https://assets.calendly.com" />
+      <link rel="preconnect" href="https://calendly.com" crossOrigin="anonymous" />
+      <link rel="preconnect" href="https://assets.calendly.com" crossOrigin="anonymous" />
 
       <Background />
       <DepthGauge />

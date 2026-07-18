@@ -22,7 +22,7 @@ export default function Background() {
     const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
     camera.position.z = 12;
 
-    const bubbleCount = 420;
+    const bubbleCount = 220;
     const geo = new THREE.BufferGeometry();
     const pos = new Float32Array(bubbleCount * 3);
     const speeds = new Float32Array(bubbleCount);
@@ -115,7 +115,7 @@ export default function Background() {
       <Script
         id="eh2-threejs"
         src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"
-        strategy="afterInteractive"
+        strategy="lazyOnload"
         onReady={() => setThreeReady(true)}
       />
       <canvas ref={canvasRef} aria-hidden="true" className="pointer-events-none fixed inset-0 z-0" />
