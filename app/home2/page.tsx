@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { Archivo, Manrope } from 'next/font/google';
 import styles from './home2.module.css';
+import { prefetchCalendly } from './data';
 
 import Background from './components/Background';
 import DepthGauge from './components/DepthGauge';
@@ -33,6 +34,17 @@ export default function Home2Page() {
     const previous = document.documentElement.style.scrollBehavior;
     document.documentElement.style.scrollBehavior = 'smooth';
     return () => { document.documentElement.style.scrollBehavior = previous; };
+  }, []);
+
+  // Start loading Calendly in the background once the page is idle, so it's
+  // already warm by the time someone actually taps a "Get Started" button.
+  useEffect(() => {
+    const idle = (window as any).requestIdleCallback || ((cb: () => void) => setTimeout(cb, 1200));
+    const id = idle(prefetchCalendly);
+    return () => {
+      const cancel = (window as any).cancelIdleCallback || clearTimeout;
+      cancel(id);
+    };
   }, []);
 
   return (

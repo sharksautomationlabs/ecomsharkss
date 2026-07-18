@@ -46,8 +46,37 @@ function ensureCalendlyLoaded(): Promise<void> {
   return calendlyReady;
 }
 
+/** Kicks off loading Calendly ahead of any click, so it's usually already warm by the time someone taps a CTA. */
+export function prefetchCalendly() {
+  ensureCalendlyLoaded();
+}
+
+function showCalendlyLoader() {
+  if (typeof document === 'undefined' || document.getElementById('eh2-calendly-loader')) return;
+  const el = document.createElement('div');
+  el.id = 'eh2-calendly-loader';
+  el.style.cssText = 'position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;background:rgba(3,16,30,.55);backdrop-filter:blur(4px);';
+  el.innerHTML = `
+    <div style="display:flex;flex-direction:column;align-items:center;gap:14px;font-family:sans-serif;">
+      <div style="width:42px;height:42px;border-radius:50%;border:3px solid rgba(126,235,255,.25);border-top-color:#7eebff;animation:eh2CalSpin .7s linear infinite;"></div>
+      <div style="color:#eaf7fb;font-weight:700;font-size:14px;">Opening scheduler…</div>
+    </div>
+    <style>@keyframes eh2CalSpin{to{transform:rotate(360deg)}}</style>
+  `;
+  document.body.appendChild(el);
+}
+
+function hideCalendlyLoader() {
+  document.getElementById('eh2-calendly-loader')?.remove();
+}
+
 export function openCalendly() {
   if (typeof window === 'undefined') return;
+  showCalendlyLoader();
+  // Calendly's own popup takes over visually almost as soon as initPopupWidget runs;
+  // this is just a safety net in case that never fires for some reason.
+  const fallback = setTimeout(hideCalendlyLoader, 8000);
+
   ensureCalendlyLoaded().then(() => {
     (window as any).Calendly?.initPopupWidget({
       url: CALENDLY_URL,
@@ -55,6 +84,9 @@ export function openCalendly() {
         window.location.href = '/thank-you';
       },
     });
+    clearTimeout(fallback);
+    // small delay so our spinner doesn't flash off before Calendly's overlay is painted
+    setTimeout(hideCalendlyLoader, 350);
   });
 }
 
