@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { Zap, Check } from 'lucide-react';
 import { openCalendly, currentOfferContent } from '../data';
@@ -40,9 +39,6 @@ export default function OfferSection() {
             <Zap size={13} /> Limited — Next Few Days Only
           </span>
           <div className="mb-4 flex items-center gap-3.5">
-            <div className="relative h-11 w-11 flex-shrink-0 overflow-hidden rounded-full border-2 border-[#35c4dd]/40">
-              <Image src={currentOfferContent.founderImage} alt={currentOfferContent.founderName} fill className="object-cover" style={{ objectPosition: 'center 30%' }} sizes="44px" />
-            </div>
             <h3 className={`text-[clamp(1.6rem,3vw,2.4rem)] font-black text-[#eaf7fb] ${styles.heading}`}>
               {currentOfferContent.cardTitle}
             </h3>

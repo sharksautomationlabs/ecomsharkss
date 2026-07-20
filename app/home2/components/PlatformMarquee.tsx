@@ -1,20 +1,70 @@
 'use client';
 
+import Image from 'next/image';
+import Link from 'next/link';
+import { useEffect, useRef, useState } from 'react';
 import { platforms } from '../data';
 import styles from '../home2.module.css';
 
+const SPEED_PX_PER_SEC = 80;
+// Each logo's slot is sized to exactly containerWidth / VISIBLE, so the
+// logos always fill the full width with no dead space, at any scroll offset.
+const VISIBLE = 5;
+// Enough copies so the track never runs out of content mid-scroll.
+const REPEAT = 2;
+const baseSet = Array.from({ length: REPEAT }, () => platforms).flat();
+const items = [...baseSet, ...baseSet];
+
 export default function PlatformMarquee() {
-  const items = [...platforms, ...platforms];
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [slotWidth, setSlotWidth] = useState(220);
+  const [duration, setDuration] = useState(30);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    const measure = () => {
+      if (containerRef.current) {
+        const w = containerRef.current.clientWidth / VISIBLE;
+        setSlotWidth(w);
+        setDuration((w * platforms.length * REPEAT) / SPEED_PX_PER_SEC);
+      }
+    };
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, []);
 
   return (
-    <div aria-hidden="true" className="overflow-hidden border-y border-[#35c4dd]/[0.22] bg-[#062038]/35 py-6">
-      <div className={`flex w-max items-center gap-20 ${styles.marqueeTrackSlow}`}>
-        {items.map((p, i) => (
-          <span key={i} className="flex items-center gap-3 font-[family-name:var(--font-eh2-archivo)] text-2xl font-black uppercase tracking-[0.04em] text-[#9dc3d4]/55">
-            <i className="inline-block h-2.5 w-2.5 rounded-full bg-[#35c4dd] shadow-[0_0_12px_#35c4dd]" />
-            {p}
-          </span>
-        ))}
+    <div
+      className="relative overflow-hidden border-y border-[#35c4dd]/[0.22] bg-[#062038]/35 py-10"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+    >
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[#0a3050] to-transparent sm:w-32" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[#0a3050] to-transparent sm:w-32" />
+      <div ref={containerRef} className={styles.edgeFade}>
+        <div
+          className={`flex w-max items-center ${styles.marqueeTrack}`}
+          style={{ animationDuration: `${duration}s`, animationPlayState: paused ? 'paused' : 'running' }}
+        >
+          {items.map((p, i) => (
+            <div
+              key={i}
+              className="flex shrink-0 items-center justify-center"
+              style={{ width: slotWidth }}
+            >
+              <Link href={p.href} className="flex items-center justify-center transition-transform duration-300 hover:scale-110">
+                <Image
+                  src={p.logo}
+                  alt={p.name}
+                  width={160}
+                  height={160}
+                  className="h-16 w-auto object-contain opacity-90 sm:h-24"
+                />
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

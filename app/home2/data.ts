@@ -103,13 +103,18 @@ export function openCalendly() {
 }
 
 export const tickerItems = [
-  { icon: 'trophy', text: '$4,000 in 30 days — or we work for FREE' },
+  { icon: null, text: '$4,000 in 30 days — or we work for FREE' },
   { icon: 'star', text: 'Rated Excellent by 100+ clients' },
-  { icon: 'waves', text: 'Amazon · Shopify · TikTok · Walmart' },
+  { icon: null, text: 'Amazon · Shopify · TikTok · Walmart' },
   { icon: 'phone', text: `${PHONE_DISPLAY} — Free Consultation` },
 ];
 
-export const platforms = ['Amazon', 'Shopify', 'TikTok Shop', 'Walmart'];
+export const platforms = [
+  { name: 'Amazon', logo: '/images/amazon-logo.png', href: '/amazon' },
+  { name: 'Shopify', logo: '/images/shopify-logo.png', href: '/shopify' },
+  { name: 'TikTok Shop', logo: '/images/tiktok-logo.png', href: '/tiktok' },
+  { name: 'Walmart', logo: '/images/walmart-logo.png', href: '/walmart' },
+];
 
 export const stats = [
   { target: 100, suffix: '+', label: 'Happy Clients' },

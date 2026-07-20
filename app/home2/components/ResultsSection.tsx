@@ -33,19 +33,17 @@ export default function ResultsSection() {
           </button>
         </motion.div>
 
-        <motion.div variants={fadeUp} className="relative mx-auto w-full max-w-[460px]">
-          <div className="relative aspect-square overflow-hidden rounded-[32px] border border-[#35c4dd]/[0.22] bg-gradient-to-br from-[#0a3050]/70 to-[#062038]/80 shadow-[0_30px_80px_rgba(0,0,0,.45)]">
-            <Image src="/images/hero-shark.png" alt="" fill className="scale-x-[-1] object-contain p-10" sizes="460px" />
+        <motion.div variants={fadeUp} className="relative mx-auto w-full max-w-[460px] pt-8 pb-8">
+          <div className="relative aspect-square">
+            <Image src="/images/hero-shark.png" alt="" fill className="scale-x-[-1] object-contain drop-shadow-[0_20px_50px_rgba(0,0,0,.5)]" sizes="460px" />
           </div>
-          <div className="absolute -right-6 -top-6 h-24 w-24 rounded-2xl border border-[#35c4dd]/[0.22] bg-[#062038] p-3 shadow-[0_16px_40px_rgba(0,0,0,.4)] sm:h-28 sm:w-28">
-            <div className="relative h-full w-full">
-              <Image src="/images/results-image.png" alt="" fill className="object-contain" sizes="112px" />
-            </div>
+
+          <div className="absolute -top-4 right-6 h-32 w-32 drop-shadow-[0_12px_24px_rgba(0,0,0,.5)] sm:h-40 sm:w-40">
+            <Image src="/images/results-image.png" alt="" fill className="object-contain" sizes="160px" />
           </div>
-          <div className="absolute -bottom-6 -left-6 h-28 w-28 rounded-2xl border border-[#35c4dd]/[0.22] bg-[#062038] p-3 shadow-[0_16px_40px_rgba(0,0,0,.4)] sm:h-32 sm:w-32">
-            <div className="relative h-full w-full">
-              <Image src="/images/results-bg.png" alt="" fill className="object-contain grayscale" sizes="128px" />
-            </div>
+
+          <div className="absolute -bottom-4 left-6 h-32 w-32 drop-shadow-[0_12px_24px_rgba(0,0,0,.5)] sm:h-40 sm:w-40">
+            <Image src="/images/results-bg.png" alt="" fill className="object-contain" sizes="160px" />
           </div>
         </motion.div>
       </motion.div>

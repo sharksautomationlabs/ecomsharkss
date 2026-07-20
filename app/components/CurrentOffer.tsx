@@ -278,16 +278,6 @@ export default function CurrentOffer() {
             <div className="space-y-6">
               <div className="bg-white/5 backdrop-blur-2xl rounded-2xl lg:rounded-3xl p-6 lg:p-8 border border-white/30 shadow-2xl">
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-12 h-12 rounded-full overflow-hidden border-2 border-white/30 mt-2">
-                    <Image 
-                      src="/images/founder-1s.png" 
-                      alt="Zayn - Senior E-commerce Consultant" 
-                      width={48} 
-                      height={48}
-                      className="w-full h-full object-cover"
-                      style={{ objectPosition: 'center 30%' }}
-                    />
-                  </div>
                   <h3 className="text-2xl lg:text-3xl font-bold text-white" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
                     Launch Your Walmart Store
                   </h3>
