@@ -5,6 +5,7 @@ export const PHONE_DISPLAY = '(713) 337-7701';
 export const PHONE_TEL = '+17133377701';
 export const EMAIL = 'info@ecomsharkss.com';
 export const CALENDLY_URL = 'https://calendly.com/ecomsharkss-info/30min';
+export const YOUTUBE_AUTOMATION_URL = 'https://www.youtubeautomationlab.com/';
 export const LOGO = '/images/quote-logo.png';
 
 let calendlyReady: Promise<void> | null = null;
@@ -114,6 +115,7 @@ export const platforms = [
   { name: 'Shopify', logo: '/images/shopify-logo.png', href: '/shopify' },
   { name: 'TikTok Shop', logo: '/images/tiktok-logo.png', href: '/tiktok' },
   { name: 'Walmart', logo: '/images/walmart-logo.png', href: '/walmart' },
+  { name: 'YouTube', logo: '/images/youtube-logo.svg', href: YOUTUBE_AUTOMATION_URL },
 ];
 
 export const stats = [
@@ -129,24 +131,35 @@ export const services = [
     title: 'Amazon',
     desc: 'Vast selection, unparalleled convenience, and the fastest ROI in ecommerce — FBA & wholesale automation built to scale.',
     tag: 'Fastest ROI',
+    href: '/amazon',
   },
   {
     logo: '/images/shopify-logo.png',
     title: 'Shopify',
     desc: "Your dream, your brand, your store — designed, built, and marketed by experts who've done it 100+ times.",
     tag: 'Your Own Brand',
+    href: '/shopify',
   },
   {
     logo: '/images/tiktok-logo.png',
     title: 'TikTok Shop',
     desc: "Don't just watch the trend — own it. Viral product strategy plus creator partnerships that convert.",
     tag: 'Own The Trend',
+    href: '/tiktok',
   },
   {
     logo: '/images/walmart-logo.png',
     title: 'Walmart',
     desc: "Zero to $1,000+ in days with dropshipping on America's fastest-growing marketplace. Our flagship offer.",
     tag: 'Flagship Offer',
+    href: '/walmart',
+  },
+  {
+    logo: '/images/youtube-logo.svg',
+    title: 'YouTube',
+    desc: 'Faceless channels built, monetized, and scaled for you — turning views into a real passive income stream.',
+    tag: 'Passive Income',
+    href: YOUTUBE_AUTOMATION_URL,
   },
 ] as const;
 

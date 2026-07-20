@@ -11,7 +11,6 @@ import Ticker from './components/Ticker';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
 import PlatformMarquee from './components/PlatformMarquee';
-import ExpertsSection from './components/ExpertsSection';
 import OfferSection from './components/OfferSection';
 import ServicesSection from './components/ServicesSection';
 import MissionSection from './components/MissionSection';
@@ -60,13 +59,12 @@ export default function Home2Page() {
       <div className="relative z-[2]">
         <Hero />
         <PlatformMarquee />
-        <ExpertsSection />
+        <JourneySection />
         <OfferSection />
         <ServicesSection />
         <MissionSection />
         <QuoteSection />
         <ResultsSection />
-        <JourneySection />
         <ReviewsSection />
         <PricingSection />
         <OwnersCta />

@@ -53,7 +53,12 @@ export default function PlatformMarquee() {
               className="flex shrink-0 items-center justify-center"
               style={{ width: slotWidth }}
             >
-              <Link href={p.href} className="flex items-center justify-center transition-transform duration-300 hover:scale-110">
+              <Link
+                href={p.href}
+                target={p.href.startsWith('http') ? '_blank' : undefined}
+                rel={p.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                className="flex items-center justify-center transition-transform duration-300 hover:scale-110"
+              >
                 <Image
                   src={p.logo}
                   alt={p.name}
