@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Barlow, Barlow_Condensed } from "next/font/google";
 import "./globals.css";
 import CalendlyScript from "./components/CalendlyScript";
-import MetaPixel from "./components/MetaPixel";
+import MetaPixel, { MetaPixelNoScript } from "./components/MetaPixel";
 
 const barlow = Barlow({
   variable: "--font-barlow",
@@ -91,6 +91,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Meta Pixel for tracking — must load before interactive so events fired
+            by other components on mount (e.g. thank-you page Lead event) can find window.fbq */}
+        <MetaPixel />
+
         {/* Favicon for search engines */}
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
@@ -129,11 +133,10 @@ export default function RootLayout({
         className={`${barlow.variable} ${barlowCondensed.variable} antialiased`}
         suppressHydrationWarning
       >
+        <MetaPixelNoScript />
+
         {children}
-        
-        {/* Meta Pixel for tracking */}
-        <MetaPixel />
-    
+
         {/* Calendly Script with optimization */}
         <CalendlyScript />
       </body>
