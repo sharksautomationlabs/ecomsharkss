@@ -157,7 +157,7 @@ export default function Testimonials({ testimonials: customTestimonials }: Testi
   const testimonials = customTestimonials || defaultTestimonials;
 
   return (
-    <section ref={ref} className="w-full bg-white py-16 lg:py-24 overflow-x-hidden">
+    <section ref={ref} className="w-full bg-[#03101e] py-16 lg:py-24 overflow-x-hidden">
       {/* Container to enforce 1920px max-width alignment */}
       <div className="container mx-auto px-5 lg:px-20">
         
@@ -168,14 +168,14 @@ export default function Testimonials({ testimonials: customTestimonials }: Testi
           initial="hidden"
           animate={controls}
         >
-          <h1 
-            className="text-3xl lg:text-6xl font-bold text-gray-800"
+          <h1
+            className="text-3xl lg:text-6xl font-bold text-[#eaf7fb]"
             style={{ fontFamily: "'Barlow Condensed', sans-serif" }}
           >
             Client Testimonials
           </h1>
-          <p 
-            className="mt-4 text-base lg:text-lg text-gray-600 max-w-2xl mx-auto"
+          <p
+            className="mt-4 text-base lg:text-lg text-[#9dc3d4] max-w-2xl mx-auto"
             style={{ fontFamily: "'Barlow', sans-serif" }}
           >
             From debut storytellers to celebrated literary icons, our authors are the heart of our work. 
@@ -194,7 +194,7 @@ export default function Testimonials({ testimonials: customTestimonials }: Testi
             // THE FIX: `aspect-square` forces a 1:1 ratio. `flex flex-col` allows content management.
             <motion.div 
               key={index}
-              className="bg-[#E8F8FA] rounded-xl p-4 lg:p-6 shadow-sm border border-gray-200 flex flex-col aspect-square"
+              className="bg-[rgba(10,48,80,0.45)] backdrop-blur-sm rounded-xl p-4 lg:p-6 shadow-sm border border-[#35c4dd]/20 flex flex-col aspect-square"
               style={{ fontFamily: "'Barlow', sans-serif" }}
               variants={cardVariants}
               initial="hidden"
@@ -214,19 +214,19 @@ export default function Testimonials({ testimonials: customTestimonials }: Testi
                         className="w-full h-full object-cover rounded-lg"
                       />
                     ) : (
-                      <div className="w-full h-full bg-gray-200 rounded-lg flex items-center justify-center">
-                    <span className="font-bold text-lg lg:text-xl text-gray-600" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+                      <div className="w-full h-full bg-[#0b2237] rounded-lg flex items-center justify-center">
+                    <span className="font-bold text-lg lg:text-xl text-[#9dc3d4]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
                         {testimonial.name.charAt(0)}
                     </span>
                       </div>
                     )}
                   </div>
                   <div>
-                    <h3 className="font-bold text-base lg:text-lg text-gray-800">{testimonial.name}</h3>
-                    <p className="text-xs lg:text-sm text-gray-600">{testimonial.subtitle}</p>
+                    <h3 className="font-bold text-base lg:text-lg text-[#eaf7fb]">{testimonial.name}</h3>
+                    <p className="text-xs lg:text-sm text-[#9dc3d4]">{testimonial.subtitle}</p>
                   </div>
                 </div>
-                <p className="text-xs text-gray-500 whitespace-nowrap pl-2">{testimonial.postDate}</p>
+                <p className="text-xs text-[#9dc3d4]/70 whitespace-nowrap pl-2">{testimonial.postDate}</p>
               </div>
               
               {/* Rating */}
@@ -235,13 +235,13 @@ export default function Testimonials({ testimonials: customTestimonials }: Testi
               </div>
               
               {/* Review Text - `flex-grow` makes it take up available space. `overflow-hidden` prevents long text from breaking the layout. */}
-              <p className="text-sm lg:text-base text-gray-700 leading-relaxed flex-grow overflow-hidden">
+              <p className="text-sm lg:text-base text-[#9dc3d4] leading-relaxed flex-grow overflow-hidden">
                 {testimonial.review}
               </p>
-              
+
               {/* Reply Date - No `mt-auto` needed anymore, as flex-grow handles the spacing. */}
-              <div className="border-t border-gray-300 pt-3 lg:pt-4 mt-3 lg:mt-4">
-                <p className="text-xs text-gray-500">{testimonial.replyDate}</p>
+              <div className="border-t border-[#35c4dd]/20 pt-3 lg:pt-4 mt-3 lg:mt-4">
+                <p className="text-xs text-[#9dc3d4]/70">{testimonial.replyDate}</p>
               </div>
             </motion.div>
           ))}

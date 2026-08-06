@@ -101,31 +101,31 @@ export default function MissionSection({
   };
 
   return (
-    <div ref={ref} className="w-full bg-white flex justify-center">
+    <div ref={ref} className="w-full bg-[#03101e] flex justify-center">
         <div className={`relative w-full max-w-[1920px] overflow-hidden select-none ${useCustomContent ? 'min-h-[800px] py-20' : 'min-h-[900px] lg:min-h-[1200px] py-16 pb-2 lg:py-20'}`}>
-        
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#bef4fe] to-white" />
+
+        <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#0b2237] to-[#03101e]" />
         <div className="absolute inset-0 z-10">
             <div className="w-full h-full bg-repeat" style={{ backgroundImage: `url('${imgPattern011}')` }} />
         </div>
 
         <div className={`relative z-10 w-full px-5 lg:px-20 ${useCustomContent ? 'h-full flex items-center' : 'h-full'}`}>
           {!useCustomContent && (
-            <nav className="relative z-30 w-full flex justify-center pt-3 lg:pt-6 border-b-2 border-[#79bfcd]">
+            <nav className="relative z-30 w-full flex justify-center pt-3 lg:pt-6 border-b-2 border-[#35c4dd]/30">
               {/* === MODIFICATION HERE === */}
               <div className="flex items-center gap-8 lg:gap-16 overflow-x-auto">
                 {Object.keys(contentData).map((tab) => (
-                  <div 
+                  <div
                     key={tab}
                     className={`relative ${
-                      activeTab === tab ? 'border-b-2 border-[#063f4a] pb-4 lg:pb-6' : 'border-b-2 border-transparent pb-4 lg:pb-6'
+                      activeTab === tab ? 'border-b-2 border-[#35c4dd] pb-4 lg:pb-6' : 'border-b-2 border-transparent pb-4 lg:pb-6'
                     }`}
                   >
-                    <span 
+                    <span
                       onClick={() => setActiveTab(tab)}
                       className={`text-lg lg:text-[32px] transition-colors duration-300 cursor-pointer hover:opacity-80 inline-block ${
-                        activeTab === tab ? 'text-[#063f4a]' : 'text-[#2c2420] opacity-60'
-                      }`} 
+                        activeTab === tab ? 'text-[#35c4dd]' : 'text-[#9dc3d4] opacity-60'
+                      }`}
                       style={{ fontFamily: "'Barlow Condensed', sans-serif", fontWeight: 500 }}
                     >
                       {contentData[tab as keyof typeof contentData].title}
@@ -146,10 +146,10 @@ export default function MissionSection({
               >
                 {useCustomContent ? (
                   <div>
-                    <h1 className="text-4xl lg:text-[94px] font-semibold text-[#2c2420] leading-tight lg:leading-[0.921]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+                    <h1 className="text-4xl lg:text-[94px] font-semibold text-[#eaf7fb] leading-tight lg:leading-[0.921]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
                         {customTitle}
                     </h1>
-                    <p className="mt-6 lg:mt-8 text-base lg:text-[20px] text-[#333333] leading-6 lg:leading-[32px] text-justify whitespace-pre-line" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                    <p className="mt-6 lg:mt-8 text-base lg:text-[20px] text-[#9dc3d4] leading-6 lg:leading-[32px] text-justify whitespace-pre-line" style={{ fontFamily: "'Barlow', sans-serif" }}>
                         {customDescription}
                     </p>
                   </div>
@@ -162,13 +162,13 @@ export default function MissionSection({
                       animate="animate"
                       exit="exit"
                     >
-                      <div className="inline-flex items-center gap-2 lg:gap-3 bg-[#95e5f3] text-[#2c2420] px-3 lg:px-6 py-2 lg:py-4 rounded-full mb-6 lg:mb-8 mt-4 lg:mt-0">
+                      <div className="inline-flex items-center gap-2 lg:gap-3 bg-[rgba(53,196,221,0.18)] text-[#eaf7fb] px-3 lg:px-6 py-2 lg:py-4 rounded-full mb-6 lg:mb-8 mt-4 lg:mt-0">
                           <span className="font-medium text-sm lg:text-2xl" style={{ fontFamily: "'Barlow', sans-serif" }}>{currentContent.badge}</span>
                       </div>
-                      <h1 className="text-4xl lg:text-[94px] font-semibold text-[#2c2420] leading-tight lg:leading-[0.921]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+                      <h1 className="text-4xl lg:text-[94px] font-semibold text-[#eaf7fb] leading-tight lg:leading-[0.921]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
                           {currentContent.title}
                       </h1>
-                      <p className="mt-6 lg:mt-8 text-base lg:text-[20px] text-[#333333] leading-6 lg:leading-[32px] text-justify whitespace-pre-line" style={{ fontFamily: "'Barlow', sans-serif" }}>
+                      <p className="mt-6 lg:mt-8 text-base lg:text-[20px] text-[#9dc3d4] leading-6 lg:leading-[32px] text-justify whitespace-pre-line" style={{ fontFamily: "'Barlow', sans-serif" }}>
                           {currentContent.description}
                       </p>
                     </motion.div>

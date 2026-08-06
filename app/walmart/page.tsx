@@ -52,20 +52,22 @@ const walmartTestimonials = [
 
 export default function WalmartPage() {
   return (
-    <div className="w-full bg-white overflow-x-hidden">
+    <div className="w-full bg-[#03101e] overflow-x-hidden">
       <WalmartHeader />
-      <Mission 
-        useCustomContent={true}
-        customTitle="Sky-Rocket Your Walmart Venture with Our Premium Walmart Automation Services"
-        customDescription="Our TikTok Automation Services are designed to elevate your brand's presence and drive engagement on this rapidly growing platform. We offer a range of services, from account setup and management to content creation and audience targeting, all tailored to meet your specific business goals.
+      <div className="relative z-[2]">
+        <Mission
+          useCustomContent={true}
+          customTitle="Sky-Rocket Your Walmart Venture with Our Premium Walmart Automation Services"
+          customDescription="Our TikTok Automation Services are designed to elevate your brand's presence and drive engagement on this rapidly growing platform. We offer a range of services, from account setup and management to content creation and audience targeting, all tailored to meet your specific business goals.
 
 Our team of experts is well-versed with the latest TikTok trends and algorithms, ensuring that your brand stays relevant and visible to your target audience. Whether you're looking to launch a new product, increase brand awareness, or drive sales, we can help you achieve your goals."
-        logoType="amazon"
-      />
-      <ImageGallery images={walmartImages} />
-      <Testimonials testimonials={walmartTestimonials} />
-      <WalmartBestServices />
-      <Footer />
+          logoType="amazon"
+        />
+        <ImageGallery images={walmartImages} />
+        <Testimonials testimonials={walmartTestimonials} />
+        <WalmartBestServices />
+        <Footer />
+      </div>
     </div>
   );
 }

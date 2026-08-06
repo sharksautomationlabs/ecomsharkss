@@ -15,7 +15,7 @@ import Footer from '../components/Footer';
 
 export default function HomeOld() {
   return (
-    <div className="w-full bg-white">
+    <div className="w-full bg-[#03101e]">
       {/* Header includes both header navigation and hero sections as per Figma design */}
       <Header />
       <Experts />

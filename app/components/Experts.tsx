@@ -109,7 +109,7 @@ export default function ExpertsSection({
   };
 
   return (
-    <div ref={ref} className="w-full bg-white flex justify-center">
+    <div ref={ref} className="w-full bg-[#03101e] flex justify-center">
       <div className="relative w-full max-w-[1920px] h-auto py-16 md:py-48 md:min-h-[800px] lg:py-8 xl:aspect-[1920/1080] xl:py-0 overflow-hidden select-none
                       flex items-center px-5 lg:px-20">
         
@@ -121,16 +121,16 @@ export default function ExpertsSection({
         >
           
           <motion.div className="lg:col-span-6 z-10" variants={leftVariants}>
-            <div className="inline-flex items-center gap-2 lg:gap-3 bg-[#d0f7ff] text-[#2c2420] px-3 lg:px-4 py-2 lg:py-2.5 rounded-full mb-6 lg:mb-8">
+            <div className="inline-flex items-center gap-2 lg:gap-3 bg-[rgba(53,196,221,0.18)] text-[#eaf7fb] px-3 lg:px-4 py-2 lg:py-2.5 rounded-full mb-6 lg:mb-8">
               <span className="text-lg lg:text-xl">💬</span>
               <span className="font-medium text-sm lg:text-lg" style={{ fontFamily: "'Barlow', sans-serif" }}>Welcome Message</span>
             </div>
 
-            <h1 className="text-4xl lg:text-[94px] font-semibold text-[#2c2020] leading-tight lg:leading-[0.921]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
+            <h1 className="text-4xl lg:text-[94px] font-semibold text-[#eaf7fb] leading-tight lg:leading-[0.921]" style={{ fontFamily: "'Barlow Condensed', sans-serif" }}>
               {title}
             </h1>
 
-            <p className="mt-6 lg:mt-8 text-base lg:text-[24px] text-[#333333] max-w-3xl leading-6 lg:leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
+            <p className="mt-6 lg:mt-8 text-base lg:text-[24px] text-[#9dc3d4] max-w-3xl leading-6 lg:leading-relaxed" style={{ fontFamily: "'Barlow', sans-serif" }}>
               {subtitle}
             </p>
 

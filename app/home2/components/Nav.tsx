@@ -18,15 +18,16 @@ const links = [
   { href: '/contact', label: 'Contact' },
 ];
 
-export default function Nav() {
+export default function Nav({ topNavText: topNavTextProp }: { topNavText?: string } = {}) {
   const [open, setOpen] = useState(false);
+  const navText = topNavTextProp ?? topNavText;
 
   return (
     <header className="fixed inset-x-0 top-9 z-[100] px-[5%] py-1.5 lg:py-2">
       <div className="mx-auto max-w-[1440px]">
         {/* top info bar — matches the site-wide Header's contact strip */}
         <div className="hidden h-10 items-center justify-between rounded-xl border border-[#35c4dd]/[0.22] bg-[#03101e]/80 px-6 backdrop-blur-xl lg:flex">
-          <p className="text-[0.85rem] font-medium text-[#9dc3d4]">{topNavText}</p>
+          <p className="text-[0.85rem] font-medium text-[#9dc3d4]">{navText}</p>
           <div className="flex items-center gap-6">
             <a href={`tel:${PHONE_TEL}`} className="flex items-center gap-2 text-[0.85rem] font-medium text-[#eaf7fb] transition-colors hover:text-[#7eebff]">
               <Phone size={15} className="text-[#35c4dd]" /> {PHONE_DISPLAY}
@@ -75,7 +76,7 @@ export default function Nav() {
             </div>
 
             <div className="space-y-2.5 border-b border-[#35c4dd]/[0.22] px-6 py-4 text-xs text-[#9dc3d4]">
-              <p>{topNavText}</p>
+              <p>{navText}</p>
               <a href={`tel:${PHONE_TEL}`} className="flex items-center gap-2 hover:text-[#7eebff]"><Phone size={13} /> {PHONE_DISPLAY}</a>
               <a href={`mailto:${EMAIL}`} className="flex items-center gap-2 hover:text-[#7eebff]"><Mail size={13} /> {EMAIL}</a>
             </div>
