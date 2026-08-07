@@ -45,7 +45,7 @@ const LOGO_ROW = [
   {
     name: 'Trustpilot',
     logoSrc: '/images/review-platforms/logo-trustpilot.png',
-    href: 'https://www.trustpilot.com/review/ecomsharkss.com',
+    href: 'https://www.trustpilot.com/review/ecomsharksofficial.com',
     linkLabel: 'See on Trustpilot',
   },
   {

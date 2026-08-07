@@ -155,7 +155,7 @@ export default function ThankYouHeader({
               </button>
             </div>
             <div className="hidden lg:block mt-3 ml-2">
-              <a href="https://www.trustpilot.com/review/ecomsharkss.com" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.trustpilot.com/review/ecomsharksofficial.com" target="_blank" rel="noopener noreferrer">
                 <Image src={imgTrustpilot} alt="Trustpilot" width={80} height={24} className="object-contain cursor-pointer hover:opacity-80 transition-opacity" />
               </a>
             </div>
@@ -182,7 +182,7 @@ export default function ThankYouHeader({
                     </span>
                 </button>
                 <div className="mt-4 ml-1">
-                  <a href="https://www.trustpilot.com/review/ecomsharkss.com" target="_blank" rel="noopener noreferrer">
+                  <a href="https://www.trustpilot.com/review/ecomsharksofficial.com" target="_blank" rel="noopener noreferrer">
                     <Image src={imgTrustpilot} alt="Trustpilot" width={50} height={15} className="object-contain cursor-pointer hover:opacity-80 transition-opacity" />
                   </a>
                 </div>

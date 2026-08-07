@@ -75,7 +75,7 @@ export default function Hero() {
           {Array.from({ length: 5 }).map((_, i) => <Star key={i} size={17} fill="currentColor" strokeWidth={0} />)}
         </span>
         <span><b className="text-[#eaf7fb]">4.9 / 5</b> average rating</span>·
-        <a href="https://www.trustpilot.com/review/ecomsharkss.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center">
+        <a href="https://www.trustpilot.com/review/ecomsharksofficial.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center">
           <Image src="/images/trust-pilot.jpg" alt="Trustpilot" width={80} height={24} className="object-contain opacity-90 transition-opacity hover:opacity-100" />
         </a>·
         <span>Verified client reviews</span>
