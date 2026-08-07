@@ -8,8 +8,8 @@ export const FUNNEL_BRAND_NAME = 'ECOM SHARKS';
 // Dark (blue) logo variant with transparent background — funnel pages have white backgrounds
 export const FUNNEL_LOGO_SRC = '/images/funnel-logo-v2.png';
 
-export const FUNNEL_CONTACT_EMAIL = 'info@ecomsharkss.com';
-export const FUNNEL_CONTACT_MAILTO = 'mailto:info@ecomsharkss.com';
+export const FUNNEL_CONTACT_EMAIL = 'info@ecomsharksofficial.com';
+export const FUNNEL_CONTACT_MAILTO = 'mailto:info@ecomsharksofficial.com';
 
 /** Replace both when the official line is confirmed */
 export const FUNNEL_CONTACT_PHONE_TEL = 'tel:+17133377701';

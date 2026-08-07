@@ -304,7 +304,7 @@ export default function Contact() {
                 <GeneralInquiriesIcon />
                 <div>
                   <h3 className="font-bold text-base lg:text-lg">General Inquiries:</h3>
-                  <p className="text-base lg:text-lg">info@ecomsharkss.com</p>
+                  <p className="text-base lg:text-lg">info@ecomsharksofficial.com</p>
                 </div>
               </div>
               <div className="flex items-center gap-3 lg:gap-4">

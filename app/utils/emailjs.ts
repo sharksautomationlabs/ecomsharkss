@@ -63,7 +63,7 @@ export const sendContactEmail = async (formData: ContactFormData): Promise<{ suc
       from_email: formData.email,
       phone: formData.phone,
       message: formData.message,
-      to_email: 'info@ecomsharkss.com', // Your business email
+      to_email: 'info@ecomsharksofficial.com', // Your business email
     };
 
     // Send email

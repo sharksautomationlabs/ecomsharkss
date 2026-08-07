@@ -3,7 +3,7 @@
 
 export const PHONE_DISPLAY = '(713) 337-7701';
 export const PHONE_TEL = '+17133377701';
-export const EMAIL = 'info@ecomsharkss.com';
+export const EMAIL = 'info@ecomsharksofficial.com';
 export const CALENDLY_URL = 'https://calendly.com/ecomsharkss-info/30min';
 export const YOUTUBE_AUTOMATION_URL = 'https://www.youtubeautomationlab.com/';
 export const LOGO = '/images/quote-logo.png';

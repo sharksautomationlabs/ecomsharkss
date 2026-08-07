@@ -77,9 +77,9 @@ export default function ThankYouHeader({
                   <Image src={imgGroup1000004908} alt="phone" width={32} height={32} />
                   <span>(713) 337-7701</span>
                 </a>
-                <a href="mailto:info@ecomsharkss.com" className="flex items-center gap-3 text-white text-[20px] font-medium" style={{ fontFamily: "'Barlow', sans-serif", ...textShadow }}>
+                <a href="mailto:info@ecomsharksofficial.com" className="flex items-center gap-3 text-white text-[20px] font-medium" style={{ fontFamily: "'Barlow', sans-serif", ...textShadow }}>
                   <Image src={imgGroup1000004909} alt="email" width={32} height={32} />
-                  <span>info@ecomsharkss.com</span>
+                  <span>info@ecomsharksofficial.com</span>
                 </a>
               </div>
             </div>
