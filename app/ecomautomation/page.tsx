@@ -6,7 +6,7 @@ import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { Play, Check, X } from 'lucide-react';
+import { Play, Check, X, Zap, ArrowRight } from 'lucide-react';
 import CalendlyInlineEmbed from '@/components/CalendlyInlineEmbed';
 import {
   CALENDLY_EMBED_ID,
@@ -20,6 +20,7 @@ import {
   footerContent,
   successStories,
   proofDisclaimer,
+  keyStats,
 } from '@/lib/ecomwealthContent';
 import {
   FUNNEL_BRAND_NAME,
@@ -144,10 +145,11 @@ function CtaButton({
     <button
       type="button"
       onClick={onClick}
-      className={`inline-flex items-center justify-center gap-2 bg-teal-500 hover:bg-teal-600 text-white font-bold ${sizing} rounded-full transition-all shadow-lg shadow-teal-500/25`}
+      className={`group inline-flex items-center justify-center gap-2 bg-teal-500 hover:bg-teal-600 hover:-translate-y-0.5 active:translate-y-0 text-white font-extrabold ${sizing} rounded-xl transition-all duration-200 shadow-[0_12px_18px_-8px_rgba(20,184,166,0.55)]`}
       style={{ fontFamily: 'var(--font-barlow)' }}
     >
       {children}
+      <ArrowRight className="w-[1em] h-[1em] transition-transform group-hover:translate-x-1" />
     </button>
   );
 }
@@ -179,27 +181,17 @@ export default function EcomAutomationPage({
                 </div>
               </Link>
             </motion.div>
-            <motion.div variants={fadeInUp} className="mb-4 flex justify-center">
-              <span className="inline-flex items-center rounded-full border border-teal-200 bg-white px-4 py-1.5 text-sm lg:text-base font-bold uppercase tracking-[0.22em] text-teal-700" style={{ fontFamily: "var(--font-barlow)" }}>
-                Built For Investors
-              </span>
-            </motion.div>
+            <motion.p variants={fadeInUp} className="mb-3 flex items-center justify-center gap-2 text-lg lg:text-xl font-bold text-teal-700" style={{ fontFamily: "var(--font-barlow)" }}>
+              <Zap className="w-5 h-5 lg:w-6 lg:h-6 fill-teal-500 text-teal-500 shrink-0" />
+              {heroContent.performanceCallout}
+            </motion.p>
             <motion.h1 variants={fadeInUp} className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-900 mb-5 leading-[1.05] tracking-tight" style={{ fontFamily: "var(--font-montserrat)" }}>
               Own A Fully Managed
               <br />
               eCommerce Business —
               <br />
-              <span className="text-teal-600">Without Running One.</span>
+              <span className="text-teal-600 italic">Without Running One.</span>
             </motion.h1>
-            <motion.div variants={fadeInUp} className="mb-2 flex justify-center">
-              <span className="inline-flex items-center gap-2.5 rounded-full border border-teal-200 bg-teal-50 px-5 py-2 text-lg lg:text-xl font-semibold text-teal-700" style={{ fontFamily: "var(--font-barlow)" }}>
-                <span className="h-2 w-2 rounded-full bg-teal-500 shadow-[0_0_8px_2px_rgba(45,212,191,0.5)]" />
-                {heroContent.performanceCallout}
-              </span>
-            </motion.div>
-            <motion.p variants={fadeInUp} className="mb-5 text-xs lg:text-sm text-slate-500 max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: "var(--font-barlow)" }}>
-              {heroContent.performanceDisclaimer}
-            </motion.p>
             <motion.p variants={fadeInUp} className="text-xl lg:text-2xl text-slate-600 mb-5 max-w-3xl mx-auto leading-relaxed" style={{ fontFamily: "var(--font-barlow)" }}>
               {heroContent.subhead}
             </motion.p>
@@ -216,6 +208,18 @@ export default function EcomAutomationPage({
             </motion.p>
             <motion.div variants={fadeInUp} className="mt-7 flex justify-center">
               <CtaButton onClick={scrollToCalendly} size="lg">{applyCtaContent.ctaText}</CtaButton>
+            </motion.div>
+            <motion.p variants={fadeInUp} className="mt-3 flex items-center justify-center gap-1.5 text-sm lg:text-base font-semibold text-teal-700" style={{ fontFamily: 'var(--font-barlow)' }}>
+              <Zap className="w-4 h-4 fill-teal-500 text-teal-500 shrink-0" />
+              Only 5 investor partnerships available per month — apply now to secure yours.
+            </motion.p>
+            <motion.p variants={fadeInUp} className="mt-2 text-xs lg:text-sm text-slate-500 max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: "var(--font-barlow)" }}>
+              {heroContent.performanceDisclaimer}
+            </motion.p>
+            <motion.div variants={fadeInUp} className="mt-6 flex justify-center">
+              <a href="https://www.trustpilot.com/review/ecomsharksofficial.com" target="_blank" rel="noopener noreferrer" className="inline-flex items-center opacity-90 hover:opacity-100 transition-opacity">
+                <Image src="/images/trust-pilot.jpg" alt="ECOM SHARKS on Trustpilot" width={110} height={30} className="object-contain" />
+              </a>
             </motion.div>
             <motion.div variants={fadeInUp} className="mt-6 flex flex-wrap justify-center gap-x-6 gap-y-2">
               {['You Own The Business', 'We Manage The Operations', 'Built For Investors & Business Owners'].map((item) => (
@@ -253,6 +257,24 @@ export default function EcomAutomationPage({
 
   const afterCalendlySection = (
     <>
+      {/* Key Stats — dark proof strip */}
+      <div className="py-10 lg:py-14" style={{ backgroundColor: 'rgb(10, 10, 10)' }}>
+        <div className="container mx-auto px-5 lg:px-20">
+          <div className="grid grid-cols-2 sm:grid-cols-4 max-w-4xl mx-auto rounded-[20px] border border-white/10 divide-y sm:divide-y-0 sm:divide-x divide-white/10 overflow-hidden">
+            {keyStats.map((stat) => (
+              <div key={stat.label} className="px-4 py-6 text-center">
+                <p className="text-3xl lg:text-4xl font-extrabold text-teal-400" style={{ fontFamily: 'var(--font-montserrat)' }}>
+                  {stat.figure}
+                </p>
+                <p className="mt-2 text-xs lg:text-sm uppercase tracking-wide text-slate-300 font-medium" style={{ fontFamily: 'var(--font-barlow)' }}>
+                  {stat.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
       <div className="py-4 lg:py-6 bg-teal-50 border-y border-teal-100">
         <div className="container mx-auto px-5 lg:px-20 text-center">
           <p className="text-xl lg:text-2xl text-slate-900 font-semibold max-w-3xl mx-auto" style={{ fontFamily: "var(--font-montserrat)" }}>
@@ -299,7 +321,7 @@ export default function EcomAutomationPage({
               ].map((row) => (
                 <div
                   key={row.label}
-                  className={`flex items-center gap-4 rounded-2xl border px-5 py-4 ${row.positive ? 'border-teal-300 bg-teal-50' : 'border-slate-200 bg-white'}`}
+                  className={`flex items-center gap-4 rounded-[20px] border px-5 py-4 ${row.positive ? 'border-teal-300 bg-teal-50' : 'border-slate-200 bg-white'}`}
                 >
                   <span className={`flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full ${row.positive ? 'bg-teal-500 text-white' : 'bg-slate-100 text-slate-400'}`}>
                     {row.positive ? <Check className="w-4 h-4" /> : <X className="w-4 h-4" />}
@@ -376,7 +398,7 @@ export default function EcomAutomationPage({
               'We optimize for long-term growth.',
             ].map((step, i) => (
               <Reveal key={step} delay={i * 0.05}>
-                <div className="group flex items-center gap-5 bg-white border border-slate-200 shadow-sm rounded-2xl px-6 py-5 transition-colors hover:border-teal-300 hover:bg-slate-50">
+                <div className="group flex items-center gap-5 bg-white border border-slate-200 shadow-sm rounded-[20px] px-6 py-5 transition-colors hover:border-teal-300 hover:bg-slate-50">
                   <span className="flex-shrink-0 w-12 h-12 rounded-full bg-teal-500 text-white font-bold flex items-center justify-center text-lg" style={{ fontFamily: "var(--font-montserrat)" }}>
                     {i + 1}
                   </span>
@@ -418,7 +440,7 @@ export default function EcomAutomationPage({
               'Performance Reporting',
               'Ongoing Optimization',
             ].map((item) => (
-              <div key={item} className="group flex items-center gap-3 bg-white border border-slate-200 shadow-sm rounded-xl px-5 py-4 transition-colors hover:border-teal-300 hover:bg-slate-50">
+              <div key={item} className="group flex items-center gap-3 bg-white border border-slate-200 shadow-sm rounded-[20px] px-5 py-4 transition-colors hover:border-teal-300 hover:bg-slate-50">
                 <span className="flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-full bg-teal-100 text-teal-600">
                   <Check className="w-4 h-4" />
                 </span>
@@ -444,7 +466,7 @@ export default function EcomAutomationPage({
           </h2>
           <div className="grid grid-cols-1 gap-6 max-w-4xl mx-auto">
             {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-xl border border-slate-200 aspect-[4/3] flex items-center justify-center">
+              <div key={i} className="bg-white rounded-[20px] overflow-hidden shadow-xl border border-slate-200 aspect-[4/3] flex items-center justify-center">
                 <Image
                   src={`/images/partner-results/result-${i === 2 ? '2-tiktok' : i}.png`}
                   alt={`Partner store result ${i}`}
@@ -457,7 +479,7 @@ export default function EcomAutomationPage({
               </div>
             ))}
           </div>
-          <div className="mt-16 max-w-2xl mx-auto rounded-2xl border border-slate-200 bg-white px-8 py-10 text-center">
+          <div className="mt-16 max-w-2xl mx-auto rounded-[20px] border border-slate-200 bg-white px-8 py-10 text-center">
             <p className="text-lg text-slate-900 font-semibold mb-2" style={{ fontFamily: "var(--font-montserrat)" }}>
               Ready to book your free strategy call?
             </p>
@@ -481,7 +503,7 @@ export default function EcomAutomationPage({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
             {successStories.map((story, i) => (
               <Reveal key={story.name} delay={i * 0.05}>
-                <div className="h-full flex flex-col bg-white border border-slate-200 shadow-sm rounded-2xl p-7 transition-colors hover:border-teal-300">
+                <div className="h-full flex flex-col bg-white border border-slate-200 shadow-sm rounded-[20px] p-7 transition-colors hover:border-teal-300">
                   <div className="flex items-baseline gap-3 mb-3">
                     <span className="text-3xl lg:text-4xl font-bold text-teal-600" style={{ fontFamily: "var(--font-montserrat)" }}>{story.figure}</span>
                     <span className="text-sm text-slate-500" style={{ fontFamily: "var(--font-barlow)" }}>in {story.timeframe}</span>
@@ -591,7 +613,7 @@ export default function EcomAutomationPage({
             <p className="text-lg lg:text-xl text-slate-600 leading-relaxed mb-8" style={{ fontFamily: "var(--font-barlow)" }}>
               If you&apos;re looking to diversify your income with a professionally managed eCommerce business, let&apos;s talk. During your strategy call we&apos;ll:
             </p>
-            <div className="max-w-md mx-auto space-y-4 text-left mb-8 bg-white border border-slate-200 shadow-sm rounded-2xl px-6 py-6">
+            <div className="max-w-md mx-auto space-y-4 text-left mb-8 bg-white border border-slate-200 shadow-sm rounded-[20px] px-6 py-6">
               {[
                 'Learn about your goals.',
                 'Explain the model.',

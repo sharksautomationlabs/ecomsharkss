@@ -117,6 +117,13 @@ export const successStories: SuccessStory[] = [
   },
 ];
 
+export const keyStats: StatCard[] = [
+  { figure: '100+', label: 'Happy Clients' },
+  { figure: '300%+', label: 'Avg. Sales Growth' },
+  { figure: '4.9★', label: 'Average Rating' },
+  { figure: '30 Days', label: 'To Your First $4,000' },
+];
+
 export const statCards: StatCard[] = [
   { figure: '$47,000', label: 'in Just 6 Months', type: 'revenue' },
   { figure: '$8,477', label: 'Revenue In 30 Days', type: 'revenue' },
