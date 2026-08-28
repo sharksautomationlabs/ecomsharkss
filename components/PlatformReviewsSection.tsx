@@ -101,7 +101,7 @@ export default function PlatformReviewsSection() {
           {`Proof from people who work with ${FUNNEL_BRAND_NAME}`}
         </h2>
         <p className="text-center text-slate-600 text-base lg:text-lg mb-8 max-w-2xl mx-auto leading-relaxed">
-          {`Trusted by investors who chose ${FUNNEL_BRAND_NAME}—recent feedback from partners on the experience.`}
+          {`Trusted by investors who chose ${FUNNEL_BRAND_NAME}. Recent feedback from partners on the experience.`}
         </p>
 
         <FunnelReviewVideosGrid />

@@ -6,7 +6,7 @@ import { useInView } from 'react-intersection-observer';
 import Image from 'next/image';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
-import { Play, Check, X, Zap, ArrowRight } from 'lucide-react';
+import { Play, Check, X, Zap, ArrowRight, AlertTriangle } from 'lucide-react';
 import CalendlyInlineEmbed from '@/components/CalendlyInlineEmbed';
 import {
   CALENDLY_EMBED_ID,
@@ -15,7 +15,6 @@ import {
 } from '@/lib/calendlyRedirect';
 import {
   heroContent,
-  trustStripContent,
   applyCtaContent,
   footerContent,
   successStories,
@@ -31,18 +30,22 @@ import {
   FUNNEL_LOGO_SRC,
 } from '@/lib/funnelBrand';
 
-// Heavy below-fold components — loaded only when scrolled into view
+// Heavy below-fold components: loaded only when scrolled into view
 const PlatformReviewsSection = dynamic(() => import('@/components/PlatformReviewsSection'), { ssr: false });
 const EcomWealthFAQ = dynamic(() => import('@/components/EcomWealthFAQ'), { ssr: false });
 
 const faqItems = [
-  { id: 'faq-1', question: 'Is this truly hands-off?', answer: 'Yes. Our team runs the day-to-day operations — product sourcing, fulfillment, customer support, and ongoing optimization. You stay an owner, not an operator. Most partners spend roughly 30–60 minutes a week reviewing performance and approving the occasional decision.' },
-  { id: 'faq-2', question: 'How much time do I actually need to put in?', answer: 'Very little. The business is built to operate without your daily involvement. You review transparent reporting, sign off on key decisions, and let the systems and experienced operators handle the rest.' },
-  { id: 'faq-3', question: 'Who actually owns the business?', answer: 'You do — 100%. The store, the revenue, and the assets are registered in your name. We build, launch, and manage it on your behalf under a clear agreement. You own the asset; we run the operations.' },
-  { id: 'faq-4', question: 'How transparent is the reporting?', answer: 'Fully transparent. You get dashboard access and regular performance reporting covering sales, orders, and profit — so you can see exactly how your business is doing at any time.' },
-  { id: 'faq-5', question: 'What happens if performance is slower than expected?', answer: `We target $4,000+ in trackable sales in the first 30 days, but every business ramps differently based on capital, product selection, and market conditions. If results are slower than planned, our team keeps optimizing the sourcing, listings, and marketing to move things in the right direction. ${heroContent.performanceDisclaimer}` },
-  { id: 'faq-6', question: 'Why don\'t you just build stores only for yourselves?', answer: 'We do operate our own stores — that\'s how we test products and systems before we deploy them. Partnering lets us scale across more proven niches and suppliers than we could alone, while you get an asset built on systems that are already working.' },
-  { id: 'faq-7', question: 'What experience do I need?', answer: 'None. This is built for investors and business owners who want another income-producing asset, not another skill set to learn. Our team handles the operations; your role is ownership and oversight.' },
+  { id: 'faq-1', question: 'How much does it cost?', answer: 'Your investment covers building and launching your store, plus the working capital the business needs to operate, including product testing, marketing, fulfillment, technology, and operations. The exact figure and payment structure are confirmed on your qualification call before you commit.' },
+  { id: 'faq-2', question: 'What exactly do I own?', answer: 'You own the business: the store, the brand, the customer base, and the revenue it generates. ECOM SHARKS operates it on your behalf under a written agreement. Your ownership, responsibilities, and investment requirements are defined upfront.' },
+  { id: 'faq-3', question: 'What do you manage?', answer: 'Product research, store development, supplier and fulfillment operations, marketing, customer support, automation, and ongoing reporting and optimization. In short, the full day-to-day operation of the business.' },
+  { id: 'faq-4', question: 'How involved do I need to be?', answer: 'Minimal. You review performance reporting and approve key decisions. An experienced team runs daily operations, so the business does not depend on your time.' },
+  { id: 'faq-5', question: 'Do I need ecommerce experience?', answer: 'No. The team operates the business for you. Experience is not required to own it.' },
+  { id: 'faq-6', question: 'How long does setup take?', answer: 'Typically a few weeks from onboarding to launch, depending on product selection and supplier timelines. Your specific timeline is confirmed during onboarding.' },
+  { id: 'faq-7', question: 'What happens if the store doesn\'t perform?', answer: 'The team keeps working the levers that drive performance: product selection, listings, and marketing. Results vary based on product, capital, and market conditions, and no specific outcome is guaranteed.' },
+  { id: 'faq-8', question: 'Are sales or profit guaranteed?', answer: 'No. No sales or profit figure is guaranteed. Performance depends on product selection, marketing, available capital, and market conditions. You get a clear view of the economics so you can make an informed decision.' },
+  { id: 'faq-9', question: 'What additional costs should I expect?', answer: 'Beyond your initial investment, the business carries ongoing operating costs: marketing spend, product and fulfillment costs, and platform and software fees. These are covered in the economics review before you commit.' },
+  { id: 'faq-10', question: 'How do I receive performance reporting?', answer: 'You receive regular performance reporting and business updates covering sales, orders, and key metrics, so you can see how the business is doing at any time.' },
+  { id: 'faq-11', question: 'What happens after launch?', answer: 'The team manages daily operations and keeps optimizing: testing products, refining listings, and adjusting marketing. The focus is on scaling what proves profitable.' },
 ];
 
 type PagePart = 'full' | 'hero' | 'after-calendly';
@@ -95,7 +98,7 @@ function LazyYouTube({ youtubeId, title }: { youtubeId: string; title: string })
   );
 }
 
-/** Subtle scroll-reveal wrapper — fades content up the first time it enters view. */
+/** Subtle scroll-reveal wrapper that fades content up the first time it enters view. */
 function Reveal({
   children,
   className,
@@ -188,7 +191,7 @@ export default function EcomAutomationPage({
             <motion.h1 variants={fadeInUp} className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-slate-900 mb-5 leading-[1.05] tracking-tight" style={{ fontFamily: "var(--font-montserrat)" }}>
               Own A Fully Managed
               <br />
-              eCommerce Business —
+              eCommerce Business.
               <br />
               <span className="text-teal-600 italic">Without Running One.</span>
             </motion.h1>
@@ -211,7 +214,7 @@ export default function EcomAutomationPage({
             </motion.div>
             <motion.p variants={fadeInUp} className="mt-3 flex items-center justify-center gap-1.5 text-sm lg:text-base font-semibold text-teal-700" style={{ fontFamily: 'var(--font-barlow)' }}>
               <Zap className="w-4 h-4 fill-teal-500 text-teal-500 shrink-0" />
-              Only 5 investor partnerships available per month — apply now to secure yours.
+              Only 5 investor partnerships available per month. Apply now to secure yours.
             </motion.p>
             <motion.p variants={fadeInUp} className="mt-2 text-xs lg:text-sm text-slate-500 max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: "var(--font-barlow)" }}>
               {heroContent.performanceDisclaimer}
@@ -257,7 +260,184 @@ export default function EcomAutomationPage({
 
   const afterCalendlySection = (
     <>
-      {/* Key Stats — dark proof strip */}
+      {/* THE MODEL: You own it. We operate it. */}
+      <section className="py-16 lg:py-24 bg-white border-t border-slate-200">
+        <div className="container mx-auto px-5 lg:px-20">
+          <Reveal className="max-w-3xl mx-auto text-center">
+            <SectionEyebrow>The Model</SectionEyebrow>
+            <h2 className="text-4xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight" style={{ fontFamily: "var(--font-montserrat)" }}>
+              You Own It.
+              <br />
+              <span className="text-teal-600">We Operate It.</span>
+            </h2>
+            <p className="text-lg lg:text-xl text-slate-700 leading-relaxed" style={{ fontFamily: "var(--font-barlow)" }}>
+              We build, launch, and manage your ecommerce business. You hold full ownership while an experienced team runs the day-to-day operations.
+            </p>
+            <div className="mt-9">
+              <CtaButton onClick={scrollToCalendly}>{applyCtaContent.ctaText}</CtaButton>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* HOW THE MODEL ACTUALLY WORKS */}
+      <section className="py-16 lg:py-24 bg-slate-50 border-t border-slate-200">
+        <div className="container mx-auto px-5 lg:px-20">
+          <Reveal className="text-center mb-12">
+            <SectionEyebrow>How It Works</SectionEyebrow>
+            <h2 className="text-4xl lg:text-6xl font-bold text-slate-900 mb-4 leading-tight" style={{ fontFamily: "var(--font-montserrat)" }}>
+              How The Model Actually Works
+            </h2>
+            <p className="text-lg lg:text-xl text-slate-600" style={{ fontFamily: "var(--font-barlow)" }}>
+              It&apos;s built through a continuous operating process.
+            </p>
+          </Reveal>
+          <div className="max-w-2xl mx-auto space-y-4">
+            {[
+              'You qualify.',
+              'We research and build your business.',
+              'We launch and manage operations.',
+              'You receive transparent reporting.',
+              'We scale what earns it.',
+            ].map((step, i) => (
+              <Reveal key={step} delay={i * 0.05}>
+                <div className="group flex items-center gap-5 bg-white border border-slate-200 shadow-sm rounded-[20px] px-6 py-5 transition-colors hover:border-teal-300 hover:bg-slate-50">
+                  <span className="flex-shrink-0 w-12 h-12 rounded-full bg-teal-500 text-white font-bold flex items-center justify-center text-lg" style={{ fontFamily: "var(--font-montserrat)" }}>
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                  <span className="text-xl lg:text-2xl text-slate-900 font-medium" style={{ fontFamily: "var(--font-barlow)" }}>
+                    {step}
+                  </span>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+          <Reveal className="text-center mt-12 max-w-2xl mx-auto">
+            <p className="text-lg lg:text-xl text-slate-600 italic mb-8" style={{ fontFamily: "var(--font-barlow)" }}>
+              That&apos;s the difference between handing someone a store and having a team operate a business.
+            </p>
+            <CtaButton onClick={scrollToCalendly}>{applyCtaContent.ctaText}</CtaButton>
+          </Reveal>
+        </div>
+      </section>
+
+      {/*
+        KNOW WHAT YOU OWN
+        NOTE: Replace the ownership descriptions below with the company's actual
+        legal / asset ownership language and contractual structure before publishing.
+      */}
+      <section className="py-16 lg:py-24 bg-white border-t border-slate-200">
+        <div className="container mx-auto px-5 lg:px-20">
+          <Reveal className="text-center mb-12">
+            <SectionEyebrow>What You Own</SectionEyebrow>
+            <h2 className="text-4xl lg:text-6xl font-bold text-slate-900 leading-tight" style={{ fontFamily: "var(--font-montserrat)" }}>
+              Know What You Own.
+            </h2>
+          </Reveal>
+          <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
+            {[
+              { label: 'Your Business', body: 'We build and launch your ecommerce business.' },
+              { label: 'Your Store', body: 'Your storefront is developed and maintained.' },
+              { label: 'Your Operations', body: 'We manage product research, marketing, fulfillment, support, and optimization.' },
+              { label: 'Your Visibility', body: 'You receive performance reporting and business updates.' },
+              { label: 'Your Role', body: 'Your ownership, responsibilities, and investment requirements are clearly defined upfront.' },
+            ].map((item) => (
+              <div key={item.label} className="w-full md:w-[calc(50%_-_0.5rem)] bg-white border border-slate-200 shadow-sm rounded-[20px] px-6 py-6 transition-colors hover:border-teal-300">
+                <h3 className="text-base lg:text-lg font-bold text-teal-600 uppercase tracking-wide mb-2" style={{ fontFamily: "var(--font-barlow)" }}>
+                  {item.label}
+                </h3>
+                <p className="text-base lg:text-lg text-slate-700 leading-relaxed" style={{ fontFamily: "var(--font-barlow)" }}>
+                  {item.body}
+                </p>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-slate-900 font-semibold text-xl lg:text-3xl mt-12" style={{ fontFamily: "var(--font-montserrat)" }}>
+            You own the business. <span className="text-teal-600">We manage the operations.</span>
+          </p>
+          <div className="text-center mt-9">
+            <CtaButton onClick={scrollToCalendly}>{applyCtaContent.ctaText}</CtaButton>
+          </div>
+        </div>
+      </section>
+
+      {/* WHAT'S INCLUDED: short capability grid */}
+      <section className="py-16 lg:py-24 bg-slate-50 border-t border-slate-200">
+        <div className="container mx-auto px-5 lg:px-20">
+          <Reveal className="text-center mb-12">
+            <SectionEyebrow>What&apos;s Included</SectionEyebrow>
+            <h2 className="text-4xl lg:text-6xl font-bold text-slate-900 leading-tight" style={{ fontFamily: "var(--font-montserrat)" }}>
+              What&apos;s Included
+            </h2>
+          </Reveal>
+          <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
+            {[
+              { label: 'Product Research', body: 'Identify and evaluate ecommerce opportunities.' },
+              { label: 'Store Development', body: 'Build and launch your ecommerce storefront.' },
+              { label: 'Supplier & Fulfillment', body: 'Manage sourcing, fulfillment, and order operations.' },
+              { label: 'Marketing', body: 'Manage customer acquisition and growth.' },
+              { label: 'Customer Support', body: 'Handle customer communication and support.' },
+              { label: 'Automation & Systems', body: 'Systemize and automate key operations.' },
+              { label: 'Reporting & Optimization', body: 'Track performance and continuously improve the business.' },
+            ].map((item) => (
+              <div key={item.label} className="w-full md:w-[calc(50%_-_0.5rem)] flex gap-4 bg-white border border-slate-200 shadow-sm rounded-[20px] px-5 py-4 transition-colors hover:border-teal-300">
+                <span className="flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-full bg-teal-100 text-teal-600 mt-0.5">
+                  <Check className="w-4 h-4" />
+                </span>
+                <div>
+                  <h3 className="text-base lg:text-lg font-bold text-slate-900 mb-1" style={{ fontFamily: "var(--font-barlow)" }}>
+                    {item.label}
+                  </h3>
+                  <p className="text-sm lg:text-base text-slate-600 leading-relaxed" style={{ fontFamily: "var(--font-barlow)" }}>
+                    {item.body}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-slate-900 font-semibold text-xl lg:text-3xl mt-12" style={{ fontFamily: "var(--font-montserrat)" }}>
+            You own the business. <span className="text-teal-600">We handle the work required to operate it.</span>
+          </p>
+        </div>
+      </section>
+
+      {/* ECONOMICS */}
+      <section className="py-16 lg:py-24 bg-white border-t border-slate-200">
+        <div className="container mx-auto px-5 lg:px-20">
+          <Reveal className="text-center mb-12">
+            <SectionEyebrow>Economics</SectionEyebrow>
+            <h2 className="text-4xl lg:text-6xl font-bold text-slate-900 leading-tight" style={{ fontFamily: "var(--font-montserrat)" }}>
+              Before You Invest, Understand The Economics.
+            </h2>
+          </Reveal>
+          <div className="flex flex-wrap justify-center gap-4 max-w-4xl mx-auto">
+            {[
+              { label: 'What You Invest', body: 'Initial and ongoing capital requirements.' },
+              { label: 'How It Makes Money', body: 'Products, customers, and revenue model.' },
+              { label: 'What It Costs', body: 'Marketing, products, fulfillment, technology, and operations.' },
+              { label: 'What Affects Profitability', body: 'Margins, acquisition costs, product performance, and market conditions.' },
+              { label: 'What To Expect', body: 'Clear assumptions, targets, and business economics.' },
+            ].map((item) => (
+              <div key={item.label} className="w-full md:w-[calc(50%_-_0.5rem)] bg-white border border-slate-200 shadow-sm rounded-[20px] px-6 py-6 transition-colors hover:border-teal-300">
+                <h3 className="text-base lg:text-lg font-bold text-teal-600 uppercase tracking-wide mb-2" style={{ fontFamily: "var(--font-barlow)" }}>
+                  {item.label}
+                </h3>
+                <p className="text-base lg:text-lg text-slate-700 leading-relaxed" style={{ fontFamily: "var(--font-barlow)" }}>
+                  {item.body}
+                </p>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-slate-900 font-semibold text-xl lg:text-2xl mt-12" style={{ fontFamily: "var(--font-montserrat)" }}>
+            No guarantees. No hype. <span className="text-teal-600">Just a clear view of the business.</span>
+          </p>
+          <div className="text-center mt-9">
+            <CtaButton onClick={scrollToCalendly}>{applyCtaContent.ctaText}</CtaButton>
+          </div>
+        </div>
+      </section>
+
+      {/* PROOF: Key Stats dark strip */}
       <div className="py-10 lg:py-14" style={{ backgroundColor: 'rgb(10, 10, 10)' }}>
         <div className="container mx-auto px-5 lg:px-20">
           <div className="grid grid-cols-2 sm:grid-cols-4 max-w-4xl mx-auto rounded-[20px] border border-white/10 divide-y sm:divide-y-0 sm:divide-x divide-white/10 overflow-hidden">
@@ -274,187 +454,6 @@ export default function EcomAutomationPage({
           </div>
         </div>
       </div>
-
-      <div className="py-4 lg:py-6 bg-teal-50 border-y border-teal-100">
-        <div className="container mx-auto px-5 lg:px-20 text-center">
-          <p className="text-xl lg:text-2xl text-slate-900 font-semibold max-w-3xl mx-auto" style={{ fontFamily: "var(--font-montserrat)" }}>
-            {trustStripContent.partnershipsText}
-          </p>
-        </div>
-      </div>
-
-      {/* Mirror — You're not buying another job, you're buying another asset */}
-      <section className="py-16 lg:py-24 bg-white border-t border-slate-200">
-        <div className="container mx-auto px-5 lg:px-20">
-          <Reveal className="max-w-3xl mx-auto text-center">
-            <SectionEyebrow>Ownership, Not Operations</SectionEyebrow>
-            <h2 className="text-4xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight" style={{ fontFamily: "var(--font-montserrat)" }}>
-              You&apos;re Not Buying Another Job.
-              <br />
-              <span className="text-teal-600">You&apos;re Buying Another Asset.</span>
-            </h2>
-            <p className="text-lg lg:text-xl text-slate-700 font-bold leading-relaxed" style={{ fontFamily: "var(--font-barlow)" }}>
-              You&apos;ve already built a successful business. The last thing you need is another company demanding your time. That&apos;s why we build, operate, and manage your eCommerce business while you focus on what you already do best.
-            </p>
-            <div className="mt-9">
-              <CtaButton onClick={scrollToCalendly}>{applyCtaContent.ctaText}</CtaButton>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Belief Shift — Most people buy stores, investors buy systems */}
-      <section className="py-16 lg:py-24 bg-slate-50 border-t border-slate-200">
-        <div className="container mx-auto px-5 lg:px-20">
-          <Reveal className="max-w-3xl mx-auto text-center">
-            <SectionEyebrow>The Investor Mindset</SectionEyebrow>
-            <h2 className="text-4xl lg:text-6xl font-bold text-slate-900 mb-10 leading-tight" style={{ fontFamily: "var(--font-montserrat)" }}>
-              Most People Buy Stores.
-              <br />
-              <span className="text-teal-600">Investors Buy Systems.</span>
-            </h2>
-            <div className="max-w-xl mx-auto space-y-3 text-left">
-              {[
-                { label: "Owning a store isn't passive.", positive: false },
-                { label: "Managing a store isn't passive.", positive: false },
-                { label: 'Owning a professionally managed business is.', positive: true },
-              ].map((row) => (
-                <div
-                  key={row.label}
-                  className={`flex items-center gap-4 rounded-[20px] border px-5 py-4 ${row.positive ? 'border-teal-300 bg-teal-50' : 'border-slate-200 bg-white'}`}
-                >
-                  <span className={`flex-shrink-0 flex items-center justify-center w-8 h-8 rounded-full ${row.positive ? 'bg-teal-500 text-white' : 'bg-slate-100 text-slate-400'}`}>
-                    {row.positive ? <Check className="w-4 h-4" /> : <X className="w-4 h-4" />}
-                  </span>
-                  <span className={`text-lg lg:text-xl ${row.positive ? 'text-slate-900 font-semibold' : 'text-slate-600'}`} style={{ fontFamily: "var(--font-barlow)" }}>
-                    {row.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-            <p className="mt-8 text-teal-600 font-semibold text-xl lg:text-2xl" style={{ fontFamily: "var(--font-montserrat)" }}>
-              That&apos;s the difference.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Opportunity — Diversify beyond traditional investments */}
-      <section className="py-16 lg:py-24 bg-white border-t border-slate-200 relative overflow-hidden">
-        <div className="absolute top-[-120px] left-[-60px] w-[360px] h-[360px] bg-teal-200/40 rounded-full blur-3xl" />
-        <div className="container mx-auto px-5 lg:px-20 relative z-10">
-          <Reveal className="max-w-3xl mx-auto text-center">
-            <SectionEyebrow>Why It Matters</SectionEyebrow>
-            <h2 className="text-4xl lg:text-6xl font-bold text-slate-900 mb-8 leading-tight" style={{ fontFamily: "var(--font-montserrat)" }}>
-              Diversify Beyond <span className="text-teal-600">Traditional Investments.</span>
-            </h2>
-            <div className="flex flex-wrap justify-center gap-3 mb-8">
-              {['Real estate', 'Stocks', 'Private equity'].map((item) => (
-                <span key={item} className="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-5 py-2 text-lg lg:text-xl text-slate-700 font-medium" style={{ fontFamily: "var(--font-barlow)" }}>
-                  {item}
-                </span>
-              ))}
-            </div>
-            <p className="text-lg lg:text-xl text-slate-600 leading-relaxed" style={{ fontFamily: "var(--font-barlow)" }}>
-              A professionally managed eCommerce business gives you another income-producing asset — <span className="text-slate-900 font-semibold">without adding another full-time responsibility.</span>
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Why Us — Businesses don't become passive by accident */}
-      <section className="py-16 lg:py-24 bg-white border-t border-slate-200">
-        <div className="container mx-auto px-5 lg:px-20">
-          <Reveal className="max-w-3xl mx-auto text-center">
-            <SectionEyebrow>Why It Works</SectionEyebrow>
-            <h2 className="text-4xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight" style={{ fontFamily: "var(--font-montserrat)" }}>
-              Businesses Don&apos;t Become Passive By Accident.
-            </h2>
-            <p className="text-lg lg:text-xl text-slate-600 leading-relaxed" style={{ fontFamily: "var(--font-barlow)" }}>
-              They become passive because every critical function is managed by systems and experienced operators. From product sourcing and fulfillment to customer support and optimization, every part of the business is designed to operate without requiring your daily involvement.
-            </p>
-            <p className="mt-5 text-slate-900 font-semibold text-xl lg:text-2xl" style={{ fontFamily: "var(--font-montserrat)" }}>
-              That&apos;s how ownership becomes scalable.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Process — How we build your business */}
-      <section className="py-16 lg:py-24 bg-slate-50 border-t border-slate-200">
-        <div className="container mx-auto px-5 lg:px-20">
-          <Reveal className="text-center">
-            <SectionEyebrow>The Process</SectionEyebrow>
-            <h2 className="text-4xl lg:text-6xl font-bold text-slate-900 mb-12 leading-tight" style={{ fontFamily: "var(--font-montserrat)" }}>
-              How We Build Your Business
-            </h2>
-          </Reveal>
-          <div className="max-w-2xl mx-auto space-y-4">
-            {[
-              'You qualify.',
-              'We build your business.',
-              'We launch and manage operations.',
-              'You receive transparent reporting.',
-              'We optimize for long-term growth.',
-            ].map((step, i) => (
-              <Reveal key={step} delay={i * 0.05}>
-                <div className="group flex items-center gap-5 bg-white border border-slate-200 shadow-sm rounded-[20px] px-6 py-5 transition-colors hover:border-teal-300 hover:bg-slate-50">
-                  <span className="flex-shrink-0 w-12 h-12 rounded-full bg-teal-500 text-white font-bold flex items-center justify-center text-lg" style={{ fontFamily: "var(--font-montserrat)" }}>
-                    {i + 1}
-                  </span>
-                  <span className="text-xl lg:text-2xl text-slate-900 font-medium" style={{ fontFamily: "var(--font-barlow)" }}>
-                    {step}
-                  </span>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-          <Reveal className="text-center mt-12">
-            <CtaButton onClick={scrollToCalendly}>{applyCtaContent.ctaText}</CtaButton>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* What's Included */}
-      <section className="py-16 lg:py-24 bg-white border-t border-slate-200">
-        <div className="container mx-auto px-5 lg:px-20">
-          <Reveal className="text-center mb-12">
-            <SectionEyebrow>Full-Service Management</SectionEyebrow>
-            <h2 className="text-4xl lg:text-6xl font-bold text-slate-900 mb-3 leading-tight" style={{ fontFamily: "var(--font-montserrat)" }}>
-              What&apos;s Included
-            </h2>
-            <p className="text-slate-600 text-base lg:text-lg max-w-2xl mx-auto" style={{ fontFamily: "var(--font-barlow)" }}>
-              Instead of wondering what you&apos;re paying for, here&apos;s exactly what our team handles.
-            </p>
-          </Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-3xl mx-auto">
-            {[
-              'Store Development',
-              'Product Research',
-              'U.S. Supplier Network',
-              'Inventory Management',
-              'Customer Support',
-              'Order Fulfillment',
-              'Marketing Management',
-              'Automation Systems',
-              'Performance Reporting',
-              'Ongoing Optimization',
-            ].map((item) => (
-              <div key={item} className="group flex items-center gap-3 bg-white border border-slate-200 shadow-sm rounded-[20px] px-5 py-4 transition-colors hover:border-teal-300 hover:bg-slate-50">
-                <span className="flex-shrink-0 flex items-center justify-center w-7 h-7 rounded-full bg-teal-100 text-teal-600">
-                  <Check className="w-4 h-4" />
-                </span>
-                <span className="text-lg lg:text-xl text-slate-900 font-medium" style={{ fontFamily: "var(--font-barlow)" }}>
-                  {item}
-                </span>
-              </div>
-            ))}
-          </div>
-          <p className="text-center text-slate-900 font-semibold text-xl lg:text-3xl mt-12" style={{ fontFamily: "var(--font-montserrat)" }}>
-            You own the business. <span className="text-teal-600">We handle everything else.</span>
-          </p>
-        </div>
-      </section>
 
       <PlatformReviewsSection />
 
@@ -484,14 +483,14 @@ export default function EcomAutomationPage({
               Ready to book your free strategy call?
             </p>
             <p className="text-slate-600 text-sm mb-6" style={{ fontFamily: "var(--font-barlow)" }}>
-              Pick a time that works for you — no pressure, no commitment.
+              Pick a time that works for you. No pressure, no commitment.
             </p>
             <CtaButton onClick={scrollToCalendly}>{applyCtaContent.ctaText}</CtaButton>
           </div>
         </div>
       </div>
 
-      {/* Client Stories — real partner journeys, not just testimonials */}
+      {/* Client Stories: real partner journeys, not just testimonials */}
       <section className="py-16 lg:py-24 bg-slate-50 border-t border-slate-200">
         <div className="container mx-auto px-5 lg:px-20">
           <Reveal className="text-center mb-12">
@@ -510,7 +509,7 @@ export default function EcomAutomationPage({
                   </div>
                   <h3 className="text-lg lg:text-xl font-semibold text-slate-900 mb-3" style={{ fontFamily: "var(--font-montserrat)" }}>{story.headline}</h3>
                   <p className="text-base lg:text-lg text-slate-600 leading-relaxed mb-5 flex-grow" style={{ fontFamily: "var(--font-barlow)" }}>&ldquo;{story.quote}&rdquo;</p>
-                  <p className="text-sm font-semibold text-slate-900" style={{ fontFamily: "var(--font-barlow)" }}>&mdash; {story.name}</p>
+                  <p className="text-sm font-semibold text-slate-900" style={{ fontFamily: "var(--font-barlow)" }}>{story.name}</p>
                 </div>
               </Reveal>
             ))}
@@ -521,69 +520,190 @@ export default function EcomAutomationPage({
         </div>
       </section>
 
-      {/* Market Graph Section */}
-      <div className="py-16 lg:py-24 bg-white relative overflow-hidden border-y border-slate-200">
-        <div className="absolute top-[-100px] right-[-50px] w-[300px] h-[300px] bg-teal-200/40 rounded-full blur-3xl" />
-        <div className="container mx-auto px-5 lg:px-20 relative z-10">
-          <h2 className="text-4xl lg:text-6xl font-bold text-slate-900 text-center mb-2 max-w-5xl mx-auto leading-tight" style={{ fontFamily: "var(--font-montserrat)" }}>
-            Global e-commerce is on pace to pass
-            <br />
-            <span className="text-teal-600">$8.15 trillion by 2026</span>
-          </h2>
-          <p className="text-center text-slate-600 text-base lg:text-lg mb-9" style={{ fontFamily: "var(--font-barlow)" }}>
-            Diversify beyond real estate, stocks, and private equity—own an income-producing asset in the fastest-growing market.
-          </p>
-          <div className="max-w-5xl mx-auto">
-            {/* Combined Bar + Line Chart */}
-            <div className="relative w-full" style={{ minHeight: '320px' }}>
-              <svg viewBox="0 0 880 320" className="w-full h-auto" preserveAspectRatio="xMidYMid meet">
-                <defs>
-                  <linearGradient id="barGradient" x1="0%" y1="100%" x2="0%" y2="0%">
-                    <stop offset="0%" stopColor="#123e73" />
-                    <stop offset="100%" stopColor="#4d84c4" />
-                  </linearGradient>
-                </defs>
-                {/* Data: year, value, x (center), barHeight (0-160), y (line point, 240 - barHeight*0.9) */}
+      {/* WHY ECOM SHARKS */}
+      <section className="py-16 lg:py-24 bg-white border-t border-slate-200">
+        <div className="container mx-auto px-5 lg:px-20">
+          <Reveal className="text-center mb-12">
+            <SectionEyebrow>Why ECOM SHARKS</SectionEyebrow>
+            <h2 className="text-4xl lg:text-6xl font-bold text-slate-900 leading-tight" style={{ fontFamily: "var(--font-montserrat)" }}>
+              Why ECOM SHARKS?
+            </h2>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div className="rounded-[20px] border border-slate-200 bg-white p-7">
+              <h3 className="text-xl lg:text-2xl font-bold text-slate-900 mb-5" style={{ fontFamily: "var(--font-montserrat)" }}>
+                Build It Yourself
+              </h3>
+              <ul className="space-y-3">
                 {[
-                  { year: '2017', value: '$2.38', x: 50, barH: 53, y: 187 },
-                  { year: '2018', value: '$2.98', x: 130, barH: 67, y: 173 },
-                  { year: '2019', value: '$3.35', x: 210, barH: 75, y: 165 },
-                  { year: '2020', value: '$4.25', x: 290, barH: 95, y: 145 },
-                  { year: '2021', value: '$5.21', x: 370, barH: 117, y: 123 },
-                  { year: '2022', value: '$5.72', x: 450, barH: 128, y: 112 },
-                  { year: '2023', value: '$6.31', x: 530, barH: 141, y: 99 },
-                  { year: '2024*', value: '$6.91', x: 610, barH: 155, y: 85 },
-                  { year: '2025*', value: '$7.53', x: 690, barH: 169, y: 71 },
-                  { year: '2026*', value: '$8.15', x: 770, barH: 183, y: 57 },
-                  { year: '2027*', value: '$8.91', x: 830, barH: 200, y: 40 },
-                ].map((d) => (
-                  <g key={d.year}>
-                    <rect x={d.x - 28} y={240 - d.barH} width="44" height={d.barH} rx="4" fill="url(#barGradient)" />
-                    <text x={d.x} y={240 - d.barH - 8} textAnchor="middle" fill="#123e73" fontSize="12" fontFamily="Barlow, sans-serif">{d.value}</text>
-                    <text x={d.x} y="268" textAnchor="middle" fill="#123e73" fontSize="11" fontFamily="Barlow Condensed, sans-serif">{d.year}</text>
-                  </g>
+                  'Find products yourself',
+                  'Build your own store',
+                  'Learn ecommerce as you go',
+                  'Run your own marketing',
+                  'Handle suppliers and fulfillment',
+                  'Monitor and optimize everything',
+                ].map((row) => (
+                  <li key={row} className="flex items-start gap-3 text-base lg:text-lg text-slate-600" style={{ fontFamily: "var(--font-barlow)" }}>
+                    <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-slate-100 text-slate-400 mt-0.5">
+                      <X className="w-3.5 h-3.5" />
+                    </span>
+                    {row}
+                  </li>
                 ))}
-                {/* White line through data points */}
-                <polyline points="50,187 130,173 210,165 290,145 370,123 450,112 530,99 610,85 690,71 770,57 830,40" fill="none" stroke="#123e73" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+              </ul>
+            </div>
+            <div className="rounded-[20px] border border-teal-300 bg-teal-50 p-7">
+              <h3 className="text-xl lg:text-2xl font-bold text-slate-900 mb-5" style={{ fontFamily: "var(--font-montserrat)" }}>
+                ECOM SHARKS
+              </h3>
+              <ul className="space-y-3">
                 {[
-                  { x: 50, y: 187 }, { x: 130, y: 173 }, { x: 210, y: 165 }, { x: 290, y: 145 },
-                  { x: 370, y: 123 }, { x: 450, y: 112 }, { x: 530, y: 99 }, { x: 610, y: 85 },
-                  { x: 690, y: 71 }, { x: 770, y: 57 }, { x: 830, y: 40 },
-                ].map((p, i) => (
-                  <circle key={i} cx={p.x} cy={p.y} r="5" fill="#154a89" stroke="#ffffff" strokeWidth="1.5" />
+                  'Product research managed',
+                  'Store built and launched',
+                  'Experienced team manages operations',
+                  'Marketing managed',
+                  'Fulfillment and support managed',
+                  'Performance tracked and optimized',
+                ].map((row) => (
+                  <li key={row} className="flex items-start gap-3 text-base lg:text-lg text-slate-900 font-medium" style={{ fontFamily: "var(--font-barlow)" }}>
+                    <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-teal-500 text-white mt-0.5">
+                      <Check className="w-3.5 h-3.5" />
+                    </span>
+                    {row}
+                  </li>
                 ))}
-              </svg>
-            </div>
-            <div className="flex justify-between items-center mt-2 px-2 text-xs text-slate-500" style={{ fontFamily: "var(--font-barlow)" }}>
-              <span>Source: eMarketer Insider Intelligence</span>
-              <span>*Projected</span>
-            </div>
-            <div className="text-center mt-10">
-              <CtaButton onClick={scrollToCalendly}>{applyCtaContent.ctaText}</CtaButton>
+              </ul>
             </div>
           </div>
+          <p className="text-center text-slate-900 font-semibold text-xl lg:text-3xl mt-12" style={{ fontFamily: "var(--font-montserrat)" }}>
+            You own it. <span className="text-teal-600">We run it.</span>
+          </p>
+          <div className="text-center mt-9">
+            <CtaButton onClick={scrollToCalendly}>See How It Works</CtaButton>
+          </div>
         </div>
-      </div>
+      </section>
+
+      {/* RISK */}
+      <section className="py-16 lg:py-24 bg-slate-50 border-t border-slate-200">
+        <div className="container mx-auto px-5 lg:px-20">
+          <Reveal className="text-center mb-12">
+            <SectionEyebrow>Risk</SectionEyebrow>
+            <h2 className="text-4xl lg:text-6xl font-bold text-slate-900 leading-tight" style={{ fontFamily: "var(--font-montserrat)" }}>
+              What Are The Risks?
+            </h2>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div className="rounded-[20px] border border-slate-200 bg-white p-7">
+              <h3 className="text-xl lg:text-2xl font-bold text-slate-900 mb-5" style={{ fontFamily: "var(--font-montserrat)" }}>
+                Risk
+              </h3>
+              <ul className="space-y-3">
+                {[
+                  'Product underperformance',
+                  'Wasted marketing spend',
+                  'Operational complexity',
+                  'Lack of visibility',
+                  'Changing market conditions',
+                ].map((row) => (
+                  <li key={row} className="flex items-start gap-3 text-base lg:text-lg text-slate-600" style={{ fontFamily: "var(--font-barlow)" }}>
+                    <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-slate-100 text-slate-400 mt-0.5">
+                      <X className="w-3.5 h-3.5" />
+                    </span>
+                    {row}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-[20px] border border-teal-300 bg-teal-50 p-7">
+              <h3 className="text-xl lg:text-2xl font-bold text-slate-900 mb-5" style={{ fontFamily: "var(--font-montserrat)" }}>
+                How ECOM SHARKS Manages It
+              </h3>
+              <ul className="space-y-3">
+                {[
+                  { text: 'Products researched and evaluated', warn: false },
+                  { text: 'Campaigns monitored and optimized', warn: false },
+                  { text: 'Fulfillment and support managed', warn: false },
+                  { text: 'Performance reporting provided', warn: false },
+                  { text: 'Results vary, and no specific outcome is guaranteed', warn: true },
+                ].map((row) => (
+                  <li key={row.text} className={`flex items-start gap-3 text-base lg:text-lg ${row.warn ? 'text-amber-700' : 'text-slate-900 font-medium'}`} style={{ fontFamily: "var(--font-barlow)" }}>
+                    <span className={`flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full mt-0.5 ${row.warn ? 'bg-amber-100 text-amber-600' : 'bg-teal-500 text-white'}`}>
+                      {row.warn ? <AlertTriangle className="w-3.5 h-3.5" /> : <Check className="w-3.5 h-3.5" />}
+                    </span>
+                    {row.text}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <p className="text-center text-slate-900 font-semibold text-lg lg:text-2xl mt-12 max-w-3xl mx-auto" style={{ fontFamily: "var(--font-montserrat)" }}>
+            No business is risk-free. Know the risks. Understand the model. Make an informed decision.
+          </p>
+        </div>
+      </section>
+
+      {/* IS THIS FOR YOU? two-column qualification */}
+      <section className="py-16 lg:py-24 bg-white border-t border-slate-200">
+        <div className="container mx-auto px-5 lg:px-20">
+          <Reveal className="text-center mb-12">
+            <SectionEyebrow>Is This For You?</SectionEyebrow>
+            <h2 className="text-4xl lg:text-6xl font-bold text-slate-900 leading-tight" style={{ fontFamily: "var(--font-montserrat)" }}>
+              Is This Model Right For You?
+            </h2>
+          </Reveal>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div className="rounded-[20px] border border-teal-300 bg-teal-50 p-7">
+              <h3 className="text-xl lg:text-2xl font-bold text-slate-900 mb-5" style={{ fontFamily: "var(--font-montserrat)" }}>
+                A Good Fit If You…
+              </h3>
+              <ul className="space-y-3">
+                {[
+                  'Have capital available for a business investment',
+                  'Want ecommerce ownership without managing daily operations',
+                  'Understand that business performance varies',
+                  'Value transparency around how the business operates',
+                  'Prefer a professionally managed model',
+                ].map((row) => (
+                  <li key={row} className="flex items-start gap-3 text-base lg:text-lg text-slate-900 font-medium" style={{ fontFamily: "var(--font-barlow)" }}>
+                    <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-teal-500 text-white mt-0.5">
+                      <Check className="w-3.5 h-3.5" />
+                    </span>
+                    {row}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="rounded-[20px] border border-slate-200 bg-white p-7">
+              <h3 className="text-xl lg:text-2xl font-bold text-slate-900 mb-5" style={{ fontFamily: "var(--font-montserrat)" }}>
+                Not A Fit If You…
+              </h3>
+              <ul className="space-y-3">
+                {[
+                  'Are looking for guaranteed income',
+                  'Expect immediate profits',
+                  'Want a completely risk-free investment',
+                  'Are unwilling to provide the required capital or involvement',
+                  'Expect identical results regardless of market conditions',
+                ].map((row) => (
+                  <li key={row} className="flex items-start gap-3 text-base lg:text-lg text-slate-600" style={{ fontFamily: "var(--font-barlow)" }}>
+                    <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-slate-100 text-slate-400 mt-0.5">
+                      <X className="w-3.5 h-3.5" />
+                    </span>
+                    {row}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          <p className="text-center text-slate-600 text-lg lg:text-xl mt-12 max-w-3xl mx-auto" style={{ fontFamily: "var(--font-barlow)" }}>
+            The qualification process exists to determine whether this model actually makes sense for you.
+          </p>
+          <div className="text-center mt-9">
+            <CtaButton onClick={scrollToCalendly}>{applyCtaContent.ctaText}</CtaButton>
+          </div>
+        </div>
+      </section>
 
       {/* FAQ */}
       <div className="py-16 lg:py-24 bg-slate-50 border-t border-slate-200">
@@ -600,25 +720,29 @@ export default function EcomAutomationPage({
         </div>
       </div>
 
-      {/* Qualify bridge — Let's see if this is the right investment for you */}
-      <section className="py-16 lg:py-24 bg-slate-50 border-t border-slate-200">
-        <div className="container mx-auto px-5 lg:px-20">
+      {/* FINAL CTA */}
+      <section className="py-16 lg:py-24 bg-white border-t border-slate-200 relative overflow-hidden">
+        <div className="absolute top-[-120px] left-1/2 -translate-x-1/2 w-[420px] h-[420px] bg-teal-200/40 rounded-full blur-3xl" />
+        <div className="container mx-auto px-5 lg:px-20 relative z-10">
           <Reveal className="max-w-3xl mx-auto text-center">
-            <SectionEyebrow>Your Next Step</SectionEyebrow>
-            <h2 className="text-4xl lg:text-6xl font-bold text-slate-900 mb-6 leading-tight" style={{ fontFamily: "var(--font-montserrat)" }}>
-              Let&apos;s See If This Is The
+            <h2 className="text-4xl lg:text-6xl font-bold text-slate-900 mb-5 leading-tight" style={{ fontFamily: "var(--font-montserrat)" }}>
+              Ready To Invest?
               <br />
-              <span className="text-teal-600">Right Investment For You.</span>
+              <span className="text-teal-600">Know What You&apos;re Buying First.</span>
             </h2>
-            <p className="text-lg lg:text-xl text-slate-600 leading-relaxed mb-8" style={{ fontFamily: "var(--font-barlow)" }}>
-              If you&apos;re looking to diversify your income with a professionally managed eCommerce business, let&apos;s talk. During your strategy call we&apos;ll:
+            <p className="text-xl lg:text-2xl text-slate-700 mb-8" style={{ fontFamily: "var(--font-barlow)" }}>
+              Limited strategy calls available.
             </p>
             <div className="max-w-md mx-auto space-y-4 text-left mb-8 bg-white border border-slate-200 shadow-sm rounded-[20px] px-6 py-6">
+              <p className="text-lg lg:text-xl font-semibold text-slate-900" style={{ fontFamily: "var(--font-montserrat)" }}>
+                In one call, we&apos;ll cover:
+              </p>
               {[
-                'Learn about your goals.',
-                'Explain the model.',
-                'Answer your questions.',
-                "Determine if you're a good fit.",
+                'How the model works',
+                'What you own',
+                'What you invest',
+                'What we manage',
+                "Whether you're a fit",
               ].map((item) => (
                 <div key={item} className="flex items-start gap-3">
                   <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-teal-100 text-teal-600 mt-0.5">
@@ -629,25 +753,7 @@ export default function EcomAutomationPage({
               ))}
             </div>
             <p className="text-slate-600 text-base lg:text-lg mb-8 italic" style={{ fontFamily: "var(--font-barlow)" }}>
-              If we&apos;re not the right fit, we&apos;ll tell you.
-            </p>
-            <CtaButton onClick={scrollToCalendly}>{applyCtaContent.ctaText}</CtaButton>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Final Offer — Own another asset, not another job */}
-      <section className="py-16 lg:py-24 bg-white border-t border-slate-200 relative overflow-hidden">
-        <div className="absolute top-[-120px] left-1/2 -translate-x-1/2 w-[420px] h-[420px] bg-teal-200/40 rounded-full blur-3xl" />
-        <div className="container mx-auto px-5 lg:px-20 relative z-10">
-          <Reveal className="max-w-3xl mx-auto text-center">
-            <h2 className="text-5xl lg:text-7xl font-bold text-slate-900 mb-5 leading-tight" style={{ fontFamily: "var(--font-montserrat)" }}>
-              Own Another Asset.
-              <br />
-              <span className="text-teal-600">Not Another Job.</span>
-            </h2>
-            <p className="text-xl lg:text-2xl text-slate-700 mb-9" style={{ fontFamily: "var(--font-barlow)" }}>
-              Build wealth through ownership — not more work.
+              If it&apos;s not right for you, we&apos;ll tell you.
             </p>
             <CtaButton onClick={scrollToCalendly} size="lg">{applyCtaContent.ctaText}</CtaButton>
           </Reveal>

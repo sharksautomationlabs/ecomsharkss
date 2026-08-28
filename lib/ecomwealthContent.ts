@@ -50,10 +50,10 @@ export interface CaseStudy {
 }
 
 export const heroContent = {
-  headlineLine1: 'A Fully Managed eCommerce Business —',
+  headlineLine1: 'A Fully Managed eCommerce Business',
   headlineLine2: 'Live in as',
   headlineTagline: '14 Days (or less)',
-  subhead: 'Built for qualified investors who want another income-producing asset — not another full-time job. We build, launch, and manage the business while you retain full ownership.',
+  subhead: 'Built for qualified investors who want another income-producing asset, not another full-time job. We build, launch, and manage the business while you retain full ownership.',
   performanceCallout: 'Targeting $4,000+ in trackable sales in your first 30 days after launch.',
   performanceDisclaimer: 'Performance targets are based on qualified clients who meet our onboarding criteria and follow the recommended implementation process. Individual results vary.',
   doneForYouText: '100% Done-For-You. No Experience Required.',
