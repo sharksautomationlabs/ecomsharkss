@@ -7,7 +7,6 @@ import { prefetchCalendly } from './data';
 
 import Background from './components/Background';
 import DepthGauge from './components/DepthGauge';
-import Ticker from './components/Ticker';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
 import PlatformMarquee from './components/PlatformMarquee';
@@ -52,8 +51,6 @@ export default function Home2Page() {
 
       <Background />
       <DepthGauge />
-      {/* ticker sits above the nav bar */}
-      <Ticker />
       <Nav />
 
       <div className="relative z-[2]">

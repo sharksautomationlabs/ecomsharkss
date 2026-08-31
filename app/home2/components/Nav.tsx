@@ -18,12 +18,12 @@ const links = [
   { href: '/contact', label: 'Contact' },
 ];
 
-export default function Nav({ topNavText: topNavTextProp }: { topNavText?: string } = {}) {
+export default function Nav({ topNavText: topNavTextProp, hasTicker = false }: { topNavText?: string; hasTicker?: boolean } = {}) {
   const [open, setOpen] = useState(false);
   const navText = topNavTextProp ?? topNavText;
 
   return (
-    <header className="fixed inset-x-0 top-9 z-[100] px-[5%] py-1.5 lg:py-2">
+    <header className={`fixed inset-x-0 z-[100] px-[5%] py-1.5 lg:py-2 ${hasTicker ? 'top-9' : 'top-0'}`}>
       <div className="mx-auto max-w-[1440px]">
         {/* top info bar — matches the site-wide Header's contact strip */}
         <div className="hidden h-10 items-center justify-between rounded-xl border border-[#35c4dd]/[0.22] bg-[#03101e]/80 px-6 backdrop-blur-xl lg:flex">

@@ -2,8 +2,8 @@
 
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Star, Sparkles } from 'lucide-react';
-import { stats, openCalendly, topNavText, heroSubtitle, platformLogos } from '../data';
+import { Star } from 'lucide-react';
+import { stats, openCalendly, heroSubtitle, platformLogos } from '../data';
 import { fadeUp, staggerContainer, useSectionInView } from '../motion';
 import { useSharkScroll } from '../hooks';
 import Counter from './Counter';
@@ -21,25 +21,6 @@ export default function Hero() {
       {/* real hero shark artwork, from the live homepage — drifts as you scroll */}
       <div ref={sharkRef} className="animate-shark-complete pointer-events-none absolute top-[16%] z-0 h-[360px] w-[62%] max-w-[580px] opacity-[0.28] sm:h-[440px]" style={{ left: '75%' }}>
         <Image src="/images/shark-underwater-2.png" alt="" fill className="scale-x-[-1] object-contain" priority sizes="580px" />
-      </div>
-
-      <span className="relative z-10 mb-6 inline-flex items-center gap-2 rounded-full border border-[#35c4dd]/[0.22] bg-[#35c4dd]/[0.08] px-4 py-2 text-[0.8rem] font-semibold text-[#eaf7fb]">
-        <Sparkles size={14} className="text-[#ffc94a]" /> {topNavText.replace('🌟 ', '')}
-      </span>
-
-      <div className="relative z-10 mb-8" style={{ perspective: 800 }}>
-        <div className={`relative mx-auto h-[132px] w-[132px] rounded-full ${styles.coin}`}>
-          <div className={`absolute inset-0 flex flex-col items-center justify-center rounded-full font-[family-name:var(--font-eh2-archivo)] text-[#4a2f00] ${styles.coinFace}`}
-               style={{ background: 'radial-gradient(circle at 32% 28%, #ffe9ae, #ffc94a 45%, #b8860b 100%)', boxShadow: '0 0 44px rgba(255,201,74,.5), inset 0 0 18px rgba(120,70,0,.5)' }}>
-            <div className="text-2xl font-black leading-none">$4,000</div>
-            <small className="mt-1 text-[0.56rem] font-extrabold tracking-[0.12em]">IN 30 DAYS</small>
-          </div>
-          <div className={`absolute inset-0 flex flex-col items-center justify-center rounded-full font-[family-name:var(--font-eh2-archivo)] text-[#4a2f00] ${styles.coinFace} ${styles.coinFaceBack}`}
-               style={{ background: 'radial-gradient(circle at 32% 28%, #ffe9ae, #ffc94a 45%, #b8860b 100%)', boxShadow: '0 0 44px rgba(255,201,74,.5), inset 0 0 18px rgba(120,70,0,.5)' }}>
-            <div className="text-2xl font-black leading-none">FREE</div>
-            <small className="mt-1 text-[0.56rem] font-extrabold tracking-[0.12em]">OR WE WORK</small>
-          </div>
-        </div>
       </div>
 
       <div className="relative z-10 mb-5 text-[0.78rem] font-bold uppercase tracking-[0.3em] text-[#35c4dd]">The Ecom Sharks Guarantee</div>

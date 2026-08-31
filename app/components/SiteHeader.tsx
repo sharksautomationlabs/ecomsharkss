@@ -65,7 +65,7 @@ export default function SiteHeader({ heroTitle, heroSubtitle, topNavText, second
       <Background />
       <DepthGauge />
       <Ticker />
-      <Nav topNavText={topNavText} />
+      <Nav topNavText={topNavText} hasTicker />
 
       <div className="relative z-[2] flex min-h-screen w-full flex-col justify-center overflow-hidden pb-16 pt-[150px] lg:pt-[240px]">
         <div className="relative z-50 w-full px-5 lg:w-[781px] lg:px-20">
